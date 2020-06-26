@@ -2761,6 +2761,89 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
+        else if (this.type == "druogEgg")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 55;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.delDruogTimer = 0;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 108, 151, 24, 23, -(1/2 * 24), -(1/2 * 23), 24, 23);
+                XXX.restore();
+
+                //HATCHING
+                this.eggHatchTimer += 1 * (TTD / 16.75);
+                if (this.eggHatchTimer >= 26000)
+                {
+                    this.eggHatchTimer = -1000000000;
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Druog", "baby", "Generic Druog"));
+                    this.phase = 2;
+                }
+            }
+            else if (this.phase == 1)
+            {
+                this.delDruogTimer += 1 * (TTD / 16.75);
+                if (this.delDruogTimer > 200)
+                {
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 44, 220, 24, 23, -(1/2 * 24), -(1/2 * 23), 24, 23);
+                XXX.restore();
+            }
+            else
+            {
+                this.delDruogTimer += 1 * (TTD / 16.75);
+                if (this.delDruogTimer > 200)
+                {
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 108, 175, 23, 22, -(1/2 * 23), -(1/2 * 22), 23, 22);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 8;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.phase == 0)
+                {
+                    this.phase = 1;
+                    if (player.areGlovesEquipped != true)
+                    {
+                        player.poisonIV = true;
+                    }
+                }
+            }
+        }
         else if (this.type == "etnaEggSac")
         {
             //TRAITS
@@ -35580,7 +35663,11 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
                 if (quests.theDeermenAndTheWendigoSacked < 5 && this.opened == false)
                 {
-                    if (quests.theDeermenAndTheWendigoSacked == 0) //grettel is in the sack but still alive
+                    if (quests.theDeermenAndTheWendigoSacked < 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", false, "preBuilt"));
+                    }
+                    else if (quests.theDeermenAndTheWendigoSacked == 0) //grettel is in the sack but still alive
                     {
                         if (uniqueChars.grettelLDS == true)
                         {
@@ -35589,7 +35676,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", true, "preBuilt"));
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", false, "preBuilt"));
                         }
 
                     }
@@ -35618,19 +35705,19 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", true, "preBuilt"));
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", false, "preBuilt"));
                         }
                     }
                     else
                     {
                         uniqueChars.roseyRedLDS = false;
-                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", true, "preBuilt"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", false, "preBuilt"));
                     }
 
                 }
                 else if (this.opened == false)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", true, "preBuilt"));
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", false, "preBuilt"));
                 }
                 this.opened = true;
             }

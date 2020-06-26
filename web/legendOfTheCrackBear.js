@@ -1759,6 +1759,18 @@ function sitePack()
 
     site.onload = function()
     {
+        bristPack();
+    };
+}
+
+function bristPack()
+{
+    var brist = new Image();
+    brist.src = ("images/brist.png");
+    window.brist = brist;
+
+    brist.onload = function()
+    {
         scragPack();
     };
 }
@@ -4144,6 +4156,7 @@ function theLegend()
         gertrude: ["Gertrude", 0],
         henrietta: ["Henrietta", 0],
         sackman: ["Sackman", 0],
+        maybell: ["Maybell", 0],
         havette: ["Havette", 0],
         or: ["Or", 0],
         iizel: ["Iizel", 0],
@@ -4433,6 +4446,7 @@ function theLegend()
         gertrudeLDS: true,
         henriettaLDS: true,
         sackmanLDS: true,
+        maybellLDS: true,
         farrenLDS: true,
         havetteLDS: true,
         orLDS: true,
@@ -4633,6 +4647,8 @@ function theLegend()
         theDeermenAndTheWendigoSacked: 0,
         theDeermenAndTheWendigoSackOpened: false,
         theDeermenAndTheWendigoSaved: "none",
+        theDeermenAndTheWendigoGertrudeSentMe: false,
+        theDeermenAndTheWendigoSackmanNote: false,
 
         //QUEST: The Cult of Radiant Spirit ---- given by discovering Morrow City
         theCultOfTheRadiantSpiritQuest: false,

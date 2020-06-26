@@ -150,23 +150,23 @@ function exists(itemType) //checks players inventory, bank, the ground, and all 
     }
 }
 
-function itemPlacer() //places items on the map once each game start given each meets especificas condiciones o circumstancias.
+function itemPlacer() //places items on the map once each game start given each meets especificas condiciones o circunstancias.
 {
     //The Broken Well Quest Items
     //Well Axle (quest item)
-    if (!exists("wellAxle") && quests.theBrokenWellQuest != "complete")
+    if (map == "world" && !exists("wellAxle") && quests.theBrokenWellQuest != "complete")
     {
         worldItems.push([new Item("wellAxle", -1038, -1899), 1]);
     }
-    if (!exists("wellWinch") && quests.theBrokenWellQuest != "complete")
+    if (map == "world" && !exists("wellWinch") && quests.theBrokenWellQuest != "complete")
     {
         worldItems.push([new Item("wellWinch", -1351, -1881), 1]);
     }
-    if (!exists("wellCord") && quests.theBrokenWellQuest != "complete")
+    if (map == "world" && !exists("wellCord") && quests.theBrokenWellQuest != "complete")
     {
         worldItems.push([new Item("wellCord", -1012, -1944), 1]);
     }
-    if (!exists("wellStone") && quests.theBrokenWellQuest != "complete")
+    if (map == "world" && !exists("wellStone") && quests.theBrokenWellQuest != "complete")
     {
         worldItems.push([new Item("wellStone", -1397, -1917), 1]);
     }

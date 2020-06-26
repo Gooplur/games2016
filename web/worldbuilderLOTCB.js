@@ -201,28 +201,28 @@ function worldBuilder()
             campout = true;
             outlineBuilder( 34, 34, "prairy", -20, 1068);
 
-            outlineBuilder(2, 7, "outline", -19, 1068);
-            outlineBuilder(1, 4, "outline", -11, 1068);
-            outlineBuilder(2, 5, "outline", -5, 1068);
-            outlineBuilder(1, 6, "outline", 2, 1068);
-            outlineBuilder(1, 3, "outline", 10, 1068);
+            outlineBuilder(2, 7, "jungle", -19, 1068);
+            outlineBuilder(1, 4, "jungle", -11, 1068);
+            outlineBuilder(2, 5, "jungle", -5, 1068);
+            outlineBuilder(1, 6, "jungle", 2, 1068);
+            outlineBuilder(1, 3, "jungle", 10, 1068);
 
-            outlineBuilder(1, 3, "outline", -17, 1070);
-            outlineBuilder(1, 2, "outline", -10, 1069);
-            outlineBuilder(1, 2, "outline", -2, 1070);
-            outlineBuilder(2, 4, "outline", 5, 1069);
+            outlineBuilder(1, 3, "jungle", -17, 1070);
+            outlineBuilder(1, 2, "jungle", -10, 1069);
+            outlineBuilder(1, 2, "jungle", -2, 1070);
+            outlineBuilder(2, 4, "jungle", 5, 1069);
 
-            outlineBuilder(1, 1, "outline", 10, 1069);
-            outlineBuilder(1, 4, "outline", 4, 1071);
+            outlineBuilder(1, 1, "jungle", 10, 1069);
+            outlineBuilder(1, 4, "jungle", 4, 1071);
         }
         //Layer 31 (tropical region): elev -3
         //mapS31
-        if ( Y > -320122.8 && Y < -309321.7 && X < 7687 && X > - 3901) //X0 //todo add this map
+        if ( Y > -320122.8 && Y < -309321.7 && X < 7687 && X > - 3901) //X0
         {
             elevation = -3;
             region = "s31";
             campout = true;
-            outlineBuilder( 34, 34, "outline", -20, 1034);
+            outlineBuilder( 34, 34, "jungle", -20, 1034);
         }
         //Layer 30 (tropical region): elev -3
         //mapS30
@@ -6489,6 +6489,157 @@ function worldBuilder()
         //starting chamber
         outlineBuilder( 4, 4, "rock", 0, 0);
     }
+    else if (map == "murkwaterCave")
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "murkwaterCave";
+        campout = true;
+        //starting chamber
+        outlineBuilder( 4, 4, "rock", 0, 0);
+
+        outlineBuilder(1, 2, "rock", 1, -1);
+        outlineBuilder(1, 2, "rock", 2, -2);
+        outlineBuilder(1, 3, "rock", 1, 4);
+        outlineBuilder(1, 6, "rock", 4, 3);
+        outlineBuilder(5, 1, "rock", 4, -6);
+        outlineBuilder(2, 1, "rock", 3, -7);
+        outlineBuilder(2, 1, "rock", 2, -8);
+        outlineBuilder(1, 1, "rock", 9, 4);
+        outlineBuilder(3, 1, "rock", 10, 4);
+        outlineBuilder(1, 1, "rock", 10, 9);
+        outlineBuilder(2, 1, "rock", 11, 9);
+        outlineBuilder(6, 1, "rock", 12, 10);
+        outlineBuilder(3, 1, "rock", 11, 15);
+        outlineBuilder(2, 1, "rock", 10, 16);
+        outlineBuilder(2, 1, "rock", 12, 17);
+        outlineBuilder(2, 1, "rock", 13, 18);
+        outlineBuilder(2, 1, "rock", 14, 19);
+        outlineBuilder(1, 2, "rock", 14, 5);
+        outlineBuilder(1, 3, "rock", 15, 4);
+        outlineBuilder(1, 2, "rock", 17, 5);
+        outlineBuilder(1, 1, "rock", 18, 6);
+        outlineBuilder(6, 1, "rock", 19, 6);
+        outlineBuilder(4, 1, "rock", 18, 11);
+        outlineBuilder(1, 3, "rock", 19, 14);
+        outlineBuilder(1, 4, "rock", 19, 15);
+        outlineBuilder(2, 3, "rock", 20, 16);
+        outlineBuilder(1, 2, "rock", 21, 18);
+        outlineBuilder(1, 2, "rock", 20, 19);
+        outlineBuilder(1, 6, "rock", 15, 20);
+        outlineBuilder(1, 1, "rock", 19, 21);
+        outlineBuilder(8, 1, "rock", 15, 21);
+        outlineBuilder(1, 1, "rock", 9, 17);
+        outlineBuilder(1, 6, "rock", -4, -8);
+        outlineBuilder(1, 2, "rock", -8, -8);
+        outlineBuilder(1, 7, "rock", -9, -7);
+        outlineBuilder(1, 9, "rock", -12, -6);
+        outlineBuilder(1, 5, "rock", -13, -5);
+        outlineBuilder(1, 2, "rock", -15, -4);
+        outlineBuilder(1, 2, "rock", -16, -3);
+        outlineBuilder(1, 3, "rock", -7, -5);
+        outlineBuilder(1, 1, "rock", -13, 1);
+        outlineBuilder(1, 9, "rock", -9, 2);
+        outlineBuilder(1, 4, "rock", -14, 2);
+        outlineBuilder(1, 8, "rock", -13, 3);
+        outlineBuilder(1, 5, "rock", -13, 4);
+        outlineBuilder(3, 1, "rock", -11, 5);
+        outlineBuilder(2, 1, "rock", -10, 7);
+        outlineBuilder(2, 1, "rock", -9, 8);
+        outlineBuilder(5, 1, "rock", -8, 9);
+        outlineBuilder(2, 1, "rock", -7, 11);
+        outlineBuilder(3, 1, "rock", -9, 13);
+        outlineBuilder(4, 1, "rock", -8, 15);
+        outlineBuilder(2, 1, "rock", -6, 12);
+        outlineBuilder(1, 1, "rock", -5, 13);
+        outlineBuilder(3, 1, "rock", -4, 13);
+        outlineBuilder(4, 1, "rock", -9, 18);
+        outlineBuilder(1, 1, "rock", -10, 21);
+        outlineBuilder(3, 1, "rock", -3, 15);
+        outlineBuilder(2, 1, "rock", -2, 17);
+        outlineBuilder(1, 2, "rock", -1, 18);
+        outlineBuilder(1, 3, "rock", 0, 19);
+        outlineBuilder(1, 8, "rock", 2, 18);
+        outlineBuilder(1, 2, "rock", 3, 17);
+        outlineBuilder(1, 1, "rock", 3, 16);
+        outlineBuilder(1, 2, "rock", 2, 15);
+        outlineBuilder(1, 3, "rock", 2, 14);
+        outlineBuilder(2, 3, "rock", 1, 12);
+        outlineBuilder(1, 1, "rock", 1, 11);
+        outlineBuilder(1, 2, "rock", -9, -9);
+        outlineBuilder(1, 2, "rock", -10, -10);
+        outlineBuilder(1, 5, "rock", -12, -11);
+        outlineBuilder(1, 3, "rock", -8, -12);
+        outlineBuilder(1, 3, "rock", -14, -12);
+        outlineBuilder(1, 4, "rock", -6, -13);
+        outlineBuilder(1, 13, "rock", -3, -14);
+        outlineBuilder(1, 5, "rock", -1, -15);
+        outlineBuilder(1, 5, "rock", 0, -13);
+        outlineBuilder(1, 2, "rock", 1, -12);
+        outlineBuilder(1, 3, "rock", 7, -13);
+        outlineBuilder(1, 2, "rock", 9, -12);
+        outlineBuilder(2, 1, "rock", 23, 16);
+        outlineBuilder(2, 2, "rock", 16, -9);
+        outlineBuilder(1, 2, "rock", 15, -7);
+        outlineBuilder(2, 1, "vardanianWetland", 0, 1);
+        outlineBuilder(1, 1, "vardanianWetland", -1, 2);
+        outlineBuilder(3, 1, "swamp", 3, -5);
+        outlineBuilder(3, 1, "swamp", 2, -6);
+        outlineBuilder(1, 1, "swamp", 1, -6);
+        outlineBuilder(2, 1, "swamp", 10, 7);
+        outlineBuilder(2, 1, "swamp", 9, 8);
+        outlineBuilder(1, 1, "swamp", 8, 9);
+        outlineBuilder(3, 1, "swamp", 11, 6);
+        outlineBuilder(2, 2, "swamp", 12, 5);
+        outlineBuilder(2, 1, "swamp", 12, 8);
+        outlineBuilder(2, 1, "swamp", 13, 9);
+        outlineBuilder(1, 1, "swamp", 14, 6);
+        outlineBuilder(2, 1, "swamp", 15, 6);
+        outlineBuilder(3, 1, "swamp", 16, 5);
+        outlineBuilder(1, 2, "swamp", 17, 3);
+        outlineBuilder(1, 1, "swamp", 18, 4);
+        outlineBuilder(2, 1, "swamp", 19, 4);
+        outlineBuilder(2, 1, "swamp", 17, 6);
+        outlineBuilder(3, 1, "swamp", 18, 7);
+        outlineBuilder(1, 4, "swamp", -13, -4);
+        outlineBuilder(1, 6, "swamp", -14, -3);
+        outlineBuilder(2, 5, "swamp", -16, -2);
+        outlineBuilder(1, 6, "swamp", -16, 0);
+        outlineBuilder(1, 7, "swamp", -12, 1);
+        outlineBuilder(1, 1, "swamp", -10, 2);
+        outlineBuilder(2, 1, "swamp", -15, 1);
+        outlineBuilder(1, 1, "swamp", -14, 1);
+        outlineBuilder(1, 1, "swamp", -8, 14);
+        outlineBuilder(4, 1, "swamp", -7, 13);
+        outlineBuilder(2, 1, "swamp", -6, 14);
+        outlineBuilder(1, 1, "swamp", -5, 14);
+        outlineBuilder(1, 2, "swamp", -16, -12);
+        outlineBuilder(1, 4, "swamp", -16, -11);
+        outlineBuilder(1, 1, "swamp", -16, -10);
+        outlineBuilder(1, 3, "swamp", -14, -10);
+        outlineBuilder(1, 7, "swamp", -17, -13);
+        outlineBuilder(1, 5, "swamp", -14, -14);
+        outlineBuilder(1, 1, "swamp", -12, -15);
+        outlineBuilder(1, 7, "swamp", 11, -12);
+        outlineBuilder(1, 8, "swamp", 10, -11);
+        outlineBuilder(1, 1, "swamp", 10, -10);
+        outlineBuilder(1, 1, "swamp", 13, -10);
+        outlineBuilder(1, 2, "swamp", 13, -13);
+        outlineBuilder(1, 1, "swamp", 17, -13);
+        outlineBuilder(1, 4, "swamp", 15, -10);
+        outlineBuilder(1, 2, "swamp", 14, -9);
+        outlineBuilder(1, 3, "swamp", 13, -8);
+        outlineBuilder(1, 1, "swamp", 14, -10);
+        outlineBuilder(1, 3, "swamp", 12, -7);
+        outlineBuilder(1, 1, "swamp", 12, -6);
+        outlineBuilder(4, 1, "swamp", 18, -9);
+        outlineBuilder(1, 1, "swamp", 19, -8);
+        outlineBuilder(4, 1, "swamp", 17, -7);
+        outlineBuilder(3, 1, "swamp", 16, -6);
+        outlineBuilder(1, 2, "swamp", 14, -6);
+
+    }
     else if (map == "sourceOfTheGlow") //This is a dungeon found in map W3
     {
         player.dmx = map;
@@ -6508,6 +6659,19 @@ function worldBuilder()
         campout = false;
         //starting chamber
         outlineBuilder( 2, 2, "cephrianTile", 0, 0);
+    }
+    else if (map == "blacktrollCave")
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "blacktrollCave";
+        campout = true;
+        //starting chamber
+        outlineBuilder( 1, 1, "jungle", 0, 0);
+        outlineBuilder(1, 8, "rock", -8, 0);
+        outlineBuilder(1, 3, "rock", -7, -1);
+        outlineBuilder(1, 2, "rock", -7, 1);
     }
     else if (map == "lethikCityPrison")
     {

@@ -100,6 +100,14 @@ function findLiterature(itemType)
     {
         reading = [["^|Dear Niilo, ||If you are the one who opened the envelope that held this letter it is already too late to save your life. I cursed it so as to kill you for cheating me, 'twas nothing personal, as I'm sure your error was made in ignorance. The tablet you stole was not a spell, I'll have you know, rather some useless stories about a Freydic god, and some nonsense about how he favored your people. It was all written in old freydic. |I blame myself too, I should have looked at the tablet more closely to verify its authenticity before paying you so lavishly for it. I disposed of it like the garbage it was, as a slight to your bogus religion I hid it away in an abandoned mineshaft guarded by a swarm of basilisks that I summoned. Die knowing that your last relevant act in life was to steal an ancient part of your people's religious history for a measely 900 coins. ||Yours truely, High Magus Aleksi of the Cephrian council"]];
     }
+    else if (itemType == "sackmanNote")
+    {
+        reading = [["^|Mr. Sackman, ||I want you to get more kids for us to eat. They taste good and we got gold for you to give us more of them from raiding merchants. Merchants taste good too, and so do people who break deals with me. So I better see you here soon with more kids. My deermen are hungry, don't keep us waiting. Remember we will be camped out south of the road right as you enter the woods. I urge you to eat break giant bread with us if you know what I mean, you would make a good deerman. ||Yours Truly, The Wendigo."]];
+        if (quests.theDeermenAndTheWendigoSackmanNote == false)
+        {
+            quests.theDeermenAndTheWendigoSackmanNote = true;
+        }
+    }
     else if (itemType == "estolProof")
     {
         reading = [["^|Lo, the boss needs you to get him this new spell we stole as soon as possible. You can't let anybody else in on our boss's secret, alright. If anybody asks, this scroll is just a secret code, or something like that. Oh and I left you some more kolum powder to sell, keep up the good work!"]];

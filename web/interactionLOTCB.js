@@ -3068,6 +3068,2046 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Grettel" || conversationID[0] == "Grettel")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Grettel";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName == "Kel")
+                                {
+                                    if (quests.theDeermenAndTheWendigoQuest == false)
+                                    {
+                                        player.dialogueOptions = [["Hi there!", false, "a"], ["What are you up to?", false, "b"], ["Be careful out here I have heard it is dangerous for children to play in the streets...", false, "c"], ["...", false, "d"]];
+                                    }
+                                    else if (quests.theDeermenAndTheWendigoSaved == "grettel")
+                                    {
+                                        player.dialogueOptions = [["...", false, "e"], ["Are you okay?", false, "f"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["It's good to see you!", false, "g"], ["What have you been up to?", false, "h"]];
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["What are you playing?", false, "i"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Hi!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("I'm playing a game... I'm riding the unicorn, and I live in a castle like the one in the rich part of town!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Yeah, I know that already, my mommy always says that if I see any sewer monsters that I ought to run right back home as fast as I can, like a vel fletter running away from a hunter...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Are you weird or something?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("It was so dark in that big ol' bag and I couldn't get myself out of there... I was so scared! Thank you for getting me out of there!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("No, I'm not okay, I think I'm bleeding on my shoulder where that man poked me, and my belly hurts real bad...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("I am happy to see you too! I am all better now, and I am only alive because of you! Thank you so much for saving me from the scary bag man. Sometimes I have nightmares about that evil man...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("I've been playing with my friends mostly. My mom tells me that I don't have to worry about sewer monsters no more, but now I'm not allowed to talk to folks I don't know real well...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("It's not any of your business you stinky Kel! Besides, Kels can't play with normal people anyway, they are too dumb to play. That's what my mom said and she is right about everything...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Henrietta" || conversationID[0] == "Henrietta")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Henrietta";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+
+                                if (uniqueChars.grettelLDS == false && quests.theDeermenAndTheWendigoQuest == false)
+                                {
+                                    player.dialogueOptions = [["My condolenses for your daughter...", false, "e"], ["How are you holding up?", false, "f"]];
+                                }
+                                else if (player.raceName == "Kel")
+                                {
+                                    player.dialogueOptions = [["Hello.", false, "i"], ["...", false, "i"]];
+                                }
+                                else if (quests.theDeermenAndTheWendigoQuest != false)
+                                {
+                                    if (quests.theDeermenAndTheWendigoSaved == "grettel")
+                                    {
+                                        player.dialogueOptions = [["Good day.", false, "g"], ["How are you doing?", false, "h"]];
+                                    }
+                                    else
+                                    {
+                                        if (quests.theDeermenAndTheWendigoQuest == "complete")
+                                        {
+                                            player.dialogueOptions = [["My condolenses for your daughter...", false, "e"], ["How are you holding up?", false, "f"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["(you notice that she is weeping) What happened?", false, "c"], ["I am looking for the child-snatcher, do you know anything that might be of use to me?", false, "d"]];
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["Do you live here alone?", false, "b"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Good day to you too!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("I live here with my daughter Grettel. My husband is off fighting in the war, I can't wait till we beat the Kels so that he can come back home victorious!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("My daughter is gone, I've looked everywhere! (tears stream down her face) I fear that she was dragged into the sewers by some foul beast... I should've told her to stay in, I didn't think that the sewer creatures would come this far out... (she sobs bitterly)");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (player.raceName != "Thengar" && player.raceName != "Vardan")
+                            {
+                                setMsg("There is no snatcher, Thengans are too moral to steal a child from their mother, my daughter and the other missing children are probably dead by now, all eaten by sewer monsters... (she cries)");
+                            }
+                            else if (player.raceName == "Vardan")
+                            {
+                                setMsg("Maybe things work that way in Vardania, but here in Thengaria we have moral values, Thengans would never steal a child from their mother. My poor Grettel was taken by the sewer monsters. (she cries)");
+                            }
+                            else
+                            {
+                                setMsg("I doubt a person would be behind any of our missing children, not when the sewer nearby is full of the most fearsome of beasts. I have heard that sometimes they surface to eat children and anyone who stays out too late... (she cries)");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (quests.theDeermenAndTheWendigoQuest == false)
+                            {
+                                setMsg("How dare you set foot in my home after what you did!? You murderer!");
+                            }
+                            else
+                            {
+                                setMsg("I just can't believe that anyone would want to take my daughter, what sort of a person would do such a terrible thing? (she weeps bitterly)");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("I have nothing now, my daughter is gone, my husband is at war... I have nothing!! (she sobs loudly) I'm done with this life, I will not subject myself to the gods' ill humor any longer...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                uniqueChars.henriettaLDS = false;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            if (uniqueChars.grettelLDS == false)
+                            {
+                                setMsg("My Grettel is dead, she is dead... what cruel a fate the gods have spun for the likes of me... (she cries miserably)");
+                            }
+                            else
+                            {
+                                setMsg("I hope your day is great! Thank you so much for saving my daughter from that terrible man!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                if (uniqueChars.grettelLDS == false)
+                                {
+
+                                }
+                                else
+                                {
+
+                                }
+                                msgReset();
+
+                                if (uniqueChars.grettelLDS == false)
+                                {
+                                    uniqueChars.henriettaLDS = false;
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            if (uniqueChars.grettelLDS == false)
+                            {
+                                setMsg("Grettel is dead, I am doing terribly. She was all that I had left since my husband is at war. He will return to an empty broken family if he returns at all...");
+                            }
+                            else
+                            {
+                                setMsg("Grettel and I are doing very well, especially now that I know that the threat is gone. I had been so worried about sewer monsters that I couldn't see the bad apples right in front of my door...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (uniqueChars.grettelLDS == false)
+                                {
+                                    uniqueChars.henriettaLDS = false;
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("Go back to your master Kel, leave now, before you muck up my floors with your filth!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Mr. Sackman" || conversationID[0] == "Sackman")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Sackman";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["What is in that sack of yours?", false, "b"], ["What do you do around here?", false, "c"]];
+                                if (quests.theDeermenAndTheWendigoQuest == true)
+                                {
+                                    player.dialogueOptions.unshift(["Do you know anything about the children that have been going missing?", false, "d"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Good day!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("A live turkey.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I hunt for turkeys and bring them here alive to sell them at their freshest. Nothing but the best for my customers!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("I wish I could help. I don't think I know anything that would be helpful though, I spend most of my time catching turkeys to sell.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Little Rosey Red" || conversationID[0] == "RoseyRed")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "RoseyRed";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName == "Kel")
+                                {
+                                    player.dialogueOptions = [["Hi there!", false, "h"], ["What a lovely riding hood!", false, "j"], ["What's that in your hand?", false, "e"]];
+                                }
+                                else if (quests.theDeermenAndTheWendigoSaved == "rosey" && quests.theDeermenAndTheWendigoQuest == "complete")
+                                {
+                                    player.dialogueOptions = [["Lovely to see you again!", false, "f"], ["How have you been?", false, "g"]];
+                                }
+                                else if (quests.theDeermenAndTheWendigoSaved == "rosey" && quests.theDeermenAndTheWendigoQuest == true)
+                                {
+                                    player.dialogueOptions = [["...", false, "a"], ["Are you okay?", false, "b"]];
+                                }
+                                else
+                                {
+                                    if (quests.theDeermenAndTheWendigoQuest == false)
+                                    {
+                                        player.dialogueOptions = [["Hello.", false, "c"], ["Nice riding hood!", false, "d"], ["What's that in your hand?", false, "e"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["Hello.", false, "c"], ["Nice riding hood!", false, "d"], ["What's that in your hand?", false, "e"], ["Have you noticed anything odd going on around here?", false, "i"]];
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0j";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("(she looks at you wide eyed and then with tears in her eyes runs to you and hugs you tightly)");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("I was so scared, that man hurt me... he hit me and poked me... Thank you so much for getting me out of that dark bag!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Oh, hi.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Um, thanks.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Kel")
+                            {
+                                setMsg("It's a rose, but you can't touch it... its mine and if you touch it with your hands my mom will make me throw it away.");
+                            }
+                            else
+                            {
+                                setMsg("It's a rose. I was named after roses, and roses are my favorite flower too.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            if (player.gender == "Male")
+                            {
+                                setMsg("I missed you so much, I want you to stay forever and be my new daddy!");
+                            }
+                            else
+                            {
+                                setMsg("I missed you so much, please don't ever leave me again!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("I will never trust strangers again, at least I was not that evil sackman's dinner... Thank you so much!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("My mom says that I should talk to Kels, it's not proper...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("My mom tells me about the snatchers that take away kids to gobble up for supper, I don't believe her though... people don't eat kids. Real life isn't a fairytale, duh. Other than that weird thing, I don't know really. I guess I haven't seen my friend grettle in a while...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0j")
+                        {
+                            //text dialogue
+                            setMsg("Thank you... but you're not supposed to talk to me since your a Kel.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Maybell" || conversationID[0] == "Maybell")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Maybell";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName != "Kel")
+                                {
+                                    if (quests.theDeermenAndTheWendigoGertrudeSentMe == false)
+                                    {
+                                        player.dialogueOptions = [["Good day.", false, "a"], ["Excuse me, I'm lost could you help me find the west gate?", false, "b"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["I am after the child snatcher, Gertrude told me that you might know something about that.", false, "c"]];
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Hello.", false, "d"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.gender != "Female")
+                            {
+                                setMsg("(She looks at you with a fierce look) I don't trust you...");
+                            }
+                            else
+                            {
+                                if (player.charisma >= 4)
+                                {
+                                    if (quests.theDeermenAndTheWendigoSacked >= 4)
+                                    {
+                                        setMsg("Keep your kids inside I told them... nobody listened, nobody ever listens... now they're all gone!!");
+                                    }
+                                    else
+                                    {
+                                        setMsg("A word of advice, if you are a mother keep your kids inside...");
+                                    }
+                                }
+                                else
+                                {
+                                    if (quests.theDeermenAndTheWendigoSacked >= 4)
+                                    {
+                                        setMsg("Keep your kids inside I told them... nobody listened, nobody ever listens... now they're all gone!!");
+                                    }
+                                    else
+                                    {
+                                        setMsg("I wish you well...");
+                                    }
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            if (player.gender != "Female")
+                            {
+                                setMsg("(She looks at you with a fierce look) Its west. Now go away!");
+                            }
+                            else
+                            {
+                                setMsg("Just go west until you see the city wall and follow that road north until you reach the gate, you'll know it when you see it.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (player.gender != "Female")
+                            {
+                                setMsg("You know gertrude? It is hard to know who to trust these days, but if she trusts you then I suppose I can tell you what I know.");
+                            }
+                            else
+                            {
+                                setMsg("You're after the child snatcher? Gertrude sent you? I would appreciate the help!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.theDeermenAndTheWendigoQuest == false)
+                                {
+                                    quests.theDeermenAndTheWendigoQuest = true;
+                                    quests.activeQuests.push({name: "Mr. Sackman", description: "Maybell thinks she knows who is behind the child-snatching in Cranheim..."});
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Who do you think you are, Kel!? You can't just talk to me, go back to your master and tell them that they will have to talk to me themself if they want to send me a message...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.theDeermenAndTheWendigoQuest == true)
+                                {
+                                    if (quests.theDeermenAndTheWendigoSackmanNote == "told" && uniqueChars.theWendigoLDS == false && quests.theDeermenAndTheWendigoDeermenKilled >= 8)
+                                    {
+                                        player.dialogueOptions = [["The chieftain of the cannibals who called himself The Wendigo is dead, as are his cannibalistic minions, and so is the sackman who was delivering them children to eat.", false, "f"]];
+                                    }
+                                    else if (quests.theDeermenAndTheWendigoSackmanNote == true)
+                                    {
+                                        player.dialogueOptions = [["You were right about the sackman, but he wasn't alone, he was feeding the kids to cannibalistic bandits for gold.", false, "d"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["Who do you think the child snatcher could be?", false, "a"], ["What do you know about the child snatcher so far?", false, "b"], ["Why are you so intent on finding the child snatcher?", false, "c"]];
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["What's next for you, now that you avenged your son?", false, "e"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("I think that it could be anybody, but I have my suspicions... I suspect that it might be that shiftly looking turkey catcher with the sword who hangs out by the west corner at the end of the street.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("I suspect that it is probably a man, I can't see any motive for a woman to go around snatching kids. It wouldn't make sense...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            setMsg("My son was kidnapped over a moon ago, if only I had been more cautious and told him to stay in, but it is not my fault he's gone... He wouldn't be gone if it weren't for that terrible child-snatcher. That fiendish snatcher took the only thing I had to live for! Now all I want is to avenge my poor son...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            //text dialogue
+                            setMsg("(she chokes back a sob but refuses to let herself cry, instead her face flushes with anger) You have to kill these cannibals, I cannot live knowing that the people responsible for my son's death are still at large. The sackman was just one child catcher, surely if these cannibals are allowed to live there will be more. Kill them all I will give you all of my savings, it will be worth it to know that they are rid from this world!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theDeermenAndTheWendigoSackmanNote = "told";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1e")
+                        {
+                            //text dialogue
+                            setMsg("I thank you profoundly, you have lifted a great weight from my soul, I now feel at peace to continue on with my life.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1f")
+                        {
+                            //text dialogue
+                            if (quests.theDeermenAndTheWendigoSacked > 4 && quests.theDeermenAndTheWendigoSaved != "rosey")
+                            {
+                                setMsg("They deserved what they got... if only we figured this all out sooner, before they got Rosey Red... before they got my son... but for all of the kids who have not been taken, you did an amazing deed by ridding the world of those demons! Here take these coins, you really earned them!");
+                            }
+                            else
+                            {
+                                setMsg("You did it! The cannibals are gone! You did an amazing deed ridding the world of those demons! Here take these coins, you really earned them!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                give("coins", 122);
+                                quests.theDeermenAndTheWendigoQuest = "complete";
+                                if (quests.theDeermenAndTheWendigoSacked > 4 && quests.theDeermenAndTheWendigoSaved != "rosey")
+                                {
+                                    quests.theDeermenAndTheWendigoCompletionStyle = "deadKids";
+                                    quests.completeQuests.push({name: "Mr. Sackman", description: "You stopped the sackman, and defeated the Wendigo and his deermen, but not in time to save the neighborhood kids from their ravenous appetite."});
+                                    player.fame += 1;
+                                }
+                                else if (quests.theDeermenAndTheWendigoSacked == 0)
+                                {
+                                    quests.theDeermenAndTheWendigoCompletionStyle = "savedKids";
+                                    quests.completeQuests.push({name: "Mr. Sackman", description: "You stopped the sackman, and defeated the Wendigo and his deermen before they could eat anymore of the neighborhood kids."});
+                                    player.fame += 2;
+                                }
+                                else
+                                {
+                                    quests.theDeermenAndTheWendigoCompletionStyle = "savedRosey";
+                                    quests.completeQuests.push({name: "Mr. Sackman", description: "You stopped the sackman, and defeated the Wendigo and his deermen, but not before they made a snack of a few of the neighborhood kids."});
+                                    player.fame += 2;
+                                }
+                                player.thengarFaction += 50;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 210;
+                                }
+                                else
+                                {
+                                    player.experience += 525;
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Gertrude" || conversationID[0] == "Gertrude")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Gertrude";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName != "Kel")
+                                {
+                                    if (quests.theDeermenAndTheWendigoQuest == false)
+                                    {
+                                        if (uniqueChars.roseyRedLDS == true)
+                                        {
+                                            player.dialogueOptions = [["...", false, "a"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["...", false, "a"]];
+                                        }
+                                    }
+                                    else if (quests.theDeermenAndTheWendigoQuest == true)
+                                    {
+                                        if (quests.theDeermenAndTheWendigoSaved == "rosey" && uniqueChars.roseyRedLDS == true)
+                                        {
+                                            player.dialogueOptions = [["...", false, "a"], ["I saved your daughter from the sack man, he had her stuffed inside his sack...", false, "a"]];
+                                        }
+                                        else if (quests.theDeermenAndTheWendigoSaved == "rosey")
+                                        {
+                                            player.dialogueOptions = [["I tried to save your daughter, but... the sackman, he killed her.", false, "a"]];
+                                        }
+                                        else if (quests.theDeermenAndTheWendigoSacked >= 4)
+                                        {
+                                            player.dialogueOptions = [["Where is your daughter?", false, "a"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["I talked to Maybell, I am helping her to find those responsible for the child snatching and bring them to justice!", false, "a"]];
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (quests.theDeermenAndTheWendigoSaved == "rosey" && uniqueChars.roseyRedLDS == true)
+                                        {
+                                            player.dialogueOptions = [["How are you and your daughter doing?", false, "a"]];
+                                        }
+                                        else if (quests.theDeermenAndTheWendigoSaved == "rosey")
+                                        {
+                                            player.dialogueOptions = [["I'm sorry about what happened to your daughter, if only things had happened differently...", false, "a"]];
+                                        }
+                                        else if (quests.theDeermenAndTheWendigoSacked >= 4)
+                                        {
+                                            player.dialogueOptions = [["I lament the loss of your daughter...", false, "a"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["The sackman was behind the child snatching.", false, "a"]];
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (player.raceName == "Kel")
+                            {
+                                //text dialogue
+                                if (player.gender != "Female")
+                                {
+                                    if (player.matureContentFilter == true)
+                                    {
+                                        setMsg("Guards, guards, a Kel is trying to violate me!");
+                                    }
+                                    else
+                                    {
+                                        setMsg("Guards, guards, a Kel is trying to rape me!");
+                                    }
+                                }
+                                else
+                                {
+                                    setMsg("Don't touch me... get out of my house you filthy Kel!");
+                                }
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    if (player.gender != "Female")
+                                    {
+                                        self.disturbedTime = new Date().getTime();
+                                        self.disturbed = true;
+                                    }
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (quests.theDeermenAndTheWendigoQuest == false)
+                            {
+                                if (uniqueChars.roseyRedLDS == true)
+                                {
+                                    //text dialogue
+                                    if (player.title != "Nobility" && player.title != "Royalty")
+                                    {
+                                        setMsg("(not directed to you) Rosey, Rosey darling! Don't go too far! I don't want you to be snatched away like all the other kids! Rosey did you hear me? (Rosey Red yells back. 'yes mom, I won't go far!' Gertrude then turns her attention to you) Do you need something?");
+                                    }
+                                    else
+                                    {
+                                        setMsg("(not directed to you) Rosey, Rosey darling! Don't go too far! I don't want you to be snatched away like all the other kids! Rosey did you hear me? (Rosey Red yells back. 'yes mom, I won't go far!' Gertrude then turns her attention to you) Is there something I can help you with, your grace?");
+                                    }
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    //text dialogue
+                                    if (player.title != "Nobility" && player.title != "Royalty")
+                                    {
+                                        setMsg("Child murderer! You killed my daughter!! Curse you, curse you!!!");
+                                    }
+                                    else
+                                    {
+                                        setMsg("I have nothing to say to you, your grace... (she curses you under her breath)");
+                                    }
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else if (quests.theDeermenAndTheWendigoQuest == true)
+                            {
+                                if (quests.theDeermenAndTheWendigoSaved == "rosey" && uniqueChars.roseyRedLDS == true)
+                                {
+                                    //text dialogue
+                                    setMsg("Thank you for saving my daughter! I'm not sure how I could ever repay you!");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                                else if (quests.theDeermenAndTheWendigoSaved == "rosey")
+                                {
+                                    //text dialogue
+                                    setMsg("(she sobs loudly)");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                                else if (quests.theDeermenAndTheWendigoSacked >= 4)
+                                {
+                                    //text dialogue
+                                    setMsg("My little Rosey, my darling Rosey Red, she was taken, she's been snatched!! (she sobs loudly)");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (quests.theDeermenAndTheWendigoSaved == "rosey" && uniqueChars.roseyRedLDS == true)
+                                {
+                                    //text dialogue
+                                    setMsg("Me and my little Rosey Red are doing wonderfully, thank you so much for saving her! Seriously, I cannot thank you enough... I can't believe that she had to go through all of that... poor girl!");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                                else if (quests.theDeermenAndTheWendigoSaved == "rosey")
+                                {
+                                    //text dialogue
+                                    setMsg("You tried to save her, I know that your heart is good, but please, let a mother mourn her daughter in peace... (tears drip down her cheeks)");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                                else if (quests.theDeermenAndTheWendigoSacked >= 4)
+                                {
+                                    setMsg("My Rosey was a good girl, she didn't deserve this... She was good... (tears drip down her cheeks)");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    setMsg("That man always seemed so kind before... he sold me turkey at a discount, I never would have guessed that he was a fiendish child snatcher...");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.theDeermenAndTheWendigoQuest == false)
+                                {
+                                    player.dialogueOptions = [["What was that you said about children getting snatched?", false, "a"], ["Nothing, I was just familiarizing myself with the neighborhood.", false, "b"], ["Do you live here alone?", false, "c"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["...", false, "a"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            if (quests.theDeermenAndTheWendigoQuest == false)
+                            {
+                                //text dialogue
+                                setMsg("Children have been going missing around Cranheim. Nobody is totally sure who's behind it, but whatever heartless animal is should be brought to justice, painfully. They snatched my friend's son. Her name is Maybell, she lives just down the road from here. She told me that she would stop at nothing to find out who did it, maybe she has learned something. If you are after the snatcher too, talk to her and tell her that Gertrude sent you, she might know something.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.theDeermenAndTheWendigoGertrudeSentMe = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("There is something wrong about you. You shouldn't be here!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.theDeermenAndTheWendigoGertrudeSentMe = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            if (quests.theDeermenAndTheWendigoQuest == false)
+                            {
+                                //text dialogue
+                                if (player.title == "Nobility" || player.title == "Royalty")
+                                {
+                                    setMsg("Your grace, you are welcome anytime!");
+                                }
+                                else
+                                {
+                                    setMsg("I have half a mind to report you to the guards for snooping, get out of my house!");
+                                }
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("There is something wrong about you. You shouldn't be here!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            if (quests.theDeermenAndTheWendigoQuest == false)
+                            {
+                                //text dialogue
+                                if (player.title == "Nobility" || player.title == "Royalty")
+                                {
+                                    setMsg("No your grace, I live here with my daughter. My husband has gone to fight for the healthy growth of the kingdom so he is not with us.");
+                                }
+                                else
+                                {
+                                    setMsg("I live here with my daughter, my husband was drafted to fight against the savage Kels in the east.");
+                                }
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("There is something wrong about you. You shouldn't be here!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.theDeermenAndTheWendigoGertrudeSentMe = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                    }
+
                     if (self.ID == "Naraleht the Tailor" || conversationID[0] == "Naraleht")
                     {
                         lowBar = "dialogue";

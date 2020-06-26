@@ -59960,6 +59960,29 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "sackmanNote")
+        {
+            //For All Items
+            this.identity = "Mr. Sackman's Correspondence";
+            this.weight = 0.001;
+            this.size = 12;
+            this.description = "A note written by a man by the name of The Wendigo to a Mr. Sackman.";
+            this.intForDes = 1;
+            if (quests.theDeermenAndTheWendigoQuest == "complete")
+            {
+                this.intDescription = "No way, the shady figure in the hood is the bad guy!? So un-original...";
+            }
+
+            //Define Utility
+            this.utility = "note";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "killDruid")
         {
             //For All Items
@@ -60360,7 +60383,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid")
+        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
@@ -68372,7 +68395,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid")
+        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid")
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
@@ -76355,7 +76378,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid")
+        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);

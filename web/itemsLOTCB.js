@@ -20460,8 +20460,8 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 45 - Math.floor(player.getCharisma() / 3); // at max, buy for 30.
-            this.sellValue = 15 + Math.floor(player.getCharisma() / 3); // at max, sell for 30.
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+            this.sellValue = 2; // at max, sell for 2.
         }
         else if (this.type == "jarOfThruumPaste")
         {
@@ -59971,6 +59971,11 @@ function Item(type, x, y)
             if (quests.theDeermenAndTheWendigoQuest == "complete")
             {
                 this.intDescription = "No way, the shady figure in the hood is the bad guy!? So un-original...";
+            }
+            else
+            {
+                this.intForDes = 100;
+                this.intDescription = "";
             }
 
             //Define Utility

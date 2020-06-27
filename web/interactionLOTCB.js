@@ -4269,7 +4269,18 @@ function interaction(me)
                         else if (conversationID[1] == "0i")
                         {
                             //text dialogue
-                            setMsg("My mom tells me about the snatchers that take away kids to gobble up for supper, I don't believe her though... people don't eat kids. Real life isn't a fairytale, duh. Other than that weird thing, I don't know really. I guess I haven't seen my friend grettle in a while...");
+                            if (uniqueChars.grettelLDS == false || quests.theDeermenAndTheWendigoSaved != "grettel")
+                            {
+                                setMsg("My mom tells me about the snatchers that take away kids to gobble up for supper, I don't believe her though... people don't eat kids. Real life isn't a fairytale, duh. Other than that weird thing, I don't know really. I guess I haven't seen my friend grettel in a while...");
+                            }
+                            else if (quests.theDeermenAndTheWendigoSaved == "grettel")
+                            {
+                                setMsg("Um, you mean other than the child snatcher? You already know about the badman who snatches kids... you saved my friend grettle from his sack!");
+                            }
+                            else
+                            {
+                                setMsg("My mom tells me about the snatchers that take away kids to gobble up for supper, I don't believe her though... people don't eat kids. Real life isn't a fairytale, duh. Other than that weird thing, I don't know really. I guess I haven't seen my friend grettel in a while...");
+                            }
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -4467,6 +4478,7 @@ function interaction(me)
 
                                 if (quests.theDeermenAndTheWendigoQuest == false)
                                 {
+                                    quests.theDeermenAndTheWendigoSackOpened = false;
                                     quests.theDeermenAndTheWendigoQuest = true;
                                     quests.activeQuests.push({name: "Mr. Sackman", description: "Maybell thinks she knows who is behind the child-snatching in Cranheim..."});
                                 }
@@ -4509,7 +4521,7 @@ function interaction(me)
                                 {
                                     if (quests.theDeermenAndTheWendigoSackmanNote == "told" && uniqueChars.theWendigoLDS == false && quests.theDeermenAndTheWendigoDeermenKilled >= 8)
                                     {
-                                        player.dialogueOptions = [["The chieftain of the cannibals who called himself The Wendigo is dead, as are his cannibalistic minions, and so is the sackman who was delivering them children to eat.", false, "f"]];
+                                        player.dialogueOptions = [["The chieftain of the cannibals known as The Wendigo is dead, as are his cannibalistic minions, and the sackman who was delivering them children to eat.", false, "f"]];
                                     }
                                     else if (quests.theDeermenAndTheWendigoSackmanNote == "told")
                                     {

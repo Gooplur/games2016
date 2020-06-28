@@ -338,6 +338,10 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         player.stunnedIII = true;
                         player.stunnedTime = 3;
                     }
+                    else if (effect == "fire" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        player.burningTime = new Date().getTime();
+                    }
                     else if (effect == "yilotnyyAcid" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
                     {
                         player.acidVI = true;
@@ -11016,7 +11020,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             ArtificialIntelligenceAccess[j].killNotByPlayer = true;
                         }
 
-                        if (this.effect == "smashbackI" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        if (this.effect == "smashbackI" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
                         {
                             var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
                             ArtificialIntelligenceAccess[j].X -= Math.cos(twrdsUnit) * 50;
@@ -11025,19 +11029,23 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             ArtificialIntelligenceAccess[j].stunTimer = 3;
                             ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
                         }
-                        else if (this.effect == "yilotnyyAcid" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        else if (this.effect == "fire" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
+                        {
+                            ArtificialIntelligenceAccess[j].burningTime = new Date().getTime();
+                        }
+                        else if (this.effect == "yilotnyyAcid" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
                         {
                             ArtificialIntelligenceAccess[j].acidVI = true;
                             ArtificialIntelligenceAccess[j].acidTime = new Date().getTime() + 45000;
                             ArtificialIntelligenceAccess[j].killNotByPlayer = true;
                         }
-                        else if (this.effect == "superAcid" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        else if (this.effect == "superAcid" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
                         {
                             ArtificialIntelligenceAccess[j].acidV = true;
                             ArtificialIntelligenceAccess[j].acidTime = new Date().getTime() + 22000;
                             ArtificialIntelligenceAccess[j].killNotByPlayer = true;
                         }
-                        else if (this.effect == "leftSmashI" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        else if (this.effect == "leftSmashI" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
                         {
                             var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
                             ArtificialIntelligenceAccess[j].X -= Math.cos((twrdsUnit - 1/4 * Math.PI)) * 30;
@@ -11046,7 +11054,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             ArtificialIntelligenceAccess[j].stunTimer = 2;
                             ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
                         }
-                        else if (this.effect == "rightSmashI" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        else if (this.effect == "rightSmashI" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
                         {
                             var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
                             ArtificialIntelligenceAccess[j].X -= Math.cos((twrdsUnit + 1/3 * Math.PI)) * 110;
@@ -11055,7 +11063,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             ArtificialIntelligenceAccess[j].stunTimer = 3;
                             ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
                         }
-                        else if (this.effect == "leftSmashII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        else if (this.effect == "leftSmashII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
                         {
                             var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
                             ArtificialIntelligenceAccess[j].X -= Math.cos((twrdsUnit - 1/3 * Math.PI)) * 40;
@@ -11064,7 +11072,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             ArtificialIntelligenceAccess[j].stunTimer = 3;
                             ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
                         }
-                        else if (this.effect == "rightSmashII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        else if (this.effect == "rightSmashII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
                         {
                             var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
                             ArtificialIntelligenceAccess[j].X -= Math.cos((twrdsUnit + 1/3 * Math.PI)) * 150;
@@ -11073,7 +11081,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             ArtificialIntelligenceAccess[j].stunTimer = 4;
                             ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
                         }
-                        else if (this.effect == "leftSmashIII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        else if (this.effect == "leftSmashIII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
                         {
                             var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
                             ArtificialIntelligenceAccess[j].X -= Math.cos((twrdsUnit - 1/3 * Math.PI)) * 60;
@@ -11082,7 +11090,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             ArtificialIntelligenceAccess[j].stunTimer = 4;
                             ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
                         }
-                        else if (this.effect == "rightSmashIII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        else if (this.effect == "rightSmashIII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
                         {
                             var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
                             ArtificialIntelligenceAccess[j].X -= Math.cos((twrdsUnit + 1/3 * Math.PI)) * 220;

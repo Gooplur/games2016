@@ -1747,6 +1747,18 @@ function sabezPack()
 
     sabez.onload = function()
     {
+        harvPack();
+    };
+}
+
+function harvPack()
+{
+    var harv = new Image();
+    harv.src = ("images/harv.png");
+    window.harv = harv;
+
+    harv.onload = function()
+    {
         sitePack();
     };
 }
@@ -5660,6 +5672,8 @@ function theLegend()
     foods.push(new Item("pufferfishMeat", false));
     foods.push(new Item("taintedPufferfishMeat", false));
     foods.push(new Item("snapjawMeat", false));
+    foods.push(new Item("harvestmanMeat", false));
+    foods.push(new Item("jarOfHarvestmanOil", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];

@@ -5385,6 +5385,87 @@ function Item(type, x, y)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 15); // at max, buy for 4.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 15); // at max, sell for 4.
         }
+        else if (this.type == "rawHarvestmanFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Harvestman Flesh";
+            this.weight = 1.5;
+            this.size = 10;
+            this.description = "The oil-inundated, pale, raw flesh of a harvestman.";
+            this.intForDes = 0;
+            this.intDescription = "Eating harvestman flesh raw is more tender, but it is like drinking a bottle of oil...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 14; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -10; //recoops lost energy.
+            this.replenish = -10; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Noth")
+                {
+                    this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+                    this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+                }
+                else
+                {
+                    this.buyValue = 11 - Math.floor(player.getCharisma() / 25); // at max, buy for 9.
+                    this.sellValue = 4 + Math.floor(player.getCharisma() / 10); // at max, sell for 9.
+                }
+            }
+            else
+            {
+                this.buyValue = 11 - Math.floor(player.getCharisma() / 25); // at max, buy for 9.
+                this.sellValue = 4 + Math.floor(player.getCharisma() / 10); // at max, sell for 9.
+            }
+        }
+        else if (this.type == "harvestmanMeat")
+        {
+            //For All Items
+            this.identity = "Harvestman Meat";
+            this.weight = 0.45;
+            this.size = 10;
+            this.description = "The rendered, dark, oily meat of a harvestman.";
+            this.intForDes = 2;
+            this.intDescription = "Most of the oil in its flesh has been rendered out leaving it a shriveled and chewy glob.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -15; //recoops lost energy.
+            this.replenish = -5; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 7;
+            this.ingredients = [["Raw Harvestman Flesh", 2], ["Glass Jar", 1]];
+            this.biproducts = [[new Item("jarOfHarvestmanOil", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "rawNulgaFlesh")
         {
             //For All Items
@@ -24117,6 +24198,54 @@ function Item(type, x, y)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "jarOfHarvestmanOil")
+        {
+            //For All Items
+            this.identity = "Jar of Oil";
+            this.weight = 2;
+            this.size = 6;
+            this.description = "A glass jar full to the brim with flammable, musky smelling oil from a harvestman.";
+            this.intForDes = 9;
+            this.intDescription = "This can be used to fuel torches and lamps as well as to set flammable traps or craft flammable arrows.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 7;
+            this.ingredients = [["Raw Harvestman Flesh", 2], ["Glass Jar", 1]];
+            this.biproducts = [["harvestmanMeat", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Noth")
+                {
+                    this.buyValue = 11 - Math.floor(player.getCharisma() / 50); // at max, buy for 10.
+                    this.sellValue = 6 + Math.floor(player.getCharisma() / 12); // at max, sell for 10.
+                }
+                else if (shopkeeper.ultra.faction == "Vardan")
+                {
+                    this.buyValue = 17; // at max, buy for 17.
+                    this.sellValue = 7 + Math.floor(player.getCharisma() / 5); // at max, sell for 17.
+                }
+                else
+                {
+                    this.buyValue = 22 - Math.floor(player.getCharisma() / 12); // at max, buy for 18.
+                    this.sellValue = 8 + Math.floor(player.getCharisma() / 5); // at max, sell for 18.
+                }
+            }
+            else
+            {
+                this.buyValue = 22 - Math.floor(player.getCharisma() / 12); // at max, buy for 18.
+                this.sellValue = 8 + Math.floor(player.getCharisma() / 5); // at max, sell for 18.
+            }
+        }
         else if (this.type == "jarOfOil")
         {
             //For All Items
@@ -24139,8 +24268,24 @@ function Item(type, x, y)
             this.ingredients = [["Blubber", 1], ["Glass Jar", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 24 - Math.floor(player.getCharisma() / 12); // at max, buy for 20.
-            this.sellValue = 9 + Math.floor(player.getCharisma() / 5); // at max, sell for 19.
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.faction == "Freynor")
+                {
+                    this.buyValue = 22 - Math.floor(player.getCharisma() / 15); // at max, buy for 19.
+                    this.sellValue = 9 + Math.floor(player.getCharisma() / 5); // at max, sell for 19.
+                }
+                else
+                {
+                    this.buyValue = 24 - Math.floor(player.getCharisma() / 12); // at max, buy for 20.
+                    this.sellValue = 9 + Math.floor(player.getCharisma() / 5); // at max, sell for 19.
+                }
+            }
+            else
+            {
+                this.buyValue = 24 - Math.floor(player.getCharisma() / 12); // at max, buy for 20.
+                this.sellValue = 9 + Math.floor(player.getCharisma() / 5); // at max, sell for 19.
+            }
         }
         else if (this.type == "jarOfIloptheoraSap")
         {
@@ -60403,6 +60548,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "rawHarvestmanFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 1638, 48, 58, 52, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 52 * 0.7), 58 * 0.7, 52 * 0.7);
+        }
+        else if (this.type == "harvestmanMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 1711, 48, 58, 52, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 0.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 52 * 0.5), 58 * 0.5, 52 * 0.5);
+        }
         else if (this.type == "shenqianshouFlesh")
         {
             XXX.beginPath();
@@ -67683,7 +67838,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polyPNG, 452, 33, 8, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 12), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 12, 21);
         }
-        else if (this.type == "jarOfOil" || this.type == "jarOfButterMellowOil" || this.type == "jarOfSonjaSap")
+        else if (this.type == "jarOfOil" || this.type == "jarOfHarvestmanOil" || this.type == "jarOfButterMellowOil" || this.type == "jarOfSonjaSap")
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 97, 3, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21.5), 15, 21.5);
@@ -68409,6 +68564,16 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "rawHarvestmanFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harv, 1638, 48, 58, 52, this.invX - (1/2 * 58 * 0.7), this.invY - (1/2 * 52 * 0.7), 58 * 0.7, 52 * 0.7);
+        }
+        else if (this.type == "harvestmanMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harv, 1711, 48, 58, 52, this.invX - (1/2 * 58 * 0.5), this.invY - (1/2 * 52 * 0.5), 58 * 0.5, 52 * 0.5);
         }
         else if (this.type == "shenqianshouFlesh")
         {
@@ -75697,7 +75862,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polyPNG, 452, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
         }
-        else if (this.type == "jarOfOil" || this.type == "jarOfButterMellowOil" || this.type == "jarOfSonjaSap")
+        else if (this.type == "jarOfOil" || this.type == "jarOfHarvestmanOil" || this.type == "jarOfButterMellowOil" || this.type == "jarOfSonjaSap")
         {
             LXX.beginPath();
             LXX.drawImage(mofu, 97, 3, 10, 15, this.invX - (1/2 * 15), this.invY - (1/2 * 21.5), 15, 21.5);
@@ -76397,6 +76562,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "rawHarvestmanFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 1638, 48, 58, 52, this.invX - (1/2 * 58 * 0.7), this.invY - (1/2 * 52 * 0.7), 58 * 0.7, 52 * 0.7);
+        }
+        else if (this.type == "harvestmanMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 1711, 48, 58, 52, this.invX - (1/2 * 58 * 0.5), this.invY - (1/2 * 52 * 0.5), 58 * 0.5, 52 * 0.5);
         }
         else if (this.type == "shenqianshouFlesh")
         {
@@ -83674,7 +83849,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polyPNG, 452, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
         }
-        else if (this.type == "jarOfOil" || this.type == "jarOfButterMellowOil" || this.type == "jarOfSonjaSap")
+        else if (this.type == "jarOfOil" || this.type == "jarOfHarvestmanOil" || this.type == "jarOfButterMellowOil" || this.type == "jarOfSonjaSap")
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 97, 3, 10, 15, this.invX - (1/2 * 15), this.invY - (1/2 * 21.5), 15, 21.5);

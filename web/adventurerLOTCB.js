@@ -652,6 +652,8 @@ function Adventurer()
     this.avatar = false;
     this.avatarFly = false;
     this.avatarKeepWep = "none";
+    this.fear = false;
+    this.fearProof = false;
 
     //faction variables
     this.factionToggle = false;
@@ -31446,7 +31448,7 @@ function Adventurer()
     //This makes the character always face the mouse pointer.
     this.pointAtMouse = function()
     {
-        if (!this.jumpingBack && this.fishing != true && !this.petrified)
+        if (!this.jumpingBack && this.fishing != true && !this.petrified && this.fear != true)
         {
             if (this.form != "vampire" || this.vampDead == false)
             {

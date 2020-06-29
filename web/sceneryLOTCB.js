@@ -32789,6 +32789,54 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.activate = false;
             }
         }
+        else if (this.type == "toadHuskHalf")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+            if (this.temporary == true)
+            {
+                this.size = 1.6;
+            }
+            else
+            {
+                this.size = 1;
+            }
+            this.radius = 33 * this.size;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                var minion;
+                for (var l = 0; l < this.information; l++)
+                {
+                    if (this.temporary == true)
+                    {
+                        minion = new Unit(this.X + Math.cos(this.rotation + Math.PI) * (1/2 * this.radius + 9), this.Y + Math.sin(this.rotation + Math.PI) * (1/2 * this.radius + 9), "ToadHuskling", Math.round(Math.random()), "genericToadHuskling" + Math.random());
+                    }
+                    else
+                    {
+                        minion = new Unit(this.X + Math.cos(this.rotation + Math.PI) * (1/2 * this.radius + 9), this.Y + Math.sin(this.rotation + Math.PI) * (1/2 * this.radius + 9), "ToadHuskling", false, "genericToadHuskling" + Math.random());
+                    }
+                    ArtificialIntelligenceAccess.push(minion);
+                }
+            }
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(hoad, 1037, 508, 144, 161, -(1/2 * 144 * this.size), -(1/2 * 161 * this.size), 144 * this.size, 161 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "eemegMound")
         {
             //TRAITS

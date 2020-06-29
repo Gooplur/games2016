@@ -3842,7 +3842,7 @@ function over(kind, j, l, extraX, extraY)
             if (player.nonStick == false)
             {
                 player.sticky = true;
-                if (!player.flying)
+                if (!player.flying && player.mudwalker != true)
                 {
                     player.stunnedTime = 2;
                     player.stunnedI = true;
@@ -5248,6 +5248,7 @@ function theLegend()
     allWorn.push(new Item("blackwoodSorcererRobe", false)); //215
     allWorn.push(new Item("mudteethNecklace", false)); //216
     allWorn.push(new Item("avatarOutfit", false)); //217
+    allWorn.push(new Item("nothianMudwalkerBoots", false)); //218
 
 
 
@@ -5822,6 +5823,7 @@ function theLegend()
     tailoring.push(new Item("pinkKimono", false));
     tailoring.push(new Item("redKimono", false));
     tailoring.push(new Item("nothBrushString", false));
+    tailoring.push(new Item("nothianMudwalkerBoots", false));
     tailoring.push(new Item("avatarOutfit", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)

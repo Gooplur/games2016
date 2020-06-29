@@ -654,6 +654,7 @@ function Adventurer()
     this.avatarKeepWep = "none";
     this.fear = false;
     this.fearProof = false;
+    this.mudwalker = false;
 
     //faction variables
     this.factionToggle = false;
@@ -1370,6 +1371,7 @@ function Adventurer()
             var blackwoodFlag = false;
             var antidecayFlag = false;
             var avatarFlag = false;
+            var mudwalkerFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -1382,6 +1384,10 @@ function Adventurer()
                 if (this.AdAbility[i] == "avatar")
                 {
                     avatarFlag = true;
+                }
+                if (this.AdAbility[i] == "mudwalker")
+                {
+                    mudwalkerFlag = true;
                 }
                 if (this.AdAbility[i] == "blackwood")
                 {
@@ -1487,6 +1493,16 @@ function Adventurer()
                         map = "world";
                     }
                 }
+            }
+
+            //mudwalker
+            if (mudwalkerFlag == true)
+            {
+                this.mudwalker = true;
+            }
+            else
+            {
+                this.mudwalker = false;
             }
 
             //avatar
@@ -8372,8 +8388,30 @@ function Adventurer()
                 }
             }
 
+            //draw the stilts (if applicable)
+            if (this.mudwalker == true)
+            {
+                XXX.save();
+                XXX.beginPath();
+                XXX.translate(700, 275);
+                XXX.rotate(this.rotation + legRotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.1;
+                }
+                XXX.strokeStyle = "#CCC19E";
+                XXX.lineWidth = 2;
+                XXX.moveTo(-4, 0);
+                XXX.lineTo(-4, 0 + this.lLegY * 1.8);
+                XXX.stroke();
+                XXX.moveTo(4, 0);
+                XXX.lineTo(4, 0 + this.rLegY * 1.8);
+                XXX.stroke();
+                XXX.restore();
+            }
             //draw the legs
             XXX.save();
+            XXX.beginPath();
             XXX.translate(700, 275);
             XXX.rotate(this.rotation + legRotation);
             if (this.subtlety)
@@ -9472,6 +9510,10 @@ function Adventurer()
         else if (this.bootsEquipped == "longElkBoots")
         {
             boots = allWorn[207];
+        }
+        else if (this.bootsEquipped == "nothianMudwalkerBoots")
+        {
+            boots = allWorn[218];
         }
         else
         {

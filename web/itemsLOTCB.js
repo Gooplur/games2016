@@ -43890,6 +43890,27 @@ function Item(type, x, y)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 3; // at max, sell for 3.
         }
+        else if (this.type == "huskPaper")
+        {
+            //For All Items
+            this.identity = "Husk Paper";
+            this.weight = 0.7;
+            this.size = 9;
+            this.description = "The thick, leathery, fleshy, dry paper produced by a husk.";
+            this.intForDes = 6;
+            this.intDescription = "Husk paper is both a waste product excreted by husks as well as a building material they use to form hives.";
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "mudmanHand")
         {
             //For All Items
@@ -54642,6 +54663,104 @@ function Item(type, x, y)
             this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
             this.sellValue = 19 + Math.floor(player.getCharisma() / 10); // at max, sell for 24.
         }
+        else if (this.type == "nothianMudwalkerBoots")
+        {
+            //For All Items
+            this.identity = "Nothian Mudwalker Boots";
+            this.weight = 6;
+            this.size = 14;
+            this.description = "Nothian boots bound tightly to carved qiao stilts by Nothian string.";
+            this.intForDes = 0;
+            if (player.raceName != "Noth" && player.getDexterity() >= 19)
+            {
+                if (player.carryWeight <= 1/2 * player.carryWeightMAX)
+                {
+                    this.intDescription = "The stilts allow you to easily maneuver through mud without getting stuck.";
+                }
+                else
+                {
+                    this.intDescription = "You are carrying too much to use the stilts effectively. (carry capacity must be half or less)";
+                }
+            }
+            else if (player.raceName == "Noth" && player.getDexterity() >= 7)
+            {
+                if (player.carryWeight <= 1/2 * player.carryWeightMAX)
+                {
+                    this.intDescription = "The stilts allow you to easily maneuver through mud without getting stuck.";
+                }
+                else
+                {
+                    this.intDescription = "You are carrying too much to use the stilts effectively. (carry capacity must be half or less)";
+                }
+            }
+            else if (player.raceName == "Noth")
+            {
+                this.intDescription = "You are not dexterous enough to use these efficiently... (requires 7 dexterity)";
+            }
+            else
+            {
+                this.intDescription = "You are not dexterous enough to use these efficiently... (requires 19 dexterity)";
+            }
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.25;
+            this.thirstRetention = 0.01;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 8;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.getDexterity() >= 19 && player.raceName != "Noth" && player.carryWeight <= 1/2 * player.carryWeightMAX || player.getDexterity() >= 7 && player.raceName == "Noth" && player.carryWeight <= 1/2 * player.carryWeightMAX)
+            {
+                this.ability = "mudwalker";
+            }
+            else if (player.getDexterity() >= 19 && player.raceName != "Noth" || player.getDexterity() >= 7 && player.raceName == "Noth")
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 16;
+            this.ingredients = [["Qiao Protuberance", 1], ["Nulga Pelt", 2], ["Noth String", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19 - Math.floor(player.getCharisma() / 15); // at max, buy for 16.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 8); // at max, sell for 16.
+        }
         else if (this.type == "waantiFurOutfit")
         {
             //For All Items
@@ -60547,6 +60666,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "huskPaper")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hoad, 764, 573, 57, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 57 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 1), 57 * 1, 44 * 1);
+        }
+        else if (this.type == "nothianMudwalkerBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gusk, 1431, 839, 73, 122, X - this.X + (1/2 * CCC.width) - (1/2 * 73 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 122 * 1), 73 * 1, 122 * 1);
         }
         else if (this.type == "rawHarvestmanFlesh")
         {
@@ -68565,6 +68694,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "huskPaper")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hoad, 764, 573, 57, 44, this.invX - (1/2 * 57 * 1), this.invY - (1/2 * 44 * 1), 57 * 1, 44 * 1);
+        }
+        else if (this.type == "nothianMudwalkerBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gusk, 1431, 839, 73, 122, this.invX - (1/2 * 73 * 0.7), this.invY - (1/2 * 122 * 0.7), 73 * 0.7, 122 * 0.7);
+        }
         else if (this.type == "rawHarvestmanFlesh")
         {
             LXX.beginPath();
@@ -76562,6 +76701,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "huskPaper")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hoad, 764, 573, 57, 44, this.invX - (1/2 * 57 * 1), this.invY - (1/2 * 44 * 1), 57 * 1, 44 * 1);
+        }
+        else if (this.type == "nothianMudwalkerBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gusk, 1431, 839, 73, 122, this.invX - (1/2 * 73 * 0.7), this.invY - (1/2 * 122 * 0.7), 73 * 0.7, 122 * 0.7);
         }
         else if (this.type == "rawHarvestmanFlesh")
         {

@@ -8,7 +8,7 @@
 //top priority
 
 //Image sheet ideas
-//todo orgish image sheet part II: Odachi, Snap-jaw (little glade alligator), sticky bug trap flower, molebear, cobra, hummingbird, toucan, baboon, cocain leaf
+//todo orgish image sheet part II: Odachi, sticky bug trap flower, slothbear, cobra, hummingbird, orgish fish + fishing spot
 //todo far north fish
 //todo furry snow beast
 //todo frost wyrm (with frost breath) (ridable)
@@ -1233,6 +1233,10 @@ function envPack()
     zetianStone.src = ("images/zetianStone.jpg");
     window.zetianStone = zetianStone;
 
+    var huskTile = new Image();
+    huskTile.src = ("images/huskTile.png");
+    window.huskTile = huskTile;
+
     var vardanianStone = new Image();
     vardanianStone.src = ("images/vardanStone.jpg");
     window.vardanianStone = vardanianStone;
@@ -1758,6 +1762,18 @@ function harvPack()
     window.harv = harv;
 
     harv.onload = function()
+    {
+        shegPack();
+    };
+}
+
+function shegPack()
+{
+    var sheg = new Image();
+    sheg.src = ("images/sheg.png");
+    window.sheg = sheg;
+
+    sheg.onload = function()
     {
         sitePack();
     };

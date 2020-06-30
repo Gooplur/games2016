@@ -43894,7 +43894,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Husk Paper";
-            this.weight = 0.7;
+            this.weight = 1.7;
             this.size = 9;
             this.description = "The thick, leathery, fleshy, dry paper produced by a husk.";
             this.intForDes = 6;

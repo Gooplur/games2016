@@ -4132,6 +4132,52 @@ function Item(type, x, y)
             this.buyValue = 5; // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
         }
+        else if (this.type == "purpuraLanternCharged")
+        {
+            //For All Items
+            this.identity = "Purpura Lantern";
+            this.weight = 6;
+            this.size = 12;
+            this.description = "A purpura bug that has been infected and bloated by a hikari fungus.";
+            this.intForDes = 4;
+            this.intDescription = "Hikari fungi eat the purpura bugs and use them as an energy source to make light - light invites more bugs and the process continues.";
+            this.smallText = true;
+
+            //Define Utility
+            this.utility = "material";
+
+            this.decayable = true;
+            this.decayLimit = 2;
+            this.decayObjective = "purpuraLanternDead";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 50); // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "purpuraLanternDead")
+        {
+            //For All Items
+            this.identity = "Dead Purpura Lantern";
+            this.weight = 6;
+            this.size = 12;
+            this.description = "A dead purpura bug that's been infected and bloated by a hikari fungus.";
+            this.intForDes = 4;
+            this.intDescription = "Purpura bugs are kept alive by the hikari fungus throughout the entire process of being consumed. When the charge dies, the bug dies.";
+            this.smallText = true;
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "maleLyagushkaSkin")
         {
             //For All Items
@@ -20011,6 +20057,35 @@ function Item(type, x, y)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 2; // at max, sell for 2.
         }
+        else if (this.type == "tarsi")
+        {
+            //For All Items
+            this.identity = "Tarsi";
+            this.weight = 0.28;
+            this.size = 9;
+            this.description = "Thin strands of a grass-like, Nothian herb.";
+            this.intForDes = 6;
+            this.intDescription = "An extract of the white liquid inside of tarsi strands can be used to kill throat ticks, the herb also is used for spiritual rituals in Noth.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.25; //satisfies hunger.
+            this.thirst = 0.15; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = -0.5; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "itlinBranch")
         {
             //For All Items
@@ -24871,6 +24946,43 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 26 - Math.floor(player.getCharisma() / 3); // at max, buy for 11.
             this.sellValue = 11; // at max, sell for 11.
+        }
+        else if (this.type == "tarsiExtract")
+        {
+            //For All Items
+            this.identity = "Tarsi Extract";
+            this.weight = 1.5;
+            this.size = 5;
+            this.description = "A thin white liquid sap extracted from tarsi.";
+            this.intForDes = 6;
+            this.intDescription = "When consumed this kills throat ticks.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.4; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -4; //recoops lost energy.
+            this.replenish = -4; //restores will.
+            this.cooling = 1; //cools player.
+
+            //ability
+            this.ability = "antiThroatTick";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Vial of Water", 1], ["Tarsi", 12]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
+            this.sellValue = 25; // at max, sell for 25.
         }
         else if (this.type == "wobeaExtract")
         {
@@ -54663,6 +54775,64 @@ function Item(type, x, y)
             this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
             this.sellValue = 19 + Math.floor(player.getCharisma() / 10); // at max, sell for 24.
         }
+        else if (this.type == "nothianSageBoots")
+        {
+            //For All Items
+            this.identity = "Nothian Sage Boots";
+            this.weight = 2;
+            this.size = 10;
+            this.description = "Thick boots worn by the sages of Noth.";
+            this.intForDes = 0;
+            this.intDescription = "Sages conduct ancient Nothian religious rituals... these are the boots that sages of Noth are expected to wear.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.5;
+            this.thirstRetention = 0.05;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 2;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 12;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 4;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            // //Crafting
+            // this.yield = 1;
+            // this.intForCraft = 26;
+            // this.ingredients = [["Waanti Pelt", 1], ["Wool", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 80 - Math.floor(player.getCharisma() / 5); // at max, buy for 70.
+            this.sellValue = 60 + Math.floor(player.getCharisma() / 5); // at max, sell for 70.
+        }
         else if (this.type == "nothianMudwalkerBoots")
         {
             //For All Items
@@ -54982,6 +55152,91 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 25 - Math.floor(player.getCharisma() / 10); // at max, buy for 20.
             this.sellValue = 17 + Math.floor(player.getCharisma() / 15); // at max, sell for 20.
+        }
+        else if (this.type == "nothianSageOutfit")
+        {
+            //For All Items
+            this.identity = "Nothian Sage Outfit";
+            this.weight = 10;
+            this.size = 26;
+            this.description = "A dyed feather and ribbon adorned ceremonial outfit worn by the sages of Noth.";
+            this.intForDes = 3;
+            this.intDescription = "There are no eye holes in the mask that they wear, since Nothian sages believe that sight deceives the soul.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0.8 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 18;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.5;
+            this.thirstRetention = 0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 2;
+            this.enduranceBonus = 2;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 20;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 8;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 36;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 20;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 18)
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 2;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 3;
+                this.memoryBonus = 6;
+
+                //ability
+                this.ability = "none"; // you are magically wise enough to see without your eyes in this outfit
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                if (player.getDexterity() >= 40) //you have such ninja skills that you can rely on your other senses to see...
+                {
+                    //ability
+                    this.ability = "none";
+                }
+                else
+                {
+                    this.ability = "blindfold";
+                }
+            }
+
+            // this.yield = 1;
+            // if (player.eminence >= 7)
+            // {
+            //     this.intForCraft = 13;
+            // }
+            // else
+            // {
+            //     this.intForCraft = 100;
+            // }
+            // this.ingredients = [["Cloth", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 455 - Math.floor(player.getCharisma() / 2); // at max, buy for 425.
+            this.sellValue = 395 + Math.floor(player.getCharisma() / 2); // at max, sell for 420.
         }
         else if (this.type == "purpleMageRobe")
         {
@@ -60667,6 +60922,52 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "purpuraLanternCharged")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 100, 1571, 92, 95, X - this.X + (1/2 * CCC.width) - (1/2 * 92 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 95 * 0.6), 92 * 0.6, 95 * 0.6);
+            if (timeOfDay != "Day" || player.underground == true)
+            {
+                lights.push({X:this.X, Y: this.Y, size: 70, extraStops: true, GRD: 0.25, Alpha: 0.4, showMe: false});
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.beginPath();
+                XXX.fillStyle = "#8D51A4";
+                if (player.underground == true || timeOfDay == "Night")
+                {
+                    XXX.globalAlpha = 0.2;
+                }
+                else
+                {
+                    XXX.globalAlpha = 0.1;
+                }
+                XXX.arc(0, 0, 70, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.restore();
+            }
+        }
+        else if (this.type == "purpuraLanternDead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 100, 1571, 92, 95, X - this.X + (1/2 * CCC.width) - (1/2 * 92 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 95 * 0.6), 92 * 0.6, 95 * 0.6);
+        }
+        else if (this.type == "nothianSageBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 141, 1093, 91, 88, X - this.X + (1/2 * CCC.width) - (1/2 * 91 * 0.67), Y - this.Y + (1/2 * CCC.height) - (1/2 * 88 * 0.67), 91 * 0.67, 88 * 0.67);
+        }
+        else if (this.type == "tarsi")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 458, 1200, 67, 66, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 66 * 1), 67 * 1, 66 * 1);
+        }
+        else if (this.type == "nothianSageOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 11, 1089, 107, 190, X - this.X + (1/2 * CCC.width) - (1/2 * 107 * 0.67), Y - this.Y + (1/2 * CCC.height) - (1/2 * 190 * 0.67), 107 * 0.67, 190 * 0.67);
+        }
         else if (this.type == "huskPaper")
         {
             XXX.beginPath();
@@ -64641,7 +64942,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(tomb, 530, 538, 43, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 43 * 1, 36 * 1);
         }
-        else if (this.type == "ameloyPerfume" || this.type == "muonPerfume" || this.type == "poegroonOil")
+        else if (this.type == "ameloyPerfume" || this.type == "muonPerfume" || this.type == "poegroonOil" || this.type == "tarsiExtract")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1735, 201, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 10 * 1, 15 * 1);
@@ -68694,6 +68995,31 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "purpuraLanternCharged")
+        {
+            LXX.beginPath();
+            LXX.drawImage(joso, 100, 1571, 92, 95, this.invX - (1/2 * 92 * 0.6), this.invY - (1/2 * 95 * 0.6), 92 * 0.6, 95 * 0.6);
+        }
+        else if (this.type == "purpuraLanternDead")
+        {
+            LXX.beginPath();
+            LXX.drawImage(joso, 100, 1571, 92, 95, this.invX - (1/2 * 92 * 0.6), this.invY - (1/2 * 95 * 0.6), 92 * 0.6, 95 * 0.6);
+        }
+        else if (this.type == "nothianSageBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sheg, 141, 1093, 91, 88, this.invX - (1/2 * 91 * 0.52), this.invY - (1/2 * 88 * 0.52), 91 * 0.52, 88 * 0.52);
+        }
+        else if (this.type == "tarsi")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sheg, 458, 1200, 67, 66, this.invX - (1/2 * 67 * 1), this.invY - (1/2 * 66 * 1), 67 * 1, 66 * 1);
+        }
+        else if (this.type == "nothianSageOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sheg, 11, 1089, 107, 190, this.invX - (1/2 * 107 * 0.4), this.invY - (1/2 * 190 * 0.4), 107 * 0.4, 190 * 0.4);
+        }
         else if (this.type == "huskPaper")
         {
             LXX.beginPath();
@@ -72669,7 +72995,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(tomb, 530, 538, 43, 36, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 36 * 1), 43 * 1, 36 * 1);
         }
-        else if (this.type == "ameloyPerfume" || this.type == "poegroonOil")
+        else if (this.type == "ameloyPerfume" || this.type == "muonPerfume" || this.type == "poegroonOil" || this.type == "tarsiExtract")
         {
             LXX.beginPath();
             LXX.drawImage(oldverse, 1735, 201, 10, 15, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 15 * 1), 10 * 1, 15 * 1);
@@ -76702,6 +77028,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "purpuraLanternCharged")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 100, 1571, 92, 95, this.invX - (1/2 * 92 * 0.6), this.invY - (1/2 * 95 * 0.6), 92 * 0.6, 95 * 0.6);
+        }
+        else if (this.type == "purpuraLanternDead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 100, 1571, 92, 95, this.invX - (1/2 * 92 * 0.6), this.invY - (1/2 * 95 * 0.6), 92 * 0.6, 95 * 0.6);
+        }
+        else if (this.type == "nothianSageBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 141, 1093, 91, 88, this.invX - (1/2 * 91 * 0.52), this.invY - (1/2 * 88 * 0.52), 91 * 0.52, 88 * 0.52);
+        }
+        else if (this.type == "tarsi")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 458, 1200, 67, 66, this.invX - (1/2 * 67 * 1), this.invY - (1/2 * 66 * 1), 67 * 1, 66 * 1);
+        }
+        else if (this.type == "nothianSageOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 11, 1089, 107, 190, this.invX - (1/2 * 107 * 0.4), this.invY - (1/2 * 190 * 0.4), 107 * 0.4, 190 * 0.4);
+        }
         else if (this.type == "huskPaper")
         {
             XXX.beginPath();
@@ -80672,7 +81023,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(tomb, 530, 538, 43, 36, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 36 * 1), 43 * 1, 36 * 1);
         }
-        else if (this.type == "ameloyPerfume" || this.type == "poegroonOil")
+        else if (this.type == "ameloyPerfume" || this.type == "muonPerfume" || this.type == "poegroonOil" || this.type == "tarsiExtract")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1735, 201, 10, 15, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 15 * 1), 10 * 1, 15 * 1);

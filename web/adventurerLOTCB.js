@@ -1372,6 +1372,7 @@ function Adventurer()
             var antidecayFlag = false;
             var avatarFlag = false;
             var mudwalkerFlag = false;
+            var blindfoldFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -1384,6 +1385,10 @@ function Adventurer()
                 if (this.AdAbility[i] == "avatar")
                 {
                     avatarFlag = true;
+                }
+                if (this.AdAbility[i] == "blindfold")
+                {
+                    blindfoldFlag = true;
                 }
                 if (this.AdAbility[i] == "mudwalker")
                 {
@@ -1503,6 +1508,14 @@ function Adventurer()
             else
             {
                 this.mudwalker = false;
+            }
+
+            //blindfold
+            if (blindfoldFlag == true)
+            {
+                this.blinded = true;
+                this.blindedStoreTime = new Date().getTime();
+                this.blindedTime = Math.max(player.blindedTime, 1);
             }
 
             //avatar
@@ -9381,6 +9394,10 @@ function Adventurer()
         {
             outfit = allWorn[217];
         }
+        else if (this.outfitEquipped == "nothianSageOutfit")
+        {
+            outfit = allWorn[219];
+        }
         else
         {
             outfit = allWorn[0];
@@ -9514,6 +9531,10 @@ function Adventurer()
         else if (this.bootsEquipped == "nothianMudwalkerBoots")
         {
             boots = allWorn[218];
+        }
+        else if (this.bootsEquipped == "nothianSageBoots")
+        {
+            boots = allWorn[220];
         }
         else
         {
@@ -11268,6 +11289,19 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(polypol, 622, 3, 23, 22, -(1 / 2 * 23 * 1.4) - 0, -(1 / 2 * 22 * 1.4) + 0, 23 * 1.4, 22 * 1.4);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nothianSageOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation + Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(sheg, 138, 1189, 91, 88, -(1 / 2 * 91 * 0.8) - 0, -(1 / 2 * 88 * 0.8) + 0, 91 * 0.8, 88 * 0.8);
             XXX.restore();
         }
         else if (this.outfitEquipped == "avatarOutfit")
@@ -40835,6 +40869,10 @@ function Adventurer()
                             else if (Inventory[i][0].ability == "fleshMiteAway")
                             {
                                 this.fleshMites = false;
+                            }
+                            else if (Inventory[i][0].ability == "antiThroatTicks")
+                            {
+                                this.throatTicks = false;
                             }
                             else if (Inventory[i][0].ability == "tchaltaGel")
                             {

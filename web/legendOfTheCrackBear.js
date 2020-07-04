@@ -1453,6 +1453,10 @@ function envPack()
     seaCornerTL2.src = ("images/seaCornerTL2.png");
     window.seaCornerTL2 = seaCornerTL2;
 
+    var redCaveWater = new Image();
+    redCaveWater.src = ("images/redCaveWater.jpg");
+    window.redCaveWater = redCaveWater;
+
     var dockH = new Image();
     dockH.src = ("images/dockH.jpg");
     window.dockH = dockH;
@@ -1774,6 +1778,30 @@ function shegPack()
     window.sheg = sheg;
 
     sheg.onload = function()
+    {
+        luciernagaPack();
+    };
+}
+
+function luciernagaPack()
+{
+    var luciernaga = new Image();
+    luciernaga.src = ("images/luciernaga.png");
+    window.luciernaga = luciernaga;
+
+    luciernaga.onload = function()
+    {
+        josoPack();
+    };
+}
+
+function josoPack()
+{
+    var joso = new Image();
+    joso.src = ("images/joso.png");
+    window.joso = joso;
+
+    joso.onload = function()
     {
         sitePack();
     };
@@ -4229,7 +4257,8 @@ function theLegend()
         kozh: ["Kozh", 0],
         abrahm: ["Abrahm", 0],
         antov: ["Antov", 0],
-        kolstov: ["Kolstov", 0]
+        kolstov: ["Kolstov", 0],
+        dimitry: ["Dimitry", 0]
     };
 
 //time Tracker Variables
@@ -4520,7 +4549,8 @@ function theLegend()
         kozhLDS: true,
         abrahmLDS: true,
         antovLDS: true,
-        kolstovLDS: true
+        kolstovLDS: true,
+        dimitryLDS: true
     };
 //QUESTS
     quests =
@@ -5265,6 +5295,8 @@ function theLegend()
     allWorn.push(new Item("mudteethNecklace", false)); //216
     allWorn.push(new Item("avatarOutfit", false)); //217
     allWorn.push(new Item("nothianMudwalkerBoots", false)); //218
+    allWorn.push(new Item("nothianSageOutfit", false)); //219
+    allWorn.push(new Item("nothianSageBoots", false)); //220
 
 
 
@@ -5938,6 +5970,7 @@ function theLegend()
     alchemy.push(new Item("fermentedGladeWaspStinger", false));
     alchemy.push(new Item("gelatin", false));
     alchemy.push(new Item("jarOfIloptheoraSap", false));
+    alchemy.push(new Item("tarsiExtract", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

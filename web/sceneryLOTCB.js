@@ -37842,6 +37842,162 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
+        else if (this.type == "tarsiPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.solid = false;
+            this.interactionRange = 95;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sheg, 260, 1186, 98, 92, -(1/2 * 98), -(1/2 * 92), 98, 92);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sheg, 354, 1182, 98, 92, -(1/2 * 98), -(1/2 * 92), 98, 92);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 19;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "tarsi")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("tarsi", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "hikariFungus")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.subVariety = "fungi";
+            this.solid = false;
+            this.interactionRange = 70;
+
+            if (this.runOneTime == true && this.temporary == false)
+            {
+                this.runOneTime = false;
+                this.phase = "picked";
+            }
+            this.size = 1;
+
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(joso, 589, 1899, 106, 177, -(1/2 * 106) * 0.6, -(1/2 * 177) * 0.6, 106 * 0.6, 177 * 0.6);
+                XXX.restore();
+                this.radius = 32;
+
+                if (timeOfDay != "Day" || player.underground == true)
+                {
+                    var purpuraX = this.X + Math.cos(this.rotation + 6.25/11 * Math.PI) * 28;
+                    var purpuraY = this.Y + Math.sin(this.rotation + 6.25/11 * Math.PI) * 28;
+                    lights.push({X:purpuraX, Y: purpuraY, size: 70, extraStops: true, GRD: 0.25, Alpha: 0.4, showMe: false});
+
+                    XXX.save();
+                    XXX.translate(X - purpuraX + 1/2 * CCC.width, Y - purpuraY + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.beginPath();
+                    XXX.fillStyle = "#8D51A4";
+                    if (player.underground == true || timeOfDay == "Night")
+                    {
+                        XXX.globalAlpha = 0.2;
+                    }
+                    else
+                    {
+                        XXX.globalAlpha = 0.1;
+                    }
+                    XXX.arc(0, 0, 70, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.restore();
+                }
+            }
+            else if (this.phase == "picked")
+            {
+                var purpuraX = this.X + Math.cos(this.rotation + 6.25/11 * Math.PI) * 14;
+                var purpuraY = this.Y + Math.sin(this.rotation + 6.25/11 * Math.PI) * 14;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(joso, 711, 1967, 72, 60, -(1/2 * 72) * 0.6, -(1/2 * 60) * 0.6, 72 * 0.6, 60 * 0.6);
+                XXX.restore();
+                this.radius = 8;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].type == "Purpura")
+                    {
+                        var disst = (purpuraX - ArtificialIntelligenceAccess[i].X)*(purpuraX - ArtificialIntelligenceAccess[i].X) + (purpuraY - ArtificialIntelligenceAccess[i].Y)*(purpuraY - ArtificialIntelligenceAccess[i].Y);
+                        if (disst <= (9 + (ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)) * (9 + (ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)))
+                        {
+                            this.phase = 0;
+                            ArtificialIntelligenceAccess.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "purpuraLanternCharged")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("purpuraLanternCharged", false, false), 1]);
+                }
+            }
+        }
         else if (this.type == "eneojiPlant")
         {
             //TRAITS
@@ -38509,7 +38665,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].type == "Sagro" || ArtificialIntelligenceAccess[i].type == "Vodmena" || ArtificialIntelligenceAccess[i].type == "Udnal" || ArtificialIntelligenceAccess[i].type == "Nulga" && ArtificialIntelligenceAccess[i].alpha == "massive" || ArtificialIntelligenceAccess[i].type == "MudTroll" || ArtificialIntelligenceAccess[i].type == "BogTroll" || ArtificialIntelligenceAccess[i].type == "Hydra" || ArtificialIntelligenceAccess[i].type == "Vodkapa" || ArtificialIntelligenceAccess[i].type == "Yilotnyy" || ArtificialIntelligenceAccess[i].healthMAX > 60)
                 {
                     var disst = (this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y);
-                    if (disst <= (this.radius * 2.9 * this.size) * (this.radius * 2.9 * this.size) + ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)
+                    if (disst <= (this.radius * 1.05 * this.size + (ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)) * (this.radius * 1.05 * this.size + (ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)))
                     {
                         this.treeHealth = 0;
                         this.phase = "picked";

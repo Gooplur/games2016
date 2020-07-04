@@ -6640,7 +6640,7 @@ function worldBuilder()
         outlineBuilder(1, 2, "swamp", 14, -6);
 
     }
-    else if (map == "sourceOfTheGlow") //This is a dungeon found in map W3
+    else if (map == "sourceOfTheGlow")
     {
         player.dmx = map;
         player.underground = true;
@@ -6649,6 +6649,52 @@ function worldBuilder()
         campout = true;
         //starting chamber
         outlineBuilder( 4, 4, "rock", 0, 0);
+        outlineBuilder(2, 3, "rock", 1, -2);
+        outlineBuilder(3, 2, "rock", 2, -5);
+        outlineBuilder(4, 1, "rock", 4, -8);
+        outlineBuilder(1, 1, "rock", 5, -8);
+        outlineBuilder(5, 1, "rock", 6, -12);
+        outlineBuilder(1, 6, "rock", 7, -12);
+        outlineBuilder(1, 1, "rock", 12, -11);
+        outlineBuilder(1, 6, "rock", 12, -10);
+        outlineBuilder(7, 1, "rock", 17, -17);
+        outlineBuilder(4, 2, "rock", 15, -21);
+        outlineBuilder(3, 4, "rock", 15, -24);
+        outlineBuilder(2, 3, "rock", 16, -26);
+        outlineBuilder(1, 1, "rock", 16, -17);
+        outlineBuilder(1, 1, "rock", 18, -16);
+        outlineBuilder(2, 1, "rock", 18, -28);
+    }
+    else if (map == "sourceOfTheGlow2")
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "sourceOfTheGlow2";
+        campout = true;
+        //starting chamber
+        outlineBuilder( 2, 2, "rock", 0, 0);
+        outlineBuilder(2, 1, "rock", 1, 2);
+        outlineBuilder(1, 4, "rock", -4, 0);
+        outlineBuilder(1, 6, "rock", 2, 0);
+        outlineBuilder(2, 2, "rock", -1, -2);
+        outlineBuilder(3, 1, "rock", -5, -3);
+        outlineBuilder(1, 1, "rock", -4, -1);
+        outlineBuilder(1, 3, "rock", 0, -3);
+        outlineBuilder(2, 1, "rock", 2, -5);
+        outlineBuilder(2, 2, "rock", 7, 1);
+        outlineBuilder(2, 5, "rock", 9, 2);
+        outlineBuilder(1, 7, "rock", 11, 4);
+        outlineBuilder(8, 1, "rock", 18, -3);
+        outlineBuilder(1, 2, "rock", 16, -3);
+        outlineBuilder(3, 1, "rock", 17, -6);
+        outlineBuilder(1, 9, "rock", -11, -4);
+        outlineBuilder(1, 4, "rock", 12, -5);
+        outlineBuilder(1, 7, "rock", -15, 1);
+        outlineBuilder(4, 1, "rock", -14, 2);
+        outlineBuilder(1, 1, "rock", -12, -4);
+        outlineBuilder(4, 1, "rock", -10, -3);
+        outlineBuilder(1, 1, "rock", 16, -5);
     }
     else if (map == "ansetEggRoom")
     {
@@ -7609,6 +7655,18 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                     over("landing", j, i, extraX, extraY);
 
                     XXX.drawImage(mireBL, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "redWater")
+                {
+                    over("sea", j, i, extraX, extraY);
+
+                    XXX.drawImage(redCaveWater, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "shallowRedWater")
+                {
+                    over("landing", j, i, extraX, extraY);
+
+                    XXX.drawImage(redCaveWater, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "sewage")
                 {

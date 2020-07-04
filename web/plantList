@@ -21,6 +21,8 @@ Unlin - A bright blue and green water plant native to the Orgish Glades that is 
 Ketsueki - A white fungus with red liquid filled bubbles all over it. If eaten it will cause its consumer to overproduce blood and die. (longevity: true = small version, false = larger version)
 Eneoji - A pink bush covered in delicate petal-like golden-pink leaves that contain a compound that is extremely addictive that enhances its consumer's speed and energy, but causes them to burn through their body's fat stores at a dangerous rate.
 Milsan - An orange flower that grows in the Orgish jungle and that has poisonous green filtration pods
+Tarsi - A greenish-grey, grass-like, herb that grows exclusively in the southernmost region of Noth
+Hikari - A slime-like fungus that grows on the walls of tropical caves (almost exclusively in the Orgish glades) it eats a bug called the purpura bug which it uses as an energy source to create purple light which it uses to attract more purpura bugs in order to get more food, and so the cycle continues...
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase, and you should write Plant at the end unless it is a tree)
     //FARM

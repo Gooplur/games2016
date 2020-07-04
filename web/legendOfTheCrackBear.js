@@ -1803,6 +1803,18 @@ function josoPack()
 
     joso.onload = function()
     {
+        julioPack();
+    };
+}
+
+function julioPack()
+{
+    var julio = new Image();
+    julio.src = ("images/julio.png");
+    window.julio = julio;
+
+    julio.onload = function()
+    {
         sitePack();
     };
 }

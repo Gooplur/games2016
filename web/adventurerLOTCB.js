@@ -43116,7 +43116,7 @@ function Adventurer()
 
                             if (canPlace == true)
                             {
-                                scenicList.push(new Scenery("orgishFireworkCannon", X + Math.cos(this.rotation + 1/2 * Math.PI) * 12, Y + Math.sin(this.rotation + 1/2 * Math.PI) * 12, this.rotation, false));
+                                scenicList.push(new Scenery("orgishFireworkCannon", X + Math.cos(this.rotation + 1/2 * Math.PI) * 15, Y + Math.sin(this.rotation + 1/2 * Math.PI) * 15, this.rotation, false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {

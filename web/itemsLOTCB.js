@@ -20085,7 +20085,7 @@ function Item(type, x, y)
             this.buyValue = 260; // at max, buy for 260.
             this.sellValue = 260; // at max, sell for 260.
         }
-        else if (this.type == "orgishFireworkUSA" || this.type == "orgishFireworkOrgell" || this.type == "orgishFireworkNational" || this.type == "orgishFireworkNorth")
+        else if (this.type == "orgishFireworkUSA" || this.type == "orgishFireworkOrgell" || this.type == "orgishFireworkNational" || this.type == "orgishFireworkNorth" || this.type == "orgishFireworkCherry" || this.type == "orgishFireworkCascadia")
         {
             //For All Items
             this.identity = "Orgish Firework";
@@ -20105,9 +20105,17 @@ function Item(type, x, y)
             {
                 this.intDescription = "This firework explodes into a brilliant display of gold, green, and red.";
             }
+            else if (this.type == "orgishFireworkCherry")
+            {
+                this.intDescription = "This firework explodes into a brilliant display of white and red.";
+            }
             else if (this.type == "orgishFireworkNorth")
             {
-                this.intDescription = "The details about this firework are unknown.";
+                this.intDescription = "This firework explodes into a brilliant display of purple, red, and gold.";
+            }
+            else if (this.type == "orgishFireworkCascadia")
+            {
+                this.intDescription = "This firework explodes into a brilliant display of green, white, and blue.";
             }
             else
             {
@@ -60996,7 +61004,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
-        else if (this.type == "orgishFireworkUSA" || this.type == "orgishFireworkOrgell" || this.type == "orgishFireworkNational" || this.type == "orgishFireworkNorth")
+        else if (this.type == "orgishFireworkUSA" || this.type == "orgishFireworkOrgell" || this.type == "orgishFireworkNational" || this.type == "orgishFireworkNorth" || this.type == "orgishFireworkCherry" || this.type == "orgishFireworkCascadia")
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
@@ -69079,7 +69087,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
-        else if (this.type == "orgishFireworkUSA" || this.type == "orgishFireworkOrgell" || this.type == "orgishFireworkNational" || this.type == "orgishFireworkNorth")
+        else if (this.type == "orgishFireworkUSA" || this.type == "orgishFireworkOrgell" || this.type == "orgishFireworkNational" || this.type == "orgishFireworkNorth" || this.type == "orgishFireworkCherry" || this.type == "orgishFireworkCascadia")
         {
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
@@ -77122,7 +77130,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
-        else if (this.type == "orgishFireworkUSA" || this.type == "orgishFireworkOrgell" || this.type == "orgishFireworkNational" || this.type == "orgishFireworkNorth")
+        else if (this.type == "orgishFireworkUSA" || this.type == "orgishFireworkOrgell" || this.type == "orgishFireworkNational" || this.type == "orgishFireworkNorth" || this.type == "orgishFireworkCherry" || this.type == "orgishFireworkCascadia")
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);

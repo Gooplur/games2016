@@ -32828,6 +32828,11 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 scenicList.splice(scenicList.indexOf(this), 1);
             }
 
+            if (timeOfDay != "Day")
+            {
+                lights.push({X:this.X, Y: this.Y, size: 50 * this.size, extraStops: true, GRD: 0.5, Alpha: 0.55, showMe: false});
+            }
+
             //DRAWSELF
             if (this.temporary == "red")
             {
@@ -33051,6 +33056,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.blastOff = false;
                 this.firing = 0;
                 this.fireworks = [];
+                this.fireworkID = "none";
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
@@ -33116,6 +33122,82 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 11;
 
+            if (this.temporary == true)
+            {
+                if (this.runOneTime == true)
+                {
+                    this.runOneTime = false;
+                    this.timeBetweenFireworks = 0;
+                    this.oneShot = false;
+                    this.shotUp = false;
+                    if (this.extra == "oneShot" || this.extra == "once")
+                    {
+                        this.oneShot = true;
+                        this.extra = 90;
+                    }
+                }
+
+                if (this.phase == 0 || this.phase == 1)
+                {
+                    this.timeBetweenFireworks += 1 * (TTD / 16.75);
+                }
+            }
+
+            if (this.temporary == true && this.timeBetweenFireworks >= this.extra && this.oneShot != true || this.temporary == true && this.timeBetweenFireworks >= this.extra && this.shotUp == false)
+            {
+                if (this.phase == 0)
+                {
+                    if (this.information == "orgishFireworkNational" || this.information == "national")
+                    {
+                        this.timeBetweenFireworks = 0;
+                        this.fireworkID = "orgishFireworkNational";
+                        this.phase = 1;
+                        this.fireworks = [["red", 30, 3, [0.3, 0.5]], ["break", 0.3], ["gold", 30, 4, [0.3, 0.5]], ["break", 0.25], ["green", 30, 5, [0.3, 0.5]], ["break", 0.2], ["red", 25, 6, [0.1, 1]], ["break", 0.15], ["gold", 25, 7, [0.1, 1]], ["break", 0.1], ["green", 25, 8, [0.1, 1]], ["break", 0.5], ["green", 35, 6, [0.15, 1.25]], ["green", 35, 4, [0.15, 1.25]], ["break", 0.15], ["gold", 20, 2, [0.05, 2]]];
+                    }
+                    else if (this.information == "orgishFireworkNorth" || this.information == "north")
+                    {
+                        this.timeBetweenFireworks = 0;
+                        this.fireworkID = "orgishFireworkNorth";
+                        this.phase = 1;
+                        this.fireworks = [["magenta", 20, 10, [0.4, 1]], ["break", 0.4], ["red", 25, 7, [0.2, 1]], ["break", 0.4], ["gold", 30, 4, [0.1, 1]]];
+                    }
+                    else if (this.information == "orgishFireworkCherry" || this.information == "cherry")
+                    {
+                        this.timeBetweenFireworks = 0;
+                        this.fireworkID = "orgishFireworkCherry";
+                        this.phase = 1;
+                        this.fireworks = [["red", 10, 9, [0.2, 1.5]], ["white", 10, 8, [0.2, 1.5]], ["red", 10, 7, [0.2, 1.5]], ["white", 30, 4, [0.4, 2]], ["break", 0.2], ["red", 15, 6, [1, 2]], ["white", 15, 5, [1, 2]], ["break", 0.1], ["red", 25, 6, [2, 3]], ["white", 25, 5, [2, 3]], ["break", 0.1], ["white", 35, 4, [2, 3]], ["break", 0.1], ["red", 40, 5, [3, 3.25]]];
+                    }
+                    else if (this.information == "orgishFireworkUSA" || this.information == "usa")
+                    {
+                        this.timeBetweenFireworks = 0;
+                        this.fireworkID = "orgishFireworkUSA";
+                        this.phase = 1;
+                        this.fireworks = [["red", 20, 9, [1, 2]], ["white", 20, 8, [1, 2]], ["red", 20, 7, [1, 2]], ["blue", 40, 4, [1.5, 2.5]], ["break", 0.2], ["red", 45, 6, [2, 3]], ["white", 45, 5, [2, 3]], ["break", 0.1], ["red", 45, 6, [2, 3]], ["white", 45, 5, [2, 3]], ["break", 0.1], ["white", 25, 4, [1, 3]], ["break", 0.1], ["blue", 35, 9, [1, 1]]];
+                    }
+                    else if (this.information == "orgishFireworkOrgell" || this.information == "orgell")
+                    {
+                        this.timeBetweenFireworks = 0;
+                        this.fireworkID = "orgishFireworkOrgell";
+                        this.phase = 1;
+                        this.fireworks = [["red", 20, 7, [0.5, 2]], ["magenta", 20, 9, [0.9, 1]], ["gold", 40, 4, [1, 1.5]], ["break", 0.2], ["red", 40, 4, [1, 1]], ["break", 0.1], ["magenta", 30, 6, [0.5, 1]], ["break", 0.1], ["gold", 30, 8, [1.5, 1.25]]];
+                    }
+                    else if (this.information == "orgishFireworkCascadia" || this.information == "cascadia")
+                    {
+                        this.timeBetweenFireworks = 0;
+                        this.fireworkID = "orgishFireworkCascadia";
+                        this.phase = 1;
+                        this.fireworks = [["green", 18, 2, [0.4, 1]], ["break", 0.175], ["green", 18, 3, [0.2, 1.5]], ["break", 0.175], ["white", 32, 9, [0.5, 1]], ["break", 0.125], ["blue", 26, 6, [0.75, 1.5]], ["break", 0.3], ["white", 40, 12, [2, 1]], ["break", 0.35], ["blue", 30, 7, [1, 1.5]], ["break", 0.2], ["green", 20, 2, [0.25, 1]], ["break", 0.1], ["green", 24, 1, [0.1, 0.7]], ["white", 28, 3.5, [0.75, 2]]];
+                    }
+                }
+                else if (this.phase == 1 && this.timeBetweenFireworks >= (1/2 * this.extra))
+                {
+                    this.shotUp = true;
+                    this.timeBetweenFireworks = 0;
+                    this.phase = 2;
+                }
+            }
+
             //INTERACTION
             if (this.activate == true)
             {
@@ -33123,6 +33205,11 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (player.weaponEquipped == "hammer" && this.temporary == false)
                 {
                     give("orgishFireworkLauncher", 1);
+                    if (this.fireworkID != "none")
+                    {
+                        give(this.fireworkID, 1);
+                        this.fireworkID = "none";
+                    }
                     scenicList.splice(scenicList.indexOf(this), 1);
                 }
                 else if (this.temporary == false)
@@ -33135,27 +33222,45 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         if (have("orgishFireworkNational", 1))
                         {
+                            this.fireworkID = "orgishFireworkNational";
                             this.phase = 1;
                             take("orgishFireworkNational", 1);
-                            this.fireworks = [["red", 50], ["break", 0.2], ["gold", 50], ["break", 0.2], ["green", 50]];
+                            this.fireworks = [["red", 30, 3, [0.3, 0.5]], ["break", 0.3], ["gold", 30, 4, [0.3, 0.5]], ["break", 0.25], ["green", 30, 5, [0.3, 0.5]], ["break", 0.2], ["red", 25, 6, [0.1, 1]], ["break", 0.15], ["gold", 25, 7, [0.1, 1]], ["break", 0.1], ["green", 25, 8, [0.1, 1]], ["break", 0.5], ["green", 35, 6, [0.15, 1.25]], ["green", 35, 4, [0.15, 1.25]], ["break", 0.15], ["gold", 20, 2, [0.05, 2]]];
                         }
                         else if (have("orgishFireworkNorth", 1))
                         {
+                            this.fireworkID = "orgishFireworkNorth";
                             this.phase = 1;
                             take("orgishFireworkNorth", 1);
-                            this.fireworks = [["Magenta", 50], ["break", 0.2], ["red", 50], ["break", 0.2], ["gold", 50]];
+                            this.fireworks = [["magenta", 20, 10, [0.4, 1]], ["break", 0.4], ["red", 25, 7, [0.2, 1]], ["break", 0.4], ["gold", 30, 4, [0.1, 1]]];
+                        }
+                        else if (have("orgishFireworkCherry", 1))
+                        {
+                            this.fireworkID = "orgishFireworkCherry";
+                            this.phase = 1;
+                            take("orgishFireworkCherry", 1);
+                            this.fireworks = [["red", 10, 9, [0.2, 1.5]], ["white", 10, 8, [0.2, 1.5]], ["red", 10, 7, [0.2, 1.5]], ["white", 30, 4, [0.4, 2]], ["break", 0.2], ["red", 15, 6, [1, 2]], ["white", 15, 5, [1, 2]], ["break", 0.1], ["red", 25, 6, [2, 3]], ["white", 25, 5, [2, 3]], ["break", 0.1], ["white", 35, 4, [2, 3]], ["break", 0.1], ["red", 40, 5, [3, 3.25]]];
                         }
                         else if (have("orgishFireworkUSA", 1))
                         {
+                            this.fireworkID = "orgishFireworkUSA";
                             this.phase = 1;
                             take("orgishFireworkUSA", 1);
                             this.fireworks = [["red", 20, 9, [1, 2]], ["white", 20, 8, [1, 2]], ["red", 20, 7, [1, 2]], ["blue", 40, 4, [1.5, 2.5]], ["break", 0.2], ["red", 45, 6, [2, 3]], ["white", 45, 5, [2, 3]], ["break", 0.1], ["red", 45, 6, [2, 3]], ["white", 45, 5, [2, 3]], ["break", 0.1], ["white", 25, 4, [1, 3]], ["break", 0.1], ["blue", 35, 9, [1, 1]]];
                         }
                         else if (have("orgishFireworkOrgell", 1))
                         {
+                            this.fireworkID = "orgishFireworkOrgell";
                             this.phase = 1;
                             take("orgishFireworkOrgell", 1);
-                            this.fireworks = [["red", 50, 7, [0.5, 2]], ["magenta", 50, 9, [0.9, 1]], ["gold", 60, 4, [1, 1.5]]];
+                            this.fireworks = [["red", 20, 7, [0.5, 2]], ["magenta", 20, 9, [0.9, 1]], ["gold", 40, 4, [1, 1.5]], ["break", 0.2], ["red", 40, 4, [1, 1]], ["break", 0.1], ["magenta", 30, 6, [0.5, 1]], ["break", 0.1], ["gold", 30, 8, [1.5, 1.25]]];
+                        }
+                        else if (have("orgishFireworkCascadia", 1))
+                        {
+                            this.fireworkID = "orgishFireworkCascadia";
+                            this.phase = 1;
+                            take("orgishFireworkCascadia", 1);
+                            this.fireworks = [["green", 18, 2, [0.4, 1]], ["break", 0.175], ["green", 18, 3, [0.2, 1.5]], ["break", 0.175], ["white", 32, 9, [0.5, 1]], ["break", 0.125], ["blue", 26, 6, [0.75, 1.5]], ["break", 0.3], ["white", 40, 12, [2, 1]], ["break", 0.35], ["blue", 30, 7, [1, 1.5]], ["break", 0.2], ["green", 20, 2, [0.25, 1]], ["break", 0.1], ["green", 24, 1, [0.1, 0.7]], ["white", 28, 3.5, [0.75, 2]]];
                         }
                     }
                 }

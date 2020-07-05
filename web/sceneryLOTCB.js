@@ -4,6 +4,7 @@
 
 function Scenery(type, x, y, rotation, longevity, information, extra) //longevity is used either to portray permanence or ownership, information is an extra input for anything
 {
+    this.barcode = Math.PI * Math.random() + Math.random() * 2 * Math.PI + Math.random();
     this.type = type;
     this.variety = "generic";
     this.subVariety = "generic";
@@ -32979,7 +32980,6 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             {
                                 for (var j = 0; j < this.temporary[i][1]; j++)
                                 {
-                                    console.log("pasoo");
                                     scenicList.push(new Scenery("firework", this.X, this.Y, 2*Math.PI*Math.random(), "red", this.temporary[i][2], [this.temporary[i][3][0] - (2*this.temporary[i][3][0] * Math.random()), this.temporary[i][3][1]]));
                                 }
                             }
@@ -38646,7 +38646,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 //DRAWSELF
                 if (this.phase == 0)
                 {
-                    this.zIndex = 6;
+                    this.zIndex = 4;
                     this.radius = 58;
                     this.solid = true;
                     XXX.save();
@@ -38715,7 +38715,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 //DRAWSELF
                 if (this.phase == 0)
                 {
-                    this.zIndex = 6;
+                    this.zIndex = 4;
                     this.radius = 31;
                     this.solid = true;
                     XXX.save();

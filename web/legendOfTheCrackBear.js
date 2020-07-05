@@ -1815,6 +1815,18 @@ function julioPack()
 
     julio.onload = function()
     {
+        bootrexPack();
+    };
+}
+
+function bootrexPack()
+{
+    var bootrex = new Image();
+    bootrex.src = ("images/bootrex.png");
+    window.bootrex = bootrex;
+
+    bootrex.onload = function()
+    {
         sitePack();
     };
 }
@@ -5987,6 +5999,8 @@ function theLegend()
     alchemy.push(new Item("orgishFireworkNational", false));
     alchemy.push(new Item("orgishFireworkOrgell", false));
     alchemy.push(new Item("orgishFireworkNorth", false));
+    alchemy.push(new Item("orgishFireworkCherry", false));
+    alchemy.push(new Item("orgishFireworkCascadia", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

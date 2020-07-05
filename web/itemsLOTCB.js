@@ -20057,6 +20057,80 @@ function Item(type, x, y)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 2; // at max, sell for 2.
         }
+        else if (this.type == "orgishFireworkLauncher")
+        {
+            //For All Items
+            this.identity = "Orgish Firework Stand";
+            this.weight = 20;
+            this.size = 18;
+            this.description = "A masterfully carved bamboo firework launching stand that is painted in the style of a yong.";
+            this.intForDes = 1;
+            this.intDescription = "Set it up then use a fire starter to launch fireworks from it.";
+
+            //Define Utility
+            this.utility = "material";
+            this.subUtility = "fireworkLauncher";
+
+            //Utility Focused
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            // this.yield = 1;
+            // this.intForCraft = 35;
+            // this.ingredients = [["Bamboo", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 260; // at max, buy for 260.
+            this.sellValue = 260; // at max, sell for 260.
+        }
+        else if (this.type == "orgishFireworkUSA" || this.type == "orgishFireworkOrgell" || this.type == "orgishFireworkNational" || this.type == "orgishFireworkNorth")
+        {
+            //For All Items
+            this.identity = "Orgish Firework";
+            this.weight = 5;
+            this.size = 10;
+            this.description = "A black powder propelled rocket decorated to look like a yong.";
+            this.intForDes = 2;
+            if (this.type == "orgishFireworkUSA")
+            {
+                this.intDescription = "This firework explodes into a brilliant display of red, white, and blue.";
+            }
+            else if (this.type == "orgishFireworkOrgell")
+            {
+                this.intDescription = "This firework explodes into a brilliant display of gold, purple, and red.";
+            }
+            else if (this.type == "orgishFireworkNational")
+            {
+                this.intDescription = "This firework explodes into a brilliant display of gold, green, and red.";
+            }
+            else if (this.type == "orgishFireworkNorth")
+            {
+                this.intDescription = "The details about this firework are unknown.";
+            }
+            else
+            {
+                this.intDescription = "The details about this firework are unknown.";
+            }
+
+            //Define Utility
+            this.utility = "material";
+
+            //Utility Focused
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 30;
+            this.ingredients = [["Black-Powder", 4], ["Bamboo", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20; // at max, buy for 20.
+            this.sellValue = 20; // at max, sell for 20.
+        }
         else if (this.type == "tarsi")
         {
             //For All Items
@@ -60922,6 +60996,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "orgishFireworkUSA" || this.type == "orgishFireworkOrgell" || this.type == "orgishFireworkNational" || this.type == "orgishFireworkNorth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "orgishFireworkLauncher")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 35, 14, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
         else if (this.type == "purpuraLanternCharged")
         {
             XXX.beginPath();
@@ -68995,6 +69079,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "orgishFireworkUSA" || this.type == "orgishFireworkOrgell" || this.type == "orgishFireworkNational" || this.type == "orgishFireworkNorth")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "orgishFireworkLauncher")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 35, 14, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
         else if (this.type == "purpuraLanternCharged")
         {
             LXX.beginPath();
@@ -77027,6 +77121,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "orgishFireworkUSA" || this.type == "orgishFireworkOrgell" || this.type == "orgishFireworkNational" || this.type == "orgishFireworkNorth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "orgishFireworkLauncher")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 35, 14, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
         else if (this.type == "purpuraLanternCharged")
         {

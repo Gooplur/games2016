@@ -9762,6 +9762,11 @@ function cheats()
             Inventory.push([new Item("m16Carbine", false, false), 1]);
             Inventory.push([new Item("m16CarbineClip", false, false), 25]);
         }
+        else if (cheatcode == "july4" && player.name == "Big Sister" || cheatcode == "july4" && player.name == "Big Brother" || cheatcode == "july4" && player.name == "Uncle Sam" || cheatcode == "july4" && player.name == "Aunt Sue")
+        {
+            Inventory.push([new Item("orgishFireworkUSA", false, false), 50]);
+            Inventory.push([new Item("orgishFireworkLauncher", false, false), 1]);
+        }
         else if (cheatcode.toLowerCase() == "clearitems")
         {
             worldItems = [];

@@ -5983,6 +5983,10 @@ function theLegend()
     alchemy.push(new Item("gelatin", false));
     alchemy.push(new Item("jarOfIloptheoraSap", false));
     alchemy.push(new Item("tarsiExtract", false));
+    alchemy.push(new Item("orgishFireworkUSA", false));
+    alchemy.push(new Item("orgishFireworkNational", false));
+    alchemy.push(new Item("orgishFireworkOrgell", false));
+    alchemy.push(new Item("orgishFireworkNorth", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

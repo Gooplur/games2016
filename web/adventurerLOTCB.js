@@ -4753,7 +4753,6 @@ function Adventurer()
             {
                 if (xKey)
                 {
-                    //ArtificialIntelligenceAccess.push(new Unit(X + Math.cos(this.rotation + 1/2 * Math.PI) * 60, Y + Math.sin(this.rotation + 1/2 * Math.PI) * 60, "GhoulHuskling", Math.round(Math.random()), "huskly"));
                     playerProjectiles.push(new Projectile("blackNeedleMed", X, Y, this.rotation, 6, 1050, 9, playerProjectiles, 6, 0, "none", false, "Player", this.ethereal));
                 }
             }
@@ -43091,6 +43090,33 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("atsuiBambooCampfire", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].subUtility == "fireworkLauncher")
+                        {
+                            var canPlace = true;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //19 is the radius of firework launcher Scenery Object.
+                                if (scenicList[j].X - 15 <= X + scenicList[j].radius && scenicList[j].X + 15 >= X - scenicList[j].radius && scenicList[j].Y - 15 <= Y + scenicList[j].radius && scenicList[j].Y + 15 >= Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("orgishFireworkCannon", X + Math.cos(this.rotation + 1/2 * Math.PI) * 12, Y + Math.sin(this.rotation + 1/2 * Math.PI) * 12, this.rotation, false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {

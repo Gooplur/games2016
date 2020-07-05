@@ -185,6 +185,18 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         {
             this.massive = true;
         }
+        else if (this.type == "firework")
+        {
+            this.massive = true;
+        }
+        else if (this.type == "orgishFirework")
+        {
+            this.massive = true;
+        }
+        else if (this.type == "orgishFireworkCannon" && this.temporary == true)
+        {
+            this.massive = true;
+        }
     };
     this.isMassive();
 
@@ -32787,6 +32799,366 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (this.activate == true)
             {
                 this.activate = false;
+            }
+        }
+        else if (this.type == "firework")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.zIndex = 6;
+            this.size = this.extra[1];
+            this.spin = this.extra[0];
+            this.speed = this.information;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.spun = 0;
+                this.distTim = 0;
+            }
+            this.spun += this.spin;
+
+            this.X += Math.cos(this.rotation) * this.speed;
+            this.Y += Math.sin(this.rotation) * this.speed;
+
+            this.distTim += 1 * (TTD / 16.75);
+            if (this.distTim >= 45)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            //DRAWSELF
+            if (this.temporary == "red")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spun);
+                XXX.globalAlpha = 0.55;
+                XXX.drawImage(julio, 73, -1, 47, 39, -(1/2 * 47 * this.size), -(1/2 * 39 * this.size), 47 * this.size, 39 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == "gold")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spun);
+                XXX.globalAlpha = 0.55;
+                XXX.drawImage(julio, 132, 39, 47, 39, -(1/2 * 47 * this.size), -(1/2 * 39 * this.size), 47 * this.size, 39 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == "magenta")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spun);
+                XXX.globalAlpha = 0.55;
+                XXX.drawImage(julio, 122, -1, 47, 39, -(1/2 * 47 * this.size), -(1/2 * 39 * this.size), 47 * this.size, 39 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == "green")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spun);
+                XXX.globalAlpha = 0.55;
+                XXX.drawImage(julio, 78, 40, 47, 39, -(1/2 * 47 * this.size), -(1/2 * 39 * this.size), 47 * this.size, 39 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == "blue")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spun);
+                XXX.globalAlpha = 0.55;
+                XXX.drawImage(julio, 177, 41, 47, 39, -(1/2 * 47 * this.size), -(1/2 * 39 * this.size), 47 * this.size, 39 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == "white")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spun);
+                XXX.globalAlpha = 0.55;
+                XXX.drawImage(julio, 171, 1, 47, 39, -(1/2 * 47 * this.size), -(1/2 * 39 * this.size), 47 * this.size, 39 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "orgishFirework")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.zIndex = 6;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.speed = 11 + 2 * Math.random();
+                this.turn = 0.005 + 0.05 * Math.random();
+                this.etapa = -100 * Math.random();
+                this.size = 1;
+            }
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.fireworkBreakTime = 0;
+                this.fireworkBreakKeepTime = new Date().getTime();
+                this.firWor = 0;
+                this.explode = 0;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                XXX.drawImage(julio, 2, 10, 25, 51, -(1/2 * 25 * this.size), -(1/2 * 51 * this.size), 25 * this.size, 51 * this.size);
+                XXX.restore();
+
+                this.rotation += this.turn;
+                this.X += Math.cos(this.rotation) * this.speed * (TTD / 16.75);
+                this.Y += Math.sin(this.rotation) * this.speed * (TTD / 16.75);
+                //this.size += 0.005 * (TTD / 16.75);
+                this.etapa += 1 * (TTD / 16.75);
+                if (this.etapa > 220)
+                {
+                    this.phase = 2;
+                }
+            }
+            else
+            {
+                if (this.explode < 4)
+                {
+                    this.fireworkBreakTime = 0;
+                    this.fireworkBreakKeepTime = new Date().getTime();
+                    this.firWor = 0;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    XXX.drawImage(julio, 11, 161, 49, 62, -(1/2 * 49 * this.size), -(1/2 * 62 * this.size), 49 * this.size, 62 * this.size);
+                    XXX.restore();
+                }
+                else if (this.explode < 8)
+                {
+                    this.fireworkBreakTime = 0;
+                    this.fireworkBreakKeepTime = new Date().getTime();
+                    this.firWor = 0;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    XXX.drawImage(julio, 0, 77, 70, 81, -(1/2 * 70 * this.size), -(1/2 * 81 * this.size), 70 * this.size, 81 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    if (this.firWor < this.temporary.length && new Date().getTime() - this.fireworkBreakKeepTime > this.fireworkBreakTime)
+                    {
+                        for (var i = this.firWor; i < this.temporary.length; i++)
+                        {
+                            this.firWor = i;
+                            if (this.temporary[i][0] == "break")
+                            {
+                                this.fireworkBreakTime = this.temporary[i][1] * 1000;
+                                this.fireworkBreakKeepTime = new Date().getTime();
+                                this.firWor = i + 1;
+                                break;
+                            }
+                            else if (this.temporary[i][0] == "red")
+                            {
+                                for (var j = 0; j < this.temporary[i][1]; j++)
+                                {
+                                    console.log("pasoo");
+                                    scenicList.push(new Scenery("firework", this.X, this.Y, 2*Math.PI*Math.random(), "red", this.temporary[i][2], [this.temporary[i][3][0] - (2*this.temporary[i][3][0] * Math.random()), this.temporary[i][3][1]]));
+                                }
+                            }
+                            else if (this.temporary[i][0] == "blue")
+                            {
+                                for (var j = 0; j < this.temporary[i][1]; j++)
+                                {
+                                    scenicList.push(new Scenery("firework", this.X, this.Y, 2*Math.PI*Math.random(), "blue", this.temporary[i][2], [this.temporary[i][3][0] - (2*this.temporary[i][3][0] * Math.random()), this.temporary[i][3][1]]));
+                                }
+                            }
+                            else if (this.temporary[i][0] == "magenta" || this.temporary[i][0] == "purple")
+                            {
+                                for (var j = 0; j < this.temporary[i][1]; j++)
+                                {
+                                    scenicList.push(new Scenery("firework", this.X, this.Y, 2*Math.PI*Math.random(), "magenta", this.temporary[i][2], [this.temporary[i][3][0] - (2*this.temporary[i][3][0] * Math.random()), this.temporary[i][3][1]]));
+                                }
+                            }
+                            else if (this.temporary[i][0] == "gold")
+                            {
+                                for (var j = 0; j < this.temporary[i][1]; j++)
+                                {
+                                    scenicList.push(new Scenery("firework", this.X, this.Y, 2*Math.PI*Math.random(), "gold", this.temporary[i][2], [this.temporary[i][3][0] - (2*this.temporary[i][3][0] * Math.random()), this.temporary[i][3][1]]));
+                                }
+                            }
+                            else if (this.temporary[i][0] == "green")
+                            {
+                                for (var j = 0; j < this.temporary[i][1]; j++)
+                                {
+                                    scenicList.push(new Scenery("firework", this.X, this.Y, 2*Math.PI*Math.random(), "green", this.temporary[i][2], [this.temporary[i][3][0] - (2*this.temporary[i][3][0] * Math.random()), this.temporary[i][3][1]]));
+                                }
+                            }
+                            else if (this.temporary[i][0] == "white")
+                            {
+                                for (var j = 0; j < this.temporary[i][1]; j++)
+                                {
+                                    scenicList.push(new Scenery("firework", this.X, this.Y, 2*Math.PI*Math.random(), "white", this.temporary[i][2], [this.temporary[i][3][0] - (2*this.temporary[i][3][0] * Math.random()), this.temporary[i][3][1]]));
+                                }
+                            }
+                        }
+                    }
+                    else if (this.firWor >= this.temporary.length)
+                    {
+                        scenicList.splice(scenicList.indexOf(this), 1);
+                    }
+                    if (new Date().getTime() - this.fireworkBreakKeepTime > this.fireworkBreakTime)
+                    {
+                        this.firWor = this.temporary.length
+                    }
+                }
+
+                this.explode += 1 * (TTD / 16.75);
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "orgishFireworkCannon")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 40;
+            this.size = 1;
+
+            //DRAWSELF
+            if (this.phase == 0) //not loaded
+            {
+                this.blastOff = false;
+                this.firing = 0;
+                this.fireworks = [];
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(julio, 34, 0, 26, 77, -(1/2 * 26 * this.size), -(1/2 * 77 * this.size), 26 * this.size, 77 * this.size);
+                XXX.restore();
+            }
+            else if (this.phase == 1) //loaded
+            {
+                this.blastOff = false;
+                this.firing = 0;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(julio, 80, 129, 26, 77, -(1/2 * 26 * this.size), -(1/2 * 77 * this.size), 26 * this.size, 77 * this.size);
+                XXX.restore();
+            }
+            else //firing
+            {
+                if (this.firing < 4)
+                {
+                    this.blastOff = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(julio, 80, 129, 26, 77, -(1/2 * 26 * this.size), -(1/2 * 77 * this.size), 26 * this.size, 77 * this.size);
+                    XXX.restore();
+                }
+                else if (this.firing < 8)
+                {
+                    this.blastOff = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(julio, 110, 113, 30, 108, -(1/2 * 30 * this.size), -(1/2 * 108 * this.size), 30 * this.size, 108 * this.size);
+                    XXX.restore();
+                }
+                else if (this.firing < 12)
+                {
+                    if (this.blastOff == true)
+                    {
+                        this.blastOff = false;
+                        scenicList.push(new Scenery("orgishFirework", this.X + Math.cos(this.rotation + 1/2 * Math.PI) * 30, this.Y + Math.sin(this.rotation + 1/2 * Math.PI) * 30, this.rotation + 1/2 * Math.PI, this.fireworks));
+                    }
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(julio, 143, 113, 32, 108, -(1/2 * 32 * this.size), -(1/2 * 108 * this.size), 32 * this.size, 108 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(julio, 34, 0, 26, 77, -(1/2 * 26 * this.size), -(1/2 * 77 * this.size), 26 * this.size, 77 * this.size);
+                    XXX.restore();
+                    this.phase = 0;
+                }
+
+                this.firing += 1;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 11;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (player.weaponEquipped == "hammer" && this.temporary == false)
+                {
+                    give("orgishFireworkLauncher", 1);
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+                else if (this.temporary == false)
+                {
+                    if (this.phase == 1 && have("fireStarter", 1))
+                    {
+                        this.phase = 2;
+                    }
+                    else if (this.phase == 0)
+                    {
+                        if (have("orgishFireworkNational", 1))
+                        {
+                            this.phase = 1;
+                            take("orgishFireworkNational", 1);
+                            this.fireworks = [["red", 50], ["break", 0.2], ["gold", 50], ["break", 0.2], ["green", 50]];
+                        }
+                        else if (have("orgishFireworkNorth", 1))
+                        {
+                            this.phase = 1;
+                            take("orgishFireworkNorth", 1);
+                            this.fireworks = [["Magenta", 50], ["break", 0.2], ["red", 50], ["break", 0.2], ["gold", 50]];
+                        }
+                        else if (have("orgishFireworkUSA", 1))
+                        {
+                            this.phase = 1;
+                            take("orgishFireworkUSA", 1);
+                            this.fireworks = [["red", 20, 9, [1, 2]], ["white", 20, 8, [1, 2]], ["red", 20, 7, [1, 2]], ["blue", 40, 4, [1.5, 2.5]], ["break", 0.2], ["red", 45, 6, [2, 3]], ["white", 45, 5, [2, 3]], ["break", 0.1], ["red", 45, 6, [2, 3]], ["white", 45, 5, [2, 3]], ["break", 0.1], ["white", 25, 4, [1, 3]], ["break", 0.1], ["blue", 35, 9, [1, 1]]];
+                        }
+                        else if (have("orgishFireworkOrgell", 1))
+                        {
+                            this.phase = 1;
+                            take("orgishFireworkOrgell", 1);
+                            this.fireworks = [["red", 50, 7, [0.5, 2]], ["magenta", 50, 9, [0.9, 1]], ["gold", 60, 4, [1, 1.5]]];
+                        }
+                    }
+                }
             }
         }
         else if (this.type == "toadHuskHalf")

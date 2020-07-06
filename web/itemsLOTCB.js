@@ -3388,6 +3388,198 @@ function Item(type, x, y)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 3; // at max, sell for 3.
         }
+        else if (this.type == "spaliLeaf")
+        {
+            //For All Items
+            this.identity = "Spali Leaf";
+            this.weight = 0.4;
+            this.size = 8;
+            this.description = "The wide, red, pointed leaf of a spali bush.";
+            this.intForDes = 2;
+            this.intDescription = "This is used in alchemy as a moderate amplifier.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "larykFlower")
+        {
+            //For All Items
+            this.identity = "Laryk Flower";
+            this.weight = 4.9;
+            this.size = 14;
+            this.description = "The hard, moderately bendable, air-particulate-filtering flower of a laryk plant.";
+            this.intForDes = 12;
+            this.intDescription = "This is a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 50); // at max, sell for 7.
+        }
+        else if (this.type == "bloodLily")
+        {
+            //For All Items
+            this.identity = "Blood Lilies";
+            this.weight = 0.28;
+            this.size = 8;
+            this.description = "The delicate white and blood red flowers of a Vardanian cave lily.";
+            this.intForDes = 19;
+            this.intDescription = "These are a powerful former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 42 - Math.floor(player.getCharisma() / 5); // at max, buy for 32.
+            this.sellValue = 29 + Math.floor(player.getCharisma() / 15); // at max, sell for 32.
+        }
+        else if (this.type == "bloodLilyLeaf")
+        {
+            //For All Items
+            this.identity = "Blood Lily Leaves";
+            this.weight = 0.6;
+            this.size = 8;
+            this.description = "The tough but flexible leaves of the Vardanian blood lily.";
+            this.intForDes = 6;
+            this.intDescription = "These leaves cure swelling very rapidly.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.2; //satisfies hunger.
+            this.thirst = 0.05; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0.15; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "swellReductionIII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 25); // at max, buy for 8.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 25); // at max, sell for 8.
+        }
+        else if (this.type == "neth")
+        {
+            //For All Items
+            this.identity = "Neth";
+            this.weight = 1.6;
+            this.size = 11;
+            this.description = "A raw starchy hunk from a neth tuber.";
+            this.intForDes = 0;
+            this.intDescription = "When eaten raw, neth has a pronounced gingery flavour.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["nethSprout", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5.5; //satisfies hunger.
+            this.thirst = 0.6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 50); // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "nethSprout")
+        {
+            //For All Items
+            this.identity = "Neth Sprout";
+            this.weight = 1.6;
+            this.size = 11;
+            this.description = "A small sprout-like protuberance from a neth tuber.";
+            this.intForDes = 0;
+            if (player.getIntelligence() >= 5)
+            {
+                this.intDescription = "When eaten raw, neth sprouts have a watery, gingery, bitter flavour. Oh, and they are poisonous by the way...";
+            }
+            else
+            {
+                this.intDescription = "When eaten raw, neth sprouts have a watery, gingery, bitter flavour.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0.9; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "roastedNeth")
+        {
+            //For All Items
+            this.identity = "Roasted Neth";
+            this.weight = 1.4;
+            this.size = 10;
+            this.description = "A roasted hunk of neth.";
+            this.intForDes = 0;
+            this.intDescription = "It is starchy with a mild gingery flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 11.5; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 10;
+            this.ingredients = [["Neth", 1]];
+            this.biproducts = [[new Item("nethSprout", false), 1]];
+
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 50); // at max, buy for 9.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 15); // at max, sell for 9.
+        }
         else if (this.type == "giraffePlatter")
         {
             //For All Items
@@ -4703,6 +4895,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8; // at max, buy for 8.
             this.sellValue = 8; // at max, sell for 8.
+        }
+        else if (this.type == "mulcreuTail")
+        {
+            //For All Items
+            this.identity = "Mulcreu Tail";
+            this.weight = 0.25;
+            this.size = 9;
+            this.description = "The long, light, fluffy tail of a mulcreu.";
+            this.intForDes = 2;
+            this.intDescription = "Mulcreu tails are extremely soft and fluffy and they are used to make fine Orgish outfits.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 25); // at max, buy for 8.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 10); // at max, sell for 8.
+        }
+        else if (this.type == "mulcreuPelt")
+        {
+            //For All Items
+            this.identity = "Mulcreu Pelt";
+            this.weight = 1;
+            this.size = 9;
+            this.description = "The short yellowy-brown fur pelt of a mulcreu.";
+            this.intForDes = 2;
+            this.intDescription = "Mulcreu pelts are fuzzy and comfortable and they are used to make outfits and bedding.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
         else if (this.type == "juniperBerries")
         {
@@ -61009,6 +61241,51 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "larykFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 599, 28, 65, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "bloodLily")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 1037, 226, 65, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "bloodLilyLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 1127, 234, 65, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "neth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 323, 43, 65, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "roastedNeth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 394, 45, 65, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "nethSprout")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 451, 45, 65, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "mulcreuTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 649, 221, 65, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "mulcreuPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 741, 221, 65, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "spaliLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 511, 2947, 55, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 55 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 55 * 1, 30 * 1);
+        }
         else if (this.type == "orgishFireworkLauncher")
         {
             XXX.beginPath();
@@ -69092,6 +69369,51 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "larykFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harv, 599, 28, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "bloodLily")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harv, 1037, 226, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "bloodLilyLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harv, 1127, 234, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "neth")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harv, 323, 43, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "roastedNeth")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harv, 394, 45, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "nethSprout")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harv, 451, 45, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "mulcreuTail")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harv, 649, 221, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "mulcreuPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harv, 741, 221, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "spaliLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 511, 2947, 55, 30, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 30 * 1), 55 * 1, 30 * 1);
+        }
         else if (this.type == "orgishFireworkLauncher")
         {
             LXX.beginPath();
@@ -77134,6 +77456,51 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "larykFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 599, 28, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "bloodLily")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 1037, 226, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "bloodLilyLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 1127, 234, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "neth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 323, 43, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "roastedNeth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 394, 45, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "nethSprout")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 451, 45, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "mulcreuTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 649, 221, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "mulcreuPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 741, 221, 65, 80, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 80 * 1), 65 * 1, 80 * 1);
+        }
+        else if (this.type == "spaliLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 511, 2947, 55, 30, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 30 * 1), 55 * 1, 30 * 1);
         }
         else if (this.type == "orgishFireworkLauncher")
         {

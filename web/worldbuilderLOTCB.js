@@ -7061,6 +7061,8 @@ function worldBuilder()
         campout = true;
         //starting chamber
         outlineBuilder(68,68, "outline", -34, -34);
+        outlineBuilder(1,4, "sea", 1, 1);
+        outlineBuilder(2, 1, "sea", 4, -1);
     }
 }
 

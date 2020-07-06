@@ -5747,6 +5747,7 @@ function theLegend()
     foods.push(new Item("snapjawMeat", false));
     foods.push(new Item("harvestmanMeat", false));
     foods.push(new Item("jarOfHarvestmanOil", false));
+    foods.push(new Item("roastedNeth", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];

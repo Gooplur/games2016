@@ -365,6 +365,14 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         player.acidV = true;
                         player.acidTime = new Date().getTime() + 22000;
                     }
+                    else if (effect == "poisonI" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        player.poisonI = true;
+                    }
+                    else if (effect == "poisonII" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        player.poisonII = true;
+                    }
                     else if (effect == "leftSmashI" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
                     {
                         var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
@@ -11045,6 +11053,18 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         else if (this.effect == "fire" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
                         {
                             ArtificialIntelligenceAccess[j].burningTime = new Date().getTime();
+                        }
+                        else if (this.effect == "poisonI" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
+                        {
+                            ArtificialIntelligenceAccess[j].acidI = true;
+                            ArtificialIntelligenceAccess[j].acidTime = new Date().getTime() + 90000;
+                            ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                        }
+                        else if (this.effect == "poisonII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
+                        {
+                            ArtificialIntelligenceAccess[j].acidII = true;
+                            ArtificialIntelligenceAccess[j].acidTime = new Date().getTime() + 90000;
+                            ArtificialIntelligenceAccess[j].killNotByPlayer = true;
                         }
                         else if (this.effect == "yilotnyyAcid" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
                         {
@@ -38316,6 +38336,301 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("neprilneBerries", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "bloodLilyPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(6);
+            this.solid = false;
+            this.interactionRange = 75;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(harv, 846, 223, 92, 93, -(1/2 * 92 * 1), -(1/2 * 93 * 1), 92 * 1, 93 * 1);
+                XXX.restore();
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(harv, 934, 222, 92, 93, -(1/2 * 92 * 1), -(1/2 * 93 * 1), 92 * 1, 93 * 1);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i] === this)
+                    {
+                        scenicList.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 14;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0 || this.activate == true && this.phase == 1)
+            {
+                this.activate = false;
+
+                if (this.phase == 0)
+                {
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "bloodLily")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("bloodLily", false, false), 1]);
+                    }
+                }
+                else
+                {
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "bloodLilyLeaf")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 2);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("bloodLilyLeaf", false, false), Math.floor(1 + Math.random() * 2)]);
+                    }
+                }
+            }
+        }
+        else if (this.type == "nethPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(4);
+            this.solid = true;
+            this.interactionRange = 80;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(harv, 12, 18, 128, 126, -(1/2 * 128), -(1/2 * 126), 128, 126);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(harv, 155, 20, 128, 126, -(1/2 * 128), -(1/2 * 126), 128, 126);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 26;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "neth")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("neth", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "larykPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.solid = false;
+            this.interactionRange = 90;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(harv, 916, -56, 253, 180, -(1/2 * 253), -(1/2 * 180), 253, 180);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(harv, 662, -51, 253, 180, -(1/2 * 253), -(1/2 * 180), 253, 180);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 35;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "larykFlower")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("larykFlower", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "spaliPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(2);
+            this.solid = false;
+            this.interactionRange = 73;
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.bushmaster = Math.random();
+                if (this.bushmaster < 0.22)
+                {
+                    this.bushmaster = true;
+                }
+                else
+                {
+                    this.bushmaster = false;
+                }
+                this.bushmasterAlpha = Math.round(Math.random());
+            }
+
+            this.radius = 19;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(julio, 685, 2834, 85, 75, -(1/2 * 85), -(1/2 * 75), 85, 75);
+                XXX.restore();
+
+                if (this.bushmaster == true)
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].underground != true && ArtificialIntelligenceAccess[i].flying != true)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type != "Bushmaster" && ArtificialIntelligenceAccess[i].insect != true && ArtificialIntelligenceAccess[i].ethereal != this.ethereal || ArtificialIntelligenceAccess[i].ethereal == "avatar" && ArtificialIntelligenceAccess[i].type != "Bushmaster" && ArtificialIntelligenceAccess[i].insect != true || this.ethereal == "avatar" && ArtificialIntelligenceAccess[i].type != "Bushmaster" && ArtificialIntelligenceAccess[i].insect != true)
+                            {
+                                var disst = (this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y);
+                                if (disst <= (32 + (ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)) * (32 + (ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)))
+                                {
+                                    this.bushmaster = false
+                                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Bushmaster", this.bushmasterAlpha, "Generic Bushmaster"));
+                                }
+                            }
+                        }
+                    }
+
+                    if (this.playerer <= 32 + 10 && this.bushmaster == true)
+                    {
+                        this.bushmaster = false
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Bushmaster", this.bushmasterAlpha, "Generic Bushmaster"));
+                    }
+                }
+            }
+            else if (this.phase == "picked")
+            {
+                this.radius = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(julio, 695, 2918, 85, 75, -(1/2 * 85), -(1/2 * 75), 85, 75);
+                XXX.restore();
+
+                if (this.bushmaster == true)
+                {
+                    this.bushmaster = false
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Bushmaster", this.bushmasterAlpha, "Generic Bushmaster"));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "spaliLeaf")
+                    {
+                        Inventory[i][1] += (1 + Math.floor(Math.random() * 5));
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("spaliLeaf", false, false), (1 + Math.floor(Math.random() * 5))]);
                 }
             }
         }

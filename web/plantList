@@ -27,6 +27,8 @@ Spali - A red bush with wide, thin, pointed, red leaves. Bushmaster snakes, one 
 Neth - A large tuber that grows above ground, it is edible and has a starchy and mildly gingery flavour.
 Laryk - A vardanian plant that grows exclusively in darkness. It feeds principally off of the moisture and particulates in the air.
 BloodLily - A vardanian variety of lily that grows in watery or flooded caves. They are very rare, and very valuable as both a medicinal herb and as an alchemy ingredient.
+    //ITEMS NOT YET ADDED
+Bamboo - Tall orgish bamboo (information: 1 = packed, 0 = spread) (extra: 1 = webbed, 2 = burnt chopped, else = normal)
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase, and you should write Plant at the end unless it is a tree)
     //FARM

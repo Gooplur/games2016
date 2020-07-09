@@ -39457,7 +39457,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].type == "Sagro" || ArtificialIntelligenceAccess[i].type == "Vodmena" || ArtificialIntelligenceAccess[i].type == "Udnal" || ArtificialIntelligenceAccess[i].type == "Nulga" && ArtificialIntelligenceAccess[i].alpha == "massive" || ArtificialIntelligenceAccess[i].type == "MudTroll" || ArtificialIntelligenceAccess[i].type == "BogTroll" || ArtificialIntelligenceAccess[i].type == "Hydra" || ArtificialIntelligenceAccess[i].type == "Vodkapa" || ArtificialIntelligenceAccess[i].type == "Yilotnyy" || ArtificialIntelligenceAccess[i].healthMAX > 60)
                 {
                     var disst = (this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y);
-                    if (disst <= (this.radius * 1.05 * this.size + (ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)) * (this.radius * 1.05 * this.size + (ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)))
+                    if (disst <= (this.radius * 1.1 * this.size + ArtificialIntelligenceAccess[i].sizeRadius) * (this.radius * 1.1 * this.size + ArtificialIntelligenceAccess[i].sizeRadius))
                     {
                         this.treeHealth = 0;
                         this.phase = "picked";
@@ -52688,6 +52688,311 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
                     console.log(distFromCutCut);
                     if (distFromCutCut <= player.weapon.range * 10 + 35)
+                    {
+                        this.treeHealth -= 20;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+            }
+        }
+        else if (this.type == "bamboo")
+        {
+            //TRAITS
+            this.tree = true;
+            this.solid = false;
+            this.interactionRange = 120;
+            this.size = 1.25;
+            this.radius = 1;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+
+                this.treeHealth = 200;
+            }
+
+            //DRAWSELF
+            if (this.extra == 2)
+            {
+                this.zIndex = 1;
+                if (this.information == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mboo, 1370, -8, 500, 374, -(1/2 * 500 * this.size), -(1/2 * 374 * this.size), 500 * this.size, 374 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mboo, 1847, -2, 395, 319, -(1/2 * 395 * this.size), -(1/2 * 319 * this.size), 395 * this.size, 319 * this.size);
+                    XXX.restore();
+                }
+            }
+            else if (this.information == 0)
+            {
+                if (this.treePhase == 0)
+                {
+                    if (this.extra == 1) //web
+                    {
+                        this.zIndex = 6;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(mboo, 821, 402, 397, 306, -(1/2 * 397 * this.size) - 1, -(1/2 * 306 * this.size) - 6, 397 * this.size, 306 * this.size);
+                        XXX.restore();
+
+                        this.radius = 90 * this.size;
+
+                        //stick player and units in the web then store the data for spiders to access.
+                        this.webbed = [];
+                        if (this.playerer <= this.radius)
+                        {
+                            player.webbedNum = 3;
+                            player.webbedTime = new Date().getTime();
+                            if (quenHere == false)
+                            {
+                                this.webbed.push(player);
+                            }
+                        }
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            var unitDist = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
+                            if (unitDist <= this.radius)
+                            {
+                                ArtificialIntelligenceAccess[i].webbedNum = 3;
+                                ArtificialIntelligenceAccess[i].webbedTime = new Date().getTime();
+                                this.webbed.push(ArtificialIntelligenceAccess[i]);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (this.playerer < 126 * this.size)
+                        {
+                            this.zIndex = 6;
+                            XXX.globalAlpha = 0.85;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(mboo, 1, 397, 363, 288, -(1/2 * 363 * this.size) - 7 * this.size, -(1/2 * 288 * this.size), 363 * this.size, 288 * this.size);
+                            XXX.restore();
+                            XXX.globalAlpha = 1;
+                        }
+                        else
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(mboo, 1, 397, 363, 288, -(1/2 * 363 * this.size) - 7 * this.size, -(1/2 * 288 * this.size), 363 * this.size, 288 * this.size);
+                            XXX.restore();
+                        }
+                    }
+                }
+                else if (this.treePhase == 1)
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mboo, 352, -117, 588, 546, -(1/2 * 588 * this.size), -(1/2 * 546 * this.size), 588 * this.size, 546 * this.size);
+                    XXX.restore();
+                    this.radius = 100 * this.size;
+                }
+                else if (this.treePhase == 2)
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(moonberry, 1210, 146, 354, 288, -(1/2 * 354 * this.size) + 18 * this.size, -(1/2 * 288 * this.size) - 19 * this.size, 354 * this.size, 288 * this.size);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (this.treePhase == 0)
+                {
+                    if (this.extra == 1) //web
+                    {
+                        this.zIndex = 6;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(mboo, 1220, 346, 397, 306, -(1/2 * 397 * this.size) + 6, -(1/2 * 306 * this.size) - 6, 397 * this.size, 306 * this.size);
+                        XXX.restore();
+
+                        this.radius = 84 * this.size;
+
+                        //stick player and units in the web then store the data for spiders to access.
+                        this.webbed = [];
+                        if (this.playerer <= this.radius)
+                        {
+                            player.webbedNum = 3;
+                            player.webbedTime = new Date().getTime();
+                            if (quenHere == false)
+                            {
+                                this.webbed.push(player);
+                            }
+                        }
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            var unitDist = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
+                            if (unitDist <= this.radius)
+                            {
+                                ArtificialIntelligenceAccess[i].webbedNum = 3;
+                                ArtificialIntelligenceAccess[i].webbedTime = new Date().getTime();
+                                this.webbed.push(ArtificialIntelligenceAccess[i]);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (this.playerer < 89 * this.size)
+                        {
+                            this.zIndex = 6;
+                            XXX.globalAlpha = 0.85;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(mboo, 381, 424, 397, 273, -(1/2 * 397 * this.size), -(1/2 * 273 * this.size), 397 * this.size, 273 * this.size);
+                            XXX.restore();
+                            XXX.globalAlpha = 1;
+                        }
+                        else
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(mboo, 381, 424, 397, 273, -(1/2 * 397 * this.size), -(1/2 * 273 * this.size), 397 * this.size, 273 * this.size);
+                            XXX.restore();
+                        }
+                    }
+                }
+                else if (this.treePhase == 1)
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mboo, 939, 14, 421, 333, -(1/2 * 421 * this.size) - 15, -(1/2 * 333 * this.size) - 3, 421 * this.size, 333 * this.size);
+                    XXX.restore();
+                    this.radius = 100 * this.size;
+                }
+                else if (this.treePhase == 2)
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(moonberry, 1530, 198, 354, 288, -(1/2 * 354 * this.size) + 4, -(1/2 * 288 * this.size) + 14, 354 * this.size, 288 * this.size);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+
+            //INTERACTION
+            if (this.activate == true && this.extra != 1 && this.extra != 2)
+            {
+                if (this.treePhase == 1)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "bamboo")
+                        {
+                            Inventory[i][1] += 8;
+                            this.treePhase = 2;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("bamboo", false, false), 8]);
+                        this.treePhase = 2;
+                    }
+                }
+                this.activate = false;
+            }
+
+            if (this.treePhase == 0) //if this tree is in its cut down phase.
+            {
+                //console.log(player.finalAttackStage);
+                if (player.weaponEquipped == "vardanianAxe" && player.cutcut == true && this.playerer < 130 || player.weaponEquipped == "vardanianAxeDual" && player.cutcut == true && this.playerer < 130)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 80)
+                    {
+                        this.treeHealth -= 0.45;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "timberAxe" && player.cutcut == true && this.playerer < 130)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 80)
+                    {
+                        this.treeHealth -= 2;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "vardanianBattleAxe" && player.cutcut == true && this.playerer < 130 || player.weaponEquipped == "freydicWarAxe" && player.cutcut == true  && this.playerer < 130)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 80)
+                    {
+                        this.treeHealth -= 0.2;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "dualVardanianBattleAxe" && player.cutcut == true && this.playerer < 130)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 10 + 80)
+                    {
+                        this.treeHealth -= 0.35;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "chainsaw" && player.cutcut == true && this.playerer < 130)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 10 + 80)
                     {
                         this.treeHealth -= 20;
                     }

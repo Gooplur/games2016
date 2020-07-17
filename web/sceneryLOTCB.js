@@ -48953,7 +48953,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
-                if (ArtificialIntelligenceAccess[i].insect != true && ArtificialIntelligenceAccess[i].type != "Rat" && ArtificialIntelligenceAccess[i].flying != true && ArtificialIntelligenceAccess[i].underground != true && ArtificialIntelligenceAccess[i].dmx == this.dmx && ArtificialIntelligenceAccess[i].healthMAX > 2.4)
+                if (ArtificialIntelligenceAccess[i].insect != true && ArtificialIntelligenceAccess[i].type != "Rat" && ArtificialIntelligenceAccess[i].type != "QuillWolf" && ArtificialIntelligenceAccess[i].flying != true && ArtificialIntelligenceAccess[i].underground != true && ArtificialIntelligenceAccess[i].dmx == this.dmx && ArtificialIntelligenceAccess[i].healthMAX > 2.4)
                 {
                     if (((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y)) <= (this.radius * this.radius) + (1/2 * ArtificialIntelligenceAccess[i].sizeRadius)*(1/2 * ArtificialIntelligenceAccess[i].sizeRadius))
                     {

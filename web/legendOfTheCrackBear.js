@@ -1839,6 +1839,18 @@ function sitePack()
 
     site.onload = function()
     {
+        quilPack();
+    };
+}
+
+function quilPack()
+{
+    var quil = new Image();
+    quil.src = ("images/quil.png");
+    window.quil = quil;
+
+    quil.onload = function()
+    {
         bristPack();
     };
 }

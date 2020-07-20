@@ -1827,6 +1827,18 @@ function bootrexPack()
 
     bootrex.onload = function()
     {
+        cardsPack();
+    };
+}
+
+function cardsPack()
+{
+    var cards = new Image();
+    cards.src = ("images/cards.png");
+    window.cards = cards;
+
+    cards.onload = function()
+    {
         sitePack();
     };
 }
@@ -3173,6 +3185,7 @@ var quenHere = false;
 var cheatAtop = false;
 var buildPrompt = "";
 var buildPrompt2 = "";
+var buildPrompt3 = "";
 var dOS = 0;
 var anjayRot = 0;
 var escapeKey = false;
@@ -4294,7 +4307,32 @@ function theLegend()
         abrahm: ["Abrahm", 0],
         antov: ["Antov", 0],
         kolstov: ["Kolstov", 0],
-        dimitry: ["Dimitry", 0]
+        dimitry: ["Dimitry", 0],
+        garyl: ["Garyl", 0],
+        changcha: ["Changcha", 0],
+        gladdy: ["Gladdy", 0],
+        hammel: ["Hammel", 0],
+        saehla: ["Saehla", 0],
+        havel: ["Havel", 0],
+        gregory: ["Gregory", 0],
+        matillda: ["Matillda", 0],
+        madisen: ["Madisen", 0],
+        wirsid: ["Wirsid", 0],
+        kate: ["Kate", 0],
+        lilian: ["Lilian", 0],
+        jordan: ["Jordan", 0],
+        cinderella: ["Cinderella", 0],
+        hally: ["Hally", 0],
+        tommen: ["Tommen", 0],
+        deglin: ["Deglin", 0],
+        hendle: ["Hendle", 0],
+        brooklin: ["Brooklin", 0],
+        blanchard: ["Blanchard", 0],
+        maryThent: ["MaryThent", 0],
+        christopherThent: ["ChristopherThent", 0],
+        matthiasThent: ["MatthiasThent", 0],
+        marianeThent: ["MarianeThent", 0],
+        thent: ["Thent", 0]
     };
 
 //time Tracker Variables
@@ -4586,7 +4624,31 @@ function theLegend()
         abrahmLDS: true,
         antovLDS: true,
         kolstovLDS: true,
-        dimitryLDS: true
+        dimitryLDS: true,
+        garylLDS: true,
+        changchaLDS: true,
+        gladdyLDS: true,
+        hammelLDS: true,
+        saehlaLDS: true,
+        havelLDS: true,
+        gregoryLDS: true,
+        matilldaLDS: true,
+        madisenLDS: true,
+        wirsidLDS: true,
+        kateLDS: true,
+        lilianLDS: true,
+        jordanLDS: true,
+        cinderellaLDS: true,
+        hallyLDS: true,
+        tommenLDS: true,
+        deglinLDS: true,
+        hendleLDS: true,
+        brooklinLDS: true,
+        blanchardLDS: true,
+        maryThentLDS: true,
+        christopherThentLDS: true,
+        matthiasThentLDS: true,
+        marianeThentLDS: true
     };
 //QUESTS
     quests =
@@ -4628,6 +4690,7 @@ function theLegend()
         atalinStoragePurchased: false,
         venningStoragePurchased: false,
         holuimStoragePurchased: false,
+        cergadetStoragePurchased: false,
         orjovBeseeched: false,
         killedStambjordHeir: false,
         rannukThreatened: false,
@@ -4649,6 +4712,7 @@ function theLegend()
         holuimHomeOwned: false,
         vozaHomeOwned: false,
         sairchHomeOwned: false,
+        cergadetHomeOwned: false,
 
         //ITEM STASH VARIABLES (non quest)
         lonerGuyStash: true,

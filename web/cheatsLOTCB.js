@@ -8348,152 +8348,181 @@ function cheats()
             {
                 buildPrompt = "thenganHearth";
                 buildPrompt2 = "lit";
+                buildPrompt3 = '"lit"';
             }
             else if (buildClase == 1)
             {
                 buildPrompt = "mediumTable";
                 buildPrompt2 = 1;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 2)
             {
                 buildPrompt = "thenganWell";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 3)
             {
                 buildPrompt = "thenganTray";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 4)
             {
                 buildPrompt = "smallTable";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 5)
             {
                 buildPrompt = "stumpStool";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 6)
             {
                 buildPrompt = "stumpStoolSml";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 7)
             {
                 buildPrompt = "bed";
                 buildPrompt2 = false;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 8)
             {
                 buildPrompt = "bartop";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 9)
             {
                 buildPrompt = "countertop";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 10)
             {
                 buildPrompt = "feastingTable";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 11)
             {
                 buildPrompt = "longTable";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 12)
             {
                 buildPrompt = "woodenBench";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 13)
             {
                 buildPrompt = "barrel";
                 buildPrompt2 = 0;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 14)
             {
                 buildPrompt = "barrel";
                 buildPrompt2 = 1;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 15)
             {
                 buildPrompt = "forge";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 16)
             {
                 buildPrompt = "loom";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 17)
             {
                 buildPrompt = "lab";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 18)
             {
                 buildPrompt = "hearth";
                 buildPrompt2 = "lit";
+                buildPrompt3 = '"lit"';
             }
             else if (buildClase == 19)
             {
                 buildPrompt = "campFire";
                 buildPrompt2 = "permaLit";
+                buildPrompt3 = '"permaLit"';
             }
             else if (buildClase == 20)
             {
                 buildPrompt = "hayPile";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 21)
             {
                 buildPrompt = "hayBale";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 22)
             {
                 buildPrompt = "mediumTable";
                 buildPrompt2 = 0;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 23)
             {
                 buildPrompt = "furRug";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 24)
             {
                 buildPrompt = "trainingDummy";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 25)
             {
                 buildPrompt = "rangedTarget";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 26)
             {
                 buildPrompt = "mediumTable";
                 buildPrompt2 = 3;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 27)
             {
                 buildPrompt = "anvil";
                 buildPrompt2 = true;
+                buildPrompt3 = buildPrompt2;
             }
             else if (buildClase == 28)
             {
                 buildPrompt = "stove";
                 buildPrompt2 = "lit";
+                buildPrompt3 = '"lit"';
             }
 
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("'+ buildPrompt +'", ' + X + ', ' + Y + ', ' + buildRot + ', '+ buildPrompt2 +', ' + buildSize + '));');
+                console.log('scenicList.push(new Scenery("'+ buildPrompt +'", ' + X + ', ' + Y + ', ' + buildRot + ', '+ buildPrompt3 +', ' + buildSize + '));');
                 scenicList.push(new Scenery(buildPrompt, X, Y, buildRot, buildPrompt2, buildSize));
             }
 

@@ -42692,6 +42692,15 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (this.activate == true && this.phase == 0)
             {
                 this.activate = false;
+
+                if (this.owned.length > 1 && this.owned !== true && this.owned !== false)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-20);
+                    }
+                }
+
                 this.phase = "picked";
                 give("palggaFlowers", (1 + Math.round(Math.random() * 2)));
             }
@@ -43063,6 +43072,15 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 this.activate = false;
                 this.phase = "picked";
+
+                if (this.owned.length > 1 && this.owned !== true && this.owned !== false)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-16);
+                    }
+                }
+
                 var hits = 0;
                 for (var i = 0; i < Inventory.length; i ++)
                 {
@@ -49609,6 +49627,16 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (this.temporary == "ultherFlower")
                 {
                     quests.ultherFlower = false;
+                }
+                else
+                {
+                    if (this.owned.length > 1 && this.owned !== true && this.owned !== false)
+                    {
+                        if (player.noticed == true)
+                        {
+                            this.changeFactionRelation(-50);
+                        }
+                    }
                 }
 
                 this.activate = false;

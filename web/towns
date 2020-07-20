@@ -18,8 +18,9 @@ THENGARIA
 TBA Hawik (town) {house: Beulingerr}
 Lethik (town) {house: Beulingerr}
 IP Cranheim (city) {house: Beulingerr}
-IP Cergadet (town) {house: Thent}
+Cergadet (town) {house: Thent}
 IP Rauke (town) {house: Hargrave}
+TBA Lakeshore (village) {house: Thent / vassal: Barnhart}
 
 NIRWADEN
 Átalin (city) {house: Altezor}

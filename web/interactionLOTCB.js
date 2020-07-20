@@ -1369,6 +1369,49 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Thent Captain" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" || self.ID == "Thent Soldier" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" || conversationID[0] == "Thent" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Thent";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[Take Command]", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            self.baseTeam = "player";
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
                     if (self.ID == "Anset Paladin" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Anset Captain" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Anset Soldier" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Blackwood Soldier" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Blackwood Captain" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Blackwood Paladin" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility")
                     {
                         lowBar = "dialogue";
@@ -3050,6 +3093,517 @@ function interaction(me)
                         {
                             //text dialogue
                             setMsg("Business is hard work youngin'. When I was a girl I had four sisters, and we'd all help my ma' with the sowing. Now it's just me. I'll tell you, this work is not as easy as it seems...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Tommen the Storehouse Manager" || conversationID[0] == "Tommen")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Tommen";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (have("coins", 375) && quests.cergadetStoragePurchased != true)
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["[Buy storage space for 375 coins]", false, "e"], ["Why should I store my stuff at your storehouse?", false, "b"], ["Tell me about this area...", false, "c"]];
+                                }
+                                else if (quests.cergadetStoragePurchased != true)
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["Why should I store my stuff at your storehouse?", false, "b"], ["Tell me about this area...", false, "c"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["I am here to check back in on my belongings...", false, "d"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Good day!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("While we don't transport your belongings between your travel destinations like the Golden Glove Bank does, we provide a much cheaper storage service that allows you to keep your goods safe while you are in Cergadet. Cergadet is an old and culturally rich City in the heart of one of the most powerful kingdoms in the land, so investing in storage space in this city can help you make the most of this city's bountiful offerings.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("This neighborhood of Cergadet is famous and historic. The Hopping Hally Brewery makes the best ale and cider in all of Thengaria, many would argue that they make the best ales and ciders in the entire world, I do not disagree with that sentiment. The santher bakery is also a gem of cergadet, they make loads of fresh bread with masterful execution... you can sit in and enjoy a glass of cider with your bread there. The Cloudbright Apothecary is also in this area, and it has been invaluable in providing medicine and healing for the people of Cergadet for hundreds of years since its founding.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Your belongings have been guarded well, they remain in the condition you stored them in and they are all there. Remember your crate is the one in the back in the building just across from here.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Thanks for doing business with us! Your personal storage crate will be the one in the building just across from this one at the very end of the room.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                take("coins", 375);
+                                quests.cergadetStoragePurchased = true;
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Changcha the Banker" || conversationID[0] == "Changcha")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Changcha";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (have("coins", 30000) && quests.cergadetHomeOwned != true)
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["Do you sell any properties?", false, "c"], ["[Buy Thorn Hall for 30,000 coins]", false, "d"], ["What is that alter outside for?", false, "e"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["Do you sell any properties?", false, "c"], ["What is that alter outside for?", false, "e"]];
+                                }
+
+                                if (player.raceName == "Orgell")
+                                {
+                                    player.dialogueOptions.push(["What is a fellow Orgell such as yourself doing all the way out here in Thengaria?", false, "b"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.push(["What is an Orgish person like you doing all the way out here in Thengaria?", false, "b"])
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Good day... are you tired of carrying heavy items that are too valuable to set down? Are magical neevs stealing your belongings when you set them down? Consider purchasing a bank slot with the Golden Glove Banking Company so that we can help you get your valuables where you need them to be without having to haul them around with you, and so that they stay safe from neevs and robbers.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Orgell")
+                            {
+                                setMsg("I was born here... This might be difficult to comprehend but not everyone who has ancestors in Orgell was born there... my parents moved here before I was born and they took over the bank from the last family who ran it. When I was born my parents trained me to take on the job myself.");
+                            }
+                            else
+                            {
+                                setMsg("I was born here... I have lived in Thengaria my entire life. What are you implying?");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (quests.cergadetHomeOwned == true)
+                            {
+                                setMsg("No, you purchased the only property that his noble majesty, The Great Baron Thent saught to sell. You can always check back later to see if there are any more properties for sale though!");
+                            }
+                            else
+                            {
+                                setMsg("A large estate called Thorn Hall is available for purchase, it is being offered at the low and completely reasonable price of 30,000 coins. It is hard to find such a large property in Cergadet for such a low amount.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("You have an excellent eye for a good property! Here is the deed and title for Thorn Hall.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                take("coins", 30000);
+                                quests.cergadetHomeOwned = true;
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("You must not be from Thengaria... That is an alter in tribute to the god Kotlech, the god of war. We are at war with the Kells of the east, so people have made sacrifices to Kotlech so that he will grant our soldiers a swift victory and the men can come home. My husband was drafted to fight, I pray to Kotlech every day that he come home victorious and safe.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Garyl the Naaprid Seller" || conversationID[0] == "Garyl")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Garyl";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (have("coins", 425))
+                                {
+                                    player.dialogueOptions = [["[Buy naaprid for 425 coins]", false, "b"], ["What do you sell exactly?", false, "a"], ["Where do you get the naaprids from?", false, "c"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["What do you sell exactly?", false, "a"], ["How much will a naaprid cost me?", false, "d"], ["Where do you get the naaprids from?", false, "c"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("I sell naaprids, the hardiest type of cattle you will find for ploughing, hauling, or riding into war. They are a strong sort of cattle with a wild spirit that can be put to good use!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("You will not regret that purchase!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                take("coins", 425);
+                                reiniciar();
+                                change = "buyNaaprid";
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Many of them originally came from the kellish plains, but I have been breeding them here in Cergadet since I bought my first couple a long time ago.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("I will not part with any of my naaprid for less than 425 coins.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")

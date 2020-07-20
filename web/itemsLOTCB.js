@@ -69359,7 +69359,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
-        else if (this.type == "barrel" || this.type == "barrelOfWater" || this.type == "barrelOfHarstAle" || this.type == "barrelOfSanthAle" || this.type == "barrelOfMead" || this.type == "caskOfPluttWine" || this.type == "caskOfErguerWine" || this.type == "barrelOfGin" || this.type == "barrelOfCider" || this.type == "barrelOfWheatBeer")
+        else if (this.type == "barrel" || this.type == "barrelOfWater" || this.type == "barrelOfHarstAle" || this.type == "barrelOfSanthAle" || this.type == "barrelOfMead" || this.type == "caskOfPluttWine" || this.type == "caskOfErguerWine" || this.type == "caskOfCranberryWine" || this.type == "barrelOfGin" || this.type == "barrelOfCider" || this.type == "barrelOfWheatBeer")
         {
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
@@ -77442,7 +77442,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
-        else if (this.type == "barrel" || this.type == "barrelOfWater" || this.type == "barrelOfHarstAle" || this.type == "barrelOfSanthAle" || this.type == "barrelOfMead" || this.type == "caskOfPluttWine" || this.type == "caskOfErguerWine" || this.type == "barrelOfGin" || this.type == "barrelOfCider" || this.type == "barrelOfWheatBeer")
+        else if (this.type == "barrel" || this.type == "barrelOfWater" || this.type == "barrelOfHarstAle" || this.type == "barrelOfSanthAle" || this.type == "barrelOfMead" || this.type == "caskOfPluttWine" || this.type == "caskOfErguerWine" || this.type == "caskOfCranberryWine" || this.type == "barrelOfGin" || this.type == "barrelOfCider" || this.type == "barrelOfWheatBeer")
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);

@@ -4676,6 +4676,11 @@ function worldBuilder()
 
             outlineBuilder(2, 3, "farmland", -848, 192);
             outlineBuilder(2, 1, "farmland", -845, 195);
+
+            outlineBuilder(2, 2, "farmland", -846, 206);
+            outlineBuilder(2, 1, "farmland", -843, 206);
+            outlineBuilder(2, 2, "farmland", -841, 204);
+            outlineBuilder(3, 2, "farmland", -842, 200);
         }
         //mapS6W26
         if (Y > -65106 && Y < -54332 && X < 272924 && X > 261266) //X-26 //todo add map

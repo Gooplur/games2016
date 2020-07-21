@@ -37844,6 +37844,15 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 this.activate = false;
                 this.phase = "picked";
+
+                if (this.owned.length > 1 && this.owned !== true && this.owned !== false)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-11);
+                    }
+                }
+
                 var hits = 0;
                 for (var i = 0; i < Inventory.length; i ++)
                 {

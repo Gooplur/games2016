@@ -14,8 +14,8 @@ function cheats()
     }
     if (buildMode == true)
     {
-        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna", "Mustard Plant", "Carrot Plant", "Potato Plant", "Cabbage Plant", "Harst Plant", "Santh Plant", "Wheat Plant", "Suuli Plant", "Lilypads", "Swamp Brush", "Swamp Lily Plant", "Borsht Plant", "Cattail Plant", "Mandrake Plant", "Leech", "Mud Toad", "Ker", "Palinsyda", "GhoulFly", "Toad", "Hydra", "Bat", "Vecher Bug", "Bog Troll", "Cerebris Mycelium I", "Cerebris Mycelium II", "Swamp Island", "Xuim Mycelium I", "Xuim Mycelium II", "Saffron", "Murdered Vardanians", "Blood", "Skeleton", "Bones", "Scuffle Marks", "West Furniture", "Floor Decorations", "South Furniture", "Nirwaden Furniture", "Nirwaden Goods", "Vardanian Spikes", "Pike Wall", "Cephrian Buidling", "Hyena", "Giraffe", "Lion", "Wild Dog", "Gazelle", "Zarbu", "Termite Mound", "Empty Termite Mound", "Acacia Tree", "Zwaleim Plant", "Glaza Plant", "Nupala Plant", "Tchalta Plant", "Tchafula Plant", "Gnoll", "Thengan Buildings", "Freydic Buildings", "Nirwaden Buildings", "Vardanian Buildings", "Vardanian Fencing", "Prison Bars", "Door", "Crate", "Sign", "Item", "Bed", "Fine Bed", "Vardanian Bed", "South Bed", "Angler", "Trubka Plant", "Eisyncryne Plant", "Cauw Plant", "Hesk Fungus", "Toadstools", "Thimblecap Mushrooms", "Royla Plant", "Vardanian Mardyl Plant", "Orgish Mardyl Plant", "Forest Thadine Plant", "Danzig Plant", "Chyoul Plant", "Ameloy Plant", "Laicaum Plant", "Plains Thadine Plant", "Saug Plant", "Kozlyak Mushrooms", "Maleot Mushrooms", "Gribnoy Mushroom", "Poegroon Mushrooms", "Iod Fungus", "Chervstrakha", "Motylekh", "Shrieking Bloodworm", "Pokinutyy", "Swamp Walks", "Vardanian Utilities", "Tents", "mireIsla", "Rat", "Varmin", "Fegil", "Lyagushka", "Lyagushka Egg Cluster", "Ostryy Grass Plant", "Mornid", "Grey Horse", "Brain Fly Hive", "Cirmusid", "Spitting Mud Fly", "Mud Beetle", "Raed Beetle", "Scorpion", "Whip Scorpion", "Barbol", "Desert Lizard", "Rattler", "Pasha Plant", "Anjay Plant", "Inum Plant", "Naib Plant", "Mawe Plant", "Voaii", "Xerocole", "Zetian Well", "Zetian Oven", "Chapul Plant", "Armadii", "Burnt Vardanian Assets", "Carts", "Mimicry", "Mimic", "Capul", "Noth Brush", "Stepov Tree", "Rona Plant", "Rulma Plant", "Iloptheora Plant", "Bosk Plant", "Qiao Plant", "Acretia Plant", "Kroloc Plant", "Grey Scretil", "Udnal", "Mud Troll", "Nulga", "Vodmena", "Dagger Fish", "Marnica", "Bogwasp", "Sagro", "Mud Strider", "Crilm Bug", "EemegMound", "Eemeg", "Sleeper Mudman", "Standard Mudman", "Hunter Mudman", "Nothian Snapjaw", "Snapjaw", "Grave", "Headstones", "Stone", "Xormid", "Tarsi Plant", "Purpura", "Hikari Fungus", "Laryk Plant", "Blood Lily Plant", "Neth Plant", "Bahvseg", "Khorkhoi", "Libelula", "Dragonfly", "Harvestman", "Gremling", "Drowner", "Old Thenganor Assets", "Still Fountains", "Placeable Light Sources", "Thengan Bridges", "Thenganor Castle Parts", "Thenganor Castle Parts High", "Thenganor Castles"];
-        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60           61              62               63              64              65            66             67              68           69            70               71                72               73                74           75        76       77        78           79        80      81      82         83           84                 85                    86                   87               88                  89              90              91               92        93         94           95               96                  97                 98                   99                  100               101               102             103            104       105       106      107         108       109          110                  111               112              113            114             115             116               117          118            119                 120                   121                    122                    123               124       125      126      127     128    129       130           131             132        133         134               135               136           137           138                 139                 140                 141                     142                     143                 144             145             146             147                 148                 149             150                   151                152                   153               154            155           156             157                158           159                160              161      162       163      164      165        166                 167                    168             169        170              171            172            173              174            175           176           177           178          179           180          181            182            183          184            185        186        187          188           189              190          191              192                193       194       195      196         197           198            199           200               201             202            203            204              205             206         207        208        209       210           211         212        213       214         215            216          217        218           219               220               221               222            223       224         225        226       227         228          229           230             231               232             233          234         235         236         237           238          239        240               241                  242                    243                    244                    245                        246                         247
+        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna", "Mustard Plant", "Carrot Plant", "Potato Plant", "Cabbage Plant", "Harst Plant", "Santh Plant", "Wheat Plant", "Suuli Plant", "Lilypads", "Swamp Brush", "Swamp Lily Plant", "Borsht Plant", "Cattail Plant", "Mandrake Plant", "Leech", "Mud Toad", "Ker", "Palinsyda", "GhoulFly", "Toad", "Hydra", "Bat", "Vecher Bug", "Bog Troll", "Cerebris Mycelium I", "Cerebris Mycelium II", "Swamp Island", "Xuim Mycelium I", "Xuim Mycelium II", "Saffron", "Murdered Vardanians", "Blood", "Skeleton", "Bones", "Scuffle Marks", "West Furniture", "Floor Decorations", "South Furniture", "Nirwaden Furniture", "Nirwaden Goods", "Vardanian Spikes", "Pike Wall", "Cephrian Buidling", "Hyena", "Giraffe", "Lion", "Wild Dog", "Gazelle", "Zarbu", "Termite Mound", "Empty Termite Mound", "Acacia Tree", "Zwaleim Plant", "Glaza Plant", "Nupala Plant", "Tchalta Plant", "Tchafula Plant", "Gnoll", "Thengan Buildings", "Freydic Buildings", "Nirwaden Buildings", "Vardanian Buildings", "Vardanian Fencing", "Prison Bars", "Door", "Crate", "Sign", "Item", "Bed", "Fine Bed", "Vardanian Bed", "South Bed", "Angler", "Trubka Plant", "Eisyncryne Plant", "Cauw Plant", "Hesk Fungus", "Toadstools", "Thimblecap Mushrooms", "Royla Plant", "Vardanian Mardyl Plant", "Orgish Mardyl Plant", "Forest Thadine Plant", "Danzig Plant", "Chyoul Plant", "Ameloy Plant", "Laicaum Plant", "Plains Thadine Plant", "Saug Plant", "Kozlyak Mushrooms", "Maleot Mushrooms", "Gribnoy Mushroom", "Poegroon Mushrooms", "Iod Fungus", "Chervstrakha", "Motylekh", "Shrieking Bloodworm", "Pokinutyy", "Swamp Walks", "Vardanian Utilities", "Tents", "mireIsla", "Rat", "Varmin", "Fegil", "Lyagushka", "Lyagushka Egg Cluster", "Ostryy Grass Plant", "Mornid", "Grey Horse", "Brain Fly Hive", "Cirmusid", "Spitting Mud Fly", "Mud Beetle", "Raed Beetle", "Scorpion", "Whip Scorpion", "Barbol", "Desert Lizard", "Rattler", "Pasha Plant", "Anjay Plant", "Inum Plant", "Naib Plant", "Mawe Plant", "Voaii", "Xerocole", "Zetian Well", "Zetian Oven", "Chapul Plant", "Armadii", "Burnt Vardanian Assets", "Carts", "Mimicry", "Mimic", "Capul", "Noth Brush", "Stepov Tree", "Rona Plant", "Rulma Plant", "Iloptheora Plant", "Bosk Plant", "Qiao Plant", "Acretia Plant", "Kroloc Plant", "Grey Scretil", "Udnal", "Mud Troll", "Nulga", "Vodmena", "Dagger Fish", "Marnica", "Bogwasp", "Sagro", "Mud Strider", "Crilm Bug", "EemegMound", "Eemeg", "Sleeper Mudman", "Standard Mudman", "Hunter Mudman", "Nothian Snapjaw", "Snapjaw", "Grave", "Headstones", "Stone", "Xormid", "Tarsi Plant", "Purpura", "Hikari Fungus", "Laryk Plant", "Blood Lily Plant", "Neth Plant", "Bahvseg", "Khorkhoi", "Libelula", "Dragonfly", "Harvestman", "Gremling", "Drowner", "Old Thenganor Assets", "Still Fountains", "Placeable Light Sources", "Thengan Bridges", "Thenganor Castle Parts", "Thenganor Castle Parts High", "Thenganor Castles", "Soldier", "Person", "Apple Tree", "Hops Plant"];
+        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60           61              62               63              64              65            66             67              68           69            70               71                72               73                74           75        76       77        78           79        80      81      82         83           84                 85                    86                   87               88                  89              90              91               92        93         94           95               96                  97                 98                   99                  100               101               102             103            104       105       106      107         108       109          110                  111               112              113            114             115             116               117          118            119                 120                   121                    122                    123               124       125      126      127     128    129       130           131             132        133         134               135               136           137           138                 139                 140                 141                     142                     143                 144             145             146             147                 148                 149             150                   151                152                   153               154            155           156             157                158           159                160              161      162       163      164      165        166                 167                    168             169        170              171            172            173              174            175           176           177           178          179           180          181            182            183          184            185        186        187          188           189              190          191              192                193       194       195      196         197           198            199           200               201             202            203            204              205             206         207        208        209       210           211         212        213       214         215            216          217        218           219               220               221               222            223       224         225        226       227         228          229           230             231               232             233          234         235         236         237           238          239        240               241                  242                    243                    244                    245                        246                         247            248       249          250          251
         if (tKey)
         {
             tKey = false;
@@ -1472,10 +1472,16 @@ function cheats()
         }
         else if (buildToggle == 62)
         {
+            if (lKey)
+            {
+                lKey = false;
+                buildPrompt = prompt("Write in faction:");
+            }
+            
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("carrotPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                console.log('scenicList.push(new Scenery("carrotPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', "' + buildPrompt + '"));');
                 worldItems.push([new Item("plantMarker", X, Y), 1]);
             }
 
@@ -1490,10 +1496,16 @@ function cheats()
         }
         else if (buildToggle == 63)
         {
+            if (lKey)
+            {
+                lKey = false;
+                buildPrompt = prompt("Write in faction:");
+            }
+
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("potatoPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                console.log('scenicList.push(new Scenery("potatoPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', "' + buildPrompt + '"));');
                 worldItems.push([new Item("plantMarker", X, Y), 1]);
             }
 
@@ -1508,10 +1520,16 @@ function cheats()
         }
         else if (buildToggle == 64)
         {
+            if (lKey)
+            {
+                lKey = false;
+                buildPrompt = prompt("Write in faction:");
+            }
+
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("cabbagePlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                console.log('scenicList.push(new Scenery("cabbagePlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', "' + buildPrompt + '"));');
                 worldItems.push([new Item("plantMarker", X, Y), 1]);
             }
 
@@ -1526,10 +1544,16 @@ function cheats()
         }
         else if (buildToggle == 65)
         {
+            if (lKey)
+            {
+                lKey = false;
+                buildPrompt = prompt("Write in faction:");
+            }
+
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("harstPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                console.log('scenicList.push(new Scenery("harstPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', "' + buildPrompt + '"));');
                 worldItems.push([new Item("plantMarker", X, Y), 1]);
             }
 
@@ -1544,10 +1568,16 @@ function cheats()
         }
         else if (buildToggle == 66)
         {
+            if (lKey)
+            {
+                lKey = false;
+                buildPrompt = prompt("Write in faction:");
+            }
+
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("santhPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                console.log('scenicList.push(new Scenery("santhPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', "' + buildPrompt + '"));');
                 worldItems.push([new Item("plantMarker", X, Y), 1]);
             }
 
@@ -1562,10 +1592,16 @@ function cheats()
         }
         else if (buildToggle == 67)
         {
+            if (lKey)
+            {
+                lKey = false;
+                buildPrompt = prompt("Write in faction:");
+            }
+
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("wheatPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                console.log('scenicList.push(new Scenery("wheatPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', "' + buildPrompt + '"));');
                 worldItems.push([new Item("plantMarker", X, Y), 1]);
             }
 
@@ -9049,6 +9085,132 @@ function cheats()
             var islonDDDD = new Scenery("thenganorCastles", X, Y, buildRot, buildSize, buildClase);
             islonDDDD.operations();
             barrierList = [];
+        }
+        else if (buildToggle == 248)
+        {
+            if (lKey)
+            {
+                lKey = false;
+                buildPrompt = prompt("Enter ID for the soldier:");
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Soldier", ' + false + ', "' + buildPrompt +'", {race: "Faelan", faction: "Faelan", con: ' + (4 + Math.round(Math.random() * 4)) + ', speed: ' + (1.2 + (Math.round(0.35 * Math.random() * 10) / 10)) + ', outfit: ["chainArmour", 7], weapon: ["longsword", [8, 7], 0, 16, 1.1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.50], patrolStops: 1, patrolLoop: false, route:[[' + (X + Math.cos(player.rotation) * 5) + ', ' + (Y + Math.sin(player.rotation) * 5) + ']]}));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.beginPath();
+                XXX.fillStyle = "pink";
+                XXX.arc(0, 0, 10, 0, 2*Math.PI);
+                XXX.fill();
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 249) //Personalities: violent, calculated, scared
+        {
+            if (lKey)
+            {
+                lKey = false;
+                buildPrompt = prompt("Enter ID for the person:");
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                if (shiftKey)
+                {
+                    console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Person", ' + false + ', "' + buildPrompt +'", {race: "Faelan", faction: "Faelan", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[' + (X + Math.cos(player.rotation) * 5) + ', ' + (Y + Math.sin(player.rotation) * 5) + ']], kid: true}));');
+                }
+                else
+                {
+                    console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Person", ' + false + ', "' + buildPrompt +'", {race: "Faelan", faction: "Faelan", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.5, 0.5], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[' + (X + Math.cos(player.rotation) * 5) + ', ' + (Y + Math.sin(player.rotation) * 5) + ']]}));');
+                }
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.beginPath();
+                XXX.fillStyle = "magenta";
+                XXX.arc(0, 0, 10, 0, 2*Math.PI);
+                XXX.fill();
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 250)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+
+            if (lKey)
+            {
+                lKey = false;
+                buildPrompt = prompt("Write in faction:");
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("appleTree", ' + X + ', ' + Y + ', ' + buildRot + ', "' + buildPrompt + '"));');
+                scenicList.push(new Scenery("appleTree", X, Y, buildRot, true));
+            }
+
+            var islonDDDD = new Scenery("appleTree", X, Y, buildRot, true);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 251)
+        {
+            if (lKey)
+            {
+                lKey = false;
+                buildPrompt = prompt("Write in faction:");
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("hopsPlant", ' + X + ', ' + Y + ', ' + (2 * Math.PI * Math.random()) + ', "' + buildPrompt + '"));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(freeverse, 290, 29, 33, 25, -(1/2 * 33 * 1.25), -(1/2 * 25 * 1.25), 33 * 1.25, 25 * 1.25);
+                XXX.restore();
+            }
         }
     }
 

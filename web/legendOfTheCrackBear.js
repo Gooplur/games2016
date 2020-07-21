@@ -1839,6 +1839,18 @@ function cardsPack()
 
     cards.onload = function()
     {
+        huskPack();
+    };
+}
+
+function huskPack()
+{
+    var husk = new Image();
+    husk.src = ("images/husk.png");
+    window.husk = husk;
+
+    husk.onload = function()
+    {
         sitePack();
     };
 }
@@ -4332,7 +4344,8 @@ function theLegend()
         christopherThent: ["ChristopherThent", 0],
         matthiasThent: ["MatthiasThent", 0],
         marianeThent: ["MarianeThent", 0],
-        thent: ["Thent", 0]
+        thent: ["Thent", 0],
+        hegstrom: ["Hegstrom", 0]
     };
 
 //time Tracker Variables
@@ -4648,7 +4661,8 @@ function theLegend()
         maryThentLDS: true,
         christopherThentLDS: true,
         matthiasThentLDS: true,
-        marianeThentLDS: true
+        marianeThentLDS: true,
+        hegstromLDS: true
     };
 //QUESTS
     quests =

@@ -1369,7 +1369,7 @@ function interaction(me)
                         }
                     }
 
-                    if (self.ID == "Thent Captain" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" || self.ID == "Thent Soldier" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" || conversationID[0] == "Thent" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty")
+                    if (self.ID == "Thent Captain" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" || self.ID == "Thent Soldier" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" || self.ID == "Thent Knight" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" || conversationID[0] == "Thent" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty")
                     {
                         lowBar = "dialogue";
                         conversationID[0] = "Thent";

@@ -9088,7 +9088,12 @@ function cheats()
         }
         else if (buildToggle == 248)
         {
-            if (lKey)
+            if (lKey && shiftKey)
+            {
+                lKey = false;
+                buildPrompt2 = prompt("Write in faction:");
+            }
+            else if (lKey)
             {
                 lKey = false;
                 buildPrompt = prompt("Enter ID for the soldier:");
@@ -9097,7 +9102,7 @@ function cheats()
             if (xKey)
             {
                 xKey = false;
-                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Soldier", ' + false + ', "' + buildPrompt +'", {race: "Faelan", faction: "Faelan", con: ' + (4 + Math.round(Math.random() * 4)) + ', speed: ' + (1.2 + (Math.round(0.35 * Math.random() * 10) / 10)) + ', outfit: ["chainArmour", 7], weapon: ["longsword", [8, 7], 0, 16, 1.1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.50], patrolStops: 1, patrolLoop: false, route:[[' + (X + Math.cos(player.rotation) * 5) + ', ' + (Y + Math.sin(player.rotation) * 5) + ']]}));');
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Soldier", ' + false + ', "' + buildPrompt +'", {race: "' + buildPrompt2 + '", faction: "' + buildPrompt2 + '", con: ' + (4 + Math.round(Math.random() * 4)) + ', speed: ' + (1.2 + (Math.round(0.35 * Math.random() * 10) / 10)) + ', outfit: ["chainArmour", 7], weapon: ["longsword", [8, 7], 0, 16, 1.1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.50], patrolStops: 1, patrolLoop: false, route:[[' + (X + Math.cos(player.rotation + 1/2 * Math.PI) * 5) + ', ' + (Y + Math.sin(player.rotation + 1/2 * Math.PI) * 5) + ']]}));');
                 worldItems.push([new Item("unitMarker", X, Y), 1]);
             }
 
@@ -9114,10 +9119,15 @@ function cheats()
         }
         else if (buildToggle == 249) //Personalities: violent, calculated, scared
         {
-            if (lKey)
+            if (lKey && shiftKey)
             {
                 lKey = false;
-                buildPrompt = prompt("Enter ID for the person:");
+                buildPrompt2 = prompt("Write in faction:");
+            }
+            else if (lKey)
+            {
+                lKey = false;
+                buildPrompt = prompt("Enter ID for the soldier:");
             }
 
             if (xKey)
@@ -9125,11 +9135,11 @@ function cheats()
                 xKey = false;
                 if (shiftKey)
                 {
-                    console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Person", ' + false + ', "' + buildPrompt +'", {race: "Faelan", faction: "Faelan", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[' + (X + Math.cos(player.rotation) * 5) + ', ' + (Y + Math.sin(player.rotation) * 5) + ']], kid: true}));');
+                    console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Person", ' + false + ', "' + buildPrompt +'", {race: "' + buildPrompt2 + '", faction: "' + buildPrompt2 + '", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[' + (X + Math.cos(player.rotation + 1/2 * Math.PI) * 5) + ', ' + (Y + Math.sin(player.rotation + 1/2 * Math.PI) * 5) + ']], kid: true}));');
                 }
                 else
                 {
-                    console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Person", ' + false + ', "' + buildPrompt +'", {race: "Faelan", faction: "Faelan", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.5, 0.5], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[' + (X + Math.cos(player.rotation) * 5) + ', ' + (Y + Math.sin(player.rotation) * 5) + ']]}));');
+                    console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Person", ' + false + ', "' + buildPrompt +'", {race: "' + buildPrompt2 + '", faction: "' + buildPrompt2 + '", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.5, 0.5], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[' + (X + Math.cos(player.rotation + 1/2 * Math.PI) * 5) + ', ' + (Y + Math.sin(player.rotation + 1/2 * Math.PI) * 5) + ']]}));');
                 }
                 worldItems.push([new Item("unitMarker", X, Y), 1]);
             }

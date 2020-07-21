@@ -4642,12 +4642,12 @@ function worldBuilder()
             outlineBuilder( 34, 1, "stonePath", -20, 184);
         }
         //mapS6W25 //Cergadet City
-        if (Y > -65106 && Y < -54332 && X < 262722 && X > 251041) //X-25 //todo add map
+        if (Y > -65106 && Y < -54332 && X < 262722 && X > 251041) //X-25
         {
             elevation = 0;
             region = "s6w25";
             campout = false;
-            outlineBuilder(34, 34, "outline", -870, 184); //todo hotGrass
+            outlineBuilder(34, 34, "hotGrass", -870, 184);
 
             outlineBuilder( 9, 9, "thenganBrick", -860, 194);
             outlineBuilder( 7, 5, "thenganBrick", -851, 196);

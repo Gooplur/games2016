@@ -4345,7 +4345,8 @@ function theLegend()
         matthiasThent: ["MatthiasThent", 0],
         marianeThent: ["MarianeThent", 0],
         thent: ["Thent", 0],
-        hegstrom: ["Hegstrom", 0]
+        hegstrom: ["Hegstrom", 0],
+        ked: ["Ked", 0]
     };
 
 //time Tracker Variables
@@ -4662,7 +4663,8 @@ function theLegend()
         christopherThentLDS: true,
         matthiasThentLDS: true,
         marianeThentLDS: true,
-        hegstromLDS: true
+        hegstromLDS: true,
+        kedLDS: true
     };
 //QUESTS
     quests =

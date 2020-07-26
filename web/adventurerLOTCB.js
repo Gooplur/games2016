@@ -719,6 +719,9 @@ function Adventurer()
     this.interestRate = 0.17;
     this.creditRating = 1;
     this.silverKeep = 0; //the player's money stored in the silver keep bank;
+    //gambling
+    this.gamblingWinStreakHeartsAndDaggers = 0;
+    this.gamblingWinStreak21 = 0;
     //minievents
     this.timeTillAssassinAttack = new Date().getTime();
 

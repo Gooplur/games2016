@@ -3111,6 +3111,196 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Gamer" || conversationID[0] == "Gamer")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Gamer";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[play minigame A]", false, "a"], ["[play minigame B]", false, "b"], ["[play minigame C]", false, "c"], ["[play minigame D]", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.gamblingWinStreakHeartsAndDaggers >= 12)
+                            {
+                                setMsg("I don't bet with hustlers...");
+                            }
+                            else if (player.gamblingWinStreakHeartsAndDaggers >= 6)
+                            {
+                                setMsg("We'll play, but I'm watching you...");
+                            }
+                            else
+                            {
+                                setMsg("Let's play!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.gamblingWinStreakHeartsAndDaggers >= 12)
+                                {
+                                    //You are banned from gambling... you got too lucky! No one trusts you anymore.
+                                }
+                                else if (player.gamblingWinStreakHeartsAndDaggers >= 6)
+                                {
+                                    minigame = new Minigame("Hearts & Daggers", Math.floor((self.ultra.wager / 2) * (1 + (player.charisma / 50))), 0);
+                                    gameState = "minigame";
+                                    requestAnimationFrame(minigameLoop, CCC);
+                                }
+                                else
+                                {
+                                    minigame = new Minigame("Hearts & Daggers", Math.floor(self.ultra.wager * (1 + (player.charisma / 50))), 0);
+                                    gameState = "minigame";
+                                    requestAnimationFrame(minigameLoop, CCC);
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.gamblingWinStreak21 >= 16)
+                            {
+                                setMsg("I don't bet with hustlers...");
+                            }
+                            else if (player.gamblingWinStreak21 >= 8)
+                            {
+                                setMsg("We'll play, but I'm watching you...");
+                            }
+                            else
+                            {
+                                setMsg("Let's play!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.gamblingWinStreak21 >= 16)
+                                {
+                                    //You are banned from gambling... you got too lucky! No one trusts you anymore.
+                                }
+                                else if (player.gamblingWinStreak21 >= 8)
+                                {
+                                    minigame = new Minigame("21", Math.floor((self.ultra.wager / 2) * (1 + (player.charisma / 50))), 1);
+                                    gameState = "minigame";
+                                    requestAnimationFrame(minigameLoop, CCC);
+                                }
+                                else
+                                {
+                                    minigame = new Minigame("21", Math.floor(self.ultra.wager * (1 + (player.charisma / 50))), 1);
+                                    gameState = "minigame";
+                                    requestAnimationFrame(minigameLoop, CCC);
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Let's play!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Let's play!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Tommen the Storehouse Manager" || conversationID[0] == "Tommen")
                     {
                         lowBar = "dialogue";

@@ -1177,6 +1177,10 @@ function envPack()
     loadGameIMG.src = ("images/wolfPack.png");
     window.loadGameIMG = loadGameIMG;
 
+    var cardtable = new Image();
+    cardtable.src = ("images/cardtable.png");
+    window.cardtable = cardtable;
+
     var etnaDistortion = new Image();
     etnaDistortion.src = ("images/etnaDistortion.png");
     window.etnaDistortion = etnaDistortion;
@@ -3204,6 +3208,7 @@ var escapeKey = false;
 var menuCheckTime = new Date().getUTCHours();
 var ketsuekiX;
 var ketsuekiY;
+var minigame = {};
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -4346,7 +4351,8 @@ function theLegend()
         marianeThent: ["MarianeThent", 0],
         thent: ["Thent", 0],
         hegstrom: ["Hegstrom", 0],
-        ked: ["Ked", 0]
+        ked: ["Ked", 0],
+        gamer: ["Gamer", 0]
     };
 
 //time Tracker Variables

@@ -9928,6 +9928,13 @@ function cheats()
                 }
             }
         }
+        else if (cheatcode == "BEAUTY")
+        {
+            if (player.name == "Gooplur" && player.race == "#336600")
+            {
+                player.charisma = 50;
+            }
+        }
         else if (cheatcode == "OOP")
         {
             if (player.name == "Gooplur" && player.race == "#336600")

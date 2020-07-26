@@ -354,7 +354,7 @@ function gameloopOfDestiny(time)
         player.tellCoordinates();
     }
 
-    if (gameState != "mainMenu" && gameState != "characterBuilder")
+    if (gameState != "mainMenu" && gameState != "characterBuilder" && gameState != "minigame")
     {
         requestAnimationFrame(gameloopOfDestiny, CCC);
     }

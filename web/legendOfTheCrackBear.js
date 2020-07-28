@@ -1301,6 +1301,18 @@ function envPack()
     mireBL.src = ("images/mireBL.png");
     window.mireBL = mireBL;
 
+    var utah = new Image();
+    utah.src = ("images/utah.png");
+    window.utah = utah;
+
+    var murklake = new Image();
+    murklake.src = ("images/murkylake.png");
+    window.murklake = murklake;
+
+    var murkwoods = new Image();
+    murkwoods.src = ("images/murkwoods.png");
+    window.murkwoods = murkwoods;
+
     var swampTL = new Image();
     swampTL.src = ("images/highL.png");
     window.swampTL = swampTL;
@@ -1866,6 +1878,78 @@ function sitePack()
     window.site = site;
 
     site.onload = function()
+    {
+        slugPack();
+    };
+}
+
+function slugPack()
+{
+    var slug = new Image();
+    slug.src = ("images/slug.png");
+    window.slug = slug;
+
+    slug.onload = function()
+    {
+        orkPack();
+    };
+}
+
+function orkPack()
+{
+    var ork = new Image();
+    ork.src = ("images/ork.png");
+    window.ork = ork;
+
+    ork.onload = function()
+    {
+        orcoPack();
+    };
+}
+
+function orcoPack()
+{
+    var orco = new Image();
+    orco.src = ("images/orco.png");
+    window.orco = orco;
+
+    orco.onload = function()
+    {
+        vultPack();
+    };
+}
+
+function vultPack()
+{
+    var vult = new Image();
+    vult.src = ("images/vult.png");
+    window.vult = vult;
+
+    vult.onload = function()
+    {
+        leikPack();
+    };
+}
+
+function leikPack()
+{
+    var leik = new Image();
+    leik.src = ("images/leik.png");
+    window.leik = leik;
+
+    leik.onload = function()
+    {
+        shorPack();
+    };
+}
+
+function shorPack()
+{
+    var shor = new Image();
+    shor.src = ("images/shor.png");
+    window.shor = shor;
+
+    shor.onload = function()
     {
         quilPack();
     };

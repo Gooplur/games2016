@@ -168,7 +168,7 @@ function WagerCoin(xx, yy)
                 }
             }
         }
-        XXX.drawImage(polyPNG, 427, 10, 9, 7, this.X - 1/2 * 9 * 4.4, this.Y - 1/2 * 7 * 4.4, 9 * 4.4, 7 * 4.4);
+        XXX.drawImage(slug, 907, 303, 52, 44, this.X - 1/2 * 52 * 1, this.Y - 1/2 * 44 * 1, 52 * 1, 44 * 1);
     };
 }
 
@@ -229,7 +229,7 @@ function blackJack()
         {
             if (shiftKey && minigame.wager <= minigame.wagerMAX - 5 && have("coins", (minigame.wager + 5)))
             {
-                LXX.drawImage(polyPNG, 427, 10, 9, 7, 700 - 1/2 * 9 * 4.6, 40 -1/2 * 7 * 4.6, 9 * 4.6, 7 * 4.6);
+                LXX.drawImage(slug, 907, 303, 52, 44, 700 - 1/2 * 52 * 1, 40 -1/2 * 44 * 1, 52 * 1, 44 * 1);
 
                 LXX.beginPath();
                 LXX.fillStyle = "black";
@@ -258,7 +258,7 @@ function blackJack()
             }
             else
             {
-                LXX.drawImage(polyPNG, 427, 10, 9, 7, 700 - 1/2 * 9 * 4.5, 40 -1/2 * 7 * 4.5, 9 * 4.5, 7 * 4.5);
+                LXX.drawImage(slug, 907, 303, 52, 44, 700 - 1/2 * 52 * 1, 40 -1/2 * 44 * 1, 52 * 1, 44 * 1);
 
                 if (minigame.wager < minigame.wagerMAX)
                 {
@@ -323,7 +323,7 @@ function blackJack()
         }
         else
         {
-            LXX.drawImage(polyPNG, 427, 10, 9, 7, 700 - 1/2 * 9 * 4.4, 40 -1/2 * 7 * 4.4, 9 * 4.4, 7 * 4.4);
+            LXX.drawImage(slug, 907, 303, 52, 44, 700 - 1/2 * 52 * 1, 40 -1/2 * 44 * 1, 52 * 1, 44 * 1);
 
             LXX.beginPath();
             LXX.fillStyle = "black";
@@ -1288,7 +1288,7 @@ function heartsAndDaggers()
         {
             if (shiftKey && minigame.wager <= minigame.wagerMAX - 5 && have("coins", (minigame.wager + 5)))
             {
-                LXX.drawImage(polyPNG, 427, 10, 9, 7, 700 - 1/2 * 9 * 4.6, 40 -1/2 * 7 * 4.6, 9 * 4.6, 7 * 4.6);
+                LXX.drawImage(slug, 907, 303, 52, 44, 700 - 1/2 * 52 * 1, 40 -1/2 * 44 * 1, 52 * 1, 44 * 1);
 
                 LXX.beginPath();
                 LXX.fillStyle = "black";
@@ -1317,7 +1317,7 @@ function heartsAndDaggers()
             }
             else
             {
-                LXX.drawImage(polyPNG, 427, 10, 9, 7, 700 - 1/2 * 9 * 4.5, 40 -1/2 * 7 * 4.5, 9 * 4.5, 7 * 4.5);
+                LXX.drawImage(slug, 907, 303, 52, 44, 700 - 1/2 * 52 * 1, 40 -1/2 * 44 * 1, 52 * 1, 44 * 1);
 
                 if (minigame.wager < minigame.wagerMAX)
                 {
@@ -1382,7 +1382,7 @@ function heartsAndDaggers()
         }
         else
         {
-            LXX.drawImage(polyPNG, 427, 10, 9, 7, 700 - 1/2 * 9 * 4.4, 40 -1/2 * 7 * 4.4, 9 * 4.4, 7 * 4.4);
+            LXX.drawImage(slug, 907, 303, 52, 44, 700 - 1/2 * 52 * 1, 40 -1/2 * 44 * 1, 52 * 1, 44 * 1);
 
             LXX.beginPath();
             LXX.fillStyle = "black";

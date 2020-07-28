@@ -7363,9 +7363,9 @@ function worldBuilder()
         region = "testMap";
         campout = true;
         //starting chamber
-        outlineBuilder(68,68, "outline", -34, -34);
-        outlineBuilder(1,4, "sea", 1, 1);
-        outlineBuilder(2, 1, "sea", 4, -1);
+        outlineBuilder(68,68, "murkwoods", -34, -34);
+        outlineBuilder(1,4, "murklake", 1, 1);
+        outlineBuilder(2, 1, "murklake", 4, -1);
     }
 }
 
@@ -7972,6 +7972,30 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                     over("landing", j, i, extraX, extraY);
 
                     XXX.drawImage(redCaveWater, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "murklake")
+                {
+                    over("sea", j, i, extraX, extraY);
+
+                    XXX.drawImage(murklake, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "shallowMurklake")
+                {
+                    over("landing", j, i, extraX, extraY);
+
+                    XXX.drawImage(murklake, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "murkwoods")
+                {
+                    XXX.drawImage(murkwoods, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "badlands")
+                {
+                    XXX.drawImage(utah, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "huskcave")
+                {
+                    XXX.drawImage(huskTile, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "sewage")
                 {

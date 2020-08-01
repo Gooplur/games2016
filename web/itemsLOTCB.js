@@ -326,7 +326,7 @@ function Item(type, x, y)
             this.identity = "Venandi";
             this.weight = 0;
             this.size = 10;
-            this.description = "Your body has become host the a parasitic fungus thats mycelium has taken control of your circulatory and nervous systems.";
+            this.description = "Your body has become host to a parasitic fungus thats mycelium has taken control of your circulatory and nervous systems.";
             this.intForDes = 0;
             this.intDescription = "Venandi cannot survive in climates colder than the jungle.";
 
@@ -344,6 +344,31 @@ function Item(type, x, y)
 
             //ability
             this.ability = "venandi";
+        }
+        else if (this.type == "husk")
+        {
+            //For All Items
+            this.identity = "Husk";
+            this.weight = 0;
+            this.size = 10;
+            this.description = "Your body has become reproductive factory for a papery flesh parasite.";
+            this.intForDes = 0;
+            this.intDescription = "Husks originally came from deep underground where they adapted to feed off of ghouls.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 4;
+            this.distance = 17;
+            this.range = 3;
+            this.rate = 175;
+            this.damage = 15;
+            this.magicalDamage = 0;
+            this.negateArmour = 1.5;
+
+            //ability
+            this.ability = "none";
         }
         else if (this.type == "nude")
         {
@@ -31943,6 +31968,39 @@ function Item(type, x, y)
             this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
             this.sellValue = 20 + Math.floor(player.getCharisma() / 10); // at max, sell for 25.
         }
+        else if (this.type == "trolltrap")
+        {
+            //For All Items
+            this.identity = "Troll-Trap";
+            this.weight = 6;
+            this.size = 16;
+            this.description = "A large toothed ring that activates when the pressure plate in the center is pressed.";
+            this.intForDes = 0;
+            this.intDescription = "Advice: Don't spring your own trap!";
+
+            //Define Utility
+            this.utility = "trap";
+            //subUtility
+            this.subUtility = "trolltrap";
+
+            //Utility Focused
+            this.damage = Math.floor(20 + 39 / 50 * player.getSurvivalism());
+            this.negate = 8;
+            this.range = 19;
+            this.survReq = 20;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 41;
+            this.ingredients = [["Steel", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 75 - Math.floor(player.getCharisma() / 15); // at max, buy for 72.
+            this.sellValue = 70 + Math.floor(player.getCharisma() / 25); // at max, sell for 72.
+        }
         else if (this.type == "clawtrap")
         {
             //For All Items
@@ -45215,6 +45273,64 @@ function Item(type, x, y)
             this.buyValue = 102 - Math.floor(player.getCharisma() / 6); // at max, buy for 94.
             this.sellValue = 79 + Math.floor(player.getCharisma() / 3); // at max, sell for 94.
         }
+        else if (this.type == "harpyHideArmour")
+        {
+            //For All Items
+            this.identity = "Harpy Hide Armour";
+            this.weight = 2.3;
+            this.size = 25;
+            this.description = "A dark armour sewn from the thick hide of a harpy.";
+            this.intForDes = 1;
+            this.intDescription = "As harpies are not easy to kill, armour made from their hide is not commonly worn.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 1.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 1;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.25;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = -3;
+            this.rangedBonus = 2;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 1;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 25;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 42;
+            this.ingredients = [["Harpy Hide", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 146 - Math.floor(player.getCharisma() / 5); // at max, buy for 136.
+            this.sellValue = 111 + Math.floor(player.getCharisma() / 2); // at max, sell for 136.
+        }
         else if (this.type == "engineerOutfit")
         {
             //For All Items
@@ -45435,6 +45551,62 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 16 - Math.floor(player.getCharisma() / 6); // at max, buy for 8.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+        }
+        else if (this.type == "runawaysNecklace")
+        {
+            //For All Items
+            this.identity = "Runaway's Necklace";
+            this.weight = 0.1;
+            this.size = 11;
+            this.description = "A silver necklace with black glass beads with a ruby centerpiece.";
+            this.intForDes = 0;
+            this.intDescription = "This necklace belonged to Yasemin, a young woman who ran away from her well-off, loyalist, merchant family to join her rebel lover's garrison as a camp follower. Things didn't quite go as planned...";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "necklace";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 15;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            // this.yield = 34;
+            // this.intForCraft = 25;
+            // this.ingredients = [["Fiber", 9], ["Beruln Skull", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 300 - Math.floor(player.getCharisma() / 2); // at max, buy for 275.
+            this.sellValue = 250 + Math.floor(player.getCharisma() / 2); // at max, sell for 275.
         }
         else if (this.type == "mudteethNecklace")
         {
@@ -57475,6 +57647,70 @@ function Item(type, x, y)
             this.buyValue = 17 - Math.floor(player.getCharisma() / 50); // at max, buy for 16.
             this.sellValue = 14 + Math.floor(player.getCharisma() / 25); // at max, sell for 16.
         }
+        else if (this.type == "cephrianClothingF")
+        {
+            //For All Items
+            this.identity = "Beaded Cephrian Clothing";
+            this.weight = 2;
+            this.size = 26;
+            this.description = "A traditional Cephrian outfit worn by women.";
+            this.intForDes = 2;
+            this.intDescription = "The beads represent the cephrian people's inherent spiritual connection to the source of all reality.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.6;
+            this.thirstRetention = 0.69;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 1;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 9;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 1;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 23;
+            this.ingredients = [["Giraffe Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 51 - Math.floor(player.getCharisma() / 5); // at max, buy for 41.
+            this.sellValue = 36 + Math.floor(player.getCharisma() / 10); // at max, sell for 41.
+        }
         else if (this.type == "cephrianOutfitM")
         {
             //For All Items
@@ -57730,6 +57966,120 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 44 - Math.floor(player.getCharisma() / 25); // at max, buy for 42.
             this.sellValue = 40 + Math.floor(player.getCharisma() / 25); // at max, sell for 42.
+        }
+        else if (this.type == "quillwolfOutfit")
+        {
+            //For All Items
+            this.identity = "Quillwolf Outfit";
+            this.weight = 2.8;
+            this.size = 26;
+            this.description = "A garment made from the sewn together quill-like hairs of a quillwolf.";
+            this.intForDes = 2;
+            this.intDescription = "This outfit is worn both for style and for its sturdiness.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 1.25 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.9;
+            this.thirstRetention = 0.13;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 3;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 3;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 23;
+            this.ingredients = [["Quillwolf Pelt", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 23 - Math.floor(player.getCharisma() / 10); // at max, buy for 18.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 10); // at max, sell for 18.
+        }
+        else if (this.type == "greenerOutfit")
+        {
+            //For All Items
+            this.identity = "Dreg Hide Armour";
+            this.weight = 2.2;
+            this.size = 26;
+            this.description = "A sturdy green armour sewn from dreg hide and decorated with dreg teeth.";
+            this.intForDes = 3;
+            this.intDescription = "This armour is mostly worn by northern swamp hunters.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 2.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 2;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 3;
+            this.thirstRetention = -0.15;
+            this.shockResist = 0.15;
+            //Main Stat Bonuses
+            this.strengthBonus = 1;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 4;
+            this.rangedBonus = 3;
+            this.constitutionBonus = 1;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 6;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 10;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 30;
+            this.ingredients = [["Dreg Hide", 8]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 74 - Math.floor(player.getCharisma() / 10); // at max, buy for 69.
+            this.sellValue = 44 + Math.floor(player.getCharisma() / 2); // at max, sell for 69.
         }
         else if (this.type == "lionClothing")
         {
@@ -61240,6 +61590,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "quillwolfOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(quil, 656, 8, 104, 152, X - this.X + (1/2 * CCC.width) - (1/2 * 104 * 0.75), Y - this.Y + (1/2 * CCC.height) - (1/2 * 152 * 0.75), 104 * 0.75, 152 * 0.75);
+        }
+        else if (this.type == "greenerOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(quil, 659, 299, 104, 152, X - this.X + (1/2 * CCC.width) - (1/2 * 104 * 0.75), Y - this.Y + (1/2 * CCC.height) - (1/2 * 152 * 0.75), 104 * 0.75, 152 * 0.75);
+        }
+        else if (this.type == "cephrianClothingF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harp, 790, 19, 61, 123, X - this.X + (1/2 * CCC.width) - (1/2 * 61 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 123 * 0.9), 61 * 0.9, 123 * 0.9);
+        }
+        else if (this.type == "harpyHideArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harp, 605, 14, 63, 127, X - this.X + (1/2 * CCC.width) - (1/2 * 63 * 0.87), Y - this.Y + (1/2 * CCC.height) - (1/2 * 127 * 0.87), 63 * 0.87, 127 * 0.87);
+        }
+        else if (this.type == "runawaysNecklace")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 47, 996, 30, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 1.5), 30 * 1.5, 37 * 1.5);
         }
         else if (this.type == "larykFlower")
         {
@@ -68536,6 +68911,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(mofu, 83, 8, 10, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.5), 10 * 1.5, 9 * 1.5);
         }
+        else if (this.type == "trolltrap")
+        {
+            XXX.beginPath();
+            XXX.drawImage(husk, 17, 949, 59, 115, X - this.X + (1/2 * CCC.width) - (1/2 * 59 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 115 * 1), 59 * 1, 115 * 1);
+        }
         else if (this.type == "clawtrap")
         {
             XXX.beginPath();
@@ -69368,6 +69748,31 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "quillwolfOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(quil, 656, 8, 104, 152, this.invX - (1/2 * 104 * 0.6), this.invY - (1/2 * 152 * 0.6), 104 * 0.6, 152 * 0.6);
+        }
+        else if (this.type == "greenerOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(quil, 659, 299, 104, 152, this.invX - (1/2 * 104 * 0.6), this.invY - (1/2 * 152 * 0.6), 104 * 0.6, 152 * 0.6);
+        }
+        else if (this.type == "cephrianClothingF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harp, 790, 19, 61, 123, this.invX - (1/2 * 61 * 0.67), this.invY - (1/2 * 123 * 0.67), 61 * 0.67, 123 * 0.67);
+        }
+        else if (this.type == "harpyHideArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harp, 605, 14, 63, 127, this.invX - (1/2 * 63 * 0.65), this.invY - (1/2 * 127 * 0.65), 63 * 0.65, 127 * 0.65);
+        }
+        else if (this.type == "runawaysNecklace")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sheg, 47, 996, 30, 37, this.invX - (1/2 * 30 * 1.5), this.invY - (1/2 * 37 * 1.5), 30 * 1.5, 37 * 1.5);
         }
         else if (this.type == "larykFlower")
         {
@@ -76650,6 +77055,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(mofu, 62, 8, 10, 9, this.invX - (1/2 * 10 * 1.5), this.invY - (1/2 * 9 * 1.5), 10 * 1.5, 9 * 1.5);
         }
+        else if (this.type == "trolltrap")
+        {
+            LXX.beginPath();
+            LXX.drawImage(husk, 17, 949, 59, 115, this.invX - (1/2 * 59 * 1), this.invY - (1/2 * 115 * 1), 59 * 1, 115 * 1);
+        }
         else if (this.type == "clawtrap")
         {
             LXX.beginPath();
@@ -77456,6 +77866,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "quillwolfOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(quil, 656, 8, 104, 152, this.invX - (1/2 * 104 * 0.6), this.invY - (1/2 * 152 * 0.6), 104 * 0.6, 152 * 0.6);
+        }
+        else if (this.type == "greenerOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(quil, 659, 299, 104, 152, this.invX - (1/2 * 104 * 0.6), this.invY - (1/2 * 152 * 0.6), 104 * 0.6, 152 * 0.6);
+        }
+        else if (this.type == "cephrianClothingF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harp, 790, 19, 61, 123, this.invX - (1/2 * 61 * 0.67), this.invY - (1/2 * 123 * 0.67), 61 * 0.67, 123 * 0.67);
+        }
+        else if (this.type == "harpyHideArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harp, 605, 14, 63, 127, this.invX - (1/2 * 63 * 0.65), this.invY - (1/2 * 127 * 0.65), 63 * 0.65, 127 * 0.65);
+        }
+        else if (this.type == "runawaysNecklace")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 47, 996, 30, 37, this.invX - (1/2 * 30 * 1.5), this.invY - (1/2 * 37 * 1.5), 30 * 1.5, 37 * 1.5);
         }
         else if (this.type == "larykFlower")
         {
@@ -84726,6 +85161,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 62, 8, 10, 9, this.invX - (1/2 * 10 * 1.5), this.invY - (1/2 * 9 * 1.5), 10 * 1.5, 9 * 1.5);
+        }
+        else if (this.type == "trolltrap")
+        {
+            XXX.beginPath();
+            XXX.drawImage(husk, 17, 949, 59, 115, this.invX - (1/2 * 59 * 1), this.invY - (1/2 * 115 * 1), 59 * 1, 115 * 1);
         }
         else if (this.type == "clawtrap")
         {

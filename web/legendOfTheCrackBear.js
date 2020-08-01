@@ -5276,6 +5276,7 @@ function theLegend()
     allWeapons.push(new Item("vardanianPolehammer"));//120
     allWeapons.push(new Item("kama"));//121
     allWeapons.push(new Item("yari"));//122
+    allWeapons.push(new Item("husk"));//123
 
 
 
@@ -5503,6 +5504,11 @@ function theLegend()
     allWorn.push(new Item("nothianMudwalkerBoots", false)); //218
     allWorn.push(new Item("nothianSageOutfit", false)); //219
     allWorn.push(new Item("nothianSageBoots", false)); //220
+    allWorn.push(new Item("runawaysNecklace", false)); //221
+    allWorn.push(new Item("harpyHideArmour", false)); //222
+    allWorn.push(new Item("cephrianClothingF", false)); //223
+    allWorn.push(new Item("quillwolfOutfit", false)); //224
+    allWorn.push(new Item("greenerOutfit", false)); //225
 
 
 
@@ -6080,6 +6086,10 @@ function theLegend()
     tailoring.push(new Item("nothBrushString", false));
     tailoring.push(new Item("nothianMudwalkerBoots", false));
     tailoring.push(new Item("avatarOutfit", false));
+    tailoring.push(new Item("cephrianClothingF", false));
+    tailoring.push(new Item("harpyHideArmour", false));
+    tailoring.push(new Item("quillwolfOutfit", false));
+    tailoring.push(new Item("greenerOutfit", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

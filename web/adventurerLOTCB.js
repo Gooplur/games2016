@@ -655,6 +655,9 @@ function Adventurer()
     this.fear = false;
     this.fearProof = false;
     this.mudwalker = false;
+    this.husked = false;
+    this.huskWomb = [];
+    this.huskCall = false;
 
     //faction variables
     this.factionToggle = false;
@@ -2012,7 +2015,7 @@ function Adventurer()
                 this.health = 0;
             }
 
-            if (this.asfixiationTime > 0 && this.gasmask != true && player.vamprism != true)
+            if (this.asfixiationTime > 0 && this.gasmask != true && player.vamprism != true && player.husked != true)
             {
                 if (this.asfixiationII == false && this.asfixiationI == true)
                 {
@@ -3656,6 +3659,10 @@ function Adventurer()
                 {
                     lights.push({X:X, Y: Y, size: 1000, extraStops: true, GRD: 0, Alpha: 0.2, showMe: true});
                 }
+                else if (this.form == "husk")
+                {
+                    lights.push({X:X, Y: Y, size: 1800, extraStops: true, GRD: 0, Alpha: 0.5, showMe: true});
+                }
             }
             else
             {
@@ -3886,7 +3893,7 @@ function Adventurer()
             if (this.internalWarts == true)
             {
                 this.internalWartGrowth += 0.005;
-                if (this.vamprism == true || this.venandi >= 100)
+                if (this.vamprism == true || this.venandi >= 100 || this.husked == true)
                 {
                     this.internalWarts = false;
                     this.internalWartGrowth = 0;
@@ -5007,7 +5014,7 @@ function Adventurer()
                 }
             }
 
-            if (this.pixiDusted == true && this.vamprism != true)
+            if (this.pixiDusted == true && this.vamprism != true && this.husked != true)
             {
                 this.pixiDust += 0.004;
 
@@ -5305,7 +5312,7 @@ function Adventurer()
             }
 
             //voaii eggs
-            if (this.voaiiHost > 0 && this.vamprism == false)
+            if (this.voaiiHost > 0 && this.vamprism == false && this.husked == false)
             {
                 this.voaiiHost += 0.02;
                 this.health -= 0.0005;
@@ -5861,6 +5868,110 @@ function Adventurer()
                 this.form = false;
             }
         }
+        //Husk
+        if (this.husked == true && this.vamprism == false && this.venandi < 400)
+        {
+            if (this.form == false)
+            {
+                this.health = this.healthMAX;
+            }
+            this.form = "husk";
+
+            this.baseHunger = 30;
+            this.baseThirst = 30;
+
+            if (this.hunger > this.hungerMAX)
+            {
+                this.hunger = this.hungerMAX;
+            }
+
+            if (this.thirst > this.thirstMAX)
+            {
+                this.thirst = this.thirstMAX;
+            }
+
+            this.ketsueki = false;
+            this.heat = 0;
+            this.venandi = 0;
+            this.lycanthropy = false;
+            this.sleep = this.sleepMAX;
+
+            if (this.hunger <= 10 && this.energy >= 45)
+            {
+                this.energy = 0;
+                this.hunger = this.baseHunger;
+            }
+            else if (this.hunger <= 10)
+            {
+                this.hunger = 11;
+            }
+
+            var husklings = 0;
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].type == "Huskling" && ArtificialIntelligenceAccess[i].team == "player")
+                {
+                    husklings += 1;
+                }
+            }
+
+            if (sKey)
+            {
+                player.huskCall = true;
+            }
+            else
+            {
+                player.huskCall = false;
+            }
+
+
+            if (qKey && this.huskWomb.length > 0)
+            {
+                //summon a huskling from the womb
+                qKey = false;
+                if (this.huskWomb[0].fresh == true)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(X + Math.cos(this.rotation) * 10, Y + Math.sin(this.rotation) * 10, "Huskling", this.huskWomb[0].alpha, "player"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(X + Math.cos(this.rotation) * 10, Y + Math.sin(this.rotation) * 10, "Huskling", this.huskWomb[0].alpha, "player"));
+                    ArtificialIntelligenceAccess[ArtificialIntelligenceAccess.length - 1].healthMAX = this.huskWomb[0].healthMAX;
+                    ArtificialIntelligenceAccess[ArtificialIntelligenceAccess.length - 1].health = this.huskWomb[0].healthMAX;
+                    ArtificialIntelligenceAccess[ArtificialIntelligenceAccess.length - 1].speed = this.huskWomb[0].speed;
+                }
+                this.huskWomb.splice(0, 1);
+            }
+            else if (qKey && this.hunger >= 15 && husklings + this.huskWomb.length < 3)
+            {
+                qKey = false;
+                this.hunger -= 5;
+                //generate a new huskling into the womb
+                this.huskWomb.push({fresh: true, alpha: Math.round(Math.random())});
+            }
+
+            this.mageShield = 0;
+            for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+            {
+                if (ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].type == "Soldier" || ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].type == "Person")
+                {
+                    ArtificialIntelligenceAccess[ll].disturbed = true;
+                }
+            }
+
+            //unequip weapon and armour then...
+            //set outfit to husk
+            for (var i = 0; i < Inventory.length; i++)
+            {
+                if (Inventory[i][0].utility == "weapon" || Inventory[i][0].utility == "ranged" || Inventory[i][0].utility == "worn")
+                {
+                    Inventory[i][0].equipped = false;
+                }
+            }
+            clearEquipped();
+            this.weaponEquipped = "husk";
+            this.subtlety = false;
+        }
         //Vamprism
         if (this.vamprism && this.venandi < 400 && this.wendigo == false)
         {
@@ -5961,7 +6072,7 @@ function Adventurer()
         }
 
         //Lycanthropy
-        if (this.lycanthropy && this.venandi < 200 && this.wendigo == false)
+        if (this.lycanthropy && this.venandi < 200)
         {
             this.venandi = 0;
             if (timeOfDay == "Night")
@@ -6022,7 +6133,7 @@ function Adventurer()
         }
 
         //Wendigo (a cannibal cursed by a leshen)
-        if (this.wendigo && this.venandi < 400)
+        if (this.wendigo && this.venandi < 400 && this.lycanthropy != true)
         {
             this.venandi = 0;
             if (this.hunger <= 10 && this.form == false || zKey == true && shiftKey && this.wendigoChange == "waiting")
@@ -6260,6 +6371,10 @@ function Adventurer()
         {
             return 35;
         }
+        else if (this.form == "husk") //Increases Both health and energy Quickly, but health much more quickly than energy.
+        {
+            return 30;
+        }
         else if (this.form == "wendigo") //Increases Both health and energy Quickly, but health much more quickly than energy.
         {
             return 40;
@@ -6332,6 +6447,10 @@ function Adventurer()
         {
             return 75;
         }
+        else if (this.form == "husk")
+        {
+            return 10;
+        }
         else if (this.form == "wendigo")
         {
             return 23;
@@ -6365,6 +6484,10 @@ function Adventurer()
             {
                 return 300;
             }
+        }
+        else if (this.form == "husk")
+        {
+            return 15;
         }
         else if (this.weaponEquipped == "avatar")
         {
@@ -6423,6 +6546,10 @@ function Adventurer()
         {
             return Math.max(20, this.stamina);
         }
+        else if (this.form == "husk")
+        {
+            return 10;
+        }
         else
         {
             return (Math.max(0, this.stamina + this.AdStamina + this.staBoost));
@@ -6441,7 +6568,7 @@ function Adventurer()
 
     this.getSurvivalism = function()
     {
-        if (this.form == "werewolf" || this.form == "vampire" || this.form == "selkie" || this.form == "venandi" || this.form == "wendigo")
+        if (this.form == "werewolf" || this.form == "vampire" || this.form == "selkie" || this.form == "venandi" || this.form == "wendigo" || this.form == "husk")
         {
             return 0;
         }
@@ -6453,7 +6580,7 @@ function Adventurer()
 
     this.getIntelligence = function()
     {
-        if (this.form == "werewolf" || this.form == "venandi" || this.form == "wendigo")
+        if (this.form == "werewolf" || this.form == "venandi" || this.form == "wendigo" || this.form == "husk")
         {
             return 0;
         }
@@ -6465,7 +6592,7 @@ function Adventurer()
 
     this.getCharisma = function()
     {
-        if (this.form == "werewolf" || this.form == "venandi" || this.form == "wendigo")
+        if (this.form == "werewolf" || this.form == "venandi" || this.form == "wendigo" || this.form == "husk")
         {
             return 0;
         }
@@ -6477,7 +6604,7 @@ function Adventurer()
 
     this.getWillpower = function()
     {
-        if (this.form == "werewolf" || this.form == "selkie" || this.form == "venandi" || this.form == "wendigo")
+        if (this.form == "werewolf" || this.form == "selkie" || this.form == "venandi" || this.form == "wendigo" || this.form == "husk")
         {
             return 0;
         }
@@ -6494,7 +6621,7 @@ function Adventurer()
 
     this.getMemory = function()
     {
-        if (this.form == "werewolf" || this.form == "venandi" || this.form == "wendigo")
+        if (this.form == "werewolf" || this.form == "venandi" || this.form == "wendigo" || this.form == "husk")
         {
             return 0;
         }
@@ -6515,7 +6642,7 @@ function Adventurer()
 
     this.getKnowledge = function()
     {
-        if (this.form == "werewolf" || this.form == "venandi" || this.form == "wendigo")
+        if (this.form == "werewolf" || this.form == "venandi" || this.form == "wendigo" || this.form == "husk")
         {
             return 0;
         }
@@ -9400,6 +9527,22 @@ function Adventurer()
         {
             outfit = allWorn[219];
         }
+        else if (this.outfitEquipped == "harpyHideArmour")
+        {
+            outfit = allWorn[222];
+        }
+        else if (this.outfitEquipped == "cephrianClothingF")
+        {
+            outfit = allWorn[223];
+        }
+        else if (this.outfitEquipped == "quillwolfOutfit")
+        {
+            outfit = allWorn[224];
+        }
+        else if (this.outfitEquipped == "greenerOutfit")
+        {
+            outfit = allWorn[225];
+        }
         else
         {
             outfit = allWorn[0];
@@ -9564,6 +9707,10 @@ function Adventurer()
         else if (this.necklaceEquipped == "mudteethNecklace")
         {
             necklace = allWorn[216];
+        }
+        else if (this.necklaceEquipped == "runawaysNecklace")
+        {
+            necklace = allWorn[221];
         }
         else
         {
@@ -11927,6 +12074,58 @@ function Adventurer()
             XXX.drawImage(verse, 2106, 5, 29, 24, -(1 / 2 * 29) + 1.75, -(1 / 2 * 24) - 0, 26, 26);
             XXX.restore();
         }
+        else if (this.outfitEquipped == "harpyHideArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(harp, 697, 38, 59, 55, -(1 / 2 * 59 * 0.73) + 0, -(1 / 2 * 55 * 0.73) - 0, 59 * 0.73, 55 * 0.73);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "cephrianClothingF")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(harp, 874, 69, 66, 48, -(1 / 2 * 66) + 0, -(1 / 2 * 48) - 0, 66, 48);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "greenerOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(quil, 676, 240, 62, 49, -(1 / 2 * 62) + 0, -(1 / 2 * 49) - 0, 62, 49);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "quillwolfOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(quil, 678, 180, 62, 49, -(1 / 2 * 62) + 0, -(1 / 2 * 49) - 0, 62, 49);
+            XXX.restore();
+        }
         else if (this.outfitEquipped == "doctorOutfit")
         {
             this.outfitZ = true;
@@ -13108,7 +13307,7 @@ function Adventurer()
                     {
                         if (bothwaysBool == false) // if the animation is one way it ends here...
                         {
-                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "venandi")
+                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "venandi" && this.weaponEquipped != "husk")
                             {
 
                                 self.finalAttackStage = true;
@@ -13121,7 +13320,7 @@ function Adventurer()
                         }
                         else if (bothwaysBool == true) //but if it is two directional it swings back to frame zero.
                         {
-                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "venandi")
+                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "venandi" && this.weaponEquipped != "husk")
                             {
                                 if (this.frameOrder == "positive")
                                 {
@@ -19657,6 +19856,369 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                XXX.restore();
+            }
+        }
+        //HUSK (form)
+        if (this.weaponEquipped == "husk") //this.form == "husk"
+        {
+            var szx;
+            szx = 1;
+
+            if (wKey) //If moving and not attacking initiate moving animation...
+            {
+                this.animator2(12, 0.21, false);
+
+                if (Math.floor(this.stage2) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(husk, 169, 334, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage2) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(husk, 166, 744, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage2) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(husk, 313, 747, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage2) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(husk, 452, 748, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage2) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(husk, 313, 747, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage2) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(husk, 166, 744, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage2) <= 6)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(husk, 169, 334, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage2) <= 7)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(husk, 571, 747, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage2) <= 8)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(husk, 705, 746, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage2) <= 9)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(husk, 832, 743, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage2) <= 10)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(husk, 705, 746, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage2) >= 11)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(husk, 571, 747, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+            }
+            else if (spaceKey || this.attacking)
+            {
+                this.stageEngine(14, 0.24, false);
+
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.attackManual = true;
+                    XXX.drawImage(husk, 169, 334, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.attackManual = true;
+                    XXX.drawImage(husk, 296, 334, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.attackManual = true;
+                    XXX.drawImage(husk, 296, 334, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.attackManual = true;
+                    XXX.drawImage(husk, 430, 334, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.attackManual = true;
+                    XXX.drawImage(husk, 553, 334, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.attackManual = true;
+                    XXX.drawImage(husk, 692, 332, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 6)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.attackManual = true;
+                    XXX.drawImage(husk, 825, 333, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 7)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.attackManual = true;
+                    XXX.drawImage(husk, 169, 546, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 8)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.attackManual = true;
+                    XXX.drawImage(husk, 304, 544, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 9)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.attackManual = true;
+                    XXX.drawImage(husk, 437, 544, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 10)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    if (this.attackManual == true)
+                    {
+                        this.attackManual = false;
+
+                        this.finalAttackStage = true;
+                        this.attackCooldown = new Date().getTime();
+                    }
+                    XXX.drawImage(husk, 563, 544, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 11)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+
+                    XXX.drawImage(husk, 563, 544, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 12)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+
+                    XXX.drawImage(husk, 696, 544, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 13)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+
+                    XXX.drawImage(husk, 826, 541, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
+                    XXX.restore();
+                }
+            }
+            else //idle
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.water && !this.land)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(husk, 169, 334, 132, 122, -1/2 * 132 * szx, -1/2 * 122 * szx, 132 * szx, 122 * szx);
                 XXX.restore();
             }
         }
@@ -31022,7 +31584,14 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.55 / 5 * Math.PI) * (this.mySize + 86);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.55 / 5 * Math.PI) * (this.mySize + 86);
         }
+        else if (this.weaponEquipped == "husk")
+        {
+            this.weapon = allWeapons[123];
 
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 17);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 17);
+        }
     };
 
     //BLOCKING FUNCTION
@@ -31175,6 +31744,10 @@ function Adventurer()
                                 else if (this.form == "venandi")
                                 {
                                     ArtificialIntelligenceAccess[i].killNotByPlayer = true; //venandi do not lose faction relation for killing
+                                }
+                                else if (this.form == "husk")
+                                {
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = true; //husks do not lose faction relation for killing
                                 }
                                 else
                                 {
@@ -43339,6 +43912,45 @@ function Adventurer()
                                 break;
                             }
                         }
+                        else if (Inventory[i][0].subUtility == "trolltrap" && player.getSurvivalism() >= 20)
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            var inFrontY = Y + Math.sin(this.rotation + 1/2 * Math.PI) * 43;
+                            var inFrontX = X + Math.cos(this.rotation + 1/2 * Math.PI) * 43;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (scenicList[j].X - 12 <= inFrontX + scenicList[j].radius && scenicList[j].X + 12 >= inFrontX - scenicList[j].radius && scenicList[j].Y - 12 <= inFrontY + scenicList[j].radius && scenicList[j].Y + 12 >= inFrontY - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+                            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (ArtificialIntelligenceAccess[j].X - (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 12) <= inFrontX + ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].X + (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 12) >= inFrontX - ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].Y - (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 12) <= inFrontY + ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].Y + (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 12) >= inFrontY - ArtificialIntelligenceAccess[j].sizeRadius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("trolltrap", inFrontX, inFrontY, (this.rotation + Math.PI), false));
+                                scenicList[scenicList.length - 1].ethereal = this.ethereal;
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
                         else if (Inventory[i][0].subUtility == "clawtrap" && player.getSurvivalism() >= 4)
                         {
                             var canPlace = true;
@@ -44209,7 +44821,7 @@ function Adventurer()
     //Health
     this.healthRegeneration = function()
     {
-        if (!this.drowned && this.form != "werewolf")
+        if (!this.drowned && this.form != "werewolf" && this.form != "husk")
         {
             if (this.movingType == 4 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 1 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.wobea == true && this.bandaged || this.opioidTic > 0 && this.bandaged) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: A bandage must be used.
             {

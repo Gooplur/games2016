@@ -5924,6 +5924,8 @@ function Adventurer()
                 player.huskCall = false;
             }
 
+            this.will = 0;
+
 
             if (qKey && this.huskWomb.length > 0)
             {

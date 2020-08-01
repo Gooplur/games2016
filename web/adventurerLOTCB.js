@@ -5896,14 +5896,33 @@ function Adventurer()
             this.lycanthropy = false;
             this.sleep = this.sleepMAX;
 
-            if (this.hunger <= 10 && this.energy >= 45)
+            if (aKey)
+            {
+                aKey = false;
+                if (this.energy >= 20 && this.hunger < 30)
+                {
+                    this.energy -= 20;
+                    this.hunger += 5;
+                }
+            }
+            if (dKey)
+            {
+                dKey = false;
+                if (this.energy < 56 && this.hunger >= 7)
+                {
+                    this.energy += 10;
+                    this.hunger -= 7;
+                }
+            }
+
+            if (this.hunger <= 0 && this.energy >= 45)
             {
                 this.energy = 0;
                 this.hunger = this.baseHunger;
             }
-            else if (this.hunger <= 10)
+            else if (this.hunger <= 0)
             {
-                this.hunger = 11;
+                this.hunger = 1;
             }
 
             var husklings = 0;
@@ -5944,7 +5963,7 @@ function Adventurer()
                 }
                 this.huskWomb.splice(0, 1);
             }
-            else if (qKey && this.hunger >= 15 && husklings + this.huskWomb.length < 3)
+            else if (qKey && this.hunger >= 5 && husklings + this.huskWomb.length < 3)
             {
                 qKey = false;
                 this.hunger -= 5;
@@ -45000,7 +45019,7 @@ function Adventurer()
 
             if (this.hunger <= 1/10 * this.hungerMAX && this.hunger > -10) // at 1/10 of hunger the player loses the use of energy... That means no attacks.
             {
-                if (player.vamprism != true && player.form != "wendigo")
+                if (player.vamprism != true && player.form != "wendigo" && player.form != "husk")
                 {
                     this.energy = Math.max(-5, this.energy - 1 * (TTD / (1000 + 100 * this.getEndurance() * 2)));
                 }

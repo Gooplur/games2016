@@ -8677,6 +8677,96 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mawt, 406, 154, 58, 30, -(1/2 * 58 * 1 * this.information), -(1/2 * 30 * 1 * this.information), 58 * 1 * this.information, 30 * 1 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 77)//cards 1
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cards, 1810, 1035, 21, 25, -(1/2 * 21 * 1 * this.information), -(1/2 * 25 * 1 * this.information), 21 * 1 * this.information, 25 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 78)//cards 2
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cards, 1836, 1034, 26, 28, -(1/2 * 26 * 1 * this.information), -(1/2 * 28 * 1 * this.information), 26 * 1 * this.information, 28 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 79)//cards 3
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cards, 1806, 1075, 26, 28, -(1/2 * 26 * 1 * this.information), -(1/2 * 28 * 1 * this.information), 26 * 1 * this.information, 28 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 80)//cards 4
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cards, 1831, 1188, 26, 28, -(1/2 * 26 * 1 * this.information), -(1/2 * 28 * 1 * this.information), 26 * 1 * this.information, 28 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 81)//cards 5
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cards, 1907, 1190, 26, 28, -(1/2 * 26 * 1 * this.information), -(1/2 * 28 * 1 * this.information), 26 * 1 * this.information, 28 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 82)//cards 6
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cards, 1852, 1185, 52, 34, -(1/2 * 52 * 1 * this.information), -(1/2 * 34 * 1 * this.information), 52 * 1 * this.information, 34 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 83)//cards 7
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cards, 1834, 1071, 52, 34, -(1/2 * 52 * 1 * this.information), -(1/2 * 34 * 1 * this.information), 52 * 1 * this.information, 34 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 84)//cards 8
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cards, 1906, 994, 77, 46, -(1/2 * 77 * 0.75 * this.information), -(1/2 * 46 * 0.75 * this.information), 77 * 0.75 * this.information, 46 * 0.75 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 85)//cards 9
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cards, 1937, 1179, 48, 45, -(1/2 * 48 * 0.75 * this.information), -(1/2 * 45 * 0.75 * this.information), 48 * 0.75 * this.information, 45 * 0.75 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 86)//cards 10
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cards, 1809, 1250, 171, 137, -(1/2 * 171 * 0.5 * this.information), -(1/2 * 137 * 0.5 * this.information), 171 * 0.5 * this.information, 137 * 0.5 * this.information);
+                XXX.restore();
+            }
 
             //INTERACTION
             if (this.activate == true)
@@ -33209,6 +33299,34 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.activate = false;
             }
         }
+        else if (this.type == "light")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //DRAWSELF
+            if (timeOfDay != "Day" || player.underground == true)
+            {
+                if (this.extra == false || this.extra == 0)
+                {
+                    lights.push({X: this.X, Y: this.Y, size: this.temporary, extraStops: false, GRD: 0, Alpha: this.information, showMe: false});
+                }
+                else
+                {
+                    lights.push({X: this.X, Y: this.Y, size: this.temporary, extraStops: true, GRD: this.extra, Alpha: this.information, showMe: false});
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "giavevShed")
         {
             //TRAITS
@@ -33317,7 +33435,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     XXX.drawImage(carillo, 73, 687, 62, 52, -(1/2 * 62 * this.size), -(1/2 * 52 * this.size), 62 * this.size, 52 * this.size);
                     XXX.restore();
 
-                    if (timeOfDay != "Day")
+                    if (timeOfDay != "Day" || player.underground == true)
                     {
                         lights.push({X: this.X, Y: this.Y, size: 65, extraStops: true, GRD: 0.35, Alpha: 0.5, showMe: false});
                     }

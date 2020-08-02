@@ -9303,7 +9303,7 @@ function cheats()
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("cathedralStatues", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase + ', "' + buildSize +'"));');
+                console.log('scenicList.push(new Scenery("cathedralStatues", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase + ', ' + buildSize +'));');
                 scenicList.push(new Scenery("cathedralStatues", X, Y, buildRot, buildClase, buildSize));
             }
 
@@ -9392,7 +9392,7 @@ function cheats()
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("huskAssets", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase + ', "' + buildSize +'"));');
+                console.log('scenicList.push(new Scenery("huskAssets", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase + ', ' + buildSize +'));');
                 scenicList.push(new Scenery("huskAssets", X, Y, buildRot, buildClase, buildSize));
             }
 
@@ -9575,7 +9575,7 @@ function cheats()
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("light", ' + X + ', ' + Y + ', ' + 0 + ', ' + buildSize + ', "' + buildRot +', ' + buildClase + '"));');
+                console.log('scenicList.push(new Scenery("light", ' + X + ', ' + Y + ', ' + 0 + ', ' + buildSize + ', ' + buildRot +', ' + buildClase + '));');
                 scenicList.push(new Scenery("light", X, Y, 0, buildSize, buildRot, buildClase));
             }
 
@@ -9770,6 +9770,10 @@ function cheats()
         else if (cheatcode == "radical")
         {
             player.radiation += 90;
+        }
+        else if (cheatcode == "radiantRebirth")
+        {
+            uniqueChars.dimitryLDS = true;
         }
         else if (cheatcode == "jellz")
         {

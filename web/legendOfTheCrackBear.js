@@ -1473,6 +1473,14 @@ function envPack()
     redCaveWater.src = ("images/redCaveWater.jpg");
     window.redCaveWater = redCaveWater;
 
+    var blueVardanWoods = new Image();
+    blueVardanWoods.src = ("images/blueVardanWoods.jpg");
+    window.blueVardanWoods = blueVardanWoods;
+
+    var vorcadianFields = new Image();
+    vorcadianFields.src = ("images/vorcadianFields.png");
+    window.vorcadianFields = vorcadianFields;
+
     var dockH = new Image();
     dockH.src = ("images/dockH.jpg");
     window.dockH = dockH;
@@ -1878,6 +1886,42 @@ function sitePack()
     window.site = site;
 
     site.onload = function()
+    {
+        roostPack();
+    };
+}
+
+function roostPack()
+{
+    var roost = new Image();
+    roost.src = ("images/roost.png");
+    window.roost = roost;
+
+    roost.onload = function()
+    {
+        sluthPack();
+    };
+}
+
+function sluthPack()
+{
+    var sluth = new Image();
+    sluth.src = ("images/sluth.png");
+    window.sluth = sluth;
+
+    sluth.onload = function()
+    {
+        raptPack();
+    };
+}
+
+function raptPack()
+{
+    var rapt = new Image();
+    rapt.src = ("images/rapt.png");
+    window.rapt = rapt;
+
+    rapt.onload = function()
     {
         slugPack();
     };
@@ -4436,7 +4480,10 @@ function theLegend()
         thent: ["Thent", 0],
         hegstrom: ["Hegstrom", 0],
         ked: ["Ked", 0],
-        gamer: ["Gamer", 0]
+        gamer: ["Gamer", 0],
+        ladya: ["Ladya", 0],
+        sahrengril: ["Sahrengril", 0],
+        olezka: ["Olezka", 0]
     };
 
 //time Tracker Variables
@@ -4754,7 +4801,10 @@ function theLegend()
         matthiasThentLDS: true,
         marianeThentLDS: true,
         hegstromLDS: true,
-        kedLDS: true
+        kedLDS: true,
+        ladyaLDS: true,
+        sahrengrilLDS: true,
+        olezkaLDS: true
     };
 //QUESTS
     quests =
@@ -4881,6 +4931,9 @@ function theLegend()
         hanzChild: false,
         hanzChildName: "Gelna",
 
+        //QUEST: Husk of a Heart ----- given by
+        huskOfAHeartQuest: false,
+        huskOfAHeartCompletionStyle: false,
         //QUEST: Magical Dissertation ----- given by Niljada the Sorceress
         magicalDissertationQuest: false,
         magicalDissertationCompletionStyle: false,
@@ -4921,6 +4974,12 @@ function theLegend()
         theCultOfTheRadiantSpiritCultistsKilled: 0,
         theCultOfTheRadiantSpiritSacrifice: false,
         theCultOfTheRadiantSpiritBishopInformed: false,
+        theCultOfTheRadiantSpiritWar: false,
+        theCultOfTheRadiantSpiritHit: false,
+        theCultOfTheRadiantSpiritLaw: false,
+        theCultOfTheRadiantSpiritFled: false,
+        theCultOfTheRadiantSpiritArrest: false,
+        theCultOfTheRadiantSpiritStart: false,
 
         //QUEST: Lost Huntress ---- given by Muktu
         lostHuntressQuest: false,

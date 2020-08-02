@@ -1,0 +1,29 @@
+//example quest completion
+
+quests.aFeastForFewerCompletionStyle = "estolConspiracy";
+quests.aFeastForFewerQuest = "complete";
+if (player.raceName == "Nirwaden" && player.title == "Nobility")
+{
+    quests.completeQuests.push({name: "A Feast for Fewer", description: "You've learnt that your father's assassination was part of a larger criminal conspiracy by the Estol Gang."});
+}
+else
+{
+    quests.completeQuests.push({name: "A Feast for Fewer", description: "You've learnt that the assassination of Lord Altezor was part of a larger criminal conspiracy by the Estol Gang."});
+}
+player.nirwadenFaction += 40;
+if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+{
+    player.magicalExperience += 70;
+}
+else
+{
+    player.experience += 200;
+    player.fame += 1;
+}
+
+
+
+//example quest activation
+
+quests.theEstolConspiracyQuest = true;
+quests.activeQuests.push({name: "The Estol Conspiracy", description: "The Estol Gang has a nefarious master plan."});

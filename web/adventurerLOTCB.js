@@ -43,6 +43,7 @@ function Adventurer()
     this.estolgangFaction = 0; //A deeply rooted criminal organization in Nirwaden.
     this.sylkeemFaction = 0; //A northern tribal people that have historically been contained within the Kingdom of Freynor (this represents their republican faction)
     this.vardanRebelFaction = 0; //The forces aligned to the high count's brother who sought to take the reigns of Vardania for himself
+    this.cultOfTheRadiantSpiritFaction = 0;
     //ranks
     this.theBalgurMercenariesRank = "none"; //mercenary, captain
     this.inquisitionRank = "none"; //initiate, inquisitor, high inquisitor, arch inquisitor
@@ -673,6 +674,7 @@ function Adventurer()
     this.estolGangPeace = true;
     this.sylkeemPeace = true;
     this.vardanRebelPeace = true;
+    this.cultOfTheRadiantSpiritPeace = true;
 
     //utility or extra variables
     this.AdAbility = []; //this is a list of all active abilities held by armours and equipped outfits
@@ -35705,6 +35707,61 @@ function Adventurer()
                         else
                         {
                             this.vardanRebelPeace = true;
+                        }
+                    }
+
+                    //Cult of the Radiant Spirit
+                    //box
+                    if (this.cultOfTheRadiantSpiritPeace)
+                    {
+                        XXX.beginPath();
+                        if (this.cultOfTheRadiantSpiritFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 4), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.vardanRebelFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 4), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Cult of the Radiant Spirit: " + this.cultOfTheRadiantSpiritFaction, 700, 72 + (55 * 4));
+                    //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 4) && mouseY < 80 + (55 * 4) && clicked)
+                    {
+                        clicked = false;
+                        if (this.cultOfTheRadiantSpiritPeace)
+                        {
+                            this.cultOfTheRadiantSpiritPeace = false;
+                        }
+                        else
+                        {
+                            this.cultOfTheRadiantSpiritPeace = true;
                         }
                     }
                 }

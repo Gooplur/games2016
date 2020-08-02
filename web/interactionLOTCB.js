@@ -3111,6 +3111,145 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Father Dimitry High Priest of the Radiant Spirit" || conversationID[0] == "Dimitry")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Dimitry";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["What is that you're working on?", false, "b"], ["What's new Maggy?", false, "c"], ["How's business?", false, "d"]];
+
+                                if (player.raceName == "Vardan" && player.title != "Nobility" && player.title != "Highfolk" && player.title != "Royalty")
+                                {
+                                    player.dialogueOptions.push(["It is good to see you back safe! We all thought that a beast from the swamp had dragged you away in the night...", false, "e"])
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Oh good day to you too! It's just lovely don't you think?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Just cleanin' the furs. You got to clean 'em before you can make 'em into something.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Oh you know... A bit o' cleaning a bit o' stitchin', mostly cleanin' though.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Business is hard work youngin'. When I was a girl I had four sisters, and we'd all help my ma' with the sowing. Now it's just me. I'll tell you, this work is not as easy as it seems...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Gamer" || conversationID[0] == "Gamer")
                     {
                         lowBar = "dialogue";
@@ -3283,6 +3422,168 @@ function interaction(me)
                         {
                             //text dialogue
                             setMsg("Let's play!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Sahrengril the Gamemaster" || conversationID[0] == "Sahrengril")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Sahrengril";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I would like to play at cards. [play hearts and daggers]", false, "a"], ["How do you play Hearts and Daggers?", false, "b"], ["What do the special cards do, you know, like Jesters, and Knights?", false, "c"], ["Do you play any other games than Hearts and Daggers?", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.gamblingWinStreakHeartsAndDaggers >= 12)
+                            {
+                                setMsg("I've heard you're a lousy cheat, it would hurt my reputation to sit at the same table as you.");
+                            }
+                            else if (player.gamblingWinStreakHeartsAndDaggers >= 6)
+                            {
+                                setMsg("We'll play, but keep your hands where I can see them, and roll up your sleeves if you got any...");
+                            }
+                            else
+                            {
+                                setMsg("Then take a seat and I'll deal you a hand.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.gamblingWinStreakHeartsAndDaggers >= 12)
+                                {
+                                    //You are banned from gambling... you got too lucky! No one trusts you anymore.
+                                }
+                                else if (player.gamblingWinStreakHeartsAndDaggers >= 6)
+                                {
+                                    minigame = new Minigame("Hearts & Daggers", Math.floor((self.ultra.wager / 2) * (1 + (player.charisma / 50))), 0);
+                                    gameState = "minigame";
+                                    requestAnimationFrame(minigameLoop, CCC);
+                                }
+                                else
+                                {
+                                    minigame = new Minigame("Hearts & Daggers", Math.floor(self.ultra.wager * (1 + (player.charisma / 50))), 0);
+                                    gameState = "minigame";
+                                    requestAnimationFrame(minigameLoop, CCC);
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("I deal each of us five cards, then I draw our starting card. The starting card is separate from the rest of the cards and counts for full points. Also whoever's starting card is higher goes first. Hearts are worth their face value, daggers can't be played except to stab your opponent's cards. When I say stab I mean discard, but you can only discard their card if the dagger you stab with has an equal or higher value than the card you intend to stab. You must play at least one card per turn, and you cannot play more than one heart or dagger each turn. The game ends when both players run out of cards, then we tally up the points and see who wins the round.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Special cards? Jesters? Knights? Alright I'll tell you... The jesters let you take one of your opponents cards and bring it to your side, some people call jesters turncloaks when they play Hearts and Daggers. Basically, you get the point value of the stolen card, and your opponent doesn't. If you steal your opponent's starting card that is a dagger though, then it must be discarded. The only dagger card that isn't a starting card that you can have out on the table is the Knight of Daggers. Knights are special see, and the knight of hearts and the knight of daggers are even more special. That's why they call it Hearts and Daggers. When the knight of daggers is on the table on your side it will make all of your daggers stab for one extra point. And if the knight of hearts is on the table on your side it will make each heart card give you one extra point. Also, knights of any suit will double pawns point value which is ordinarily just one point, the pawns are the bottles suit and the clubs suit. Each new knight doubles the value again, the thing is though knights cannot double their own value which is also one point to start. Is that what you wanted to know? ... Good, because I'm done explaining things to you.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("I do know how to play other games, but Hearts and Daggers is the best card game you'll find anywhere, so I don't see much point in that.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -9629,6 +9930,277 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Ladya the Stablemaster" || conversationID[0] == "Ladya")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Ladya";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["How do you train the horses?", false, "e"], ["Where did you get that outfit it looks nice...", false, "g"], ["What do you sell?", false, "c"], ["Where is your husband, I am looking to buy a horse.", false, "d"]];
+
+                                if (quests.huskOfAHeartQuest == "complete")
+                                {
+                                    player.dialogueOptions.unshift(["Have you heard of the husks of the moth wood.", false, "h"]);
+                                }
+
+                                if (have("coins", 750))
+                                {
+                                    player.dialogueOptions.unshift(["[Buy Mare for 750 coins]", false, "a"]);
+                                }
+
+                                if (have("coins", 900))
+                                {
+                                    player.dialogueOptions.unshift(["[Buy Stallion for 900 coins]", false, "b"]);
+                                }
+
+                                if (player.title == "Nobility" || player.title == "Royalty")
+                                {
+                                    player.dialogueOptions.push(["You are outspoken for a horse merchant.", false, "f"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Treat her well and she'll get you where you need to go.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                take("coins", 750);
+                                self.SC();
+                                reiniciar();
+                                change = "boroyeMare";
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("The stallions of Boroye are the best warhorses in Vardania, don't stand behind it!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                take("coins", 900);
+                                self.SC();
+                                reiniciar();
+                                change = "boroyeStallion";
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Are you blind, or just plain stupid? Horses, duh. Did you not see the stables out back, did you not read the sign?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (player.gender == "Male")
+                            {
+                                setMsg("Are you looking for my husband or a horse, they're not the same. If you want a horse talk to me, if you want to talk to my husband he is in the garrison west of here.");
+                            }
+                            else
+                            {
+                                setMsg("Are you looking for my husband or a horse, I know sometimes men do seem like horses but they are different I promise. If you want a horse talk to me, but you have no business talking to my husband, he is spoken for.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("I'm not telling you that! That's a trade secret...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("Sorry your grace, I grew up in Rend Street, we didn't see many counts and countesses in that part of town... I never learned to talk all fancy.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("My husband got it for me at Black Needle Tailor's, I've not been in there myself, wouldn't be caught dead shopping. Not me. Abrahm's a nice guy though I hear.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("Believe it or not I have heard of them. My husband is a military man and he has told me that his division recieved a report about an attempted rebel flanking maneuver through the moth woods that ended grusomely. He told me that they found their corpses there covered in a grey leathery paper... Then according to him, a ghoul that looked like it had already died that was covered in that grey stuff attacked the scouts he was with, and they barely escaped with their lives...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Old Lady Haba" || conversationID[0] == "Haba")
                     {
                         lowBar = "dialogue";
@@ -11432,7 +12004,14 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                player.dialogueOptions = [["Good day.", false, "a"], ["What are you holding that dagger for?", false, "b"]];
+                                if (quests.theCultOfTheRadiantSpiritCompletionStyle == "law")
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["What are you holding that dagger for?", false, "b"]];
+                                }
 
                                 if (quests.vozaHomeOwned == false)
                                 {
@@ -11441,6 +12020,10 @@ function interaction(me)
                                 if (player.raceName == "Vardan")
                                 {
                                     player.dialogueOptions.push(["Where are you from?", false, "d"]);
+                                }
+                                if (quests.theCultOfTheRadiantSpiritQuest == true)
+                                {
+                                    player.dialogueOptions.push(["What's your take on the followers of the Radiant Glow?", false, "e"]);
                                 }
                             }
                             else if (player.dialogueChoiceMade == true)
@@ -11473,6 +12056,12 @@ function interaction(me)
                                             tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
                                         }
                                     }
                                 }
@@ -11529,7 +12118,21 @@ function interaction(me)
                         else if (conversationID[1] == "0b")
                         {
                             //text dialogue
-                            setMsg("Oh this? With the civil war and all the bank is often a target for looters and deserters. As a banker I need to be prepared to defend the bank's assets since the village guards have all left to fight the war.");
+                            if (quests.theCultOfTheRadiantSpiritQuest == true || quests.theCultOfTheRadiantSpiritCompletionStyle == "cult")
+                            {
+                                if (quests.theCultOfTheRadiantSpiritCompletionStyle == "cult")
+                                {
+                                    setMsg("Oh this? Um, err, well, I don't trust you. No offense intended. We at the Golden Glove Banking Company respect all potential clients no matter what race, nationality, or... religion. Please don't hurt me, I'll be good!");
+                                }
+                                else
+                                {
+                                    setMsg("Oh this? Well here's the thing, as far as I know, those creepy masked cultists out there are just as likely to rob me as they are to protect me, and something tells me that the interests of the Golden Glove Banking Company are not exactly aligned with those of the creepy cultists. In other words, leaving our assets under the cult's protection isn't a particularly good way to keep them safe.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Oh this? With the civil war and all the bank is often a target for looters and deserters. As a banker I need to be prepared to defend the bank's assets since the village guards have all left to fight the war.");
+                            }
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -11570,6 +12173,26 @@ function interaction(me)
                         {
                             //text dialogue
                             setMsg("I'm from Vardania, as are you. I grew up in Morrow city. I only moved to Voza because the Golden Glove Bank offered me a job and asked me to serve at this location. I'm sure you meant to insinuate that I do not belong here, right? It is true that my grandparents moved here from Orgell originally, but my family is just as Vardanian as any other family here. But enough about me... can I interest you in a bank slot?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("This is the sort of thing that makes me wish I never moved to a swamp village. There simply is not enough central authority in these smaller villages and hamlets. I much preferred living in Morrow. Punishment there was harsh if you broke the law, but that meant that weird stuff like cults taking over town just didn't happen. Morrow felt safe... well at least in my neighborhood it did. Take my advice, get out of here while you still can...");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -11679,10 +12302,29 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                player.dialogueOptions = [["How are you?", false, "a"], ["What do you think about the war?", false, "b"], ["Praise be to the spirit everlasting!", false, "c"]];
-                                if (quests.theCultOfTheRadiantSpiritQuest == false)
+                                if (quests.theCultOfTheRadiantSpiritCompletionStyle == "law")
                                 {
-                                    player.dialogueOptions.push(["The church feels empty.", false, "d"]);
+                                    player.dialogueOptions = [["How are you?", false, "k"], ["How do you feel about everything that happened?", false, "f"]];
+                                }
+                                else if (quests.theCultOfTheRadiantSpiritCompletionStyle == "cult")
+                                {
+                                    player.dialogueOptions = [["How are you?", false, "a"], ["What do you think about the war?", false, "b"], ["Praise be to the radiant spirit!", false, "g"]];
+                                }
+                                else if (quests.theCultOfTheRadiantSpiritCompletionStyle == "vigilante")
+                                {
+                                    player.dialogueOptions = [["How are you?", false, "h"], ["What do you think about the war?", false, "i"], ["Praise be to the spirit everlasting!", false, "j"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["How are you?", false, "a"], ["What do you think about the war?", false, "b"], ["Praise be to the spirit everlasting!", false, "c"]];
+                                    if (quests.theCultOfTheRadiantSpiritQuest == false)
+                                    {
+                                        player.dialogueOptions.push(["The church feels empty.", false, "d"]);
+                                    }
+                                    else if (quests.theCultOfTheRadiantSpiritQuest == true)
+                                    {
+                                        player.dialogueOptions.push(["What is going on here?", false, "e"]);
+                                    }
                                 }
                             }
                             else if (player.dialogueChoiceMade == true)
@@ -11715,6 +12357,48 @@ function interaction(me)
                                             tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0j";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "k")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0k";
                                         }
                                     }
                                 }
@@ -11804,6 +12488,196 @@ function interaction(me)
                             {
                                 msgReset();
 
+                                quests.theCultOfTheRadiantSpiritStart = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Vardan")
+                            {
+                                setMsg("Father Dimitry is back, and he has brought us back the wisdom he has been blessed with from his holy pilgrimage.");
+                            }
+                            else
+                            {
+                                setMsg("Father Dimitry is back, he has brought new wisdom and protection to this village!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("The church of the everlasting spirit was supposed to guide us toward the light. My trust has shattered inside me. I have been decieved by the one person I trusted most. I trusted Father Dimitry to show me the way to the light... but he was leading us to a false light, a light designed by the void to trick us to crawl trustingly towards the darkness.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Vardan")
+                            {
+                                setMsg("Praise be! May the radiant glow bless Vardania!");
+                            }
+                            else
+                            {
+                                setMsg("Praise be! May the radiant glow bless us all!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Vardan" && player.title == "Nobility" || player.raceName == "Vardan" && player.title == "Royalty")
+                            {
+                                if (player.title == "Royalty")
+                                {
+                                    setMsg("I am humbled that someone as heroic and esteemed as your grace would ask about my well being! I am well, your grace.");
+                                }
+                                else
+                                {
+                                    if (player.gender == "Female")
+                                    {
+                                        setMsg("I am humbled that someone as heroic and esteemed as the illustrious countess of these lands would ask about my well being! I am well, noble countess.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("I am humbled that someone as heroic and esteemed as the brave and powerful count of these lands would ask about my well being! I am well, noble count.");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                setMsg("How am I?! You killed our village priest!! You serve the void!!! Don't you dare speak to me again, demon!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Vardan" && player.title == "Nobility" || player.raceName == "Vardan" && player.title == "Royalty")
+                            {
+                                setMsg("The war signals the growing power of The Void... I never thought that dark forces would invade even the church itself... but you have brought us all hope, for you carry the cause of the spirit in your noble heart!");
+                            }
+                            else
+                            {
+                                setMsg("The war is the least of my problems now that you have brought your banditry upon Voza Village... You have slaughtered good men, faithful men who served the radiant spirit and the light. I hope when the law brings you to justice that they bury you in the hollows, your foulness would corrupt any other ground!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0j")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Vardan" && player.title == "Nobility" || player.raceName == "Vardan" && player.title == "Royalty")
+                            {
+                                setMsg("Praise be to the everlasting spirit! By the spirit's grace you have come to redirect voza towards the light!");
+                            }
+                            else
+                            {
+                                setMsg("Praise be to the radiant spirit who will see you brought to justice for your demonic actions. Don't bother pretending that you serve the spirit, you are a harbinger of destruction and chaos, fiend!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0k")
+                        {
+                            //text dialogue
+                            setMsg("It is hard to trust after what happened, but I am learning that the everlasting spirit tests our faith in the most unexpected of ways. Never again will I trust in any idea that appears to break from the ways the church has long taught me to recognize as good and righteous.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
@@ -11831,10 +12705,33 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                player.dialogueOptions = [["Good day.", false, "a"], ["Can you tell me anything about Voza Village?", false, "b"], ["How is business?", false, "d"]];
-                                if (quests.buyVozaFlame == false)
+                                if (quests.theCultOfTheRadiantSpiritFled == true && quests.theCultOfTheRadiantSpiritQuest == true || quests.theCultOfTheRadiantSpiritFled == true && quests.theCultOfTheRadiantSpiritCompletionStyle == "cult")
                                 {
-                                    player.dialogueOptions.push(["Can I use your hearth to cook some food?", false, "c"]);
+                                    player.dialogueOptions = [["Why did you take refuge in Rauke?", false, "l"], ["I'm glad you made it out of Voza!", false, "j"], ["How are you doing?", false, "k"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["Can you tell me anything about Voza Village?", false, "b"], ["How is business?", false, "d"]];
+                                    if (quests.buyVozaFlame == false)
+                                    {
+                                        player.dialogueOptions.push(["Can I use your hearth to cook some food?", false, "c"]);
+                                    }
+
+                                    if (quests.theCultOfTheRadiantSpiritQuest == true && quests.theCultOfTheRadiantSpiritLaw == false)
+                                    {
+                                        player.dialogueOptions.unshift(["What is going on here in Voza?", false, "e"]);
+                                    }
+                                    else if (quests.theCultOfTheRadiantSpiritQuest == true && quests.theCultOfTheRadiantSpiritLaw == true && quests.theCultOfTheRadiantSpiritWar != true)
+                                    {
+                                        player.dialogueOptions.unshift(["Who did you need me to do again?", false, "i"]);
+                                    }
+
+                                    if (quests.theCultOfTheRadiantSpiritHit == true)
+                                    {
+                                        player.dialogueOptions.unshift(["If you want to live you need to leave Voza immediately! Father Dimitry asked me to bring you to him to answer for a charge of heresy.", false, "f"]);
+                                        player.dialogueOptions.unshift(["You will die for your heresy, heretic!", false, "h"]);
+                                        player.dialogueOptions.unshift(["You are hearby arrested for heresy against the radiant spirit! [take her to High priest Dimitry]", false, "g"]);
+                                    }
                                 }
                             }
                             else if (player.dialogueChoiceMade == true)
@@ -11867,6 +12764,54 @@ function interaction(me)
                                             tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0j";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "k")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0k";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "l")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0l";
                                         }
                                     }
                                 }
@@ -11901,15 +12846,11 @@ function interaction(me)
                             }
                             else if (quests.theCultOfTheRadiantSpiritQuest == true)
                             {
-                                setMsg("Our village priest had gone missing and we were all really worried, but now he came back and he brought new devotees to defend our village. If only everyone could be as faithful and radiant as Father Dimitry and his apostles... then we would live in a more peaceful world.");
-                            }
-                            else if (quests.theCultOfTheRadiantSpiritCompletionStyle == "cult")
-                            {
-                                setMsg("Its funny that you are asking ME! I heard that YOU were accepted as an apostle of the Radiant Spirit by Father Dimitry. You're the talk of the town!");
+                                setMsg("Our village priest had gone missing and we were all really worried, but now he came back and he brought new devotees to defend our village. I don't trust them, they are trying to change everything, even the faith!");
                             }
                             else
                             {
-                                setMsg("The word is that father Dimitry was acting against the church and that he was secretly a heretic this whole time... I feel so betrayed. Thank you for helping the true church to replace him. Now we might experience the faith is it was meant to be rather than being drawn toward the void's evil ways.");
+                                setMsg("The word is that father Dimitry was acting against the church and that he was secretly a heretic this whole time... I am glad that I am not the only one who recognizes this now. Thank you for helping the true church to replace him! Now we might experience the faith is it was meant to be, rather than being drawn toward the void's evil ways by a madman mascarading as a priest.");
                             }
 
                             //on ended text dialogue
@@ -11930,11 +12871,38 @@ function interaction(me)
                         else if (conversationID[1] == "0c")
                         {
                             //text dialogue
-                            if (quests.theCultOfTheRadiantSpiritCompletionStyle == "cult")
+                            if (quests.theCultOfTheRadiantSpiritCompletionStyle == "vigilante")
                             {
-                                setMsg("Anything for an apostle of The Radiant Spirit!");
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("Anything for the woman who saved Voza from heretical zealots!");
+                                }
+                                else if (player.gender == "Male")
+                                {
+                                    setMsg("Anything for the man who saved Voza from heretical zealots!");
+                                }
+                                else
+                                {
+                                    setMsg("Anything for the, um, person who saved Voza from heretical zealots!");
+                                }
+
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    quests.buyVozaFlame = true;
+                                    self.SC();
+                                    reiniciar();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
                             }
-                            else if (quests.theCultOfTheRadiantSpiritCompletionStyle == "church")
+                            else if (quests.theCultOfTheRadiantSpiritCompletionStyle == "law")
                             {
                                 setMsg("What sort of a person would I be if I denied the person who saved our village church from the void's corruption! Go right ahead!");
                                 //on ended text dialogue
@@ -11977,11 +12945,11 @@ function interaction(me)
                         else if (conversationID[1] == "0d")
                         {
                             //text dialogue
-                            if (player.raceName == "Vardanian" && player.gender == "Male" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
+                            if (player.raceName == "Vardan" && player.gender == "Male" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
                             {
                                 setMsg("Its going alright provided that most of the men in town have been drafted to die in the civil war... This was my older brother's shop before he left. Now I'm not even sure if he is still alive. [You see the weariness in her eyes as she lingers on those words hopelessly]. You were lucky that you were not in town when the soldiers came around for the draft.");
                             }
-                            else if (player.raceName == "Vardanian" && player.gender == "Female" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
+                            else if (player.raceName == "Vardan" && player.gender == "Female" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
                             {
                                 setMsg("Its going alright provided that most of the men in town have been drafted to die in the civil war... This was my older brother's shop before he left. Now I'm not even sure if he is still alive. [You see the weariness in her eyes as she lingers on those words hopelessly]. Its hard work surviving without the men... but we manage don't we.");
                             }
@@ -11990,6 +12958,204 @@ function interaction(me)
                                 setMsg("Its going alright provided that most of the men in town have been drafted to fight the false high count's rebel forces... This was my older brother's shop before he left. Now I'm not even sure if he is still alive. [You see the weariness in her eyes as she lingers on those words hopelessly]. Long live the high count... [She announces just to be safe]");
                             }
 
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Vardan")
+                            {
+                                setMsg("Our priest, Father Dimitry, has returned. We all thought him to be in the belly of a toad, if only that were so... He has formed a cult in service of the Void. He claims that he and his disciples have made a pilgrimage and have found what they call a new truth that will save us all from the void. He has made himself the leader of this heretical band, and now he and his zealots are enforcing his radical religion by threat of steel. I would fair poorly in any attempt to warn the soldiers in Morrow of this treason for I would have to cross the swamplands to get there. For the sake of all of us, you need to get to the captain of the guard in Morrow City and warn him about Father Dimitry's treachery!");
+                            }
+                            else
+                            {
+                                setMsg("The priest of this village has returned. We all thought he was missing, but it turns he has formed a cult in service of the Void. He claims that he and his disciples have made a pilgrimage and have found what they call a new truth that will save us all from the void. He has made himself the leader of this heretical band, and now he and his zealots are enforcing his radical religion by threat of steel. I would fair poorly in any attempt to warn the soldiers in Morrow of this treason for I would have to cross the swamplands to get there. For the sake of Voza, I beg you to warn the captain of the guard in Morrow City and warn him about Father Dimitry's treachery here!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("I appreciate the warning... I will grab my valuables and leave right now! I won't forget this! Thank you!!");
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                if (Math.round(Math.random()) || quests.theCultOfTheRadiantSpiritCultistsKilled > 5)
+                                {
+                                    player.fame += 1;
+                                    quests.theCultOfTheRadiantSpiritFled = true;
+                                }
+                                else
+                                {
+                                    quests.theCultOfTheRadiantSpiritFled = "failed";
+                                }
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                self.SC();
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Vardan")
+                            {
+                                setMsg("I can't believe you would do this to me, Why would you betray your own people to serve a mad heretic priest!? [she spits on you as you restrain her, then you bring her to the church]");
+                            }
+                            else
+                            {
+                                setMsg("If my brother were still here, he would never have stood for this! [you restrain her and take her to the church]");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                quests.theCultOfTheRadiantSpiritArrest = true;
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                self.SC();
+                                X = 348029.9675741104;
+                                Y = -75771.10774312622;
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("Stay away from me! Help!! Someone help me!!!");
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.disturbedTime = new Date().getTime();
+                                self.disturbed = true;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("Please try to listen better, this is urgent! It is crucial that you get word to the captain of the guard in Morrow City south of here that Father Dimitry has formed a heretical cult and has taken over the city.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0j")
+                        {
+                            //text dialogue
+                            setMsg("It is good to see you, thank you for warning me that Father Dimitry's cult was after me. You probably saved my life!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0k")
+                        {
+                            //text dialogue
+                            setMsg("First chance I get I will go back to Voza, but for now I am doing alright since I managed to bring some of my wares and setup shop here in Rauke.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0l")
+                        {
+                            //text dialogue
+                            setMsg("You mean why did I flee to Rauke rather than Morrow? A while ago my cousin and her family fled Vardania to avoid the draft when the miltary came to Voza, so I knew they would be here. I don't know anyone in Morrow, and I hear that plague is taking its toll on the city. Rauke seemed like the obvious place to shelter in until this whole cult thing blows over in Voza.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -12314,6 +13480,10 @@ function interaction(me)
                             if (player.dialogueChoiceMade == false)
                             {
                                 player.dialogueOptions = [["What are you selling today?", false, "a"], ["How's business?", false, "b"]];
+                                if (quests.theCultOfTheRadiantSpiritQuest == true)
+                                {
+                                    player.dialogueOptions.push(["What do you think about the followers of the Radiant Spirit being here in Voza?", false, "c"]);
+                                }
                             }
                             else if (player.dialogueChoiceMade == true)
                             {
@@ -12333,6 +13503,12 @@ function interaction(me)
                                             tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
                                         }
                                     }
                                 }
@@ -12375,6 +13551,33 @@ function interaction(me)
                             else
                             {
                                 setMsg("Both my husband and my son are dead, and I was not raised to be a fishseller. This was my husbands line of work. I am terrible at catching fish, and I am in way over my head. Business couldn't be worse.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (uniqueChars.demyanLDS == true)
+                            {
+                                setMsg("I hardly notice them, and when I do I am glad to see them. It has been a long time now that Voza has been left unprotected, so it is a nice change for the better to have a milita here. I wouldn't care if they were all vampires as long as they left us alone and kept the village safe from beasts. It has worried me sick that a ker could crawl into the village and eat my boy... so if followers of some radiant spirit is what I have to deal with to get some peace of mind, so be it.");
+                            }
+                            else
+                            {
+                                setMsg("My boy is still dead, why should I care what happens to Voza? It doesn't matter anymore...");
                             }
 
                             //on ended text dialogue

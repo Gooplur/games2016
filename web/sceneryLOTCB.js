@@ -33382,6 +33382,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.solid = true;
             this.interactionRange = 1;
             this.size = this.information;
+            this.zIndex = 5;
 
             //DRAWSELF
             if (this.temporary == 0)
@@ -48384,6 +48385,15 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 this.activate = false;
                 this.phase = "picked";
+
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-8);
+                    }
+                }
+
                 var hits = 0;
                 for (var i = 0; i < Inventory.length; i ++)
                 {
@@ -52281,6 +52291,14 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             player.warmth += (5 * dOS);
                         }
                     }
+
+                    if (this.owned.length > 1)
+                    {
+                        if (player.noticed == true)
+                        {
+                            this.changeFactionRelation(-15);
+                        }
+                    }
                 }
             }
         }
@@ -52327,6 +52345,14 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             player.warmth += (3 * dOS);
                         }
                     }
+
+                    if (this.owned.length > 1)
+                    {
+                        if (player.noticed == true)
+                        {
+                            this.changeFactionRelation(-15);
+                        }
+                    }
                 }
             }
         }
@@ -52371,6 +52397,14 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         if (dOS > 0 && dOS < 25)
                         {
                             player.warmth += (1 * dOS);
+                        }
+                    }
+
+                    if (this.owned.length > 1)
+                    {
+                        if (player.noticed == true)
+                        {
+                            this.changeFactionRelation(-15);
                         }
                     }
                 }
@@ -57959,7 +57993,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.solid = false;
             this.interactionRange = 35;
 
-            if (this.temporary == "permaLit")
+            if (this.temporary == "permaLit" || this.temporary == "lit")
             {
                 this.campFireTime = 0;
                 this.lit = true;
@@ -58110,7 +58144,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         this.lit = true;
                     }
                 }
-                else if (this.lit == true && this.burnt == false)
+                else if (this.lit == true && this.burnt == false && this.temporary != "lit")
                 {
                     player.craftPosition = 0;
                     craftScroll = 0;

@@ -7363,7 +7363,7 @@ function worldBuilder()
         region = "testMap";
         campout = true;
         //starting chamber
-        outlineBuilder(68,68, "murkwoods", -34, -34);
+        outlineBuilder(68,68, "vorcadian", -34, -34);
         outlineBuilder(1,4, "murklake", 1, 1);
         outlineBuilder(2, 1, "murklake", 4, -1);
     }
@@ -7447,6 +7447,14 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "kellstone")
                 {
                     XXX.drawImage(kellStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "vorcadian")
+                {
+                    XXX.drawImage(vorcadianFields, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "blueWoods")
+                {
+                    XXX.drawImage(blueVardanWoods, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "nirRoad")
                 {

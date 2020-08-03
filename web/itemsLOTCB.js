@@ -32547,6 +32547,62 @@ function Item(type, x, y)
             this.buyValue = 13; // at max, buy for 13.
             this.sellValue = 13; // at max, sell for 13.
         }
+        else if (this.type == "heartOfTheGlow")
+        {
+            //For All Items
+            this.identity = "Heart of the Glow";
+            this.weight = 1590;
+            this.size = 20;
+            this.intForDes = 0;
+            if (player.getIntelligence() > 50 || player.raceName == "Empiric")
+            {
+                this.smallText = "tiny";
+                this.description = "A large smooth glowing cylindrical piece of metal that exudes radiance. The energy from this metal throbs as if it were a beating heart.";
+                this.intDescription = "This is a large chunk of purified starbright metal. Such substances usually only form near the center of the planet.";
+            }
+            else
+            {
+                this.smallText = false;
+                this.description = "A large smooth glowing totem that exudes radiance.";
+                this.intDescription = "The energy of this totem throbs as if it were a beating heart.";
+            }
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //radioactive in world
+            if (this.X !== false)
+            {
+                if (player.radProof != true)
+                {
+                    var pluyaDista = (X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y);
+                    if (pluyaDista <= (900 * 900))
+                    {
+                        player.radiation += 9000;
+                    }
+                }
+
+                for (var iiiii = 0; iiiii < ArtificialIntelligenceAccess.length; iiiii++)
+                {
+                    if (ArtificialIntelligenceAccess[iiiii].radProof != true)
+                    {
+                        var pluyaDista = (ArtificialIntelligenceAccess[iiiii].X - this.X) * (ArtificialIntelligenceAccess[iiiii].X - this.X) + (ArtificialIntelligenceAccess[iiiii].Y - this.Y) * (ArtificialIntelligenceAccess[iiiii].Y - this.Y);
+                        if (pluyaDista <= (900 * 900))
+                        {
+                            ArtificialIntelligenceAccess[iiiii].radiation += 9000;
+                            ArtificialIntelligenceAccess[iiiii].killNotByPlayer = true;
+                        }
+                    }
+                }
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3333; // at max, buy for 3333.
+            this.sellValue = 3333; // at max, sell for 3333.
+        }
         else if (this.type == "copperOre")
         {
             //For All Items
@@ -64931,6 +64987,16 @@ function Item(type, x, y)
                 lights.push({X:this.X, Y: this.Y, size: 43, extraStops: true, GRD: 0.1, Alpha: 0.5, showMe: false});
             }
         }
+        else if (this.type == "heartOfTheGlow")
+        {
+            XXX.beginPath();
+            XXX.drawImage(slug, 913, 301, 41, 47, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 47 * 1), 41 * 1, 47 * 1);
+            XXX.drawImage(slug, 913, 301, 41, 47, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 0.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 47 * 0.5), 41 * 0.5, 47 * 0.5);
+            if (timeOfDay != "Day" || player.underground == true)
+            {
+                lights.push({X:this.X, Y: this.Y, size: 700, extraStops: true, GRD: 0.1, Alpha: 1, showMe: false});
+            }
+        }
         else if (this.type == "alemanWWI")
         {
             XXX.beginPath();
@@ -73069,6 +73135,12 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1729, 525, 36, 29, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 29 * 1), 36 * 1, 29 * 1);
         }
+        else if (this.type == "heartOfTheGlow")
+        {
+            LXX.beginPath();
+            LXX.drawImage(slug, 913, 301, 41, 47, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 47 * 1), 41 * 1, 47 * 1);
+            LXX.drawImage(slug, 913, 301, 41, 47, this.invX - (1/2 * 41 * 0.5), this.invY - (1/2 * 47 * 0.5), 41 * 0.5, 47 * 0.5);
+        }
         else if (this.type == "alemanWWI")
         {
             LXX.beginPath();
@@ -81181,6 +81253,12 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1729, 525, 36, 29, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 29 * 1), 36 * 1, 29 * 1);
+        }
+        else if (this.type == "heartOfTheGlow")
+        {
+            XXX.beginPath();
+            XXX.drawImage(slug, 913, 301, 41, 47, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 47 * 1), 41 * 1, 47 * 1);
+            XXX.drawImage(slug, 913, 301, 41, 47, this.invX - (1/2 * 41 * 0.5), this.invY - (1/2 * 47 * 0.5), 41 * 0.5, 47 * 0.5);
         }
         else if (this.type == "alemanWWI")
         {

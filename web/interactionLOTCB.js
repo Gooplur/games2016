@@ -1283,6 +1283,49 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Follower of the Radiant Spirit" && player.theCultOfTheRadiantSpiritFaction >= 0 && self.team != "player" && player.cultRank == "priest" || self.ID == "Follower of the Radiant Spirit" && player.theCultOfTheRadiantSpiritFaction >= 0 && self.team != "player"  && player.cultRank == "highPriestess" || self.ID == "Initiate of the Radiant Spirit" && player.theCultOfTheRadiantSpiritFaction >= 0 && self.team != "player"  && player.cultRank == "priest" || self.ID == "Initiate of the Radiant Spirit" && player.theCultOfTheRadiantSpiritFaction >= 0 && self.team != "player" && player.cultRank == "highPriestess" || conversationID[0] == "Cult" && player.theCultOfTheRadiantSpiritFaction >= 0 && self.team != "player"  && player.cultRank == "priest" || conversationID[0] == "Cult" && player.theCultOfTheRadiantSpiritFaction >= 0 && self.team != "player"  && player.cultRank == "highPriestess")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Cult";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[Take Command]", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            self.baseTeam = "player";
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
                     if (self.ID == "Tor Captain" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || self.ID == "Tor Captain" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" || self.ID == "Tor Soldier" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" || self.ID == "Tor Soldier" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || self.ID == "Tor Huskarl" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty"  || self.ID == "Tor Huskarl" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || conversationID[0] == "Tor" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || conversationID[0] == "Tor" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty")
                     {
                         lowBar = "dialogue";
@@ -3111,10 +3154,10 @@ function interaction(me)
                         }
                     }
 
-                    if (self.ID == "Father Dimitry High Priest of the Radiant Spirit" || conversationID[0] == "Dimitry")
+                    if (self.ID == "Northend Captain of the Guard" || conversationID[0] == "Mosley")
                     {
                         lowBar = "dialogue";
-                        conversationID[0] = "Dimitry";
+                        conversationID[0] = "Mosley";
 
                         if (clickReleased)
                         {
@@ -3126,11 +3169,15 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                player.dialogueOptions = [["Good day.", false, "a"], ["What is that you're working on?", false, "b"], ["What's new Maggy?", false, "c"], ["How's business?", false, "d"]];
+                                player.dialogueOptions = [["Good day.", false, "a"], ["Do you have any extra work that I could take on for a bounty?", false, "b"], ["What are all those piked bodies outside for?", false, "c"], ["Who rules Morrow City?", false, "d"]];
 
-                                if (player.raceName == "Vardan" && player.title != "Nobility" && player.title != "Highfolk" && player.title != "Royalty")
+                                if (quests.theCultOfTheRadiantSpiritQuest == true && quests.theCultOfTheRadiantSpiritLaw == true && quests.theCultOfTheRadiantSpiritFled == false && quests.theCultOfTheRadiantSpiritHit != "jailed")
                                 {
-                                    player.dialogueOptions.push(["It is good to see you back safe! We all thought that a beast from the swamp had dragged you away in the night...", false, "e"])
+                                    player.dialogueOptions.unshift(["A merchant from Voza asked me to warn the authorities here in Morrow that the village priest has formed a heretical cult and has taken the town by force.", false, "e"]);
+                                }
+                                else if (quests.theCultOfTheRadiantSpiritQuest == true && quests.theCultOfTheRadiantSpiritHit == true)
+                                {
+                                    player.dialogueOptions.unshift(["Voza has been taken over by a heretical group of armed cultists!", false, "f"]);
                                 }
                             }
                             else if (player.dialogueChoiceMade == true)
@@ -3164,6 +3211,18 @@ function interaction(me)
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0d";
                                         }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
                                     }
                                 }
                             }
@@ -3171,7 +3230,7 @@ function interaction(me)
                         else if (conversationID[1] == "0a")
                         {
                             //text dialogue
-                            setMsg("Oh good day to you too! It's just lovely don't you think?");
+                            setMsg("Good day!");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -3191,7 +3250,7 @@ function interaction(me)
                         else if (conversationID[1] == "0b")
                         {
                             //text dialogue
-                            setMsg("Just cleanin' the furs. You got to clean 'em before you can make 'em into something.");
+                            setMsg("It just so happens that there are some open bounties, but another bounty hunter took the notices we hung up already. If you want work you might consider negotiating with him, he should be at the northend tavern south west of here. He gets stuff done, I wish he would take me up on joining the guard, but he always declines.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -3211,7 +3270,7 @@ function interaction(me)
                         else if (conversationID[1] == "0c")
                         {
                             //text dialogue
-                            setMsg("Oh you know... A bit o' cleaning a bit o' stitchin', mostly cleanin' though.");
+                            setMsg("Oh those, heh, well most of them were rebels... some of them were suspected rebels, and the rest... they were criminals. In Morrow, criminals don't live long. Right, yeah, but you wanted to know what they were for? They're to warn people to not commit treason or commit crimes... it's pretty simple really. Law abiding citizens live, and criminals die.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -3231,7 +3290,1134 @@ function interaction(me)
                         else if (conversationID[1] == "0d")
                         {
                             //text dialogue
-                            setMsg("Business is hard work youngin'. When I was a girl I had four sisters, and we'd all help my ma' with the sowing. Now it's just me. I'll tell you, this work is not as easy as it seems...");
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("I do. Ha ha! As long as you're in Northend you answer to me. If I say that you stole something then you stole something, if I tell my men to cut off your hand, they cut off your hand. Simple as that.");
+                            }
+                            else if (player.title == "Nobility" && player.raceName == "Vardan")
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("Tis your father's city, but as long as you're around here, you're in charge as far as I am concerned. What you say goes, my countess.");
+                                }
+                                else
+                                {
+                                    setMsg("Tis your father's city, but as long as you're around here, you're in charge as far as I am concerned. What you say goes, my count.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Count Vorcaneous rules Morrow. Is that all you wanted to know?");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e" || conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("I'll get some men together and send them to Voza with you.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theCultOfTheRadiantSpiritWar = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                X = 348022.6373098072;
+                                Y = -75772.63686687483;
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Father Dimitry High Priest of the Radiant Spirit" || conversationID[0] == "Dimitry")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Dimitry";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Tell me the ways of the Spirit of Everlasting Radiance.", false, "h"]];
+
+                                if (player.cultRank == "initiate")
+                                {
+                                    if (quests.theCultOfTheRadiantSpiritProven != true)
+                                    {
+                                        player.dialogueOptions.unshift(["What task is it that I must do to prove myself, Your eminent radiance?", false, "i"]);
+
+                                        if (quests.theCultOfTheRadiantSpiritTask == true)
+                                        {
+                                            if (quests.theCultOfTheRadiantSpiritLaw == true)
+                                            {
+                                                player.dialogueOptions.unshift(["When I spoke to her, Anastasiya asked me to warn the soldiers in Morrow about you.", false, "j"]);
+                                            }
+                                            if (quests.theCultOfTheRadiantSpiritMendel == true)
+                                            {
+                                                player.dialogueOptions.unshift(["Mendel the banker has expressed his disapproval of our cause.", false, "k"]);
+                                            }
+                                        }
+                                        else if (quests.theCultOfTheRadiantSpiritTask == 2)
+                                        {
+                                            if (quests.theCultOfTheRadiantSpiritFled == "failed")
+                                            {
+                                                player.dialogueOptions.unshift(["I tried to bring Anastasiya, but she resisted so I killed her and dumped her body in the swamp for the wild beasts to feed upon.", false, "l"]);
+                                            }
+                                            else if (quests.theCultOfTheRadiantSpiritFled == true)
+                                            {
+                                                player.dialogueOptions.unshift(["I tried to bring Anastasiya, but she resisted so I killed her and dumped her body in the swamp for the wild beasts to feed upon.", false, "m"]);
+                                            }
+                                            else if (uniqueChars.anastasiyaLDS == false)
+                                            {
+                                                player.dialogueOptions.unshift(["I killed Anastasiya for her heresy.", false, "m"]);
+                                            }
+                                            else if (quests.theCultOfTheRadiantSpiritArrest == true)
+                                            {
+                                                player.dialogueOptions.unshift(["I have brought Anastasiya to you, your radiant eminence!", false, "n"]);
+                                            }
+                                        }
+                                        else if (quests.theCultOfTheRadiantSpiritTask == 3)
+                                        {
+                                            player.dialogueOptions.unshift(["How can I repent and be forgiven for my rashness, your radiant eminence?", false, "o"]);
+                                            if (player.radiation >= 90)
+                                            {
+                                                player.dialogueOptions.unshift(["I have basked in the radiant glow, and have returned with the light, seeking forgiveness for my misdeeds.", false, "p"]);
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.unshift(["Will you bless me with the radiance of the Everlasting Spirit, your radiant eminence?", false, "q"]);
+                                        player.dialogueOptions.unshift(["How can I serve the Radiant Spirit?", false, "r"]);
+                                        if (player.radiation >= 90)
+                                        {
+                                            player.dialogueOptions.unshift(["I have basked in the radiant glow, and have returned with the light, seeking forgiveness for my misdeeds.", false, "p"]);
+                                        }
+                                        if (quests.theHeartOfTheGlowQuest == true)
+                                        {
+                                            if (have("heartOfTheGlow", 1))
+                                            {
+                                                player.dialogueOptions.unshift(["I have brought the heart of the glow out of the clutches of the void whose minions swarm the lower caverns beneath the source of the glow.", false, "w"]);
+                                            }
+                                            else if (have("xormidRemainsLarge", 1) || have("xormidRemainsSmall", 1))
+                                            {
+                                                if (quests.theHeartOfTheGlowFound == true)
+                                                {
+                                                    player.dialogueOptions.unshift(["I have discovered the heart of the glow, and I have also found the corruption that is trying to corrupt it.", false, "t"]);
+                                                }
+                                                else
+                                                {
+                                                    player.dialogueOptions.unshift(["I have found the corruption beneath the source of the glow.", false, "u"]);
+                                                }
+                                            }
+                                            else if (quests.theHeartOfTheGlowCorruptionFound == true)
+                                            {
+                                                if (quests.theHeartOfTheGlowFound == true)
+                                                {
+                                                    player.dialogueOptions.unshift(["I have found the source of the glow, but I barely escaped the corruption with my life.", false, "v"]);
+                                                }
+                                                else
+                                                {
+                                                    player.dialogueOptions.unshift(["I have found the corruption beneath the source of the glow.", false, "s"]);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (player.cultRank == "follower")
+                                {
+                                    player.dialogueOptions.unshift(["How can I serve the Radiant Spirit?", false, "r"]);
+                                    player.dialogueOptions.unshift(["Will you bless me with the radiance of the Everlasting Spirit, your radiant eminence?", false, "q"]);
+                                    if (player.radiation >= 90)
+                                    {
+                                        player.dialogueOptions.unshift(["I have basked in the radiant glow, and have returned with the light, seeking forgiveness for my misdeeds.", false, "p"]);
+                                    }
+                                }
+                                else if (player.cultRank == "priest")
+                                {
+                                    player.dialogueOptions.unshift(["How can I serve the Radiant Spirit?", false, "r"]);
+                                    player.dialogueOptions.unshift(["Will you bless me with the radiance of the Everlasting Spirit, your radiant eminence?", false, "q"]);
+                                    if (player.radiation >= 90)
+                                    {
+                                        player.dialogueOptions.unshift(["I have basked in the radiant glow, and have returned with the light, seeking forgiveness for my misdeeds.", false, "p"]);
+                                    }
+                                }
+                                else if (player.cultRank == "highPriestess")
+                                {
+                                    player.dialogueOptions.unshift(["My love for you burns like the radiance of the Spirit, my exalted and most radiant husband.", false, "x"]);
+                                    player.dialogueOptions.unshift(["Will you bless me with the radiance of the Everlasting Spirit, your radiant eminence?", false, "q"]);
+                                    if (player.radiation >= 90)
+                                    {
+                                        player.dialogueOptions.unshift(["I have basked in the radiant glow, and have returned with the light, seeking forgiveness for my misdeeds.", false, "p"]);
+                                    }
+                                }
+
+                                if (quests.theCultOfTheRadiantSpiritFled != "failed")
+                                {
+                                    if (player.raceName == "Vardan" && player.title == "Nobility")
+                                    {
+                                        if (quests.theCultOfTheRadiantSpiritOffer == "vamprism")
+                                        {
+                                            player.dialogueOptions.unshift(["You are right about my family, but you are foolish to think that I have not already embraced the ways of plague and blood. Kneel Mortal! Kneel before true power!", false, "f"]);
+                                        }
+                                        else if (quests.theCultOfTheRadiantSpiritOffer == true)
+                                        {
+                                            player.dialogueOptions.unshift(["You are no vessel, you are a heretic! This is treason!", false, "f"]);
+                                            player.dialogueOptions.unshift(["I renounce my family and their evil ways! I wish to join with you and follow the ways of radiance.", false, "g"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.unshift(["I order you to stand down in the name of house Vorcaneous!", false, "f"]);
+                                        }
+                                    }
+
+                                    if (quests.theCultOfTheRadiantSpiritQuest == true && player.cultRank == "none")
+                                    {
+                                        player.dialogueOptions.unshift(["What is all this?", false, "a"]);
+                                    }
+
+                                    if (quests.theCultOfTheRadiantSpiritQuest == true && player.raceName == "Vardan" && player.title != "Nobility" && player.title != "Highfolk" && player.title != "Royalty")
+                                    {
+                                        if (player.cultRank == "none")
+                                        {
+                                            player.dialogueOptions.push(["It is good to see you back safe! We all thought that a beast from the swamp had dragged you away in the night...", false, "e"]);
+                                        }
+
+                                        player.dialogueOptions.push(["How did you come to be here as you are now?", false, "d"]);
+                                    }
+                                    else if (quests.theCultOfTheRadiantSpiritQuest == true && player.cultRank == "none")
+                                    {
+                                        player.dialogueOptions.push(["Who are you? What are you doing here?", false, "c"]);
+                                        player.dialogueOptions.push(["I wish to join with you and devote myself to the ways of light and radiance.", false, "g"]);
+                                    }
+                                    player.dialogueOptions.push(["...", false, "b"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0j";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "k")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0k";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "l")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0l";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "m")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0m";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "n")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0n";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "o")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0o";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "p")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0p";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "q")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0q";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "r")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0r";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "s")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0s";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "t")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0t";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "u")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0u";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "v")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0v";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "w")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0w";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "x")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0x";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("This is the way of the true light, the true glow of the radiant spirit! We have lived in depravity and impurity for far too long. It is time Vardania faced its reckoning and the good step forward to greet the glowing light of the spirit of radiance everlasting!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Stand you there like a dull bovine which cannot tell the grass from the sky! Speak or sit, but do not linger idly, for each man and woman should carry themself with purpose. Sloth is the influence of the void and it slows the work of the light!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (quests.theCultOfTheRadiantSpiritAsked != true)
+                            {
+                                setMsg("I will forgive your lack of reverence this one time since it is clear that you are ignorant of my position, I am the only vessel and high priest of the great and allpowerful radiant spirit! Even royalty should prostrate themself before me, for nobody is above the radiance of the spirit's glow, and I am the spirit's profit. The vessel through which the spirit can commune with the mortal plain as one with its creation to show us the path to glory and glow. Voza was my mortal home, and so it seems appropriate that the glow of goodness take hold first here then spread to the rest of Vardania, then the world after that.");
+                            }
+                            else
+                            {
+                                setMsg("Deaf cretin, sit thyself down and listen to the ways of the everlasting radiant glow! Asking too many questions does not bring you towards the light, only farther, curiosity is a disease of the void when it takes the place of radiance!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theCultOfTheRadiantSpiritAsked = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("When I left Voza I was overwhelmed by the impurity of this world, the war, disease, blight. I asked the Everlasting Spirit for guidance, and as I walked through the sleepy bog I saw a yonder glow that radiated light. It was a sign. I followed the glow into a cave where the walls all around me eminated glorious radiance. In that cave it were as though the spirit were communing with me in person, I could hear the voice of the Spirit as clearly as you hear mine now. The Spirit filled me with renewed hope for the world and filled me with its glow. In that moment the Spirit made me its vessel. I meditated in the cave basking in the light for weeks without eating or drinking. I absorbed the radiance and listened to the will of the Spirit. The spirit told me of the lies that the church has been telling all of us for so long, and the impurity of the land of Vardania which has long been corrupted by demonic forces. The spirit tasked me with spreading the truth and the way to glory and glow to all. I took on a number of apostles who once roamed the swamp as the most corrupt and lost souls. The glow purified those who were worthy, and rid the world of those that were not. These lost men now found became my first apostles. Who have followed the glow of the radiant spirit to Voza to help spread radiance and light and banish the void from Voza's pained and screaming heart.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Bite your insolent tongue, child! Gossip is impure and evil and should be burned away by the glow of radiance. Repent your misdeed, repent!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            if (quests.theCultOfTheRadiantSpiritOffer != true)
+                            {
+                                setMsg("You are mistaken to leverage your bloodline here, my child. No count or countess can match the divine glory of the Radiant Spirit! Bow, child. Be reborn into the service of truth and light... Renounce the horrors and evil that follow the corrupted blood you spawn from! Renounce the ways of plague and blood that your family has invited into these lands and join the radiant light!");
+                            }
+                            else
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("Then you shall be banished to the corruption from whence you came, dark princess of the void!");
+                                }
+                                else
+                                {
+                                    setMsg("Then you shall be banished to the corruption from whence you came, dark prince of the void!");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.theCultOfTheRadiantSpiritOffer == "vamprism" || quests.theCultOfTheRadiantSpiritOffer == true)
+                                {
+                                    if (quests.theCultOfTheRadiantSpiritOffer == "vamprism")
+                                    {
+                                        quests.theCultOfTheRadiantSpiritOffer = "vampire";
+                                        self.disturbedTime = new Date().getTime();
+                                        self.disturbed = true;
+                                    }
+                                    else
+                                    {
+                                        self.disturbedTime = new Date().getTime();
+                                        self.disturbed = true;
+                                    }
+                                }
+
+                                if (player.vamprism == true)
+                                {
+                                    quests.theCultOfTheRadiantSpiritOffer = "vamprism";
+                                }
+                                else
+                                {
+                                    quests.theCultOfTheRadiantSpiritOffer = true;
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            if (player.title == "Nobility" && player.raceName == "Vardan")
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("Do not be so quick to renounce your family name, sweet countess, a name has power that can be used for the light, we can use your position to advance the ways of the Radiant Spirit. As an initiate of the light I ask you to do one thing to prove your soul yearns for radiance.");
+                                }
+                                else
+                                {
+                                    setMsg("Do not be so quick to renounce your family name, a name has power that can be used for the light, we can use your position to advance the ways of the Radiant Spirit. As an initiate of the light I ask you to do one thing to prove your soul truly wishes to embrace the ways of the Spirit of radiance everlasting.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("All are welcome to bask in the glow of truth and radiance. I am pleased that you have chosen to follow the Spirit of Radiance Everlasting. As an initiate of the light I ask you to do one thing to prove your soul truly longs for radiance.");
+                            }
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                player.cultRank = "initiate";
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("The Radiant Spirit is the creator of all that is good and light, and is the creator of humanity. The radiant spirit is all powerful and all good! In order to walk the path of the radiant glow you most act with purity, kindness, and purpose to further the good, and you must extinguish evil wherever you see it arise in whatever way you can. The void is the source of evil, the void is strong but ultimately the Radiant spirit will vanquish it. It is only a matter of time. The only way that mortals can resist being banished for eternity along with the void is to join the light and fight the corruption of the void.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("I suspect that there are some here in this village who are impure and who aim to resist the ways of light and radiance. I now task you with rooting them out. Return to me when you have evidence of their heresy. We will hold them on trial here for their unwavering alignment to the void.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theCultOfTheRadiantSpiritTask = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0j")
+                        {
+                            //text dialogue
+                            setMsg("Anastasiya was a sweet girl, but she has grown accustomed to the ways of the world, and the world is corrupted by the void. Her willingness to sic Vorcaneous soldiers on us is evidence of her allegiance to the void and her heresy against the light. Bring her to me.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+
+                                quests.theCultOfTheRadiantSpiritHit = true;
+                                quests.theCultOfTheRadiantSpiritTask = 2;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0k")
+                        {
+                            //text dialogue
+                            setMsg("Mendel does not concern us at this time. He is a cowardly man who clings to his parent's religion, he acknowledges the light, but his vision is skewed, his understanding is wrong. I believe though, that there is hope for him yet. As an employee of the bank he can be usefull to our cause, leave him be for now.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0l")
+                        {
+                            //text dialogue
+                            setMsg("Is that so... (he looks at you with a stern face) How dare you betray me! And what nerve have you that you would lie to me about it!? A true follower of the Radiance caught her trying to flee! You tried to help cover for her, you probably even warned her about us in the first place! You have failed your trial of faith, you are excommunicated! Die servant of the void!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                self.disturbedTime = new Date().getTime();
+                                self.disturbed = true;
+                                player.cultRank = "none";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0m")
+                        {
+                            //text dialogue
+                            setMsg("Is that so... (he looks at you with a stern face which soon flushes with anger) How dare you act against my orders!? Was I not clear when I said to bring her to me!? You have served the void and her murder is on your hands. You must repent! Repent!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theCultOfTheRadiantSpiritTask = 3;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0n")
+                        {
+                            //text dialogue
+                            if (player.gender == "Female" && player.raceName == "Vardan" && player.title == "Nobility" && player.vamprism != true)
+                            {
+                                setMsg("You have proven yourself as a devotee to the radiance of the Everlasting Spirit's glow. Beautiful countess of Vorcaneous you will best serve the light of the radiant spirit by becoming my wife and the high priestess of the Radiant Spirit. With your political influence the true light will shine across all of Vardania. I will marry us immediately! [High priest Dimitry conducts a brisk marriage as a follower of the Radiant Spirit takes Anastasiya kicking and screaming from the church]");
+                            }
+                            else
+                            {
+                                setMsg("You have proven yourself as a devotee to the radiance of the Everlasting Spirit's glow. And you will now formally become my apostle. Take this robe, and this bone. They are the regalia of this most holy of paths. [A follower of the Radiant Spirit takes Anastasiya kicking and screaming from the church]");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.gender == "Female" && player.raceName == "Vardan" && player.title == "Nobility" && player.vamprism != true)
+                                {
+                                    quests.theCultOfTheRadiantSpiritProven = true;
+                                    quests.theCultOfTheRadiantSpiritHit = "jailed";
+                                    player.cultRank = "highPriestess";
+                                    give("cultistScythe", 1);
+                                    give("cultistHighPriestRobes", 1);
+                                    player.theCultOfTheRadiantSpiritFaction += 375;
+
+                                    quests.theCultOfTheRadiantSpiritCompletionStyle = "cult";
+                                    quests.theCultOfTheRadiantSpiritQuest = "complete";
+
+                                    quests.completeQuests.push({name: "The Cult of the Radiant Spirit", description: "You have rooted out the heretic who would defy the Radiant Spirit and have married the high priest of the cult."});
+
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 100;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 250;
+                                        player.fame += 1;
+                                    }
+                                }
+                                else
+                                {
+                                    quests.theCultOfTheRadiantSpiritProven = true;
+                                    quests.theCultOfTheRadiantSpiritHit = "jailed";
+                                    give("cultistRobes", 1);
+                                    give("longBone", 1);
+                                    player.theCultOfTheRadiantSpiritFaction += 75;
+
+                                    quests.theCultOfTheRadiantSpiritCompletionStyle = "cult";
+                                    quests.theCultOfTheRadiantSpiritQuest = "complete";
+
+                                    quests.completeQuests.push({name: "The Cult of the Radiant Spirit", description: "You have rooted out the heretic who would defy the Radiant Spirit and have proven yourself as a loyal member of the cult."});
+
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 100;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 250;
+                                        player.fame += 1;
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0o")
+                        {
+                            //text dialogue
+                            setMsg("In order to obtain redemption for the corruption you have brought upon yourself, you must purify yourself in the source of the glow. North of voza there is a cave, inside of which you will find the soul of radiance. You will feel its energy the moment you step into the glow. If you are worthy of redemption you will return to me with the radiance of the Spirit, if you are not worthy you will die in the cave and your wicked bones will adorn the holy alter of radiance.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0p")
+                        {
+                            //text dialogue
+                            if (quests.theCultOfTheRadiantSpiritProven == true)
+                            {
+                                setMsg("The Radiant spirit has tested you and you proved worthy of its grace! Your misdeeds are forgiven, rise now reborn in the glow.");
+                            }
+                            else if (quests.theCultOfTheRadiantSpiritTask == 3)
+                            {
+                                setMsg("The Radiant spirit has tested you and you proved worthy of its grace! Your rash and corrupt actions have been purified by radiance. You are now ready to be formally made my apostle. I hereby grant you this robe and this bone, the holy regalia of the radiant path of the glow! Take it and rejoice in the faith of the Radiant Spirit Everlasting!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.theCultOfTheRadiantSpiritProven == true)
+                                {
+                                    player.radiation = 0;
+                                    player.theCultOfTheRadiantSpiritFaction = Math.max(0, player.theCultOfTheRadiantSpiritFaction);
+                                }
+                                else if (quests.theCultOfTheRadiantSpiritTask == 3)
+                                {
+                                    player.radiation = 0;
+                                    quests.theCultOfTheRadiantSpiritProven = true;
+                                    give("cultistRobes", 1);
+                                    give("longBone", 1);
+
+                                    player.theCultOfTheRadiantSpiritFaction = 50;
+
+                                    quests.theCultOfTheRadiantSpiritCompletionStyle = "cult";
+                                    quests.theCultOfTheRadiantSpiritQuest = "complete";
+
+                                    if (quests.theCultOfTheRadiantSpiritFled == true)
+                                    {
+                                        quests.completeQuests.push({name: "The Cult of the Radiant Spirit", description: "You allowed Anastasiya to flee Voza to escape the cult, but you promptly joined their ranks after having decieved the cult's high priest."});
+                                    }
+                                    else
+                                    {
+                                        quests.completeQuests.push({name: "The Cult of the Radiant Spirit", description: "You have killed the heretic who defied the Radiant Spirit, but then atoned for your rash decision. You returned to the high priest who inducted you into the cult."});
+                                    }
+
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 70;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 175;
+                                        player.fame += 1;
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0q")
+                        {
+                            //text dialogue
+                            setMsg("May radiance shine brightly upon you so that the glow may aid you against the darkness!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                player.radiation = 0;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0r")
+                        {
+                            //text dialogue
+                            if (quests.theCultOfTheRadiantSpiritSacrifice != true)
+                            {
+                                setMsg("Indeed, there is one task that you can do. I have sent many apostles to seek the heart of the glow, none so far have returned to me. These men were all worthy champions of the radiant glow. I fear that the void is behind their disappearance. Venture to the deepest depth of the source of the glow and return when you know what demonic forces is threatening the sanctity of the most holy of all places. If you find the heart of the glow while you are down there bring that back to me as well and you will be greatly rewarded for your faithful service.");
+                            }
+                            else
+                            {
+                                setMsg("There are many ways to serve the radiant Spirit. Daily prayers, purifying corruption, and unbreakable faith and obedience for the light of the glow.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.theCultOfTheRadiantSpiritSacrifice != true)
+                                {
+                                    quests.theCultOfTheRadiantSpiritSacrifice = true;
+                                    quests.theHeartOfTheGlowQuest = true;
+                                    quests.activeQuests.push({name: "The Heart of the Glow", description: "Apostles of the radiant spirit have gone missing whenever they ventured into the depths of the source of the glow seeking its heart."});
+                                }
+                                player.radiation = 0;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0s")
+                        {
+                            //text dialogue
+                            setMsg("I cannot simply take you at your word, you are but an initiate! Bring me proof that you reached the depths, otherwise I will be forced to conclude that you have not performed the task.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0t")
+                        {
+                            //text dialogue
+                            setMsg("This black residue is most definitely from minions of the void. I see from the golden glow from your hands that you managed to get to the heart of the glow. You have both discovered the heart, and slain a minion of the void, you are invaluable to the work we are doing for the Radiant Spirit. You have earned the very first priesthood excepting mine that I have ever bestowed in this holy order.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theHeartOfTheGlowCompletionStyle = "both";
+                                quests.theHeartOfTheGlowQuest = "complete";
+
+                                quests.completeQuests.push({name: "The Heart of the Glow", description: "You have discovered the heart of the glow and you have proven that minions of the void lurk in the depths of the source of the glow."});
+                                player.cultRank = "priest";
+                                give("cultistScythe", 1);
+                                player.theCultOfTheRadiantSpiritFaction += 150;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 150;
+                                }
+                                else
+                                {
+                                    player.experience += 250;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0u")
+                        {
+                            //text dialogue
+                            setMsg("This substance is most definitely from a servant of the void, from the energy that it radiates I can tell it has been attempting to consume the divine glow. This is worse than I suspected... I need to rediriect my focus to protecting the heart of the glow from the void.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theHeartOfTheGlowCompletionStyle = "evilProof";
+                                quests.theHeartOfTheGlowQuest = "complete";
+
+                                quests.completeQuests.push({name: "The Heart of the Glow", description: "You brought evidence to the High priest of the Radiant Spirit that the minions of the void dwell beneath the source of the glow."});
+                                player.cultRank = "follower";
+                                give("cultistScythe", 1);
+                                player.theCultOfTheRadiantSpiritFaction += 50;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 50;
+                                }
+                                else
+                                {
+                                    player.experience += 125;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0v")
+                        {
+                            //text dialogue
+                            setMsg("(Father Dimitry looks at the glowing golden residue on your hands from where you touched the heart of the glow) It is a shame that you found the heart but were unable to free it from the minions of this void, but no matter, you were more successful against these dark forces than any who tried before you.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theHeartOfTheGlowCompletionStyle = "heartProof";
+                                quests.theHeartOfTheGlowQuest = "complete";
+
+                                quests.completeQuests.push({name: "The Heart of the Glow", description: "You discovered the heart of the glow, a strange totem deep within the source of the glow."});
+                                player.cultRank = "follower";
+                                give("cultistScythe", 1);
+                                player.theCultOfTheRadiantSpiritFaction += 50;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 120;
+                                }
+                                else
+                                {
+                                    player.magicalExperience += 20;
+                                    player.experience += 140;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0w")
+                        {
+                            //text dialogue
+                            if (player.gender == "Female")
+                            {
+                                setMsg("You are no mere mortal! You are a being of light and radiance!!! You have brought the heart of the glow to me! This is an impossible task yet I see that you have done it!!! I will have this buried under this church immediately! This will be the site of a cathedral of radiance, the new ultimate place of communion between the mortal plain and that of the Spirit! You are a being of pure perfection, I will have you by my side as my wife! We will see this land purified of corruption together! I will marry us at once!");
+                            }
+                            else
+                            {
+                                setMsg("You are no mere mortal! You are a being of light and radiance!!! You have brought the heart of the glow to me! This is an impossible task yet I see that you have done it!!! I will have this buried under this church immediately! This will be the site of a cathedral of radiance, the new ultimate place of communion between the mortal plain and that of the Spirit! I grant thee the very first priesthood excluding my own that has been bestowed in this holy order!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.gender == "Female")
+                                {
+                                    quests.theHeartOfTheGlowCompletionStyle = "heart";
+                                    quests.theHeartOfTheGlowQuest = "complete";
+
+                                    quests.completeQuests.push({name: "The Heart of the Glow", description: "You have impossibly delivered the heart of the glow unto the high priest of the Radiant Spirit."});
+                                    player.cultRank = "highPriestess";
+                                    give("cultistScythe", 1);
+                                    give("cultistHighPriestRobes", 1);
+                                    player.theCultOfTheRadiantSpiritFaction += 800;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                    {
+                                        player.magicalExperience += 1000;
+                                    }
+                                    else
+                                    {
+                                        player.magicalExperience += 250;
+                                        player.experience += 1000;
+                                    }
+                                }
+                                else
+                                {
+                                    quests.theHeartOfTheGlowCompletionStyle = "heart";
+                                    quests.theHeartOfTheGlowQuest = "complete";
+
+                                    quests.completeQuests.push({name: "The Heart of the Glow", description: "You have impossibly delivered the heart of the glow unto the high priest of the Radiant Spirit."});
+                                    player.cultRank = "priest";
+                                    give("cultistScythe", 1);
+                                    player.theCultOfTheRadiantSpiritFaction += 500;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                    {
+                                        player.magicalExperience += 1000;
+                                    }
+                                    else
+                                    {
+                                        player.magicalExperience += 250;
+                                        player.experience += 1000;
+                                    }
+                                }
+                                take("heartOfTheGlow", 1);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0x")
+                        {
+                            //text dialogue
+                            setMsg("Blessed am I to have a wife so devoted to her husband and to the cause of the Everlasting Radiance of the Spirit!");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -12199,6 +13385,7 @@ function interaction(me)
                             {
                                 msgReset();
 
+                                quests.theCultOfTheRadiantSpiritMendel = true;
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
@@ -12302,7 +13489,18 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                if (quests.theCultOfTheRadiantSpiritCompletionStyle == "law")
+                                if (quests.theCultOfTheRadiantSpiritOffer == "vampire")
+                                {
+                                    if (player.matureContentFilter == true)
+                                    {
+                                        player.dialogueOptions = [["Speak of what you have heard to no one or else!", false, "l"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["Speak of what you have heard to know one, for if your lips loosen I will have then cut off from your face, and all those who you love will join the rebels on the pikes out front of Morrow.", false, "l"]];
+                                    }
+                                }
+                                else if (quests.theCultOfTheRadiantSpiritCompletionStyle == "law")
                                 {
                                     player.dialogueOptions = [["How are you?", false, "k"], ["How do you feel about everything that happened?", false, "f"]];
                                 }
@@ -12399,6 +13597,12 @@ function interaction(me)
                                             tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0k";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "l")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0l";
                                         }
                                     }
                                 }
@@ -12668,10 +13872,30 @@ function interaction(me)
                                 self.SC();
                             }
                         }
-                        else if (conversationID[1] == "0k")
+                        else if (conversationID[1] == "0k") //I will tell no one, I swear it! (she shivers in fear)
                         {
                             //text dialogue
                             setMsg("It is hard to trust after what happened, but I am learning that the everlasting spirit tests our faith in the most unexpected of ways. Never again will I trust in any idea that appears to break from the ways the church has long taught me to recognize as good and righteous.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0l")
+                        {
+                            //text dialogue
+                            setMsg("I will tell no one, I swear it!! (she shivers in fear)");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -12994,6 +14218,7 @@ function interaction(me)
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
+                                quests.theCultOfTheRadiantSpiritLaw = true;
                                 self.SC();
                             }
                             else

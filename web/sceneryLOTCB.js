@@ -55501,6 +55501,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (ArtificialIntelligenceAccess[i].DTU(this) < 105 * this.owned)
                     {
                         ArtificialIntelligenceAccess[i].radiation += 0.05;
+                        ArtificialIntelligenceAccess[i].killNotByPlayer = true;
                     }
                 }
             }

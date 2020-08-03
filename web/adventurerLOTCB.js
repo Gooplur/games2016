@@ -43,11 +43,12 @@ function Adventurer()
     this.estolgangFaction = 0; //A deeply rooted criminal organization in Nirwaden.
     this.sylkeemFaction = 0; //A northern tribal people that have historically been contained within the Kingdom of Freynor (this represents their republican faction)
     this.vardanRebelFaction = 0; //The forces aligned to the high count's brother who sought to take the reigns of Vardania for himself
-    this.cultOfTheRadiantSpiritFaction = 0;
+    this.theCultOfTheRadiantSpiritFaction = 0;
     //ranks
     this.theBalgurMercenariesRank = "none"; //mercenary, captain
     this.inquisitionRank = "none"; //initiate, inquisitor, high inquisitor, arch inquisitor
     this.estolRank = "none"; //hooker, courtesan, runner, dealer, killer
+    this.cultRank = "none"; //initiate, follower, high priestess, high priest
     //Skills
     this.constitution = 50; //this determines the amount of health that the player has. (4 health per point) (50 Maximum Constitution)
     this.strength = 50; //this skill adds or subtracts from your physical damage blows based on whether or not it is positive or negative. [+ 5 points of carry weight per level] (50 Maximum Strength)
@@ -674,7 +675,7 @@ function Adventurer()
     this.estolGangPeace = true;
     this.sylkeemPeace = true;
     this.vardanRebelPeace = true;
-    this.cultOfTheRadiantSpiritPeace = true;
+    this.theCultOfTheRadiantSpiritPeace = true;
 
     //utility or extra variables
     this.AdAbility = []; //this is a list of all active abilities held by armours and equipped outfits
@@ -861,6 +862,13 @@ function Adventurer()
                 if (player.radProof != true)
                 {
                     player.radiation += 0.05;
+                }
+            }
+            else if (Inventory[iiiiii][0].type == "heartOfTheGlow") //super radioactive starbright metal
+            {
+                if (player.radProof != true)
+                {
+                    player.radiation += 10;
                 }
             }
             else if (Inventory[iiiiii][0].type == "xormidRemainsLarge" || Inventory[iiiiii][0].type == "xormidRemainsSmall") //radioactive ooze remains
@@ -35712,10 +35720,10 @@ function Adventurer()
 
                     //Cult of the Radiant Spirit
                     //box
-                    if (this.cultOfTheRadiantSpiritPeace)
+                    if (this.theCultOfTheRadiantSpiritPeace)
                     {
                         XXX.beginPath();
-                        if (this.cultOfTheRadiantSpiritFaction <= -50)
+                        if (this.theCultOfTheRadiantSpiritFaction <= -50)
                         {
                             XXX.fillStyle = "crimson";
                         }
@@ -35732,7 +35740,7 @@ function Adventurer()
                     else
                     {
                         XXX.beginPath();
-                        if (this.vardanRebelFaction <= -50)
+                        if (this.theCultOfTheRadiantSpiritFaction <= -50)
                         {
                             XXX.fillStyle = "crimson";
                         }
@@ -35750,18 +35758,18 @@ function Adventurer()
                     XXX.font = "bold 20px Book Antiqua";
                     XXX.fillStyle = "black";
                     XXX.textAlign = "center";
-                    XXX.fillText("Cult of the Radiant Spirit: " + this.cultOfTheRadiantSpiritFaction, 700, 72 + (55 * 4));
+                    XXX.fillText("Cult of the Radiant Spirit: " + this.theCultOfTheRadiantSpiritFaction, 700, 72 + (55 * 4));
                     //clickability
                     if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 4) && mouseY < 80 + (55 * 4) && clicked)
                     {
                         clicked = false;
-                        if (this.cultOfTheRadiantSpiritPeace)
+                        if (this.theCultOfTheRadiantSpiritPeace)
                         {
-                            this.cultOfTheRadiantSpiritPeace = false;
+                            this.theCultOfTheRadiantSpiritPeace = false;
                         }
                         else
                         {
-                            this.cultOfTheRadiantSpiritPeace = true;
+                            this.theCultOfTheRadiantSpiritPeace = true;
                         }
                     }
                 }

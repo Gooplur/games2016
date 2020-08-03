@@ -4483,7 +4483,9 @@ function theLegend()
         gamer: ["Gamer", 0],
         ladya: ["Ladya", 0],
         sahrengril: ["Sahrengril", 0],
-        olezka: ["Olezka", 0]
+        olezka: ["Olezka", 0],
+        mosley: ["Mosley", 0],
+        cult: ["Cult", 0]
     };
 
 //time Tracker Variables
@@ -4804,7 +4806,8 @@ function theLegend()
         kedLDS: true,
         ladyaLDS: true,
         sahrengrilLDS: true,
-        olezkaLDS: true
+        olezkaLDS: true,
+        mosleyLDS: true
     };
 //QUESTS
     quests =
@@ -4934,6 +4937,7 @@ function theLegend()
         //QUEST: Husk of a Heart ----- given by
         huskOfAHeartQuest: false,
         huskOfAHeartCompletionStyle: false,
+
         //QUEST: Magical Dissertation ----- given by Niljada the Sorceress
         magicalDissertationQuest: false,
         magicalDissertationCompletionStyle: false,
@@ -4968,15 +4972,27 @@ function theLegend()
         theDeermenAndTheWendigoSackmanNote: false,
         theDeermenAndTheWendigoTurkey: false,
 
-        //QUEST: The Cult of Radiant Spirit ---- given by discovering Morrow City
+        //QUEST: The Heart of the Glow ---- given by Father Dimitry
+        theHeartOfTheGlowQuest: false,
+        theHeartOfTheGlowCompletionStyle: false,
+        theHeartOfTheGlowFound: false,
+        theHeartOfTheGlowCorruptionFound: false,
+        theHeartOfTheGlowHeart: true,
+
+        //QUEST: The Cult of the Radiant Spirit ---- given by discovering Morrow City after speaking to Tatiana in Voza
         theCultOfTheRadiantSpiritQuest: false,
         theCultOfTheRadiantSpiritCompletionStyle: false,
         theCultOfTheRadiantSpiritCultistsKilled: 0,
         theCultOfTheRadiantSpiritSacrifice: false,
         theCultOfTheRadiantSpiritBishopInformed: false,
         theCultOfTheRadiantSpiritWar: false,
+        theCultOfTheRadiantSpiritAsked: false,
+        theCultOfTheRadiantSpiritOffer: false,
         theCultOfTheRadiantSpiritHit: false,
         theCultOfTheRadiantSpiritLaw: false,
+        theCultOfTheRadiantSpiritProven: false,
+        theCultOfTheRadiantSpiritTask: false,
+        theCultOfTheRadiantSpiritMendel: false,
         theCultOfTheRadiantSpiritFled: false,
         theCultOfTheRadiantSpiritArrest: false,
         theCultOfTheRadiantSpiritStart: false,

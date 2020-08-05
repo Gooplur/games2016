@@ -110,7 +110,7 @@ function findLiterature(itemType)
     }
     else if (itemType == "estolProof")
     {
-        reading = [["^|Lo, the boss needs you to get him this new spell we stole as soon as possible. You can't let anybody else in on our boss's secret, alright. If anybody asks, this scroll is just a secret code, or something like that. Oh and I left you some more kolum powder to sell, keep up the good work!"]];
+        reading = [["^|Lo, the boss needs you to get him this new spell we stole as soon as was possible. You can't let anybody else in on our boss's secret, alright. If anybody asks, this scroll is just a secret code, or something like that. Oh and I left you some more kolum powder to sell, keep up the good work!"]];
         if (quests.theEstolConspiracyQuest == false)
         {
             quests.theEstolConspiracyQuest = true;
@@ -244,5 +244,32 @@ function findLiterature(itemType)
         " been exceptions, it moves deathly quick, and uses its fangs to suck the their victims dry of blood. They tend to be methodical in their selection of prey both in terms of type and quantity," +
         " though their behavior becomes more erratic when they are injured or enraged. They are a common plague upon the Nirwaden Empire, but they usually focus their evil ravenous hunger on the wild horses" +
         " that roam the plains, so they are not so bothersome. However, if horses begin to go missing one or two a night, or if two bite marks are found on their necks, then the culprit is almost surely a chupacabras."]];
+    }
+    else if (itemType == "rebelCaptainsDiary")
+    {
+        reading = [["|^[Many pages are stuck together in dry blood, the text is orderly and organized and has the look of a military man about it]||\n" +
+        "\n" +
+        "\n" +
+        "Many wounded men coming from Hoskovo it was a bloodbath, a whole battalion was wiped out by those Loyalist dogs!\n" +
+        "\n" +
+        "I keep requesting constable Neldai for a strategic withdrawal to strengthen our position but he has refused me he is much more closed off after the defeat in Hoskovo, I will serve my country to my last breath but I fear that his pride will be the death of us all.|\n" +
+        "\n" +
+        "My love has come to runaway with me! She says she would marry me soon and leave her wretched family behind. My heart could burst, I have no ring nor gift to give unto her for now but I know of a jeweler in the capital but I doubt I could afford it on a captains wage...|\n" +
+        "\n" +
+        "We're low on supplies, most of our men are either deserted or wounded.\n" +
+        "Though our scouts have found a strange cave covered in grey terrible fleshy leather, the constable ordered that we clear it for to use it as a position to attack Moct.|\n" +
+        "\n" +
+        "I'll depart in the morn for the moth woods with a small battalion of men, servants, camp followers and my love. I wonder what my mother would think of her, Spirit rest her, I hope she would be proud of what I have become, her little soldier boy... a boy all the way from Bhorstoi down at the moth woods to marry his love true! I wonder what we'll name our children?\n" +
+        "\n"],
+        ["|^We've set up camp by [half the page is illegible due to the smeared dry blood]|\n" +
+        "\n" +
+        "The men have broken through the outer layer with pickaxes a strange musk of death pervaded out from that disgusting hole in the earth.\n" +
+        "We see nothing alive inside and have begun to dig deeper into the cave.|\n" +
+        "\n" +
+        "Many men were lost Four ghouls covered in the strange grey papery material came from the cave and ambushed the lead scouts who entered first, these ghouls had small child ghouls burst from their stomachs who moved at truly frightening speeds. Its the stuff of nightmares I say.\n" +
+        "I don't know wheather to retreat or hold camp, at any second more of those things could come out and kill us.||\n" +
+        "\n" +
+        "\n" +
+        "[The writing abruptly ends]"]];
     }
 }

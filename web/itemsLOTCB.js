@@ -52850,6 +52850,14 @@ function Item(type, x, y)
                 this.concentrationBonus = 1;
                 this.memoryBonus = 0;
             }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+            }
 
             //ability
             this.ability = "antiRad";
@@ -52911,6 +52919,14 @@ function Item(type, x, y)
                 this.willpowerBonus = 0;
                 this.knowledgeBonus = 0;
                 this.concentrationBonus = 4;
+                this.memoryBonus = 0;
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
                 this.memoryBonus = 0;
             }
 
@@ -61139,6 +61155,26 @@ function Item(type, x, y)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
             this.sellValue = 2; // at max, sell for 2.
         }
+        else if (this.type == "rebelCaptainsDiary")
+        {
+            //For All Items
+            this.identity = "Rebel Captain's Diary";
+            this.weight = 0.5;
+            this.size = 12;
+            this.description = "A diary from a captain of a band of Vardanian rebel forces.";
+            this.intForDes = 0;
+            this.intDescription = "A diary soaked in dry blood by a brave man, who faced death time and time again in the fields of battle."
+
+            //Define Utility
+            this.utility = "book";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20; // at max, buy for 20.
+            this.sellValue = 20; // at max, sell for 20.
+        }
         else if (this.type == "inquisitorsBeastManual")
         {
             //For All Items
@@ -61335,6 +61371,27 @@ function Item(type, x, y)
             this.weight = 0.001;
             this.size = 12;
             this.description = "A note with instructions from the estol gang";
+            this.intForDes = 1001;
+            this.intDescription = "";
+
+            //Define Utility
+            this.utility = "note";
+            this.questy = true;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "huskLoveLetter")
+        {
+            //For All Items
+            this.identity = "Yasemin's Love Letter";
+            this.weight = 0.001;
+            this.size = 12;
+            this.description = "A love letter addressed to a man named Sirgei who apparently is a captain of the Vardanian Rebel Forces.";
             this.intForDes = 1001;
             this.intDescription = "";
 
@@ -61622,12 +61679,12 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(troli, 327, 359, 81, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 81 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 81 * 1, 21 * 1);
         }
-        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal" || this.type == "inquisitorsBeastManual")
+        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal" || this.type == "inquisitorsBeastManual" || this.type == "rebelCaptainsDiary")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid")
+        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid" || this.type == "huskLoveLetter")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
@@ -69795,12 +69852,12 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(troli, 327, 359, 81, 21, this.invX - (1/2 * 81 * 1), this.invY - (1/2 * 21 * 1), 81 * 1, 21 * 1);
         }
-        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal" || this.type == "inquisitorsBeastManual")
+        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal" || this.type == "inquisitorsBeastManual" || this.type == "rebelCaptainsDiary")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid")
+        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid" || this.type == "huskLoveLetter")
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
@@ -77914,12 +77971,12 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(troli, 327, 359, 81, 21, this.invX - (1/2 * 81 * 1), this.invY - (1/2 * 21 * 1), 81 * 1, 21 * 1);
         }
-        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal" || this.type == "inquisitorsBeastManual")
+        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal" || this.type == "inquisitorsBeastManual" || this.type == "rebelCaptainsDiary")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid")
+        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid" || this.type == "huskLoveLetter")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);

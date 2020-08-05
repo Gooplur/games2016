@@ -23644,6 +23644,45 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 map = this.information;
             }
         }
+        else if (this.type == "huskExit")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 60;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(sheg, 9, 616, 161, 187, -(1/2 * 161 * 1), -(1/2 * 187 * 1), 161 * 1, 187 * 1);
+            XXX.restore();
+
+            //produces light
+            if (timeOfDay == "Day")
+            {
+                lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.80, showMe: false});
+            }
+            else if (timeOfDay == "Dusk" || timeOfDay == "Dawn")
+            {
+                lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.30, showMe: false});
+            }
+            else
+            {
+                lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.05, showMe: false});
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45;
+
+            //INTERACTION
+            if (this.activate == true && player.druidBear != true)
+            {
+                this.activate = false;
+                X = this.temporary[0];
+                Y = this.temporary[1];
+                map = this.information;
+            }
+        }
         else if (this.type == "trapdoor")
         {
             //TRAITS
@@ -33802,6 +33841,33 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(sheg, -2, 612, 182, 193, -(1/2 * 182 * this.size), -(1/2 * 193 * this.size), 182 * this.size, 193 * this.size);
                 XXX.restore();
             }
+            else if (this.temporary == 9)
+            {
+                this.radius = 55 * this.size;
+                this.summonRate = 14;
+                this.minionsMAX = 8;
+                if (this.playerer < 700)
+                {
+                    this.minionCount();
+                    if (this.minions < this.minionsMAX)
+                    {
+                        if (new Date().getTime() - this.summonTime > this.summonRate * 1000)
+                        {
+                            this.summonTime = new Date().getTime();
+
+                            var huskipoo = new Unit(this.X + Math.cos(this.rotation - 1/2 * Math.PI) * 50, this.Y + Math.sin(this.rotation - 1/2 * Math.PI) * 50, "Huskling", Math.round(Math.random()))
+                            huskipoo.ogHuskling = true;
+                            ArtificialIntelligenceAccess.push(huskipoo);
+                        }
+                    }
+                }
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sheg, 293, -18, 204, 196, -(1/2 * 204 * this.size), -(1/2 * 196 * this.size), 204 * this.size, 196 * this.size);
+                XXX.restore();
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
 
@@ -43418,6 +43484,14 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (this.activate == true && this.phase == 0 || this.activate == true && this.phase == 1)
             {
                 this.activate = false;
+
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-7);
+                    }
+                }
 
                 if (this.phase == 0)
                 {

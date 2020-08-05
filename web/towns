@@ -1,7 +1,8 @@
 Definitions:
+Hub = A city that has at least two biomes nearby and at least three different settlements nearby that have quests (nearby is defined as being within five maps of distance)
 Capital = 4+ maps large
 City = 1+ maps large
-Town = 1/4 - 3/4 maps large
+Town = 1/8 - 3/4 maps large
 Village - must contain at least 9 homes
 Hamlet - can be as few as two homes
 
@@ -19,6 +20,7 @@ TBA Hawik (town) {house: Beulingerr}
 Lethik (town) {house: Beulingerr}
 IP Cranheim (city) {house: Beulingerr}
 Cergadet (town) {house: Thent}
+IP Aster (village) {house: Thent / vassal: Necham}
 IP Rauke (town) {house: Hargrave}
 TBA Lakeshore (village) {house: Thent / vassal: Barnhart}
 
@@ -36,7 +38,7 @@ TBA Norivka (city) {house: Gruzblou}
 
 
 CEPHRITE
-IP Holuim (town) {house: Anset}
+Holuim (town) {house: Anset}
 IP Sairch (town) {house: ?}
 
 KEL

@@ -4485,7 +4485,16 @@ function theLegend()
         sahrengril: ["Sahrengril", 0],
         olezka: ["Olezka", 0],
         mosley: ["Mosley", 0],
-        cult: ["Cult", 0]
+        cult: ["Cult", 0],
+        yaduni: ["Yaduni", 0],
+        dasan: ["Dasan", 0],
+        natsatara: ["Natsatara", 0],
+        saramatara: ["Saramatara", 0],
+        mundi: ["Mundi", 0],
+        lahlira: ["Lahlira", 0],
+        dasab: ["Dasab", 0],
+        elena: ["Elena", 0],
+        maksym2: ["Maksym2", 0]
     };
 
 //time Tracker Variables
@@ -4807,7 +4816,17 @@ function theLegend()
         ladyaLDS: true,
         sahrengrilLDS: true,
         olezkaLDS: true,
-        mosleyLDS: true
+        mosleyLDS: true,
+        alitkaLDS: true,
+        yaduniLDS: true,
+        dasanLDS: true,
+        natsataraLDS: true,
+        saramataraLDS: true,
+        mundiLDS: true,
+        lahliraLDS: true,
+        dasabLDS: true,
+        elenaLDS: true,
+        maksym2LDS: true
     };
 //QUESTS
     quests =
@@ -4934,9 +4953,30 @@ function theLegend()
         hanzChild: false,
         hanzChildName: "Gelna",
 
+        //QUEST: A Duel for Love ----- given by Mundi Mazareen
+        aDuelForLoveQuest: false,
+        aDuelForLoveCompletionStyle: false,
+        aDuelForLoveMundiLetter: false,
+        aDuelForLoveCorrespondence: false,
+        aDuelForLoveMomTold: false,
+        aDuelForLoveMomLetter: false,
+
+        //QUEST: The Mazareens did it ----- given by Dasan Omeqor
+        theMazareensDidItQuest: false,
+        theMazareensDidItCompletionStyle: false,
+        theMazareensDidItTalk: false,
+        theMazareensDidItInterview: false,
+        theMazareensDidItFungus: false,
+        theMazareensDidItPay: 200,
+        theMazareensDidItSlander: false,
+        theMazareensDidItSaraQuestioned: false,
+
         //QUEST: Husk of a Heart ----- given by
         huskOfAHeartQuest: false,
         huskOfAHeartCompletionStyle: false,
+        huskOfAHeartMissing: false,
+        huskOfAHeartPay: 0,
+        huskOfAHeartInfestationStage: 0,
 
         //QUEST: Magical Dissertation ----- given by Niljada the Sorceress
         magicalDissertationQuest: false,

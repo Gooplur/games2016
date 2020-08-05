@@ -3154,6 +3154,1686 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Maksym" || conversationID[0] == "Maksym2")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Maksym2";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName == "Cephrite")
+                                {
+                                    player.dialogueOptions = [];
+                                    player.dialogueOptions.push(["...", false, "e"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["What can you tell me about Boroye?", false, "b"], ["How much property do you own?", false, "d"]];
+                                }
+
+                                if (quests.huskOfAHeartQuest != "complete")
+                                {
+                                    player.dialogueOptions.push(["What do you think about the war?", false, "c"]);
+                                }
+
+                                if (quests.huskOfAHeartQuest == false && quests.huskOfAHeartMissing == true)
+                                {
+                                    player.dialogueOptions.unshift(["Your wife told me that your daughter went missing, I'm so sorry to hear that...", false, "h"]);
+                                    player.dialogueOptions.unshift(["Your wife told me that your daughter went missing. I will find her for you.", false, "f"]);
+                                    player.dialogueOptions.unshift(["Your wife told me that your daughter went missing. I will search for her if you pay me 120 coins.", false, "g"]);
+                                }
+
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            {
+                                setMsg("You've got some nerve showing your face here again after trying to defame our daughter like you did!");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "extort")
+                            {
+                                setMsg("Away with you, fiend, you will get no more money from us!");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            {
+                                setMsg("It is hard to be optimistic when your one and only child has been devoured by woodland beasts. I thank you again for the work you did to find our daughter, but I hope you understand that what our family needs right now is time to mourn.");
+                            }
+                            else
+                            {
+                                setMsg("(He sighs sorrowfully) Good day...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            {
+                                setMsg("I have nothing to say to a liar such as yourself except get out of my house!!");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "extort")
+                            {
+                                setMsg("There are two parts of Boroye, west and east. Decent people like myself and my wife, we live on the west side. Crooks and scoundrels like yourself ought to live on the east side in the slums.");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            {
+                                setMsg("Boroye is an old city, it was once a much smaller city surrounded by villages and hamlets, but as more people moved here those villages grew so large that they were joined onto Boroye altogether as a single city. North street is called north street because it was the northmost extreme of old Boroye. The side of Boroye my family lives in, the west side, this is the old part of town, the original Boroye so to speak. You have to know these things if you are going to own as much property in Boroye as I do.");
+                            }
+                            else
+                            {
+                                setMsg("Boroye is an old city, it was once a much smaller city surrounded by villages and hamlets, but as more people moved here those villages grew so large that they were joined onto Boroye altogether as a single city. North street is called north street because it was the northmost extreme of old Boroye. The side of Boroye my family lives in, the west side, this is the old part of town, the original Boroye so to speak. You have to know these things if you are going to own as much property in Boroye as I do.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("The rebels are criminals and scum who have disavowed the traditions of this glorious kingdom. They wish that the high count's brother would succeed to the throne in place of the rightful high count. They have no respect for the rule of law! This is more than a simple squabble between nobles this is about principles. Those that support the rebels support lawlessness. Just look at the violence and plague and anarchy that has run rampant through much of the kingdom because of the rebels. Boroye has a count that is willing to make hard decisions to make sure that law and order prevail, and behold!! Boroye is one of the only few cities that is not greatly suffering from the plague! In order for Vardania to thrive we must allow it to by remaining loyal and dignified in the face of chaos; we must not break the very fabric of tradition in Vardania if we wish to restore any semblance of order. For only order may tame chaos, and only order can restore this kingdom to peace and prosperity. May the Spirit Everlasting grant the high count's soldiers victory against the rebels!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            {
+                                setMsg("Get out of my house you lying dog!");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "extort")
+                            {
+                                setMsg("Get out of my house you crook!");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            {
+                                setMsg("Besides this house I own five small homes on the west side of Boroye that I lease out to tenants.");
+                            }
+                            else
+                            {
+                                setMsg("Besides this house I own five small homes on the west side of Boroye that I lease out to tenants.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Your kind needs to stop meddling in things that don't concern you! Everyone knows that the rebels wouldn't have lasted this long if it weren't for all of the shipments of steel, and coin that Cephria has been smuggling into Vardania. First Cephria took Blacklake from use long ago, and now your people wish to see us torn asunder by the chaos of infighting!!! For all I know you are a spy, or a smuggler, why else would you go so far away from the slugs you love to eat, you slug eating freak!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Cephrite")
+                            {
+                                setMsg("Though I still don't trust you, I see no harm in allowing you to help us...");
+                            }
+                            else
+                            {
+                                if (player.inquisitionRank != "none" && player.inquisitionRank != "initiate")
+                                {
+                                    setMsg("I am greatful that you are willing to help us for no pay, but I am critical of your intentions, Inquisitor. There is nothing at all supernatural about my daughter's dissapearance...");
+                                }
+                                else if (player.gender == "Female")
+                                {
+                                    setMsg("You are too kind, Good lady! Thank you!");
+                                }
+                                else
+                                {
+                                    setMsg("You are too kind, Good ser! Thank you!");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Cephrite")
+                            {
+                                setMsg("Though I still don't trust you, I see no harm in allowing you to do this for us, but you will not recieve your pay until you return with my daughter safe and sound.");
+                            }
+                            else
+                            {
+                                if (player.inquisitionRank != "none" && player.inquisitionRank != "initiate")
+                                {
+                                    setMsg("I consider myself lucky then, only 120 coins to have an Inquisitor come all the way from the great empire of Nirwaden just at the right time to help bring my daughter back safely to us!");
+                                }
+                                else if (player.getCharisma() >= 12 || player.fame >= 15)
+                                {
+                                    setMsg("Alright, I will pay you 120 coins to find her.");
+                                }
+                                else
+                                {
+                                    setMsg("I've not heard of you before, as far as I know you have never done a hard day's work in your life. I will pay you 100 coins.");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.raceName != "Cephrite")
+                                {
+                                    if (player.getCharisma() >= 12 || player.fame >= 15)
+                                    {
+                                        quests.huskOfAHeartPay = 120;
+                                    }
+                                    else
+                                    {
+                                        quests.huskOfAHeartPay = 100;
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Cephrite")
+                            {
+                                setMsg("Your false sincerity is both unhelpful and unwanted, mind your own business, slug eater!");
+                            }
+                            else
+                            {
+                                if (player.title == "Nobility" || player.title == "Royalty")
+                                {
+                                    if (player.gender == "Female")
+                                    {
+                                        setMsg("Thank you... countess.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("Thank you... good count.");
+                                    }
+                                }
+                                else
+                                {
+                                    if (player.gender == "Female")
+                                    {
+                                        setMsg("We aren't looking for your pity, go cry somewhere else, woman.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("We don't need your pity...");
+                                    }
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Elena" || conversationID[0] == "Elena")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Elena";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["What's your husband like?", false, "b"], ["What do you do?", false, "c"], ["Why are you so despondent?", false, "d"]];
+
+                                if (quests.huskOfAHeartQuest == true)
+                                {
+                                    player.dialogueOptions.unshift(["Do you know anyone who might know your daughter's whereabouts?", false, "e"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            {
+                                setMsg("How can any day be good anymore when my girl is gone and a liar comes into my home!");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "extort")
+                            {
+                                setMsg("I'll speak not to scoundrels.");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            {
+                                setMsg("If only it could be so...");
+                            }
+                            else
+                            {
+                                setMsg("Good day. (she replies with meloncholy in her voice)");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            {
+                                setMsg("Leave me alone, your lies have causes me enough heartache as it is!");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "extort")
+                            {
+                                setMsg("I'll speak not to scoundrels.");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            {
+                                setMsg("(In a hushed voice) In truth my husband and I are growing farther and farther apart. He drinks often to drown the pain of losing our daughter, but when he returns home he beats me and blames me for not raising her to be more careful... Sometimes I wonder if it really is my fault that she was careless enough to go out into the woods alone like she did...");
+                            }
+                            else
+                            {
+                                setMsg("My husband? Why, he is the most wonderful man I have ever known. (Her voice quivers as if she knew she were lying to herself) He may be heavy handed at times, and sometimes he has a temper, but we are both going through very hard times...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            {
+                                setMsg("I have no interest in talking about myself with a liar!");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "extort")
+                            {
+                                setMsg("I have no interest in talking about myself with a scoundrel that would lie about my family for financial gain!");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            {
+                                setMsg("My husband manages a number of small properties around Boroye. I mostly just keep the house clean and cook for him when he gets back each day after maintaining our properties.");
+                            }
+                            else
+                            {
+                                setMsg("My husband manages a number of small properties around Boroye. I mostly just keep the house clean and cook for him when he gets back each day after maintaining our properties.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            {
+                                setMsg("Why?! You lie about my missing daughter in attempt to besmirch her honor and then stoop so low as to inquire why I am in low spirits!? You are both an idiot and a liar!");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "extort")
+                            {
+                                setMsg("Leave me be!!");
+                            }
+                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            {
+                                setMsg("My daughter is dead, savaged by beasts. No mother should know the pain that I suffer. My Yasemin was a sweet girl, she did not deserve this!! (she cries deeply)");
+                            }
+                            else
+                            {
+                                setMsg("My daughter is missing and I don't know if I will ever see her again. I hope that she is safe... (she chokes back tears) I hope she is still alive.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                quests.huskOfAHeartMissing = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("I must be a terrible mother to say this, but I do not know any of my daughters friends. (she sobs as she continues) All I know is that she often went to mass in the cathedral almost every day. My Yasemin was a good, pious, woman...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Saramatara Omeqor" || conversationID[0] == "Saramatara")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Saramatara";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["How are you?", false, "a"], ["Tell me about your family.", false, "b"], ["What do you think about the house of Mazareen?", false, "c"]];
+
+                                if (quests.theMazareensDidItSlander == true && quests.theMazareensDidItSaraQuestioned == false)
+                                {
+                                    player.dialogueOptions(["Is it true that you married into the Omeqor family when you were only a child?", false, "e"]);
+                                }
+
+                                if (quests.aDuelForLoveCorrespondence == true && quests.aDuelForLoveMomTold == false && quests.aDuelForLoveQuest == true)
+                                {
+                                    player.dialogueOptions.push(["Are you aware that your daughter, Natsatara, is writing love letters to Mundi, the Mazareen boy?", false, "d"]);
+                                }
+
+                                if (quests.aDuelForLoveQuest == true && have("mundiLoveLetter", 1))
+                                {
+                                    player.dialogueOptions.push(["The Mazareen boy, Mundi, wrote this love letter for your daughter... [give her the letter]", false, "h"]);
+                                }
+
+                                if (quests.aDuelForLoveMomTold == true && quests.aDuelForLoveQuest == true)
+                                {
+                                    if (have("natsataraLoveLetter", 1))
+                                    {
+                                        player.dialogueOptions.unshift(["(lie) I don't have it.", false, "g"]);
+                                        player.dialogueOptions.unshift(["Here is the letter. [hand Natsatara's letter to her mother]", false, "f"]);
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.unshift(["I don't have it.", false, "g"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (uniqueChars.dasabLDS == true && uniqueChars.natsataraLDS == true)
+                            {
+                                setMsg("It is a lovely day, and I feel elated to have such a wonderful family and such a wonderful life!");
+                            }
+                            else if (uniqueChars.dasabLDS != true || uniqueChars.natsataraLDS != true)
+                            {
+                                setMsg("My poor child... I will never feel happiness again.");
+                            }
+                            else if (uniqueChars.dasabLDS != true && uniqueChars.natsataraLDS != true)
+                            {
+                                setMsg("My poor children... I will never feel happiness again. What a cruel world this is that deprives a mother of both her children!!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (uniqueChars.dasabLDS != true || uniqueChars.natsataraLDS != true)
+                            {
+                                setMsg("Leave me alone, can't you see that I'm in mourning!? (she weeps bitter tears)");
+                            }
+                            else
+                            {
+                                setMsg("My boy Dasab has grown to be a handsome young man, and is adept with a rapier as every man of the Cephrian aristocracy should be. I admit he could be more focused on his magical studies, but he is proving to be very successful regardless. As it is he spends much of his time charming ladies with his charismatic personality. I am so proud of him! As for my daughter Natsatara, she is a studious and artistic young woman who spends much of her time reading classics by the greatest writers of Cephria and others from across the continent. Her poetry is captivating, and she has a firm command of decorative magics. I am happy to have such a wonderful and talented daughter!");
+                            }
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("The Mazareens are nothing but trouble. They plot against this family and spread malicious and unfounded rumors about my husband and I. Life would be so much simpler if they got the comeupance they deserved. Slander is ordinarily punishable by law, so I see no reason why the Mazareens should be exempt from this...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Natsatara is young and naive, she is too naive to see that this boy is taking advantage of her. I am glad you came to me with this information. Do you have the letter with you? Hand it over to me please.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                quests.aDuelForLoveMomTold = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("I assure you it is completely normal for wealthy families such as ours to arrange marriages from an early age. I was initially unsure about the marriage as my beloved Dasan was much older than me, but I trusted my parents judgement and married him as they wished me to do. It took me some time to grow close to him, as is often the case in any arranged marriage, but now our bond is stronger than ever. He is my only true love and I am his. This is the way things were meant to be.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theMazareensDidItSaraQuestioned = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("Thank you! You have no idea how much trouble you have just helped my daughter avoid by involving herself with the Mazareens.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("natsataraLoveLetter", 1)
+                                quests.aDuelForLoveCompletionStyle = "mother";
+                                quests.aDuelForLoveQuest = "complete";
+
+                                quests.completeQuests.push({name: "A Duel for Love", description: "You gave Natsatara's love letter for Mundi to her mother instead of delivering it to him."});
+
+                                player.cephriteFaction += 10;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 25;
+                                }
+                                else
+                                {
+                                    player.experience += 50;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("That's a shame. If anything important pertaining to my daughter does come into your possession I ask that you bring it straight to me.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("Thank you! The last thing my daughter needs is to get involved with the Mazareens! You have done us a great service, and I feel inclined to gift you for your thoughtfulness.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("mundiLoveLetter", 1);
+                                quests.aDuelForLoveCompletionStyle = "mom";
+                                quests.aDuelForLoveQuest = "complete";
+
+                                quests.completeQuests.push({name: "A Duel for Love", description: "You gave Mundi's love letter for Natsatara to her mother instead of delivering it to her."});
+
+                                player.cephriteFaction += 10;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 25;
+                                }
+                                else
+                                {
+                                    player.experience += 50;
+                                }
+                                give("coins", 80);
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Yaduni Mazareen" || conversationID[0] == "Yuduni")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Yuduni";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["...", false, "b"], ["Tell me about the house of Mazareen.", false, "c"], ["Why do you hate the house of Omeqor?", false, "d"]];
+                                if (quests.theMazareensDidItQuest == true && quests.theMazareensDidItInterview == false)
+                                {
+                                    player.dialogueOptions.unshift(["Tell me true, did you sabotage the pyromoth silk operation of Dasan Omeqor?", false, "e"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                setMsg("Good day. I am honoured to have someone of your stature visite my illustrious home, do feel free to settle in and make yourself comfortable.");
+                            }
+                            else if (player.title == "Highfolk")
+                            {
+                                setMsg("Good day and welcome to my home. Feel free to admire the beauty of this illustrious estate, but please do refrain from touching anything.");
+                            }
+                            else
+                            {
+                                setMsg("Good day, Visitor. Welcome to my home... if anything goes missing I will make sure the soldiers deprive you of your filthy commonblood hands.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (quests.theMazareensDidItInterview == true)
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("I noticed that you have been associating yourself with Dasan Omeqor, let you be warned that he is a vile and despicable man, his entire family are spawned from depraved and lecherous fiends. It is in their blood. Be you careful that he does not take a fancy to you in a dishonorable way. For your own sake do not allow that man to touch you, his lecherous desires know no bounds.");
+                                }
+                                else
+                                {
+                                    setMsg("I noticed that you have been associating yourself with Dasan Omeqor, let you be warned that he is a vile and despicable man, his entire family are spawned from depraved and lecherous fiends. It is in their blood. Associating one's self with such an ill hearted man can be harmful to a man's reputation.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("I'll have you know that the Omeqors all ought to be set ablaze for their misdeeds. I normally disaprove of execution, but for a family so cruel and vile as the Omeqors, I feel inclined to make an exception in my belief this once. Out of all of the Omeqors the worst by far is Dasan, he is a lecherous fiend, and rumor has it that he took a giraffe from behind when he was out hunting because he couldn't handle being without his wife's embrace for a single day. He is a filthy disgusting man, and it is disturbing to the core that he is allowed to hold the wealth and stature that he holds. Absolutely disturbing...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Ours is a great and powerful house, I would claim us to be the greatest in Holuim if not for the most illustrious ruling House of Anset. The Anset family is incomparable to any other family in these lands, they are an ancient bloodline that towers before us all with their brilliance and ingenuity. The house of Mazareen is greater than all others besides it though, and this household holds many properties and business ventures across these Anset lands. I am proud to direct this family alongside my wise and beautiful wife Lahlira.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (player.matureContentFilter == true)
+                            {
+                                setMsg("Our families bloods have boiled against one another for generations. It all began when the Omeqor's destroyed the virtue of my great grandmother and then demanded that they be married immediately.  My great great grandfather did what was respectable and proper to do and instead of conceeding with the Omeqors' depraved and power-hungry demands, he challenged the boy to a duel by blade. The Omeqor boy lost, of course, since he had put little heed into the honorable craft of swordsmanship, or magics. That defiling of my great grandmother was just the start of a long line of vile, twisted, wicked and lecherous acts that that demented family has performed over the many years they have lived undeservingly alongside us here in Holuim. Dasan was married to his wife Saramatara when she was too young to be properly wed, and both her and her family consented to the marriage because they were power hungry lunatics seeking to marry into higher wealth. All of the Omeqors are sick and wretched lechers. Spawned from a unsatiable craving for illbegotten wealth and power.");
+                            }
+                            else
+                            {
+                                setMsg("Our families bloods have boiled against one another for generations. It all began when the Omeqors raped my great grandmother and then demanded that since her virtue had been taken that they be married immediately. My great great grandfather did what was respectable and proper to do and instead of conceeding with the Omeqors' depraved and power-hungry demands, he challenged the boy to a duel by blade. The Omeqor boy lost, of course, since he had put little heed into the honorable craft of swordsmanship, or magics. That defiling of my great grandmother was just the start of a long line of vile, twisted, wicked and lecherous acts that that demented family has performed over the many years they have lived undeservingly alongside us here in Holuim. Dasan was married to his wife Saramatara when she was but 10 years of age, and both her and her family consented to the marriage because they were power hungry lunatics seeking to marry into higher wealth. All of the Omeqors are sick and wretched lechers. Spawned from a unsatiable craving for illbegotten wealth and power.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theMazareensDidItSlander = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("I assure you, I did not even know he had a pyromoth silk operation, I am far more focused on my own investments. I do not linger in the affairs of that disgusting lecherous family, nor do I wish to.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theMazareensDidItInterview = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Dasan Omeqor" || conversationID[0] == "Dasan")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Dasan";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["...", false, "b"], ["Tell me about the house of Omeqor.", false, "c"], ["Why do you hate the Mazareens?", false, "d"]];
+
+                                if (quests.theMazareensDidItTalk == true && quests.theMazareensDidItQuest == false )
+                                {
+                                    player.dialogueOptions.unshift(["You mentioned a pyromoth silk operation that was sabotaged?", false, "e"]);
+                                }
+
+                                if (quests.theMazareensDidItTalk == true && quests.theMazareensDidItQuest == false && quests.theMazareensDidItFungus == true)
+                                {
+                                    player.dialogueOptions.unshift(["I passed through a pyromoth silking village when I was in the jungle a little bit ago. It was completely overrun by venandi.", false, "i"]);
+                                }
+
+                                if (quests.theMazareensDidItInterview == true && quests.theMazareensDidItQuest == true)
+                                {
+                                    player.dialogueOptions.unshift(["Yaduni Mazareen said that he did not have anything to do with sabotaging your silk operation.", false, "f"]);
+                                }
+
+                                if (quests.theMazareensDidItFungus == true && quests.theMazareensDidItQuest == true)
+                                {
+                                    player.dialogueOptions.unshift(["I went to your pyromoth silking village and the entire place was infected by cerebrus mushrooms and mycelium, even the workers!", false, "g"]);
+                                }
+
+                                if (quests.theMazareensDidItSaraQuestioned == true)
+                                {
+                                    player.dialogueOptions.unshift(["I overheard you asking my wife some disturbing questions pertaining to our marriage. This can only be the work of the Mazareens speaking ill of us to you. I assure you that this slanderous rumor lacks credibility, and I urge you to keep your distance from that wicked Yaduni Mazareen, his lying tongue spreads the most foul gossip... those that lend him their ear only subject themselves to the mad ravings of his depraved and twisted mind.", false, "j"]);
+                                }
+
+                                if (quests.theMazareensDidItQuest == true)
+                                {
+                                    player.dialogueOptions.unshift(["I would like to buy protective jungle armour to protect me on this venture. (costs 500 coins)", false, "h"]);
+                                }
+
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0j";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Good day. Welcome to my home!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (quests.theMazareensDidItTalk == false)
+                            {
+                                setMsg("Just so you know the Mazareens are terrible wicked people who should all be decapitated... Especially Yaduni Mazareen, he is the worst of them all. I swear, my pyromoth colony venture would have worked flawlessly if it weren't for him. I haven't heard from the plantation silkers in ages now. He probably paid someone to sabotage them just to ruin me. Knowing him, that's probably what happened. Those wicked Mazareens never stop plotting... any decent person can see that they should all be executed!");
+                            }
+                            else
+                            {
+                                setMsg("Just so you know the Mazareens are terrible wicked people who should all be decapitated... Especially Yaduni Mazareen, he is the worst of them all... Those wicked Mazareens never stop plotting... any decent person can see that they should all be executed!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theMazareensDidItTalk = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("We are the second greatest house in Holuim, second only to the House of Anset which rules these lands. We have honed our magical knowledge and our skills with a rapier to a mastercraft, and we have many successful business ventures and properties across these lands.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (quests.theMazareensDidItTalk == false)
+                            {
+                                setMsg("The Mazareens descend from dog-faced murders, my great grandfather fancied a Mazareen, you see, but when he sought to marry her, her father, instead of welcoming him, challenged him to a duel and killed him. Ever since then the Mazareens have grown more hateful and wicked. They bear their teeth at us when they see us in the street, and they speak ill of our family. On top of all of that it is likely that they sabotaged one of my crucial business operations in the pyromoth silk trade.");
+                            }
+                            else
+                            {
+                                setMsg("The Mazareens descend from dog-faced murders, my great grandfather fancied a Mazareen, you see, but when he sought to marry her, her father, instead of welcoming him, challenged him to a duel and killed him. Ever since then the Mazareens have grown more hateful and wicked. They bear their teeth at us when they see us in the street, and they speak ill of our family.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theMazareensDidItTalk = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Indeed I did! As you likely know, pyromoth silk is completely fireproof, so it is a highly lucrative business to retrieve the silk web of pyromoths then boil and weave into silk to make robes and other fireproof creations... I invested a significant sum of money to make sure this venture ran smoothly, and it did, for a number of years, but recently I haven't recieved a single shipment from the silker colony my company established. Not a single shipment, not even a messenger  has made their way to report the situation. This dispicable situation can only be the work of one man, Yaduni Mazareen! [He shudders with disgust as he pronounces the name.] I will pay you 200 coins to find out what happened to my silker colony.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("Well he is clearly lying!! That wicked man could stab you in the eye and claim he did nothing, he's a scoundrel and a lyer! I am not paying you to find out who sabotaged me, the mazareens clearly did it; I am paying you to find out what happened to my pyromoth silk operation. I want to know what the mazareens did to sabotage me, because the mystery of it all is killing me! I must uncover this Mazareen plot and you must help me!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("So you're saying that Yaduni Mazareen found a way to infect my silkers with brain infecting fungus. That is devious indeed... I knew that this had to be the work of the Mazareens, for only a family so wicked as theirs could devise such an elaborate and cruel scheme to ruin my fullproof business venture. Thank you for your good work helping me to uncover this Mazareen plot! Here is the money I owe you...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theMazareensDidItCompletionStyle = "theMazareensDidIt";
+                                quests.theMazareensDidItQuest = "complete";
+
+                                quests.completeQuests.push({name: "The Mazareens Did It", description: "You discovered that the pyromoth silking operation was infiltrated by a brain infecting fungus that took over everyone there."});
+
+                                player.cephriteFaction += 25;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 225;
+                                }
+                                else
+                                {
+                                    player.experience += 350;
+                                    player.fame += 1;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            if (have("coins", 500))
+                            {
+                                setMsg("Very wise of you to buy protective equipment before venturing into the jungle, spores are very dangerous to breath in. Very dangerous.");
+                            }
+                            else
+                            {
+                                setMsg("Sorry, but I didn't acquire my wealth by giving things away for less than their value... well in truth I inherited the vast majority of my wealth... but that is not the point. The point is that I will not part with it for any less than 500 coins. Though I do say, the price is well worth not being asfixiated or poisoned by deadly spores in the jungle.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (have("coins", 500))
+                                {
+                                    take("coins", 500);
+                                    give("jungleHunterOutfit", 1);
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("My my, that Yuduni Mazareen is indeed devious to have devised such an elaborate scheme to sabotage me and make it look like it was a natural venandi outbreak. You see, my workers all wore protective jungle armour, venandi couldn't possibly break through that. This was clearly the work of the Mazareens! Thank you for telling me this, you have really made my day!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theMazareensDidItQuest = "broken";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0j")
+                        {
+                            //text dialogue
+                            setMsg("I overheard you asking my wife some disturbing questions pertaining to our marriage. This can only be the work of the Mazareens speaking ill of us to you. I assure you that this slanderous rumor lacks credibility, and I urge you to keep your distance from that wicked Yaduni Mazareen, his lying tongue spreads the most foul gossip... those that lend him their ear only subject themselves to the mad ravings of his depraved and twisted mind.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                quests.theMazareensDidItSaraQuestioned = "over";
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I'll do it.", false, "a"], ["I will do it for 250.", false, "b"], ["I will do it for 300.", false, "c"], ["I will do it for 200 if you give me the necessary equipment to safely traverse the jungle as well.", false, "d"], ["Why do you need me to do this if you already know that Yaduni Mazareen was behind it?", false, "e"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("Excellent, the silker colony is in the jungle north of here, my company cleared a thick clearing all the way to the heart of one of the largest of the pyromoth nesting places, so the path should be fairly straight forward to get there. Just keep heading north until you see buildings. I recommend for any daytime ventures in the jungle that you equip yourself with jungle hunter armour. I can sell you some if you would like to venture through the jungle during the day when the blue fungal spores choke the air...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theMazareensDidItQuest = true;
+                                quests.activeQuests.push({name: "The Mazareens Did It", description: "According to Dasan Omeqor, Yaduni Mazareen is responsible for sabotaging his pyro moth silk operation in the jungle north of Holuim."});
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            if (player.getCharisma() >= 6 || player.fame >= 14)
+                            {
+                                setMsg("Hmm you drive a hard bargain, but I accept. 250 it is! The silker colony is in the jungle north of here, my company cleared a thick clearing all the way to the heart of one of the largest of the pyromoth nesting places, so the path should be fairly straight forward to get there. Just keep heading north until you see buildings. I recommend for any daytime ventures in the jungle that you equip yourself with jungle hunter armour. I can sell you some if you would like to venture through the jungle during the day when the blue fungal spores choke the air...");
+                            }
+                            else
+                            {
+                                setMsg("I am sure I can find many better prepared than yourself to take on such a job. 200 or no deal.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.getCharisma() >= 6 || player.fame >= 14)
+                                {
+                                    quests.theMazareensDidItPay = 250;
+                                    quests.theMazareensDidItQuest = true;
+                                    quests.activeQuests.push({name: "The Mazareens Did It", description: "According to Dasan Omeqor, Yaduni Mazareen is responsible for sabotaging his pyro moth silk operation in the jungle north of Holuim."});
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            if (player.getCharisma() >= 16 || player.fame >= 21)
+                            {
+                                setMsg("Hmm you drive a hard bargain, but I accept. 300 it is! The silker colony is in the jungle north of here, my company cleared a thick clearing all the way to the heart of one of the largest of the pyromoth nesting places, so the path should be fairly straight forward to get there. Just keep heading north until you see buildings. I recommend for any daytime ventures in the jungle that you equip yourself with jungle hunter armour. I can sell you some if you would like to venture through the jungle during the day when the blue fungal spores choke the air...");
+                            }
+                            else
+                            {
+                                setMsg("I am sure I can find many better prepared than yourself to take on such a job. 200 or no deal.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.getCharisma() >= 16 || player.fame >= 21)
+                                {
+                                    quests.theMazareensDidItPay = 300;
+                                    quests.theMazareensDidItQuest = true;
+                                    quests.activeQuests.push({name: "The Mazareens Did It", description: "According to Dasan Omeqor, Yaduni Mazareen is responsible for sabotaging his pyro moth silk operation in the jungle north of Holuim."});
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            //text dialogue
+                            if (player.getCharisma() >= 20 || player.fame >= 30)
+                            {
+                                setMsg("Hmm you drive a hard bargain, but I accept. 200 coins and the equipment you will need. Now let's discuss your job... The silker colony is in the jungle north of here, my company cleared a thick clearing all the way to the heart of one of the largest of the pyromoth nesting places, so the path should be fairly straight forward to get there. Just keep heading north until you see buildings. This jungle outfit made from a zaf beetles various bits can filter out the deadly fungal particulates that oft' float around the jungle air. Good luck!");
+                            }
+                            else
+                            {
+                                setMsg("I am sure I can find many better prepared than yourself to take on such a job. 200 coins without any equipment or no deal.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.getCharisma() >= 20 || player.fame >= 30)
+                                {
+                                    give("jungleHunterOutfit", 1)
+                                    quests.theMazareensDidItQuest = true;
+                                    quests.activeQuests.push({name: "The Mazareens Did It", description: "According to Dasan Omeqor, Yaduni Mazareen is responsible for sabotaging his pyro moth silk operation in the jungle north of Holuim."});
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1e")
+                        {
+                            //text dialogue
+                            setMsg("Knowing who was behind it is only half of the puzzle, if I am to avoid being sabotaged again in the future I need to know how he did it.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Northend Captain of the Guard" || conversationID[0] == "Mosley")
                     {
                         lowBar = "dialogue";
@@ -3491,7 +5171,10 @@ function interaction(me)
                                         else if (quests.theCultOfTheRadiantSpiritOffer == true)
                                         {
                                             player.dialogueOptions.unshift(["You are no vessel, you are a heretic! This is treason!", false, "f"]);
-                                            player.dialogueOptions.unshift(["I renounce my family and their evil ways! I wish to join with you and follow the ways of radiance.", false, "g"]);
+                                            if (player.cultRank == "none")
+                                            {
+                                                player.dialogueOptions.unshift(["I renounce my family and their evil ways! I wish to join with you and follow the ways of radiance.", false, "g"]);
+                                            }
                                         }
                                         else
                                         {
@@ -3512,6 +5195,11 @@ function interaction(me)
                                         }
 
                                         player.dialogueOptions.push(["How did you come to be here as you are now?", false, "d"]);
+
+                                        if (player.cultRank == "none")
+                                        {
+                                            player.dialogueOptions.push(["I wish to join with you and devote myself to the ways of light and radiance.", false, "g"]);
+                                        }
                                     }
                                     else if (quests.theCultOfTheRadiantSpiritQuest == true && player.cultRank == "none")
                                     {
@@ -3878,7 +5566,7 @@ function interaction(me)
                         else if (conversationID[1] == "0h")
                         {
                             //text dialogue
-                            setMsg("The Radiant Spirit is the creator of all that is good and light, and is the creator of humanity. The radiant spirit is all powerful and all good! In order to walk the path of the radiant glow you most act with purity, kindness, and purpose to further the good, and you must extinguish evil wherever you see it arise in whatever way you can. The void is the source of evil, the void is strong but ultimately the Radiant spirit will vanquish it. It is only a matter of time. The only way that mortals can resist being banished for eternity along with the void is to join the light and fight the corruption of the void.");
+                            setMsg("The Radiant Spirit is the creator of all that is good and light, and is the creator of humanity. The radiant spirit is all powerful and all good! In order to walk the path of the radiant glow you must act with purity, kindness, and purpose to further the good, and you must extinguish evil wherever you see it arise in whatever way you can. The void is the source of evil, the void is strong but ultimately the Radiant spirit will vanquish it. It is only a matter of time. The only way that mortals can resist being banished for eternity along with the void is to join the light and fight the corruption of the void.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -13947,14 +15635,17 @@ function interaction(me)
                                     }
                                     else if (quests.theCultOfTheRadiantSpiritQuest == true && quests.theCultOfTheRadiantSpiritLaw == true && quests.theCultOfTheRadiantSpiritWar != true)
                                     {
-                                        player.dialogueOptions.unshift(["Who did you need me to do again?", false, "i"]);
+                                        player.dialogueOptions.unshift(["What did you need me to do again?", false, "i"]);
                                     }
 
-                                    if (quests.theCultOfTheRadiantSpiritHit == true)
+                                    if (quests.theCultOfTheRadiantSpiritHit == true && quests.theCultOfTheRadiantSpiritQuest == true)
                                     {
                                         player.dialogueOptions.unshift(["If you want to live you need to leave Voza immediately! Father Dimitry asked me to bring you to him to answer for a charge of heresy.", false, "f"]);
-                                        player.dialogueOptions.unshift(["You will die for your heresy, heretic!", false, "h"]);
-                                        player.dialogueOptions.unshift(["You are hearby arrested for heresy against the radiant spirit! [take her to High priest Dimitry]", false, "g"]);
+                                        if (player.theCultOfTheRadiantSpiritFaction > -50)
+                                        {
+                                            player.dialogueOptions.unshift(["You will die for your heresy, heretic!", false, "h"]);
+                                            player.dialogueOptions.unshift(["You are hearby arrested for heresy against the radiant spirit! [take her to High priest Dimitry]", false, "g"]);
+                                        }
                                     }
                                 }
                             }
@@ -14074,7 +15765,7 @@ function interaction(me)
                             }
                             else
                             {
-                                setMsg("The word is that father Dimitry was acting against the church and that he was secretly a heretic this whole time... I am glad that I am not the only one who recognizes this now. Thank you for helping the true church to replace him! Now we might experience the faith is it was meant to be, rather than being drawn toward the void's evil ways by a madman mascarading as a priest.");
+                                setMsg("The word is that father Dimitry was acting against the church and that he was secretly a heretic this whole time... I am glad that I am not the only one who recognizes this now. Thank you for helping the true church to replace him! Now we might experience the faith as it was meant to be, rather than being drawn toward the void's evil ways by a madman mascarading as a priest.");
                             }
 
                             //on ended text dialogue

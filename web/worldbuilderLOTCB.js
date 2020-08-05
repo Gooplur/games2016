@@ -4227,6 +4227,42 @@ function worldBuilder()
             outlineBuilder( 34, 34, "greenGrass", -20, 218);
             outlineBuilder( 34, 1, "stonePath", -20, 218);
         }
+        //mapS7W24 //Aster Village
+        if (Y > -75331 && Y < -64538 && X < 252559 && X > 240873) //X-24
+        {
+            elevation = 0;
+            region = "s7w24";
+            campout = true;
+            outlineBuilder(34, 34, "outline", -836, 218); //mistywoods
+
+            outlineBuilder(1, 3, "greenGrass", -836, 218); //hotGrass
+            outlineBuilder(2, 2, "greenGrass", -833, 218);
+            outlineBuilder(5, 3, "greenGrass", -831, 218);
+            outlineBuilder(6, 2, "greenGrass", -828, 218);
+            outlineBuilder(8, 4, "greenGrass", -826, 218);
+            outlineBuilder(12, 3, "greenGrass", -822, 218);
+            outlineBuilder(15, 3, "greenGrass", -819, 218);
+            outlineBuilder(17, 2, "greenGrass", -816, 218);
+            outlineBuilder(22, 3, "greenGrass", -814, 218);
+            outlineBuilder(24, 2, "greenGrass", -811, 218);
+            outlineBuilder(27, 3, "greenGrass", -809, 218);
+            outlineBuilder(29, 2, "greenGrass", -806, 218);
+            outlineBuilder(32, 1, "greenGrass", -804, 218);
+            outlineBuilder(34, 1, "greenGrass", -803, 218);
+
+            outlineBuilder(8, 5, "thenganBrick", -811, 220);
+            outlineBuilder(1, 23, "brickRoad", -830, 221);
+            outlineBuilder(2, 1, "brickRoad", -830, 219);
+            outlineBuilder(1, 2, "brickRoad", -832, 219);
+            outlineBuilder(1, 1, "brickRoad", -832, 218);
+            outlineBuilder(5, 1, "brickRoad", -809, 222);
+            outlineBuilder(1, 2, "brickRoad", -810, 226);
+            outlineBuilder(1, 1, "brickRoad", -808, 226);
+            outlineBuilder(1, 1, "brickRoad", -810, 224);
+
+            outlineBuilder(3, 2, "farmland", -805, 221);
+            outlineBuilder(2, 2, "farmland", -805, 225);
+        }
         //mapS7W25
         if (Y > -75331 && Y < -64538 && X < 262722 && X > 251041) //X-25
         {
@@ -6998,6 +7034,16 @@ function worldBuilder()
         outlineBuilder(1, 1, "rock", -12, -4);
         outlineBuilder(4, 1, "rock", -10, -3);
         outlineBuilder(1, 1, "rock", 16, -5);
+    }
+    else if (map == "huskCave")
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "huskCave";
+        campout = true;
+        //starting chamber
+        outlineBuilder( 1, 3, "huskcave", 0, 0);
     }
     else if (map == "ansetEggRoom")
     {

@@ -1381,6 +1381,10 @@ function envPack()
     rainSwirl.src = ("images/swirlTile.jpg");
     window.rainSwirl = rainSwirl;
 
+    var brickPath = new Image();
+    brickPath.src = ("images/brickPath.png");
+    window.brickPath = brickPath;
+
     var blurDots = new Image();
     blurDots.src = ("images/blurredDots.jpg");
     window.blurDots = blurDots;
@@ -4494,7 +4498,25 @@ function theLegend()
         lahlira: ["Lahlira", 0],
         dasab: ["Dasab", 0],
         elena: ["Elena", 0],
-        maksym2: ["Maksym2", 0]
+        maksym2: ["Maksym2", 0],
+        talia: ["Talia", 0],
+        skelter: ["Skelter", 0],
+        bronwin: ["Bronwin", 0],
+        bertha: ["Bertha", 0],
+        mulvine: ["Mulvine", 0],
+        maddigan: ["Maddigan", 0],
+        hevlod: ["Hevlod", 0],
+        yiko: ["Yiko", 0],
+        navana: ["Navana", 0],
+        charlene: ["Charlene", 0],
+        maggie: ["Maggie", 0],
+        corkybutt: ["Corkybutt", 0],
+        alitka: ["Alitka", 0],
+        brushog: ["Brushog", 0],
+        nadine: ["Nadine", 0],
+        grisha: ["Grisha", 0],
+        krelov: ["Krelov", 0],
+        deserterOfficer: ["DeserterOfficer", 0]
     };
 
 //time Tracker Variables
@@ -4826,7 +4848,24 @@ function theLegend()
         lahliraLDS: true,
         dasabLDS: true,
         elenaLDS: true,
-        maksym2LDS: true
+        maksym2LDS: true,
+        taliaLDS: true,
+        skelterLDS: true,
+        bronwinLDS: true,
+        berthaLDS: true,
+        mulvineLDS: true,
+        maddiganLDS: true,
+        hevlodLDS: true,
+        navanaLDS: true,
+        yikoLDS: true,
+        charleneLDS: true,
+        maggieLDS: true,
+        corkybuttLDS: true,
+        brushogLDS: true,
+        nadineLDS: true,
+        grishaLDS: true,
+        krelovLDS: true,
+        deserterOfficerLDS: true
     };
 //QUESTS
     quests =
@@ -4891,6 +4930,7 @@ function theLegend()
         vozaHomeOwned: false,
         sairchHomeOwned: false,
         cergadetHomeOwned: false,
+        asterHomeOwned: false,
 
         //ITEM STASH VARIABLES (non quest)
         lonerGuyStash: true,
@@ -4906,6 +4946,7 @@ function theLegend()
         griffStash: true,
         holuimStash: true,
         spiritBearStash: true,
+        rebelHuskStash: true,
 
         //EVENTS (non quest)
         ultherFlower: true,
@@ -4953,6 +4994,35 @@ function theLegend()
         hanzChild: false,
         hanzChildName: "Gelna",
 
+        //QUEST: Wolves in the Night ----- given by Baroness Necham of Aster
+        wolvesInTheNightQuest: false,
+        wolvesInTheNightCompletionStyle: false,
+        wolvesInTheNightBandits: false,
+        wolvesInTheNightHostageSaved: false,
+        wolvesInTheNightRaidersKilled: 0,
+        wolvesInTheNightWolfRaid: false,
+        wolvesInTheNightBluff: false,
+        wolvesInTheNightWhy: false,
+        wolvesInTheNightNotYou: false,
+        wolvesInTheNightKidnap: false,
+        wolvesInTheNightWork: false,
+        wolvesInTheNightBackHome: false,
+        wolvesInTheNightWillPay: false,
+        wolvesInTheNightKillThemAll: false,
+        wolvesInTheNightLie: false,
+        wolvesInTheNightNotice: false,
+        wolvesInTheNightTattle: new Date().getTime(),
+
+        //QUEST: The Big Worm ----- given by Baron Brushog of Brisik
+        theBigWormQuest: false,
+        theBigWormCompletionStyle: false,
+        theBigWormKilled: false,
+        theBigWormTiming: new Date().getTime(),
+        theBigWormThere: false,
+        theBigWormPay: "none",
+        theBigWormWorthy: false,
+        theBigWormApples: 0,
+
         //QUEST: A Duel for Love ----- given by Mundi Mazareen
         aDuelForLoveQuest: false,
         aDuelForLoveCompletionStyle: false,
@@ -4971,12 +5041,28 @@ function theLegend()
         theMazareensDidItSlander: false,
         theMazareensDidItSaraQuestioned: false,
 
-        //QUEST: Husk of a Heart ----- given by
+        //QUEST: Husk of a Heart ----- given by Maksym
         huskOfAHeartQuest: false,
         huskOfAHeartCompletionStyle: false,
         huskOfAHeartMissing: false,
         huskOfAHeartPay: 0,
         huskOfAHeartInfestationStage: 0,
+        huskOfAHeartCampfollowers: 4,
+        huskOfAHeartYaseminFound: false,
+        huskOfAHeartWall: 0,
+        huskOfAHeartExtortFail: false,
+        huskOfAHeartChurch: false,
+        huskOfAHeartKnow: false,
+        huskOfAHeartSabe: false,
+        huskOfAHeartDonde: false,
+        huskOfAHeartDed: false,
+
+        //QUEST: Deserters ----- given by Commander Krelov
+        desertersQuest: false,
+        desertersCompletionStyle: false,
+        desertersIntro: false,
+        desertersKilled: 0,
+        desertersConvinced: false,
 
         //QUEST: Magical Dissertation ----- given by Niljada the Sorceress
         magicalDissertationQuest: false,

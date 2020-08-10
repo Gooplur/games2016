@@ -1457,6 +1457,22 @@ function worldBuilder()
             outlineBuilder( 1, 2, "savannahDirt", -16, 631);
             outlineBuilder( 1, 1, "savannahDirt", 10, 650);
         }
+        //mapS19W36
+        if (Y > -197728 && Y < -186928 && X < 374956 && X > 363245) //X36
+        {
+            elevation = -1;
+            region = "s19w36";
+            campout = true;
+            outlineBuilder(34, 34, "outline", -1244, 626); //vardanianWoods
+        }
+        //mapS19W35
+        if (Y > -197728 && Y < -186928 && X < 364713 && X > 353021 ) //X35
+        {
+            elevation = -1;
+            region = "s19w35";
+            campout = true;
+            outlineBuilder(34, 34, "crag", -1210, 626); //vardanianWoods
+        }
         //mapS19W34
         if (Y > -197728 && Y < -186928 && X < 354544 && X > 342860) //X34
         {
@@ -4233,22 +4249,22 @@ function worldBuilder()
             elevation = 0;
             region = "s7w24";
             campout = true;
-            outlineBuilder(34, 34, "outline", -836, 218); //mistywoods
+            outlineBuilder(34, 34, "mistywoods", -836, 218);
 
-            outlineBuilder(1, 3, "greenGrass", -836, 218); //hotGrass
-            outlineBuilder(2, 2, "greenGrass", -833, 218);
-            outlineBuilder(5, 3, "greenGrass", -831, 218);
-            outlineBuilder(6, 2, "greenGrass", -828, 218);
-            outlineBuilder(8, 4, "greenGrass", -826, 218);
-            outlineBuilder(12, 3, "greenGrass", -822, 218);
-            outlineBuilder(15, 3, "greenGrass", -819, 218);
-            outlineBuilder(17, 2, "greenGrass", -816, 218);
-            outlineBuilder(22, 3, "greenGrass", -814, 218);
-            outlineBuilder(24, 2, "greenGrass", -811, 218);
-            outlineBuilder(27, 3, "greenGrass", -809, 218);
-            outlineBuilder(29, 2, "greenGrass", -806, 218);
-            outlineBuilder(32, 1, "greenGrass", -804, 218);
-            outlineBuilder(34, 1, "greenGrass", -803, 218);
+            outlineBuilder(1, 3, "hotGrass", -836, 218);
+            outlineBuilder(2, 2, "hotGrass", -833, 218);
+            outlineBuilder(5, 3, "hotGrass", -831, 218);
+            outlineBuilder(6, 2, "hotGrass", -828, 218);
+            outlineBuilder(8, 4, "hotGrass", -826, 218);
+            outlineBuilder(12, 3, "hotGrass", -822, 218);
+            outlineBuilder(15, 3, "hotGrass", -819, 218);
+            outlineBuilder(17, 2, "hotGrass", -816, 218);
+            outlineBuilder(22, 3, "hotGrass", -814, 218);
+            outlineBuilder(24, 2, "hotGrass", -811, 218);
+            outlineBuilder(27, 3, "hotGrass", -809, 218);
+            outlineBuilder(29, 2, "hotGrass", -806, 218);
+            outlineBuilder(32, 1, "hotGrass", -804, 218);
+            outlineBuilder(34, 1, "hotGrass", -803, 218);
 
             outlineBuilder(8, 5, "thenganBrick", -811, 220);
             outlineBuilder(1, 23, "brickRoad", -830, 221);
@@ -4262,6 +4278,7 @@ function worldBuilder()
 
             outlineBuilder(3, 2, "farmland", -805, 221);
             outlineBuilder(2, 2, "farmland", -805, 225);
+            outlineBuilder(1, 1, "farmland", -805, 228);
         }
         //mapS7W25
         if (Y > -75331 && Y < -64538 && X < 262722 && X > 251041) //X-25
@@ -5006,6 +5023,8 @@ function worldBuilder()
             outlineBuilder( 2, 1, "dirt", -859, 164);
 
             outlineBuilder( 1, 2, "dirt", -851, 162);
+
+            outlineBuilder(1, 2, "farmland", -851, 167);
         }
         //Layer -4 (cold region): elev 0
         //mapS4
@@ -7043,7 +7062,133 @@ function worldBuilder()
         region = "huskCave";
         campout = true;
         //starting chamber
-        outlineBuilder( 1, 3, "huskcave", 0, 0);
+        outlineBuilder(1, 4, "huskcave", 0, 0);
+        outlineBuilder(1, 11, "huskcave", 2, 1);
+        outlineBuilder(1, 1, "huskcave", 3, -1);
+        outlineBuilder(1, 8, "huskcave", 5, 2);
+        outlineBuilder(1, 7, "huskcave", 6, 0);
+        outlineBuilder(1, 3, "huskcave", 8, -1);
+        outlineBuilder(1, 4, "huskcave", 6, 3);
+        outlineBuilder(3, 1, "huskcave", 13, 1);
+        outlineBuilder(1, 1, "huskcave", 14, 3);
+        outlineBuilder(2, 1, "huskcave", 15, 3);
+        outlineBuilder(8, 1, "huskcave", 16, 4);
+        outlineBuilder(3, 1, "huskcave", 17, 5);
+        outlineBuilder(6, 1, "huskcave", 15, 6);
+        outlineBuilder(2, 1, "huskcave", 17, 9);
+        outlineBuilder(7, 1, "huskcave", 14, 8);
+        outlineBuilder(5, 1, "huskcave", 13, 9);
+        outlineBuilder(1, 4, "huskcave", 15, 13);
+        outlineBuilder(1, 5, "huskcave", 15, 14);
+        outlineBuilder(1, 4, "huskcave", 16, 15);
+        outlineBuilder(2, 21, "huskcave", 18, 16);
+        outlineBuilder(1, 3, "huskcave", 16, 18);
+        outlineBuilder(1, 2, "huskcave", 16, 19);
+        outlineBuilder(2, 1, "huskcave", 16, 20);
+        outlineBuilder(3, 1, "huskcave", 15, 21);
+        outlineBuilder(2, 1, "huskcave", 16, 23);
+        outlineBuilder(1, 1, "huskcave", 17, 24);
+        outlineBuilder(4, 1, "huskcave", 18, 24);
+        outlineBuilder(1, 1, "huskcave", 17, 27);
+        outlineBuilder(1, 5, "huskcave", 13, 28);
+        outlineBuilder(1, 2, "huskcave", 12, 29);
+        outlineBuilder(1, 2, "huskcave", 11, 30);
+        outlineBuilder(1, 5, "huskcave", 9, 31);
+        outlineBuilder(1, 2, "huskcave", 8, 32);
+        outlineBuilder(1, 2, "huskcave", 7, 33);
+        outlineBuilder(1, 4, "huskcave", 6, 34);
+        outlineBuilder(1, 2, "huskcave", 8, 35);
+        outlineBuilder(1, 1, "huskcave", 6, 35);
+        outlineBuilder(3, 1, "huskcave", 5, 35);
+        outlineBuilder(1, 1, "huskcave", 4, 37);
+        outlineBuilder(1, 4, "huskcave", 13, 32);
+        outlineBuilder(2, 5, "huskcave", 13, 33);
+        outlineBuilder(1, 7, "huskcave", 12, 35);
+        outlineBuilder(1, 10, "huskcave", 9, 36);
+        outlineBuilder(1, 9, "huskcave", 10, 37);
+        outlineBuilder(1, 6, "huskcave", 10, 38);
+        outlineBuilder(1, 7, "huskcave", 9, 39);
+        outlineBuilder(1, 6, "huskcave", 9, 40);
+        outlineBuilder(1, 4, "huskcave", 10, 41);
+        outlineBuilder(1, 3, "huskcave", 10, 42);
+        outlineBuilder(1, 1, "huskcave", 18, 38);
+        outlineBuilder(1, 17, "huskcave", 20, 18);
+        outlineBuilder(2, 14, "huskcave", 23, 19);
+        outlineBuilder(1, 13, "huskcave", 23, 21);
+        outlineBuilder(1, 16, "huskcave", 23, 15);
+        outlineBuilder(2, 9, "huskcave", 24, 22);
+        outlineBuilder(1, 6, "huskcave", 25, 24);
+        outlineBuilder(1, 7, "huskcave", 26, 25);
+        outlineBuilder(1, 8, "huskcave", 26, 26);
+        outlineBuilder(1, 5, "huskcave", 26, 27);
+        outlineBuilder(1, 14, "huskcave", 26, 14);
+        outlineBuilder(1, 19, "huskcave", 26, 13);
+        outlineBuilder(1, 17, "huskcave", 27, 12);
+        outlineBuilder(2, 1, "huskcave", 29, 10);
+        outlineBuilder(1, 9, "huskcave", 32, 11);
+        outlineBuilder(2, 1, "huskcave", 27, 6);
+        outlineBuilder(7, 1, "huskcave", 28, 4);
+        outlineBuilder(2, 1, "huskcave", 29, 3);
+        outlineBuilder(1, 1, "huskcave", 30, 3);
+        outlineBuilder(1, 1, "huskcave", 40, 10);
+        outlineBuilder(1, 2, "huskcave", 43, 14);
+        outlineBuilder(1, 3, "huskcave", 32, 27);
+        outlineBuilder(2, 2, "huskcave", 33, 28);
+        outlineBuilder(1, 3, "huskcave", 32, 30);
+        outlineBuilder(1, 3, "huskcave", 31, 31);
+        outlineBuilder(1, 2, "huskcave", 31, 32);
+        outlineBuilder(1, 3, "huskcave", 30, 33);
+        outlineBuilder(1, 4, "huskcave", 29, 34);
+        outlineBuilder(1, 1, "huskcave", 34, 34);
+        outlineBuilder(1, 7, "huskcave", 29, 35);
+        outlineBuilder(1, 8, "huskcave", 31, 36);
+        outlineBuilder(1, 4, "huskcave", 30, 37);
+        outlineBuilder(1, 3, "huskcave", 31, 38);
+        outlineBuilder(1, 4, "huskcave", 31, 39);
+        outlineBuilder(1, 4, "huskcave", 32, 40);
+        outlineBuilder(1, 7, "huskcave", 31, 41);
+        outlineBuilder(1, 1, "huskcave", 31, 42);
+        outlineBuilder(1, 2, "huskcave", 33, 42);
+        outlineBuilder(1, 2, "huskcave", 34, 43);
+        outlineBuilder(1, 2, "huskcave", 35, 44);
+        outlineBuilder(1, 2, "huskcave", 38, 37);
+        outlineBuilder(1, 4, "huskcave", 39, 38);
+        outlineBuilder(1, 1, "huskcave", 42, 39);
+        outlineBuilder(1, 2, "huskcave", 41, 40);
+        outlineBuilder(1, 10, "huskcave", 42, 41);
+        outlineBuilder(1, 4, "huskcave", 48, 40);
+        outlineBuilder(1, 4, "huskcave", 47, 42);
+        outlineBuilder(1, 2, "huskcave", 48, 43);
+        outlineBuilder(2, 1, "huskcave", 49, 38);
+        outlineBuilder(1, 1, "huskcave", 43, 15);
+        outlineBuilder(1, 2, "huskcave", 42, 16);
+        outlineBuilder(1, 2, "huskcave", 41, 17);
+        outlineBuilder(3, 2, "huskcave", 40, 18);
+        outlineBuilder(9, 1, "huskcave", 42, 20);
+        outlineBuilder(1, 1, "huskcave", 41, 26);
+        outlineBuilder(4, 1, "huskcave", 43, 26);
+        outlineBuilder(3, 1, "huskcave", 44, 27);
+        outlineBuilder(1, 2, "huskcave", 45, 28);
+        outlineBuilder(2, 1, "huskcave", 47, 28);
+        outlineBuilder(2, 1, "huskcave", 48, 29);
+        outlineBuilder(3, 1, "huskcave", 49, 30);
+        outlineBuilder(7, 1, "huskcave", 50, 32);
+        outlineBuilder(1, 7, "huskcave", 42, 11);
+        outlineBuilder(1, 5, "huskcave", 43, 10);
+        outlineBuilder(1, 1, "huskcave", 50, 11);
+        outlineBuilder(1, 5, "huskcave", 47, 12);
+        outlineBuilder(1, 5, "huskcave", 48, 13);
+        outlineBuilder(1, 8, "huskcave", 49, 14);
+        outlineBuilder(1, 7, "huskcave", 50, 16);
+        outlineBuilder(1, 2, "huskcave", 53, 15);
+        outlineBuilder(1, 3, "huskcave", 53, 17);
+        outlineBuilder(2, 7, "huskcave", 52, 19);
+        outlineBuilder(1, 1, "huskcave", 51, 15);
+        outlineBuilder(2, 6, "huskcave", 51, 18);
+        outlineBuilder(1, 2, "huskcave", 53, 21);
+        outlineBuilder(2, 1, "huskcave", 59, 19);
+        outlineBuilder(1, 2, "huskcave", 57, 21);
+        outlineBuilder(1, 1, "huskcave", 56, 13);
     }
     else if (map == "ansetEggRoom")
     {

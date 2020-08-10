@@ -28506,6 +28506,47 @@ function Item(type, x, y)
             this.buyValue = 22; // at max, buy for 1500.
             this.sellValue = 17; // at max, sell for 0.
         }
+        else if (this.type == "ransomMoneyCrate")
+        {
+            //For All Items
+            this.identity = "Ransom Money Crate";
+            this.weight = 21;
+            this.size = 21;
+            this.description = "A small crate full of coins.";
+            this.intForDes = 0;
+            this.intDescription = "These coins are meant to pay the raider chieftess Alitka and her band to return Maggie Necham to her family.";
+
+            //Define Utility
+            this.utility = "package";
+            this.store = [[new Item("ransomMoneyCrateEmpty", false, false), 1], [new Item("coins", false, false), 2500]];
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2516; // at max, buy for 2516.
+            this.sellValue = 2516; // at max, sell for 2516.
+        }
+        else if (this.type == "ransomMoneyCrateEmpty")
+        {
+            //For All Items
+            this.identity = "Ransom Money Crate (Empty)";
+            this.weight = 9;
+            this.size = 21;
+            this.description = "A small empty crate.";
+            this.intForDes = 10;
+            this.intDescription = "The only thing inside this crate is nothing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16; // at max, buy for 16.
+            this.sellValue = 16; // at max, sell for 16.
+        }
         else if (this.type == "wellAxle")
         {
             //For All Items
@@ -48260,7 +48301,7 @@ function Item(type, x, y)
         else if (this.type == "alitkaArmour")
         {
             //For All Items
-            this.identity = "Bandit Chieftainess Alitka's Plate Armour";
+            this.identity = "Bandit Chieftess Alitka's Plate Armour";
             this.weight = 80;
             this.size = 26;
             this.description = "Forged steel plate armour draped in worn skol fur.";
@@ -59719,7 +59760,7 @@ function Item(type, x, y)
             this.size = 30;
             this.description = "A bastard sword that has been deformed into a long club drowning in metal spikes.";
             this.intForDes = 0;
-            this.intDescription = "The white band tied to the grip was a bow that Chieftainess Alitka once wore in her hair before she turned to banditry.";
+            this.intDescription = "The white band tied to the grip was a bow that Chieftess Alitka once wore in her hair before she turned to banditry.";
 
             //Define Utility
             this.utility = "weapon";
@@ -67591,6 +67632,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polpol, 95, 260, 51, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1.4), 51 * 1.4, 42 * 1.4);
+        }
+        else if (this.type == "ransomMoneyCrate")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polpol, 104, 213, 36, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 0.85), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 0.85), 36 * 0.85, 37 * 0.85);
+        }
+        else if (this.type == "ransomMoneyCrateEmpty")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polpol, 95, 260, 51, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 0.85), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 0.85), 51 * 0.85, 42 * 0.85);
         }
         else if (this.type == "cero")
         {
@@ -75747,6 +75798,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polpol, 95, 260, 51, 42, this.invX - (1/2 * 51 * 1.4), this.invY - (1/2 * 42 * 1.4), 51 * 1.4, 42 * 1.4);
         }
+        else if (this.type == "ransomMoneyCrate")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polpol, 104, 213, 36, 37, this.invX - (1/2 * 36 * 0.85), this.invY - (1/2 * 37 * 0.85), 36 * 0.85, 37 * 0.85);
+        }
+        else if (this.type == "ransomMoneyCrateEmpty")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polpol, 95, 260, 51, 42, this.invX - (1/2 * 51 * 0.85), this.invY - (1/2 * 42 * 0.85), 51 * 0.85, 42 * 0.85);
+        }
         else if (this.type == "cero")
         {
             LXX.beginPath();
@@ -83863,6 +83924,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polpol, 95, 260, 51, 42, this.invX - (1/2 * 51 * 1.4), this.invY - (1/2 * 42 * 1.4), 51 * 1.4, 42 * 1.4);
+        }
+        else if (this.type == "ransomMoneyCrate")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polpol, 104, 213, 36, 37, this.invX - (1/2 * 36 * 0.85), this.invY - (1/2 * 37 * 0.85), 36 * 0.85, 37 * 0.85);
+        }
+        else if (this.type == "ransomMoneyCrateEmpty")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polpol, 95, 260, 51, 42, this.invX - (1/2 * 51 * 0.85), this.invY - (1/2 * 42 * 0.85), 51 * 0.85, 42 * 0.85);
         }
         else if (this.type == "cero")
         {

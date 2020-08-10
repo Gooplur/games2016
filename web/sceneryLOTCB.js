@@ -8767,6 +8767,15 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(cards, 1809, 1250, 171, 137, -(1/2 * 171 * 0.5 * this.information), -(1/2 * 137 * 0.5 * this.information), 171 * 0.5 * this.information, 137 * 0.5 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 87)//brick path
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(brickPath, 0, 0, 200, 84, -(1/2 * 200 * this.information), -(1/2 * 84 * this.information), 200 * this.information, 84 * this.information);
+                XXX.restore();
+            }
 
             //INTERACTION
             if (this.activate == true)
@@ -23168,7 +23177,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(sheg, 587, 422, 241, 375, -(1/2 * 241 * 1), -(1/2 * 375 * 1), 241 * 1, 375 * 1);
+                XXX.drawImage(sheg, 605, 4, 241, 375, -(1/2 * 241 * 1), -(1/2 * 375 * 1), 241 * 1, 375 * 1);
                 XXX.restore();
             }
             else
@@ -23176,7 +23185,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(sheg, 605, 4, 241, 375, -(1/2 * 241 * 1), -(1/2 * 375 * 1), 241 * 1, 375 * 1);
+                XXX.drawImage(sheg, 587, 422, 241, 375, -(1/2 * 241 * 1), -(1/2 * 375 * 1), 241 * 1, 375 * 1);
                 XXX.restore();
             }
 
@@ -33589,7 +33598,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (this.runOneTime == true)
             {
                 this.runOneTime = false;
-
+                this.id = "none";
                 this.clave = "huskWall" + Math.random();
                 this.primed = true;
 
@@ -33725,6 +33734,14 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         if (barrierList[iii].info == this.clave)
                         {
                             barrierList.splice(iii, 1);
+                        }
+                    }
+                    if (this.id == "quest" && quests.huskOfAHeartWall < this.temporary)
+                    {
+                        quests.huskOfAHeartWall = this.temporary;
+                        if (this.temporary >= 2)
+                        {
+                            quests.huskOfAHeartInfestationStage = 2;
                         }
                     }
                 }

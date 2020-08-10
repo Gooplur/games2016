@@ -104,7 +104,7 @@ function Adventurer()
     this.class = "Politician"; //Your character's class will start your character out with a weapon appropriate to your favoured combat style.
     this.gamemode = "standard";
     //Achieved Traits
-    this.Status = []; //this is a list to be filled with all of the titles that the player earns or achieves.
+    this.status = []; //this is a list to be filled with all of the titles that the player earns or achieves.
     this.fame = 0; //this is how popular you are with the public, if it is positive it means that they like and honor you, and if it is negative it means that they hate and despise you. [fame is gained through quests and the slayings of certain dangerous beasts, whereas infamy is gained through crime and murder]
     this.subRace = "none"; //this is a race that you are not born as but you become, like a vampire or a werewolf.
     //SkillBased Stats
@@ -42681,6 +42681,25 @@ function Adventurer()
                     }
                     else if (Inventory[i][0].utility == "package") //store is a list of which items you get from the container.
                     {
+                        //quests that use packages
+                        if (Inventory[i][0].type == "ransomMoneyCrate")
+                        {
+                            if (quests.wolvesInTheNightQuest == true)
+                            {
+                                quests.wolvesInTheNightQuest = "complete";
+                                quests.wolvesInTheNightCompletionStyle = "robber";
+                                quests.completeQuests.push({name: "Wolves in the Night", description: "You stole the ransom money from the Baroness of Aster."});
+                                if (quests.wolvesInTheNightHostageSaved != true)
+                                {
+                                    uniqueChars.maggieLDS = false;
+                                    player.thengarFaction -= 75;
+                                }
+                                player.thengarFaction -= 250;
+                                player.fame += 1;
+                            }
+                        }
+
+                        //
                         var psh = true;
                         for (var g = 0; g < Inventory[i][0].store.length; g++)
                         {

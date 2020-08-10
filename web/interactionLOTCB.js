@@ -3154,10 +3154,10 @@ function interaction(me)
                         }
                     }
 
-                    if (self.ID == "Maksym" || conversationID[0] == "Maksym2")
+                    if (self.ID == "Yiko the Banker" || conversationID[0] == "Yiko")
                     {
                         lowBar = "dialogue";
-                        conversationID[0] = "Maksym2";
+                        conversationID[0] = "Yiko";
 
                         if (clickReleased)
                         {
@@ -3169,28 +3169,410 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                if (player.raceName == "Cephrite")
+                                if (quests.asterHomeOwned != true)
                                 {
-                                    player.dialogueOptions = [];
-                                    player.dialogueOptions.push(["...", false, "e"]);
+                                    player.dialogueOptions = [["I would like to buy the farmhouse for 23500 coins.", false, "a"]];
                                 }
                                 else
                                 {
-                                    player.dialogueOptions = [["Good day.", false, "a"], ["What can you tell me about Boroye?", false, "b"], ["How much property do you own?", false, "d"]];
+                                    player.dialogueOptions = [];
                                 }
-
-                                if (quests.huskOfAHeartQuest != "complete")
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
                                 {
-                                    player.dialogueOptions.push(["What do you think about the war?", false, "c"]);
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
                                 }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (have("coins", 23500))
+                            {
+                                setMsg("Excellent choice! That property comes with a 1 square sector region of farmland. You are welcome to harvest your crop at any time when it is available.");
+                            }
+                            else
+                            {
+                                setMsg("You can't afford that property.");
+                            }
 
-                                if (quests.huskOfAHeartQuest == false && quests.huskOfAHeartMissing == true)
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (have("coins", 23500))
                                 {
-                                    player.dialogueOptions.unshift(["Your wife told me that your daughter went missing, I'm so sorry to hear that...", false, "h"]);
-                                    player.dialogueOptions.unshift(["Your wife told me that your daughter went missing. I will find her for you.", false, "f"]);
-                                    player.dialogueOptions.unshift(["Your wife told me that your daughter went missing. I will search for her if you pay me 120 coins.", false, "g"]);
+                                    take("coins", 23500);
+                                    quests.asterHomeOwned = true;
                                 }
 
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Just cleanin' the furs. You got to clean 'em before you can make 'em into something.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Oh you know... A bit o' cleaning a bit o' stitchin', mostly cleanin' though.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Business is hard work youngin'. When I was a girl I had four sisters, and we'd all help my ma' with the sowing. Now it's just me. I'll tell you, this work is not as easy as it seems...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Krovhyuzka Deserter Officer" || conversationID[0] == "DeserterOfficer")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "DeserterOfficer";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Are you in charge of this rabble?", false, "a"], ["Why did you all desert?", false, "f"], ["I have been sent here to kill you for desertion if you do not return to camp, this is your only chance to escape with your lives.", false, "b"], ["The commander will accept you back peacefully, come with me and I will pay you each 20 coins to return to camp.", false, "c"], ["The royalists know you're here, your only chance to survive is to join the rebels in Utyr, they will offer you clemency in exchange for service.", false, "d"], ["It is in your best interest to return to camp, if you remain you will be executed painfully, if you rejoin your forces they may show you mercy.", false, "e"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Yes, I am in charge...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.level >= 11 || player.magicLevel >= 7)
+                            {
+                                setMsg("Alright, we hear your message loud and clear... we'll rejoin. We'd rather be back in the army than be dead...");
+                            }
+                            else
+                            {
+                                setMsg("Is that a threat? Try us, we'll win. Something tells me you don't have what it takes to fight a trained soldier...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.level >= 15 || player.magicLevel >= 8)
+                                {
+                                    quests.desertersConvinced = true;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+
+                            if (have("coins", 140))
+                            {
+                                setMsg("I'm not sure why you care so much about us returning to camp, but for clemency and good coin, I can't say no.");
+                            }
+                            else
+                            {
+                                setMsg("You are a liar! You don't even have the coin you are promising us! You're trying to trick us back to camp so that the commander can have us executed or worked to death!");
+                            }
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (have("coins", 140))
+                                {
+                                    take("coins", 140);
+                                    quests.desertersConvinced = true;
+                                }
+                                else
+                                {
+                                    self.disturbedTime = new Date().getTime();
+                                    self.disturbed = true;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Thank you for the warning, I suppose we should join the rebels, their offer seems genuine. And as you say, it is our only chance at surviving with the loyalists on our back.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.desertersCompletionStyle = "rebel";
+                                quests.desertersQuest = "complete";
+
+                                quests.completeQuests.push({name: "Deserters", description: "You convinced the deserters to join the Vardanian Rebels."});
+
+                                player.vardanFaction -= 15;
+                                player.vardanRebelFaction += 40;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 100;
+                                }
+                                else
+                                {
+                                    player.experience += 250;
+                                }
+                                player.fame += 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("You are a fool if you think that the commander will show us mercy upon our return.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("Life in the army is not glorious, or honourable as some might say it is... it is brutal, it grates at the soul of even the hardest men, and they don't pay us well enough to risk our lives for nobles that don't care for our wellbeing. To them we are worse than rats, at least with rats they have the decency to kill them quickly.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Commander Krelov" || conversationID[0] == "Krelov")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Krelov";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Why is the Krovhyuzka Army camped out in Boroye?", false, "a"], ["Is there anything I can do to support the loyalist cause?", false, "b"]];
+
+
+                                if (quests.desertersIntro == true && quests.desertersQuest == false)
+                                {
+                                    player.dialogueOptions.unshift(["Actually, on second thought I am not sure I want to do this.", false, "d"]);
+                                    player.dialogueOptions.unshift(["Whatever it is I am sure I can handle it.", false, "c"]);
+                                }
+
+                                if (quests.desertersQuest == true && quests.desertersKilled >= 7 || quests.desertersQuest == true && quests.desertersConvinced == true)
+                                {
+                                    if (quests.desertersQuest == true && quests.desertersConvinced == true)
+                                    {
+                                        player.dialogueOptions.unshift(["I have convinced the deserters to rejoin the loyalist cause.", false, "g"]);
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.unshift(["The deserters won't be joining the rebels anytime soon... they have been dealt with.", false, "h"]);
+                                    }
+                                }
+
+                                if (have("rebelCaptainsDiary", 1))
+                                {
+                                    player.dialogueOptions.unshift(["I found this diary in a ransacked camp north west of here, it appears to have some information about the rebel forces.", false, "f"]);
+                                }
+
+                                if (quests.huskOfAHeartQuest == true && have("huskLoveLetter", 1))
+                                {
+                                    player.dialogueOptions.unshift(["The household of Maksym and Elena have raised a treacherous daughter who according to her own written account is bedding the rebels.", false, "e"]);
+                                }
                             }
                             else if (player.dialogueChoiceMade == true)
                             {
@@ -3254,7 +3636,2822 @@ function interaction(me)
                         else if (conversationID[1] == "0a")
                         {
                             //text dialogue
-                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            setMsg("The rebels have ammassed many of their remaining forces nearby in Utyr just west of here, our camp here ensures Boroye's saftey from any potential incoming rebel attack.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Yes, there are a number of things I can think of that would help, but let's start small to see if you can handle the type of work that we need done here...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.desertersIntro = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Your confidence is good, just make sure that your scratch cuts deeper than your screech... There is a band of men south of here that have deserted from their posts and have taken up positions in the hamlet of Latvika. If the rebels choose to attack there is concern that these deserters may join the assault against us in exchange for clemency. So, here is your task. Go to Latvika and either kill the deserters or convince them to return to their ranks, nobody but me and my officers know that they deserted yet, and we need as many men as we can get, in case of a rebel attack on Boroye. Either way you go about this, we can't those deserters them joining the rebels.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.desertersQuest = true;
+                                quests.activeQuests.push({name: "Deserters", description: "Either kill the Deserters in Latvika or convince them to return to their ranks."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Vardan" && player.title != "Nobility" && player.title != "Royalty")
+                            {
+                                setMsg("You'll be back... it won't be long before we start another round of drafts to bolster our numbers.");
+                            }
+                            else
+                            {
+                                setMsg("That is your choice to make.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.desertersIntro = false;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("More than often than not one's child's actions are a strong measure of the true loyalties of the parents. If this traitor's parents are such proclaimed loyalists then they will not mind doing hard labor for the army to prove their loyalty. You were right to report this matter. Here are 25 coins for your good deed. If you hear about any other traitors in Boroye bring evidence to me like you just did, and I will reward you well.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                uniqueChars.maksym2LDS = false;
+                                uniqueChars.elenaLDS = false;
+
+                                quests.huskOfAHeartCompletionStyle = "army";
+                                quests.huskOfAHeartQuest = "complete";
+                                take("huskLoveLetter", 1);
+
+                                quests.completeQuests.push({name: "Husk of a Heart", description: "You have turned in Maksym and Elena for their daughter's treasonous act of running away to marry a rebel captain..."});
+
+                                player.theCultOfTheRadiantSpiritFaction += 85;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 350;
+                                }
+                                else
+                                {
+                                    player.experience += 750;
+                                }
+                                player.fame += 1;
+                                give("coins", 25);
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("Yes, and I assume you want me to pay you for it... Here are 46 coins. I'll be having that diary now. (he takes the diary from you and hands you the coins)");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("rebelCaptainsDiary", 1);
+                                give("coins", 46);
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("The deserters will all recieve lashings in the yard, then they will rejoin the army as hard labourers. They gave up their chance to fight honourably alongside their brethren when they committed treason by deserting their army.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.desertersCompletionStyle = "army";
+                                quests.desertersQuest = "complete";
+
+                                quests.completeQuests.push({name: "Deserters", description: "You convinced the deserters to return to their army, unfortunately for them they were all re-assigned to hard labor."});
+
+                                player.vardanFaction += 35;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 200;
+                                }
+                                else
+                                {
+                                    player.experience += 450;
+                                }
+                                player.fame += 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("Excellent job... that's what I like to hear! For deserters, there's no better place than six feet under!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.desertersCompletionStyle = "kill";
+                                quests.desertersQuest = "complete";
+
+                                quests.completeQuests.push({name: "Deserters", description: "You killed all of the deserters who were hiding out in the hamlet of Latvika."});
+
+                                player.vardanFaction += 30;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 225;
+                                }
+                                else
+                                {
+                                    player.experience += 490;
+                                }
+                                player.fame += 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Grisha" || conversationID[0] == "Grisha")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Grisha";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["You come here a lot don't you?", false, "b"], ["Tell me about your family...", false, "c"]];
+
+                                if (quests.huskOfAHeartQuest == true && quests.huskOfAHeartChurch == true && quests.huskOfAHeartKnow != true && quests.huskOfAHeartSabe != true && quests.huskOfAHeartDonde != true)
+                                {
+                                    player.dialogueOptions.unshift(["I am looking for a woman named Yasemin, I heard that she came to this cathedral often. Do you know her?", false, "d"]);
+                                }
+
+                                if (quests.huskOfAHeartQuest == true && quests.huskOfAHeartChurch == true && quests.huskOfAHeartKnow == true && quests.huskOfAHeartSabe != true && quests.huskOfAHeartDonde != true)
+                                {
+                                    player.dialogueOptions.unshift(["Why did you call me Sergei, who is Sergei?", false, "e"]);
+                                }
+
+                                if (quests.huskOfAHeartQuest == true && quests.huskOfAHeartChurch == true && quests.huskOfAHeartSabe == true && quests.huskOfAHeartDonde != true)
+                                {
+                                    player.dialogueOptions.unshift(["Yasemin is missing, I am helping her family find her.", false, "f"]);
+                                }
+
+                                if (quests.huskOfAHeartQuest == true && quests.huskOfAHeartChurch == true && quests.huskOfAHeartSabe == true && quests.huskOfAHeartDonde == true)
+                                {
+                                    player.dialogueOptions.unshift(["Do you know where I might find her?", false, "g"]);
+                                }
+
+                                if (quests.huskOfAHeartQuest == "complete")
+                                {
+                                    player.dialogueOptions.unshift(["Both Yasemin and her lover are dead.", false, "h"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Good day to you too!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Everyday. There is nothing more important in this life than maintaining a pure soul free of the Void's malign influences.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("My father is a soldier, and my mother washes clothes. I help my mom with her work and then spend the rest of my time here learning the path to follow the light of the Spirit Eternal.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (player.gender == "Male")
+                            {
+                                setMsg("Yes, I know Yasemin, its nice to finally meet you, Sergei!");
+                            }
+                            else
+                            {
+                                setMsg("Yes, I know Yasemin. Why are you looking for her? Is something wrong?");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.gender == "Male")
+                                {
+                                    quests.huskOfAHeartKnow = true;
+                                }
+                                else
+                                {
+                                    quests.huskOfAHeartSabe = true;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Forgive me! I feel so embarrassed, I thought since you were inquiring after Yasemin, that you might have been Sergei, her secret lover. (Her cheeks flush with red) If you are not Sergei, why are you looking for Yasemin? Is she okay?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.huskOfAHeartSabe = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("That is terrible to hear... we were very close. I hope she is alright...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.huskOfAHeartDonde = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            if (player.gender == "Male")
+                            {
+                                setMsg("Now that I think about it, I bet she ran off to marry Sergei. She said that he was a captain in the army and that he and his men were going to be camping nearby Boroye in the moth woods north west of here, maybe she joined him there. Yasemin is so lucky that she has a man like Sergei, he sounds so dreamy, a brave soldier man, fighting to keep us all safe from the rebels. Could there be a higher form of sacrifice than that of a soldier for his country...");
+                            }
+                            else
+                            {
+                                setMsg("Now that I think about it, I bet she ran off to marry her secret lover Sergei. She said that he was a captain in the army and that he and his men were going to be camping nearby Boroye in the moth woods north west of here, maybe she joined him there. Yasemin is so lucky that she has a man like Sergei, he sounds so dreamy, a brave soldier man, fighting to keep us all safe from the rebels. Could there be a higher form of sacrifice than that of a soldier for his country... mmmmmmm If only I met my own Sergei...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.huskOfAHeartSabe = false;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            if (quests.huskOfAHeartDed != true)
+                            {
+                                setMsg("(tears come to her eyes) That can't be... She was about to marry her true love! I must pray for her...");
+                            }
+                            else
+                            {
+                                setMsg("I don't need to hear that again... Please! Let me pray for her uninterrupted.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.huskOfAHeartDed = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Hon Maggie Necham" || conversationID[0] == "Maggie")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Maggie";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.wolvesInTheNightQuest == "complete")
+                                {
+                                    if (quests.wolvesInTheNightLie == true)
+                                    {
+                                        if (quests.wolvesInTheNightNotice == true)
+                                        {
+                                            if (have("coins", 500))
+                                            {
+                                                player.dialogueOptions = [["(pay her 500 coins to keep quiet)", false, "h"]];
+                                            }
+                                            else
+                                            {
+                                                player.dialogueOptions = [["I don't have that much!", false, "i"]];
+                                            }
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["What are you doing? Why are you blocking the door?", false, "g"]];
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (quests.wolvesInTheNightNotice == true)
+                                        {
+                                            player.dialogueOptions = [["...", false, "j"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["I'm happy to see you again!", false, "f"]];
+                                        }
+                                    }
+                                }
+                                else if (quests.wolvesInTheNightWolfRaid && self.team == "player" && quests.wolvesInTheNightBackHome != true)
+                                {
+                                    player.dialogueOptions = [["How are you feeling?", false, "c"], ["We have to keep moving.", false, "a"]];
+                                }
+                                else if (quests.wolvesInTheNightWolfRaid && self.team == "player" && quests.wolvesInTheNightBackHome == true)
+                                {
+                                    player.dialogueOptions = [["We made it!", false, "b"]];
+                                }
+                                else if (quests.wolvesInTheNightWolfRaid)
+                                {
+                                    player.dialogueOptions = [["...", false, "d"]];
+                                }
+                                else if (quests.wolvesInTheNightQuest == false)
+                                {
+                                    player.dialogueOptions = [["Hello.", false, "e"], ["Do you miss your father?", false, "k"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0j";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "k")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0k";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("I'm hungry! My legs are tired!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("(she notices her mother's gaze upon her and she looks at you blankly for a moment) Oh right... I suppose it is proper to say thank you when someone helps you. Thank you. [She does a curtsy]");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("(she sniffles) I want my mommy...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("I'm scared...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("I don't have time to entertain you with formalities. I am playing make believe.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("Thank you for rescuing me.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("(in a hushed voice) I saw you, you know. You didn't pay my ransom, you kept the money didn't you. I bet you would get in big trouble if I told my mom that you are stealing from her... if you don't want me to tell on you, then give me 500 coins.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.wolvesInTheNightNotice = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("Pleasure doing business with you!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("coins", 500);
+                                quests.wolvesInTheNightQuestLie = false;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("I think you're probably lying or you lost it all... either way, I will tell my mom that you stole from her if you do not pay me those 500 coins soon.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0j")
+                        {
+                            //text dialogue
+                            setMsg("(whispering) Don't worry, your secret is safe with me.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0k")
+                        {
+                            //text dialogue
+                            setMsg("Of course I miss him! I love my papa!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Charlene Necham, Baroness of Aster" || conversationID[0] == "Charlene")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Charlene";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.wolvesInTheNightQuest == false && quests.wolvesInTheNightWolfRaid != true)
+                                {
+                                    if (quests.wolvesInTheNightWork == false)
+                                    {
+                                        player.dialogueOptions = [["Greetings.", false, "a"], ["Where is the Baron of Aster?", false, "b"], ["Are you in need of any services, Baroness?", false, "c"], ["Can you tell me anything about Aster village, Baroness?", false, "d"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["Greetings.", false, "a"], ["Where is the Baron of Aster?", false, "b"], ["Your Captain of the Guard told me that you were looking for mercenaries...", false, "c"], ["Can you tell me anything about Aster village, Baroness?", false, "d"]];
+                                    }
+
+                                    if (quests.wolvesInTheNightWillPay == true)
+                                    {
+                                        player.dialogueOptions.unshift(["I accept your offer of 500 coins... I will kill Alitka and her raiders for you, Baroness.", false, "r"]);
+                                        player.dialogueOptions.unshift(["For now I must decline your offer, Baroness. Perhaps another time.", false, "s"]);
+                                    }
+                                }
+                                else if (quests.wolvesInTheNightWolfRaid == true && quests.wolvesInTheNightQuest == true)
+                                {
+                                    //hostage quest line
+                                    if (quests.wolvesInTheNightBackHome == true)
+                                    {
+                                        if (have("ransomMoneyCrate", 1))
+                                        {
+                                            player.dialogueOptions = [["I saved your daughter from the wolf raiders without paying the ransom! (return the ransom money)", false, "k"], ["I paid the ransom and saved your daughter from the wolf raiders! (LIE)", false, "j"]];
+                                        }
+                                        else if (quests.wolvesInTheNightHostageSaved == true)
+                                        {
+                                            player.dialogueOptions = [["I paid the ransom and saved your daughter from the wolf raiders!", false, "i"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["I paid the ransom and saved your daughter from the wolf raiders! (LIE)", false, "j"]];
+                                        }
+                                    }
+                                    else if (quests.wolvesInTheNightKillThemAll == true && quests.wolvesInTheNightRaidersKilled >= 24 && uniqueChars.alitkaLDS != true)
+                                    {
+                                        player.dialogueOptions = [["I have exacted revenge upon Alitka and her wolf raiders for what they did to your daughter!", false, "t"]];
+                                    }
+                                    else if (uniqueChars.maggieLDS != true && quests.wolvesInTheNightKillThemAll == false)
+                                    {
+                                        if (have("ransomMoneyCrate", 1))
+                                        {
+                                            player.dialogueOptions = [["Your daughter was killed by the wolf raiders... (return ransom)", false, "l"], ["I paid the ransom to Alitka and her wolf raiders (LIE), but... they killed her anyway! They killed your daughter!!", false, "u"]];
+                                        }
+                                        else if (quests.wolvesInTheNightHostageSaved == true)
+                                        {
+                                            player.dialogueOptions = [["I paid the ransom to Alitka and her wolf raiders, but... they killed her anyway! They killed your daughter!!", false, "u"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["I paid the ransom to Alitka and her wolf raiders (LIE), but... they killed her anyway! They killed your daughter!!", false, "u"]];
+                                        }
+
+                                    }
+                                }
+                                else if (quests.wolvesInTheNightQuest == true)
+                                {
+                                    //disband the bandits quest line
+                                    if (quests.wolvesInTheNightRaidersKilled >= 24 && uniqueChars.alitkaLDS != true)
+                                    {
+                                        player.dialogueOptions = [["I have slain Alitka, and disbanded her wolf raiders!", false, "m"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["Where should I start looking for the wolf raiders?", false, "n"]];
+                                    }
+                                }
+                                else if (quests.wolvesInTheNightQuest == "complete")
+                                {
+                                    if (quests.wolvesInTheNightCompletionStyle == "robber")
+                                    {
+                                        if (have("coins", 2500))
+                                        {
+                                            player.dialogueOptions = [["...", false, "h"], ["I wish to return the ransom money I stole from you. (return 2500 coins)", false, "g"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["...", false, "h"]];
+                                        }
+                                    }
+                                    else if (quests.wolvesInTheNightBackHome == true && quests.wolvesInTheNightRaidersKilled >= 24 && uniqueChars.alitkaLDS != true)
+                                    {
+                                        player.dialogueOptions = [["...", false, "o"], ["Greetings.", false, "a"], ["Where is the Baron of Aster?", false, "b"], ["Can you tell me anything about Aster village, Baroness?", false, "d"]];
+                                    }
+                                    else if (quests.wolvesInTheNightBackHome == true)
+                                    {
+                                        player.dialogueOptions = [["...", false, "p"], ["Greetings.", false, "a"], ["Where is the Baron of Aster?", false, "b"], ["Can you tell me anything about Aster village, Baroness?", false, "d"]];
+                                    }
+                                    else if (uniqueChars.maggieLDS != true)
+                                    {
+                                        player.dialogueOptions = [["My condolensces for the loss of your daughter", false, "q"]];
+                                    }
+                                }
+                                else
+                                {
+                                    if (quests.wolvesInTheNightKidnap == true)
+                                    {
+                                        player.dialogueOptions = [["The captain of the guard told me that you needed someone to help negotiate a hostage situation...", false, "f"], ["I saw wolf raiders near the entrance! Is everyone here okay?", false, "e"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["What just happened!?", false, "e"], ["Are you okay?", false, "e"], ["I saw wolf raiders near the entrance! Is everyone here okay?", false, "e"]];
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0j";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "k")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0k";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "l")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0l";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "m")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0m";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "n")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0n";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "o")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0o";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "p")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0p";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "q")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0q";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "r")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0r";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "s")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0s";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "t")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0t";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "u")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0u";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Greetings. Welcome to my village.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("My husband has left with the majority of our army to fight the King's war against the Kells of the east...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("There is a ruthless band of lawless brigands that lurk in the woods south of Aster. I have been looking for mercenaries that can take them on and disband their group. Their chieftess Alitka in particular needs to be brought to justice. She murdered a dear friend of mine, and every day she lives is another day that the murder of a good man goes unavenged! I will pay you 500 coins if you slay Alitka and kill her entire band of wolf raiders.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.wolvesInTheNightWillPay = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("The village of Aster started as a hamlet long ago. More and more people bagan to move north to take advantage of the extremely fertile farmlands of this region. With more people the hamlet of Aster grew, and people began to need artisinal supplies. So artisans took up residence here, eventually the hamlet of Aster grew to a size where it was deemed a village. Throughout it all the House of Necham has ruled this land as a vassal of the Great Baron Thent. Now Aster considers itself a part of the growing and expansive trade that has its center in Cergadet.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("(sobbing histerically) Alitka!!! She stole my daughter from me!!! She ripped her from my arms and carried her away!!! You need to get her back! I will pay you, just get my daughter back for me! (She sobs bitterly...)");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                give("ransomMoneyCrate", 1);
+                                quests.wolvesInTheNightQuest = true;
+                                quests.activeQuests.push({name: "Wolves in the Night", description: "The daughter of the Baroness of Aster has been kidnapped! Get her safely back to her home."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("That dreadful brigand Alitka stole my daughter from me!!! She ripped her right from my arms!!! I will pay you to get her back, I don't care how you do it, just bring my daughter back here safely!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                give("ransomMoneyCrate", 1);
+                                quests.wolvesInTheNightQuest = true;
+                                quests.activeQuests.push({name: "Wolves in the Night", description: "The daughter of the Baroness of Aster has been kidnapped! Get her safely back to her home."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("Apologizing and atoning for a crime does not make you cease to be a criminal, you still acted against the law! At least you feel shame for your criminalistic behavior...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("coins", 2500);
+                                player.thengarFaction += 200;
+                                quests.wolvesInTheNightCompletionStyle = "regret";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Thengar" && player.title == "Royalty")
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("Does King Wolthgar know that his daughter is stealing grand sums of coin from his vassal barons? Your father would never act so stupidly! May Azvold prevent you from ever being a queen here in Thengaria! You would make a cruel and terrible ruler!!");
+                                }
+                                else
+                                {
+                                    setMsg("Does King Wolthgar know that his son and heir is stealing grand sums of coin from his vassals? Your father would never act so stupidly! May Azvold prevent you from ever rising to become the king of Thengaria! You would make for a cruel and terrible ruler!!");
+                                }
+                            }
+                            else if (player.raceName == "Thengar" && player.title == "Nobility")
+                            {
+                                setMsg("Now I know why House Beulingerr came to be the second wealthiest house in all of Thengaria... by lying and cheating! I don't care how rich and powerful your family is, you are a brigand! Return the money you stole from me!");
+                            }
+                            else
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("You thief, you brigand you!!! Guards, guards kill this man!");
+                                }
+                                else
+                                {
+                                    setMsg("You thief, you brigand you!!! Guards, guards kill this woman!");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.raceName != "Thengar" || player.title != "Royalty" && player.title != "Nobility")
+                                {
+                                    self.disturbedTime = new Date().getTime();
+                                    self.disturbed = true;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("My daughter!! You have brought her back to me! You are a brave and honorable hero, and you should be rewarded as such. Take these coins and my gratitude eternal gratitude.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.wolvesInTheNightCompletionStyle = "hero";
+                                quests.wolvesInTheNightQuest = "complete";
+
+                                quests.completeQuests.push({name: "Wolves in the Night", description: "You negotiated freedom for the daughter of the Baroness of Aster by paying the ransom they demanded."});
+
+                                player.thengarFaction += 90;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 450;
+                                }
+                                else
+                                {
+                                    player.experience += 1000;
+                                }
+                                give("coins", 550);
+                                player.fame += 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0j")
+                        {
+                            //text dialogue
+                            setMsg("My daughter!! You have brought her back to me! You are a brave and honorable hero, and you should be rewarded as such. Take these coins and my gratitude eternal gratitude.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.wolvesInTheNightCompletionStyle = "deviant";
+                                quests.wolvesInTheNightQuest = "complete";
+                                quests.wolvesInTheNightLie = true;
+                                quests.wolvesInTheNightTattle = new Date().getTime();
+
+                                quests.completeQuests.push({name: "Wolves in the Night", description: "You fought the raiders to secure the release of the daughter of the Baroness of Aster and then lied about having payed them the ransom."});
+
+                                player.thengarFaction += 90;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 450;
+                                }
+                                else
+                                {
+                                    player.experience += 1000;
+                                }
+                                give("coins", 550);
+                                player.fame += 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0k")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.raceName != "Kel")
+                            {
+                                setMsg("My daughter!!! You brought her back to me safe! And without spending any of my coins! Most excellent!!! Your service to me is worth more than a plain reward. For this, venerable hero, I will call forth the powers vested in me by the royal authorities of Thengaria to knight you, " + player.name + " of Aster.");
+                            }
+                            else
+                            {
+                                setMsg("My daughter!!! You brought her back to me safe! And without spending any of my coins! Most excellent!!! Your service to me is worth more than I can express in words! Perhaps this pile of coins will help me express my gratitude better!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk" && player.raceName != "Kel")
+                                {
+                                    player.title = "Highfolk";
+                                }
+
+                                if (player.title != "Nobility" && player.title != "Royalty" && player.raceName != "Kel")
+                                {
+                                    player.status.push("Knight of Aster");
+                                    player.name = prompt("You Have been knighted by a Baroness of Thengaria: (Please take this time to add the title 'of Aster' to your character's name.", player.name + " of Aster");
+                                }
+
+                                take("ransomMoneyCrate", 1);
+                                quests.wolvesInTheNightCompletionStyle = "knight";
+                                quests.wolvesInTheNightQuest = "complete";
+
+                                quests.completeQuests.push({name: "Wolves in the Night", description: "You fought the raiders to secure the release of the daughter of the Baroness of Aster."});
+
+                                player.thengarFaction += 110;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 850;
+                                }
+                                else
+                                {
+                                    player.experience += 1800;
+                                }
+                                give("coins", 1000);
+                                player.fame += 2;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0l")
+                        {
+                            //text dialogue
+                            setMsg("NOOO!!! This can't be!!! Alitka will pay for this!!! I will not sleep until my daughter is avenged! Kill Alitka and her wolf raiders!! Kill them all!!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("ransomMoneyCrate", 1);
+
+                                wolvesInTheNightKillThemAll = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0m")
+                        {
+                            //text dialogue
+                            setMsg("That is most wonderful to hear! Alitka and her wolf raiders have caused me so much grief... she killed a very good and loyal knight... Thanks to you he is avenged! Here is your reward as promised.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.wolvesInTheNightCompletionStyle = "normal";
+                                quests.wolvesInTheNightQuest = "complete";
+
+                                quests.completeQuests.push({name: "Wolves in the Night", description: "You fought and defeated Chieftess Alitka and her wolf raiders."});
+
+                                player.thengarFaction += 75;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 550;
+                                }
+                                else
+                                {
+                                    player.experience += 1200;
+                                }
+                                give("coins", 500);
+                                player.fame += 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0n")
+                        {
+                            //text dialogue
+                            setMsg("Alitka and her wolf raiders hide out in the woods south of Aster. The cowards always wait until nightfall to attack us...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0o")
+                        {
+                            //text dialogue
+                            setMsg("Your heroism will not be forgotten. You are a valient and honourable hero! You have saved my daughter from the clutches of the feral wolf raiders, who you slayed until the last! Even the wild Alitka was felled by your hand! Three cheers for the hero of Aster! (Those in the hall shout hurrah thrice in your honour!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0p")
+                        {
+                            //text dialogue
+                            setMsg("Your heroism will not be forgotten. You are a valient and honourable hero! You have saved my daughter from the clutches of the feral wolf raiders! I am forever grateful to you...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0q")
+                        {
+                            //text dialogue
+                            setMsg("Thank you... (She cries soft tears elegantly into a single hand.)");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0r")
+                        {
+                            //text dialogue
+                            setMsg("I am pleased that you have accepted my offer. You can expect to see your 500 coins once you return to me successful.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.wolvesInTheNightQuest = true;
+                                quests.activeQuests.push({name: "Wolves in the Night", description: "You have agreed to slay Chieftess Alitka and her band of wolf raiders for the Baroness of Aster."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0s")
+                        {
+                            //text dialogue
+                            setMsg("I am disappointed that you have declined my offer, but the offer still stands if ever you find yourself in need of coin. Finding someone willing to slay Alitka and her band is proving to be immensely difficult. Everyone fears her, not even my own soldiers will listen to me if I ask them to step foot in the woods where the wolf raiders dwell.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                wolvesInTheNightWillPay = false;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0t")
+                        {
+                            //text dialogue
+                            setMsg("You have served me loyally, and for that I will reward you... I thought hearing your words would make me feel better, but... this revenge, it does not cheer my spirits, for my only daughter is lost to this world... Nothing can bring her back. No amount of killing will bring her back to me. (She weeps brokenly)");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.wolvesInTheNightCompletionStyle = "revenge";
+                                quests.wolvesInTheNightQuest = "complete";
+
+                                quests.completeQuests.push({name: "Wolves in the Night", description: "Alitka and her wolf raiders captured and killed the daughter of the Baroness of Aster, so you slayed them all to get revenge for her family."});
+
+                                player.thengarFaction += 45;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 450;
+                                }
+                                else
+                                {
+                                    player.experience += 1000;
+                                }
+                                give("coins", 400);
+                                player.fame += 1;
+
+                                wolvesInTheNightWillPay = false;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0u")
+                        {
+                            //text dialogue
+                            setMsg("NOOO!!! This can't be!!! Alitka will pay for this!!! I will not sleep until my daughter is avenged! Kill Alitka and her wolf raiders!! Kill them all!!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.wolvesInTheNightHostageSaved != true)
+                                {
+                                    quests.wolvesInTheNightLie = true;
+                                    quests.wolvesInTheNightTattle = new Date().getTime();
+                                }
+                                wolvesInTheNightKillThemAll = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+
+                    if (self.ID == "Aster Captain of the Guard" || conversationID[0] == "Corkybutt")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Corkybutt";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hello.", false, "a"], ["Do you have any work for me?", false, "c"]];
+
+                                if (quests.wolvesInTheNightNotYou == true && quests.wolvesInTheNightBandits != true)
+                                {
+                                    player.dialogueOptions.unshift(["If you have lost dozens of men to the raiders why are you still alive?", false, "e"]);
+                                }
+                                if (quests.wolvesInTheNightWhy && quests.wolvesInTheNightWolfRaid != true && quests.wolvesInTheNightBandits != true)
+                                {
+                                    if (quests.wolvesInTheNightNotYou != true)
+                                    {
+                                        player.dialogueOptions.unshift(["Are you threatening me?", false, "d"]);
+                                        player.dialogueOptions.unshift(["Why not, is there something I should know about?", false, "b"]);
+                                    }
+                                }
+                                else if (quests.wolvesInTheNightWolfRaid != true && timeOfDay == "Night" && player.fame >= 10)
+                                {
+                                    player.dialogueOptions.unshift(["What's that sound?", false, "f"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (quests.wolvesInTheNightQuest == false)
+                            {
+                                setMsg("Don't stay long in Aster if you want to live a long life...");
+                            }
+                            else
+                            {
+                                if (uniqueChars.alitkaLDS == true && quests.wolvesInTheNightQuest == true)
+                                {
+                                    setMsg("I heard you are planning to take on the wolf raiders, they are not like ordinary bandits or highwaymen, this is a fierce band of powerful bloodthirsty warriors. They can easily overwhelm our defenses here in the town since the Baron left and took most of the soldiers with him to go fight the Kells. Be careful not to underestimate them...");
+                                }
+                                else if (uniqueChars.alitkaLDS == false && quests.wolvesInTheNightQuest == true)
+                                {
+                                    setMsg("I'm impressed! I have heard that you have slain the chieftess of the wold raiders, that is no small feat!");
+                                }
+                                else if (quests.wolvesInTheNightHostageSaved == true && quests.wolvesInTheNightQuest == "complete")
+                                {
+                                    setMsg("Your are a true hero! Hon Maggie is safe back with her family thanks to you! I still worry though about the wolf raiders, we can't really be sure that they won't attack again...");
+                                }
+                                else if (uniqueChars.maggieLDS == true && uniqueChars.alitkaLDS == false && quests.wolvesInTheNightRaidersKilled >= 24)
+                                {
+                                    setMsg("I am impressed! I have heard that you have slain Alitka and all of her wolf raiders. There will surely be songs sung in your name here in Aster for years to come!");
+                                }
+                                else  if (uniqueChars.alitkaLDS == false && quests.wolvesInTheNightRaidersKilled >= 24)
+                                {
+                                    setMsg("I am impressed! I have heard that you have slain Alitka and all of her wolf raiders. It is a shame that Hon Maggie didn't make it though...");
+                                }
+                                else
+                                {
+                                    setMsg("Hello.");
+                                }
+
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.wolvesInTheNightQuest == false && quests.wolvesInTheNightWolfRaid != true)
+                                {
+                                    quests.wolvesInTheNightWhy = true;
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (quests.wolvesInTheNightQuest == false && quests.wolvesInTheNightWolfRaid != true && timeOfDay == "Night" && player.fame >= 10)
+                            {
+                                setMsg("Wolf raiders from the woods have attacked the village several times, and they are still out there... [Suddenly, you hear the sound of painful screaming, and the clash of steel.] They're back!!! The wolf raiders are attacking again! Flee Aster while you still can!!");
+                            }
+                            else
+                            {
+                                setMsg("Wolf raiders from the woods have attacked the village several times, and they are still out there... Last time they attacked, they captured the Baroness's knight protector. They demanded ransom for him, but we refused. We were sent back a bloody head torn apart by skols...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                quests.wolvesInTheNightBandits = true;
+                                if (quests.wolvesInTheNightQuest == false && quests.wolvesInTheNightWolfRaid != true && timeOfDay == "Night")
+                                {
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 1;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                if (quests.wolvesInTheNightQuest == false && quests.wolvesInTheNightWolfRaid != true && timeOfDay == "Night")
+                                {
+                                    reiniciar();
+                                    change = "wolfRaid";
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (quests.wolvesInTheNightQuest == false && quests.wolvesInTheNightWolfRaid == true && change != "wolfRaid")
+                            {
+                                setMsg("The daughter of the Baroness has been kidnapped! Speak to the baroness, I am sure that she will be looking for someone to deliver her ransom to the wolf raiders who took her... She definitely will not put me in charge of that again after the wolf raiders killed her loyal knight protector when I refused to pay his ransom. At the time I didn't think they would kill him, and they asked for an exorbitant amount of ransom...");
+                            }
+                            else if (quests.wolvesInTheNightQuest == false)
+                            {
+                                setMsg("I heard that the Baroness is looking for mercenaries... talk to her if that sounds interesting to you.");
+                            }
+                            else if (quests.wolvesInTheNightQuest == true && quests.wolvesInTheNightWolfRaid == true)
+                            {
+                                setMsg("Negotiating ransom for the daughter of the Baroness is the highest priority right now, no work I could give you would be anywhere near as important.");
+                            }
+                            else if (quests.wolvesInTheNightQuest == true)
+                            {
+                                setMsg("You offered to disband the wolf raiders for the Baroness, finish the work you start before you ask for more.");
+                            }
+                            else
+                            {
+                                setMsg("Not at the moment.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.wolvesInTheNightQuest == false && quests.wolvesInTheNightWolfRaid == true && change != "wolfRaid")
+                                {
+                                    quests.wolvesInTheNightKidnap = true;
+                                }
+                                else if (quests.wolvesInTheNightQuest == false)
+                                {
+                                    quests.wolvesInTheNightWork = true;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Certainly not. I am warning you that Aster is not safe. Wolf raiders come by nightfall to brutalize and plunder the village. My soldiers get the worst of it. I have lost dozens of men to the raids.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.wolvesInTheNightNotYou = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Are you accusing me of cowardice!? I merely did what I had to do to continue to be in a position to serve the Baroness. If a strategic retreat allows me to continue to fight another day, then that is what I ought to do! I am no use to the Baroness dead!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.wolvesInTheNightBandits = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("What sound... oh no not again! [You hear the sound of painful screaming, and the clash of steel.] They're back!!! The wolf raiders are attacking again! Flee Aster while you still can!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                reiniciar();
+                                change = "wolfRaid";
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Alitka, Chieftess of the Wolf Raiders" || conversationID[0] == "Alitka")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Alitka";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.wolvesInTheNightHostageSaved != true)
+                                {
+                                    if (have("ransomMoneyCrate", 1))
+                                    {
+                                        player.dialogueOptions = [["Let the girl go!", false, "a"], ["How do I know that you will hand the girl over once I pay you the ransom?", false, "b"], ["I have the ransom! Release the child into my care. [hand over the ransom]", false, "c"], ["Give me a moment to think about this.", false, "h"], ["What did you do before you became a raider chieftess?", false, "d"]];
+                                    }
+                                    else if (have("coins", 2500))
+                                    {
+                                        player.dialogueOptions = [["Let the girl go!", false, "a"], ["How do I know that you will hand the girl over once I pay you the ransom?", false, "b"], ["I have the ransom! Release the child into my care. [hand over the ransom amount of 2500 coins]", false, "c"], ["Give me a moment to think about this.", false, "h"], ["What did you do before you became a raider chieftess?", false, "d"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["Let the girl go!", false, "a"], ["How do I know that you will hand the girl over once I pay you the ransom?", false, "b"], ["Give me a moment to think about this.", false, "h"], ["What did you do before you became a raider chieftess?", false, "d"]];
+                                    }
+
+                                    if (quests.wolvesInTheNightBluff == true)
+                                    {
+                                        player.dialogueOptions.unshift(["Your bluffing, this is all just a big show, you wouldn't kill a child.", false, "g"])
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["2500 coins for one girl that hardly seems like a fair trade... give me you weapon as well!", false, "f"], ["Why have you and your wolf raiders attacked Aster Village so much?", false, "e"], ["What did you do before you became a raider chieftess?", false, "d"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Fool! You are in no position to make demands! Her ransom price is 2500 coins, pay it and I will let her go.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("I suppose you will have to trust me... And trust me soon, as my patience is running thin, and I WILL kill her if you don't pay the ransom.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.wolvesInTheNightBluff = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (player.gender == "Female")
+                            {
+                                setMsg("Good choice. Now take the girl and get out of here! If you come back here again, expect to feel the fangs of my skols around your neck. Girl! Follow this woman! She will take you home...");
+                            }
+                            else
+                            {
+                                setMsg("Good choice. Now take the girl and get out of here! If you come back here again, expect to feel the fangs of my skols around your neck. Girl! Follow this man! He will take you home...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (have("ransomMoneyCrate", 1))
+                                {
+                                    take("ransomMoneyCrate", 1);
+                                }
+                                else if (have("coins", 2500))
+                                {
+                                    take("coins", 2500);
+                                }
+
+                                quests.wolvesInTheNightHostageSaved = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("You are brave to ask me personal questions here! I respect that, I see no harm in telling my story to one who can look me in the eyes and ask me it the way you did. Before this I had a family, I married a wonderful man and we had a child together... My happiness did not last long though, only a short time after our boy was born, Baron Necham drafted my husband and left for the Kell lands to fight in the war. After that I recieved a letter telling me that he was killed. Not by a Kell mind you, but by the Baron himself. My sweet husband tried to desert from the army... I loved my husband, but he was a selfish fool! When the news spread that my husband was a dishonorable coward, my boy and I were thrown out from our home and forced to live on the streets. Nobody wanted anything to do with the family of a traitor... I made money for food any way I could, I begged for scraps, I sold what little I had left. But it wasn't enough, my boy became ill from malnutrition, and he died wailing in my arms. I remember the moment his pained cries finally stopped... It was then that I realized that I could have prevented his death. I was acting weak, I was pandering to the whim of the people who put me in that very position I was in. The same people who would not allow me to work at a decent job to earn money, were the same who watched my son starve without ever lifting a finger to help. I realized that I had to take what I needed. If I needed coin I would take it, if I needed food I would take it, and if I needed vengence I would take it! The skols too, live by this code. They do not ask to be fed, they feed! I enjoy the company of skols, they remind me of who I am. Who I discovered myself to be...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("My pack feeds when they are hungry, be their appetite for food, coin, or the thrill of bloodshed.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("You are unwise to challenge me, you will not win.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                self.disturbedTime = new Date().getTime();
+                                self.disturbed = true;
+                                spaceKey = true;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("Last time we raided the village, we captured a knight that remained in Aster to serve the Baroness. The Baroness thought I was bluffing when I said that I would kill him if she didn't pay... I don't bluff. How do you think I got this fancy armour?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("Take all the time you need. Paying the girl's ransom is optional if you don't mind me feeding her to my skols.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Baron Brushog of Brisik" || conversationID[0] == "Brushog")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Brushog";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.theBigWormQuest != "complete" && region == "s6w25")
+                                {
+                                    player.dialogueOptions = [["What brings you to Cergadet?", false, "a"], ["How are you, good Ser Baron?", false, "b"], ["What land do you rule over?", false, "c"]];
+                                }
+                                else if (quests.theBigWormQuest == "complete")
+                                {
+                                    player.dialogueOptions = [["Good to see you again!", false, "h"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["...", false, "i"]];
+                                }
+
+                                if (quests.theBigWormKilled == true)
+                                {
+                                    player.dialogueOptions.unshift(["I have slain the giant Lombris that terrorized you and your people in the hamlet of Brisik!", false, "g"]);
+                                }
+
+                                if (quests.theBigWormQuest != false && quests.theBigWormQuest != "complete")
+                                {
+                                    player.dialogueOptions.unshift(["I will slay the giant lombris that has invaded Brisik!", false, "d"]);
+                                    player.dialogueOptions.unshift(["How much money will you pay me to slay this beast that threatens your hamlet?", false, "e"]);
+                                    player.dialogueOptions.unshift(["Have you considered asking the Great Baron Thent for help getting rid of the giant lombris you speak of?", false, "f"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("A giant Bris keeps finding its way onto my land. Ordinarily I might just kill it myself or shelter inside, but this is no ordinary Bris, it is gargantuan. This Bris in other words calls for a holiday away from the hamlet.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theBigWormQuest = true;
+                                quests.activeQuests.push({name: "The Big Worm", description: "There is a giant lombris that has found its way into the hamlet of Brisik."});
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("I'm happy as can be now that I have a pint before me! It is not pleasant to worry day in and day out that a giant bris could eat your villagers... These holidays we take to the inn here in cergadet are a silver lining, however.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I rule over the hamlet of Brisik. It is north of where the road becomes jagged like the teeth of a skol.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (region == "s6w25")
+                            {
+                                setMsg("I appreciate the sentiment. Kill it if you want, that would certainly make my life easier. But don't put yourself in harms way if you think you might not be able to take it on. It will not stay in Brisik for very long since there is nothing for it to eat there.");
+                            }
+                            else
+                            {
+                                setMsg("The giant Bris is not here right now, I appreciate the sentiment, but you have to take things on as they come up. Bris will not remain long in a place that has nothing for them to eat.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (region == "s6w25")
+                            {
+                                setMsg("I am not a wealthy baron, I rule over a hamlet with five buildings in it. I do however grow a variety of produce there. If you take it upon yourself to slay this beast I will pay you in apples.");
+                            }
+                            else
+                            {
+                                setMsg("Look around you, do you see coins growing on trees? No? Only apples, then I will pay you a bushel of apples if you kill it.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                quests.theBigWormPay = "apples";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            if (region == "s6w25")
+                            {
+                                setMsg("If I did that he would likely denounce me as a failure and strip me of my title. No one has ever seen a Bris as large of that which I speak, I am sure the Great Baron Thent would not believe me...");
+                            }
+                            else
+                            {
+                                setMsg("One does not simply walk up to a great Baron to complain about the local wildlife. He would see me as weak! That is the fastest way one could lose his charge as a Baron and be replaced by someone deemed more worthy.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                if (player.title == "Highfolk" && player.raceName == "Thengar")
+                                {
+                                    quests.theBigWormWorthy = true;
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            if (quests.theBigWormPay == "none")
+                            {
+                                setMsg("You have done me a great favor, I am truly in your debt! I will remember this.");
+                            }
+                            else
+                            {
+                                setMsg("You have done me a great favor, I am truly in your debt! Here take these apples, they are from the orchard in Brisik...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.theBigWormPay != "none")
+                                {
+                                    give("apple", 100);
+                                    quests.theBigWormCompletionStyle = "apples";
+                                }
+                                else
+                                {
+                                    quests.theBigWormCompletionStyle = "noapples";
+                                }
+                                quests.theBigWormQuest = "complete";
+
+                                quests.completeQuests.push({name: "The Big Worm", description: "You have rooted out the heretic who would defy the Radiant Spirit and proven yourself as a loyal member of the cult."});
+
+                                player.thengarFaction += 50;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 450;
+                                }
+                                else
+                                {
+                                    player.experience += 1000;
+                                }
+                                player.fame += 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            if (quests.theBigWormApples < 100 && quests.theBigWormPay != "none" || quests.theBigWormApples < 200 && quests.theBigWormPay == "none")
+                            {
+                                setMsg("It is good to see you as well, friend! You have saved my hamlet and my people, I am forever in your debt... here, have an apple on me. Picked fresh from the orchard here in Brisik!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+                                    give("apple", 1);
+                                    quests.theBigWormApples += 1;
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                setMsg("It is good to see you as well, friend! Because of you we can live our lives in Brisik uninterrupted. Thank you for your help!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("Welcome to Brisik. The apple harvest has been bountiful this year, so if you are interested in buying any of my surplus apples just let me know.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Maksym" || conversationID[0] == "Maksym2")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Maksym2";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName == "Cephrite")
+                                {
+                                    player.dialogueOptions = [];
+                                    player.dialogueOptions.push(["...", false, "e"]);
+                                }
+                                else if (quests.huskOfAHeartExtortFail != true && quests.huskOfAHeartQuest != "complete" || quests.huskOfAHeartQuest == "complete")
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["What can you tell me about Boroye?", false, "b"], ["How much property do you own?", false, "d"]];
+                                }
+
+                                if (quests.huskOfAHeartQuest != "complete" && quests.huskOfAHeartExtortFail != true)
+                                {
+                                    player.dialogueOptions.push(["What do you think about the war?", false, "c"]);
+                                }
+
+                                if (quests.huskOfAHeartQuest == true && quests.huskOfAHeartExtortFail != true)
+                                {
+                                    player.dialogueOptions.unshift(["About your daughter...", false, "i"]);
+                                }
+
+                                if (quests.huskOfAHeartQuest == false && quests.huskOfAHeartMissing == true && quests.huskOfAHeartExtortFail != true)
+                                {
+                                    player.dialogueOptions.unshift(["Your wife told me that your daughter went missing, I'm so sorry to hear that...", false, "h"]);
+                                    player.dialogueOptions.unshift(["Your wife told me that your daughter went missing. I will find her for you.", false, "f"]);
+                                    player.dialogueOptions.unshift(["Your wife told me that your daughter went missing. I will search for her if you pay me 120 coins.", false, "g"]);
+                                }
+
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (quests.huskOfAHeartCompletionStyle == "fulltruth")
                             {
                                 setMsg("You've got some nerve showing your face here again after trying to defame our daughter like you did!");
                             }
@@ -3262,7 +6459,7 @@ function interaction(me)
                             {
                                 setMsg("Away with you, fiend, you will get no more money from us!");
                             }
-                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            else if (quests.huskOfAHeartCompletionStyle == "halftruth")
                             {
                                 setMsg("It is hard to be optimistic when your one and only child has been devoured by woodland beasts. I thank you again for the work you did to find our daughter, but I hope you understand that what our family needs right now is time to mourn.");
                             }
@@ -3289,7 +6486,7 @@ function interaction(me)
                         else if (conversationID[1] == "0b")
                         {
                             //text dialogue
-                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            if (quests.huskOfAHeartCompletionStyle == "fulltruth")
                             {
                                 setMsg("I have nothing to say to a liar such as yourself except get out of my house!!");
                             }
@@ -3297,7 +6494,7 @@ function interaction(me)
                             {
                                 setMsg("There are two parts of Boroye, west and east. Decent people like myself and my wife, we live on the west side. Crooks and scoundrels like yourself ought to live on the east side in the slums.");
                             }
-                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            else if (quests.huskOfAHeartCompletionStyle == "halftruth")
                             {
                                 setMsg("Boroye is an old city, it was once a much smaller city surrounded by villages and hamlets, but as more people moved here those villages grew so large that they were joined onto Boroye altogether as a single city. North street is called north street because it was the northmost extreme of old Boroye. The side of Boroye my family lives in, the west side, this is the old part of town, the original Boroye so to speak. You have to know these things if you are going to own as much property in Boroye as I do.");
                             }
@@ -3344,7 +6541,7 @@ function interaction(me)
                         else if (conversationID[1] == "0d")
                         {
                             //text dialogue
-                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            if (quests.huskOfAHeartCompletionStyle == "fulltruth")
                             {
                                 setMsg("Get out of my house you lying dog!");
                             }
@@ -3352,7 +6549,7 @@ function interaction(me)
                             {
                                 setMsg("Get out of my house you crook!");
                             }
-                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            else if (quests.huskOfAHeartCompletionStyle == "halftruth")
                             {
                                 setMsg("Besides this house I own five small homes on the west side of Boroye that I lease out to tenants.");
                             }
@@ -3424,6 +6621,9 @@ function interaction(me)
                             {
                                 msgReset();
 
+                                quests.huskOfAHeartQuest = true;
+                                quests.activeQuests.push({name: "Husk of a Heart", description: "You offered to find Maksym and Elena's missing daughter."});
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
@@ -3473,6 +6673,8 @@ function interaction(me)
                                         quests.huskOfAHeartPay = 100;
                                     }
                                 }
+                                quests.huskOfAHeartQuest = true;
+                                quests.activeQuests.push({name: "Husk of a Heart", description: "You offered to find Maksym and Elena's missing daughter for pay."});
 
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
@@ -3532,6 +6734,241 @@ function interaction(me)
                                 self.SC();
                             }
                         }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("Go on...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Nevermind.", false, "a"]];
+
+                                if (quests.huskOfAHeartQuest == true && have("runawaysNecklace", 1))
+                                {
+                                    player.dialogueOptions.unshift(["I found your daughter... I think. She was mutilated beyond recognition... I found her in a cave in the woods. (show Yasemin's Necklace)", false, "c"]);
+                                }
+                                if (quests.huskOfAHeartQuest == true && have("huskLoveLetter", 1) && have("runawaysNecklace", 1))
+                                {
+                                    player.dialogueOptions.unshift(["Your daughter was writing love letters to a rebel captain, she ran away to be with him, I found the whole regiment dead, your daughter included. (show Yasemin's Necklace & love letter)", false, "b"]);
+                                }
+                                if (quests.huskOfAHeartQuest == true && have("huskLoveLetter", 1))
+                                {
+                                    player.dialogueOptions.unshift(["Your daughter was sleeping with rebels (show them the love letter), If you pay me 300 coins I won't tell the authorities that you raised a trecherous daughter.", false, "d"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("Don't waste my time.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("Our daughter... rebel lovers... What you're saying is malicious and slanderous, and an obvious, shameful lie! You forged this letter! (they take the letter from you and tear it up in anger)");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("huskLoveLetter", 1);
+                                take("runawaysNecklace", 1);
+                                quests.huskOfAHeartCompletionStyle = "fulltruth";
+                                quests.huskOfAHeartQuest = "complete";
+
+                                quests.completeQuests.push({name: "Husk of a Heart", description: "A runaway woman ran off with a rebel lover, and was infected by husks. You told her parents what happened, but they didn't like the truth."});
+
+                                player.vardanFaction += 75;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 600;
+                                }
+                                else
+                                {
+                                    player.experience += 1300;
+                                }
+                                player.fame += 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            if (quests.huskOfAHeartPay >= 0)
+                            {
+                                setMsg("That is her necklace, she never goes anywhere without it... No... (he gasps in a pained voice) My daughter should never have traveled anywhere near the moth woods... My poor girl, its probable that a pack of vrecks attacked her and dragged her there to that cave you speak of. It pains me to imagine it. Though this is terrible news, I would be nothing if not a man of my word. Here is the coin that I owe you.");
+                            }
+                            else
+                            {
+                                setMsg("That is her necklace, she never goes anywhere without it... No... (he gasps in a pained voice) My daughter should never have traveled anywhere near the moth woods... My poor girl, its probable that a pack of vrecks attacked her and dragged her there to that cave you speak of. It pains me to imagine it. Though you bring dreadful news, I still thank you for seeking her out.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.huskOfAHeartCompletionStyle = "halftruth";
+                                quests.huskOfAHeartQuest = "complete";
+                                take("runawaysNecklace", 1);
+
+                                quests.completeQuests.push({name: "Husk of a Heart", description: "A runaway woman ran off with a rebel lover, and was infected by husks. You told her parents only that she was found dead in a cave."});
+
+                                player.vardanFaction += 50;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 600;
+                                }
+                                else
+                                {
+                                    player.experience += 1300;
+                                }
+                                player.fame += 1;
+                                if (quests.huskOfAHeart > 0)
+                                {
+                                    give("coins", quests.huskOfAHeartPay);
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            //text dialogue
+                            if (player.getCharisma() >= 13)
+                            {
+                                setMsg("[Maksym scowls furiously at you as he removes his rather hefty coin purse from his belt and holds it out. Give me that letter you scoundrel! (you take the coins and give him the letter, which he tears up.");
+                            }
+                            else
+                            {
+                                setMsg("How dare you accuse us of such a thing! We are loyalists through and through! No one will believe these lies!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.getCharisma() >= 13)
+                                {
+                                    take("huskLoveLetter", 1);
+                                    quests.huskOfAHeartCompletionStyle = "extort";
+                                    quests.huskOfAHeartQuest = "complete";
+                                    quests.completeQuests.push({name: "Husk of a Heart", description: "A runaway woman ran off with a rebel lover, and was infected by husks. You used this information to extort her family."});
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                    {
+                                        player.magicalExperience += 300;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 650;
+                                    }
+                                    player.fame += 1;
+                                    give("coins", 300);
+                                }
+                                else
+                                {
+                                    quests.huskOfAHeartExtortFail = true;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
                     }
 
                     if (self.ID == "Elena" || conversationID[0] == "Elena")
@@ -3549,11 +6986,24 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                player.dialogueOptions = [["Good day.", false, "a"], ["What's your husband like?", false, "b"], ["What do you do?", false, "c"], ["Why are you so despondent?", false, "d"]];
+                                if (quests.huskOfAHeartQuest != "complete" && quests.huskOfAHeartExtortFail != true || quests.huskOfAHeartQuest == "complete")
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["What's your husband like?", false, "b"], ["What do you do?", false, "c"], ["Why are you so despondent?", false, "d"]];
+                                }
 
-                                if (quests.huskOfAHeartQuest == true)
+                                if (quests.huskOfAHeartQuest == true && quests.huskOfAHeartExtortFail != true)
+                                {
+                                    player.dialogueOptions.unshift(["...", false, "f"]);
+                                }
+
+                                if (quests.huskOfAHeartQuest == true && quests.huskOfAHeartExtortFail != true)
                                 {
                                     player.dialogueOptions.unshift(["Do you know anyone who might know your daughter's whereabouts?", false, "e"]);
+                                }
+
+                                if (quests.huskOfAHeartExtortFail == true)
+                                {
+                                    player.dialogueOptions.unshift(["...", false, "g"]);
                                 }
                             }
                             else if (player.dialogueChoiceMade == true)
@@ -3593,6 +7043,18 @@ function interaction(me)
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0e";
                                         }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
                                     }
                                 }
                             }
@@ -3600,7 +7062,7 @@ function interaction(me)
                         else if (conversationID[1] == "0a")
                         {
                             //text dialogue
-                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            if (quests.huskOfAHeartCompletionStyle == "fulltruth")
                             {
                                 setMsg("How can any day be good anymore when my girl is gone and a liar comes into my home!");
                             }
@@ -3608,7 +7070,7 @@ function interaction(me)
                             {
                                 setMsg("I'll speak not to scoundrels.");
                             }
-                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            else if (quests.huskOfAHeartCompletionStyle == "halftruth")
                             {
                                 setMsg("If only it could be so...");
                             }
@@ -3635,7 +7097,7 @@ function interaction(me)
                         else if (conversationID[1] == "0b")
                         {
                             //text dialogue
-                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            if (quests.huskOfAHeartCompletionStyle == "fulltruth")
                             {
                                 setMsg("Leave me alone, your lies have causes me enough heartache as it is!");
                             }
@@ -3643,7 +7105,7 @@ function interaction(me)
                             {
                                 setMsg("I'll speak not to scoundrels.");
                             }
-                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            else if (quests.huskOfAHeartCompletionStyle == "halftruth")
                             {
                                 setMsg("(In a hushed voice) In truth my husband and I are growing farther and farther apart. He drinks often to drown the pain of losing our daughter, but when he returns home he beats me and blames me for not raising her to be more careful... Sometimes I wonder if it really is my fault that she was careless enough to go out into the woods alone like she did...");
                             }
@@ -3670,7 +7132,7 @@ function interaction(me)
                         else if (conversationID[1] == "0c")
                         {
                             //text dialogue
-                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            if (quests.huskOfAHeartCompletionStyle == "fulltruth")
                             {
                                 setMsg("I have no interest in talking about myself with a liar!");
                             }
@@ -3678,7 +7140,7 @@ function interaction(me)
                             {
                                 setMsg("I have no interest in talking about myself with a scoundrel that would lie about my family for financial gain!");
                             }
-                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            else if (quests.huskOfAHeartCompletionStyle == "halftruth")
                             {
                                 setMsg("My husband manages a number of small properties around Boroye. I mostly just keep the house clean and cook for him when he gets back each day after maintaining our properties.");
                             }
@@ -3705,7 +7167,7 @@ function interaction(me)
                         else if (conversationID[1] == "0d")
                         {
                             //text dialogue
-                            if (quests.huskOfAHeartCompletionStyle == "truth")
+                            if (quests.huskOfAHeartCompletionStyle == "fulltruth")
                             {
                                 setMsg("Why?! You lie about my missing daughter in attempt to besmirch her honor and then stoop so low as to inquire why I am in low spirits!? You are both an idiot and a liar!");
                             }
@@ -3713,7 +7175,7 @@ function interaction(me)
                             {
                                 setMsg("Leave me be!!");
                             }
-                            else if (quests.huskOfAHeartCompletionStyle == "lie")
+                            else if (quests.huskOfAHeartCompletionStyle == "halftruth")
                             {
                                 setMsg("My daughter is dead, savaged by beasts. No mother should know the pain that I suffer. My Yasemin was a sweet girl, she did not deserve this!! (she cries deeply)");
                             }
@@ -3740,7 +7202,49 @@ function interaction(me)
                         else if (conversationID[1] == "0e")
                         {
                             //text dialogue
-                            setMsg("I must be a terrible mother to say this, but I do not know any of my daughters friends. (she sobs as she continues) All I know is that she often went to mass in the cathedral almost every day. My Yasemin was a good, pious, woman...");
+                            setMsg("I must be a terrible mother to say this, but I do not know any of my daughters friends. (she sobs as she continues) All I know is that she often went to mass in the cathedral almost every day. My Yasemin was a good, pious, woman... Oh, and she always wears a silver necklace with a ruby embedded in it that my mother gave to her when she was just a girl. I hope that helps you find her!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.huskOfAHeartChurch = true;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("Thank you for looking for my daughter... I do hope you find her soon.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("How dare you threaten our family!");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -4554,8 +8058,8 @@ function interaction(me)
                                 else
                                 {
                                     player.experience += 350;
-                                    player.fame += 1;
                                 }
+                                player.fame += 1;
 
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
@@ -5729,8 +9233,8 @@ function interaction(me)
                                     else
                                     {
                                         player.experience += 250;
-                                        player.fame += 1;
                                     }
+                                    player.fame += 1;
                                 }
                                 else
                                 {
@@ -5752,8 +9256,8 @@ function interaction(me)
                                     else
                                     {
                                         player.experience += 250;
-                                        player.fame += 1;
                                     }
+                                    player.fame += 1;
                                 }
 
                                 playersTurnToSpeak = true;
@@ -5837,8 +9341,8 @@ function interaction(me)
                                     else
                                     {
                                         player.experience += 175;
-                                        player.fame += 1;
                                     }
+                                    player.fame += 1;
                                 }
 
                                 playersTurnToSpeak = true;
@@ -36737,6 +40241,7 @@ function interaction(me)
                                 quests.completeQuests.push({name: "Matrimony: Tor/Stambjord", description: "You married Jarl Rannuk Stambjord of Venning! In doing so you have cemented your family's relation with Venning and you have a rich husband to care for you."});
                                 player.freynorFaction += 400;
                                 player.name = prompt("You Have Married into Another Noble House: (If your character's name includes a family name, please take this time to rename your character to reflect the Freydic cultural norm of adopting the husband's family name. The name your character is supposed to take on in this case is 'Stambjord'", player.name + " Stambjord");
+                                player.status.push("Frue of Venning");
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;

@@ -16,8 +16,8 @@ if (player.class == "Mage" || player.class == "Priest" || player.class == "Shama
 else
 {
     player.experience += 250;
-    player.fame += 1;
 }
+player.fame += 1;
 
 
 

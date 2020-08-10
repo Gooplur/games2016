@@ -272,4 +272,8 @@ function findLiterature(itemType)
         "\n" +
         "[The writing abruptly ends]"]];
     }
+    else if (itemType == "huskLoveLetter")
+    {
+        reading = [["^ Dear Sergei, ||I long to be held in your arms again the way that you held me when we first met. My heart feels as if it is a silken moth that wants to fly out of my breast to be with you. My parents don't know about the love between us, they would never allow us to be together if they knew... They are fierce supporters of the loyalist cause. They do not see how the old ways in Vardania are no longer in the best interest of the people. But you do! You know what is right, and you fight for what you love. I admire your heroism, it fills my heart with joy to hear that you are leading men to fight for justice as a captain. You have achieved so much, when we first met you were but a soldier yourself... I know I am no fighter, but I can't stand to be away from you any longer, Sergei. I am planning to run away from home, I will follow your regiment and we can keep each other warm at night. Soon we will finally be together, no more sneaking out, no more hiding! I will gather my things and leave tommorrow before sunrise before my parents notice anything. Nothing in this whole world will keep us apart! I will be with you soon! || Love, Yasemin."]];
+    }
 }

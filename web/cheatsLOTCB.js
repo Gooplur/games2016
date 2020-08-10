@@ -2646,13 +2646,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 86)
+                if (buildClase > 87)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 86;
+                    buildClase = 87;
                 }
             }
 
@@ -8370,13 +8370,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 28)
+                if (buildClase > 48)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 28;
+                    buildClase = 48;
                 }
             }
 
@@ -8553,6 +8553,126 @@ function cheats()
                 buildPrompt = "stove";
                 buildPrompt2 = "lit";
                 buildPrompt3 = '"lit"';
+            }
+            else if (buildClase == 29)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 87;
+                buildPrompt3 = "87";
+            }
+            else if (buildClase == 30)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 30;
+                buildPrompt3 = "30";
+            }
+            else if (buildClase == 31)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 31;
+                buildPrompt3 = "31";
+            }
+            else if (buildClase == 32)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 32;
+                buildPrompt3 = "32";
+            }
+            else if (buildClase == 33)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 33;
+                buildPrompt3 = "33";
+            }
+            else if (buildClase == 34)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 34;
+                buildPrompt3 = "34";
+            }
+            else if (buildClase == 35)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 35;
+                buildPrompt3 = "35";
+            }
+            else if (buildClase == 36)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 36;
+                buildPrompt3 = "36";
+            }
+            else if (buildClase == 37)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 37;
+                buildPrompt3 = "37";
+            }
+            else if (buildClase == 38)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 38;
+                buildPrompt3 = "38";
+            }
+            else if (buildClase == 39)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 39;
+                buildPrompt3 = "39";
+            }
+            else if (buildClase == 40)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 40;
+                buildPrompt3 = "40";
+            }
+            else if (buildClase == 41)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 41;
+                buildPrompt3 = "41";
+            }
+            else if (buildClase == 42)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 42;
+                buildPrompt3 = "42";
+            }
+            else if (buildClase == 43)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 43;
+                buildPrompt3 = "43";
+            }
+            else if (buildClase == 44)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 44;
+                buildPrompt3 = "44";
+            }
+            else if (buildClase == 45)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 45;
+                buildPrompt3 = "45";
+            }
+            else if (buildClase == 46)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 46;
+                buildPrompt3 = "46";
+            }
+            else if (buildClase == 47)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 47;
+                buildPrompt3 = "47";
+            }
+            else if (buildClase == 48)
+            {
+                buildPrompt = "westMueble";
+                buildPrompt2 = 48;
+                buildPrompt3 = "48";
             }
 
             if (xKey)
@@ -10965,6 +11085,16 @@ function cheats()
         else if (cheatcode == "bones")
         {
             console.log(quests.flamingBones);
+        }
+        else if (cheatcode == "charlar")
+        {
+            console.log("conversationID: " + conversationID);
+            conversationID = ["none", 0];
+        }
+        else if (cheatcode.toLowerCase() == "themags")
+        {
+            uniqueChars.maggieLDS = true;
+            uniqueChars.maggyLDS = true;
         }
         else if (cheatcode.toLowerCase() == "peter")
         {

@@ -33598,7 +33598,6 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (this.runOneTime == true)
             {
                 this.runOneTime = false;
-                this.id = "none";
                 this.clave = "huskWall" + Math.random();
                 this.primed = true;
 

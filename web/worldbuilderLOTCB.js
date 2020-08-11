@@ -1463,7 +1463,7 @@ function worldBuilder()
             elevation = -1;
             region = "s19w36";
             campout = true;
-            outlineBuilder(34, 34, "outline", -1244, 626); //vardanianWoods
+            outlineBuilder(34, 34, "vardanianWoods", -1244, 626);
         }
         //mapS19W35
         if (Y > -197728 && Y < -186928 && X < 364713 && X > 353021 ) //X35

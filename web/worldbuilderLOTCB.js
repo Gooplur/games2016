@@ -1442,7 +1442,33 @@ function worldBuilder()
             elevation = 0;
             region = "s20w35";
             campout = true;
-            outlineBuilder(34, 34, "outline", -1210, 660);
+            outlineBuilder(34, 34, "vardanianWoods", -1210, 660);
+
+            outlineBuilder(27, 1, "vardanianGrass", -1177, 667);
+            outlineBuilder(26, 2, "vardanianGrass", -1179, 668);
+            outlineBuilder(24, 1, "vardanianGrass", -1180, 670);
+            outlineBuilder(23, 3, "vardanianGrass", -1183, 671);
+            outlineBuilder(22, 1, "vardanianGrass", -1184, 672);
+            outlineBuilder(21, 2, "vardanianGrass", -1186, 673);
+            outlineBuilder(18, 1, "vardanianGrass", -1187, 676);
+            outlineBuilder(19, 2, "vardanianGrass", -1189, 675);
+            outlineBuilder(20, 1, "vardanianGrass", -1190, 674);
+            outlineBuilder(19, 1, "vardanianGrass", -1191, 675);
+            outlineBuilder(17, 2, "vardanianGrass", -1193, 677);
+            outlineBuilder(16, 1, "vardanianGrass", -1194, 678);
+            outlineBuilder(15, 3, "vardanianGrass", -1197, 679);
+            outlineBuilder(11, 1, "vardanianGrass", -1198, 683);
+            outlineBuilder(9, 1, "vardanianGrass", -1199, 685);
+            outlineBuilder(2, 1, "vardanianGrass", -1200, 686);
+            outlineBuilder(3, 1, "vardanianGrass", -1200, 691);
+            outlineBuilder(2, 2, "vardanianGrass", -1202, 692);
+            outlineBuilder(3, 1, "vardanianGrass", -1203, 691);
+            outlineBuilder(4, 1, "vardanianGrass", -1204, 690);
+            outlineBuilder(5, 1, "vardanianGrass", -1205, 689);
+            outlineBuilder(6, 2, "vardanianGrass", -1207, 688);
+            outlineBuilder(7, 1, "vardanianGrass", -1208, 687);
+            outlineBuilder(5, 1, "vardanianGrass", -1209, 689);
+            outlineBuilder(4, 1, "vardanianGrass", -1210, 690);
         }
         //Layer -19 (warm region): elev -2
         //mapS19
@@ -1471,7 +1497,7 @@ function worldBuilder()
             elevation = -1;
             region = "s19w35";
             campout = true;
-            outlineBuilder(34, 34, "crag", -1210, 626); //vardanianWoods
+            outlineBuilder(34, 34, "vardanianWoods", -1210, 626);
         }
         //mapS19W34
         if (Y > -197728 && Y < -186928 && X < 354544 && X > 342860) //X34

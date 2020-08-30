@@ -4415,6 +4415,169 @@ function Item(type, x, y)
             this.buyValue = 4; // at max, buy for 4.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
+        else if (this.type == "velozaiHide")
+        {
+            //For All Items
+            this.identity = "Velozai Hide";
+            this.weight = 1.3;
+            this.size = 10;
+            this.description = "The scaley hide of a velozai.";
+            this.intForDes = 1;
+            this.intDescription = "Velozai hide is used to make light armour and apparel..";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "velozaiFeathers")
+        {
+            //For All Items
+            this.identity = "Velozai Feathers";
+            this.weight = 0.3;
+            this.size = 9;
+            this.description = "The colourful tail feathers of a velozai.";
+            this.intForDes = 1;
+            this.intDescription = "Velozai feathers are used decoratively and sometimes kept as a trophy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 50); // at max, sell for 5.
+        }
+        else if (this.type == "tyaFan")
+        {
+            //For All Items
+            this.identity = "Tya Fan";
+            this.weight = 0.1;
+            this.size = 4;
+            this.description = "The white and red fan of feathers that are suspended above a Tya's head.";
+            this.intForDes = 1;
+            this.intDescription = "Tya fans are kept as trophies and decorations.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "tyaWings")
+        {
+            //For All Items
+            this.identity = "Tya Wings";
+            this.weight = 0.1;
+            this.size = 4;
+            this.description = "The wings of a tya.";
+            this.intForDes = 1;
+            this.intDescription = "They are useful as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "rawTyaFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Tya Flesh";
+            this.weight = 0.1;
+            this.size = 4;
+            this.description = "The raw leg of a tya bird.";
+            this.intForDes = 2;
+            this.intDescription = "Eating raw tya leg is unsafe due to gutworms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutworms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "tyaMeat")
+        {
+            //For All Items
+            this.identity = "Tya Meat";
+            this.weight = 0.1;
+            this.size = 4;
+            this.description = "The roasted leg of a tya bird.";
+            this.intForDes = 2;
+            this.intDescription = "Tya birds can fly well, but they usually run on the ground, which makes their meat tough and gamey.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 9; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 11;
+            this.ingredients = [["Raw Tya Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "giavevSpike")
+        {
+            //For All Items
+            this.identity = "Giavev Spike";
+            this.weight = 8;
+            this.size = 12;
+            this.description = "The cleanly severed, spiked-claw-foot of a giavev.";
+            this.intForDes = 19;
+            this.intDescription = "Giavevs regenerate their bodies very rapidly using a stem cell that can recreate their whole body. Some giavev stem cells remain in this spike.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18; // at max, buy for 18.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 15); // at max, sell for 18.
+        }
         else if (this.type == "snowyOwlWingLarge")
         {
             //For All Items
@@ -13427,6 +13590,195 @@ function Item(type, x, y)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 50); // at max, buy for 8.
             this.sellValue = 6 + Math.floor(player.getCharisma() / 25); // at max, sell for 8.
         }
+        else if (this.type == "rawVultureFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Vulture Flesh";
+            this.weight = 1.5;
+            this.size = 9;
+            this.description = "The raw flesh from a vulture.";
+            this.intForDes = 2;
+            this.intDescription = "Vultures eat carrion, their flesh is certainly not safe to eat raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "throatTicks";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "vultureMeat")
+        {
+            //For All Items
+            this.identity = "Vulture Meat";
+            this.weight = 1.5;
+            this.size = 9;
+            this.description = "The cooked meat of a vulture.";
+            this.intForDes = 1;
+            this.intDescription = "It is technically safe to eat... that doesn't mean that you should put it in your mouth, though.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = -1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Raw Vulture Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawVelozaiFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Velozai Flesh";
+            this.weight = 1;
+            this.size = 9;
+            this.description = "The raw flesh from a velozai.";
+            this.intForDes = 4;
+            this.intDescription = "Velozai flesh is unsafe to eat raw due to gut worms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutworms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "velozaiMeat")
+        {
+            //For All Items
+            this.identity = "Velozai Meat";
+            this.weight = 1;
+            this.size = 9;
+            this.description = "The cooked meat of a velozai.";
+            this.intForDes = 4;
+            this.intDescription = "It is safe to eat but it is tough and unappetizing.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 5;
+            this.ingredients = [["Raw Velozai Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "rawIguanaFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Iguana Flesh";
+            this.weight = 0.9;
+            this.size = 6;
+            this.description = "The raw flesh from an iguana.";
+            this.intForDes = 3;
+            this.intDescription = "Iguana flesh is unsafe to eat due to gutworms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutwormds";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "iguanaMeat")
+        {
+            //For All Items
+            this.identity = "Raw Iguana Flesh";
+            this.weight = 0.85;
+            this.size = 6;
+            this.description = "The cooked meat of an iguana.";
+            this.intForDes = 1;
+            this.intDescription = "Iguana meat is safe to eat but is not particularly filling....";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Raw Iguana Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "rawPufferfishFlesh")
         {
             //For All Items
@@ -17235,6 +17587,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+        }
+        else if (this.type == "yunaStalk")
+        {
+            //For All Items
+            this.identity = "Yuna Stalk";
+            this.weight = 1.5;
+            this.size = 10;
+            this.description = "A smooth pink stalk that has spherical red orbs connected on both sides.";
+            this.intForDes = 15;
+            this.intDescription = "This is a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+        }
+        else if (this.type == "nayuTail")
+        {
+            //For All Items
+            this.identity = "Nayu Tail";
+            this.weight = 2;
+            this.size = 10;
+            this.description = "A smooth pink tail with spherical red orbs on both sides.";
+            this.intForDes = 15;
+            this.intDescription = "This is not used for anything, but you could keep it as a trophy if you want...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "hracklePod")
         {
@@ -25638,7 +26030,7 @@ function Item(type, x, y)
             this.replenish = 0; //restores will.
 
             //ability
-            this.ability = "speedI";
+            this.ability = "antiMothfear";
 
             //Crafting
             this.yield = 2;
@@ -44100,6 +44492,73 @@ function Item(type, x, y)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
         }
+        else if (this.type == "hummingbirdFeathers")
+        {
+            //For All Items
+            this.identity = "Hummingbird Feathers";
+            this.weight = 0.12;
+            this.size = 5;
+            this.description = "The multi-coloured tail feathers of an Orgish hummingbird.";
+            this.intForDes = 16;
+            this.intDescription = "Hummingbird feathers are both used decoratively and alchemically as an amplifier.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "lanternBugAbdomen" || this.type == "lanternBugAbdomenRed")
+        {
+            //For All Items
+            this.identity = "Lantern Bug Abdomen";
+            this.weight = 3;
+            this.size = 14;
+            this.description = "The abdomen of a lantern bug";
+            this.intForDes = 25;
+            this.intDescription = "There are various chemical compounds inside the abdomen that can produce light together when combined.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 50); // at max, buy for 5.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 50); // at max, sell for 5.
+        }
+        else if (this.type == "xevolatiArm" || this.type == "xevolatiArmRed")
+        {
+            //For All Items
+            this.identity = "Hummingbird Feathers";
+            if (this.type == "xevolatiArmRed")
+            {
+                this.weight = 2.5;
+            }
+            else
+            {
+                this.weight = 4;
+            }
+            this.size = 10;
+            this.description = "The toothed leaf arm of the carnivorous xevolati plant.";
+            this.intForDes = 20;
+            this.intDescription = "Xevolati acid not only melts through flesh, it causes paralitic shock to the nervous system of its victims.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
         else if (this.type == "pokinutyyShell")
         {
             //For All Items
@@ -61745,6 +62204,101 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "nayuTail" || this.type == "yunaStalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 627, 251, 83, 76, X - this.X + (1/2 * CCC.width) - (1/2 * 83 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 76 * 0.7), 83 * 0.7, 76 * 0.7);
+        }
+        else if (this.type == "rawTyaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 14, 52, 49, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 49 * 1, 27 * 1);
+        }
+        else if (this.type == "tyaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 16, 73, 49, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 49 * 1, 27 * 1);
+        }
+        else if (this.type == "tyaWings")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, -5, 24, 49, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 49 * 1, 27 * 1);
+        }
+        else if (this.type == "tyaFan")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, -1, -1, 49, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 49 * 1, 27 * 1);
+        }
+        else if (this.type == "giavevSpike")
+        {
+            XXX.beginPath();
+            XXX.drawImage(vult, 347, 1498, 31, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 31 * 1, 29 * 1);
+        }
+        else if (this.type == "rawVelozaiFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rapt, 708, 97, 42, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1), 42 * 1, 22 * 1);
+        }
+        else if (this.type == "velozaiMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rapt, 739, 97, 42, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1), 42 * 1, 22 * 1);
+        }
+        else if (this.type == "velozaiHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rapt, 723, 121, 42, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1), 42 * 1, 22 * 1);
+        }
+        else if (this.type == "velozaiFeathers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rapt, 64, 8, 42, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "rawVultureFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(vult, 1109, 1016, 46, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 46 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 46 * 1, 36 * 1);
+        }
+        else if (this.type == "vultureMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(vult, 1167, 1015, 46, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 46 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 46 * 1, 36 * 1);
+        }
+        else if (this.type == "rawIguanaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(vult, 1109, 1016, 46, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 0.7), 26 * 0.7, 40 * 0.7);
+        }
+        else if (this.type == "iguanaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(vult, 1167, 1015, 46, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 0.7), 26 * 0.7, 40 * 0.7);
+        }
+        else if (this.type == "LanternBugAbdomenRed")
+        {
+            XXX.beginPath();
+            XXX.drawImage(luciernaga, 710, 65, 61, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 61 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 61 * 1, 27 * 1);
+        }
+        else if (this.type == "LanternBugAbdomen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(luciernaga, 639, 63, 61, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 61 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 61 * 1, 27 * 1);
+        }
+        else if (this.type == "xevolatiArmRed")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 653, 173, 81, 56, X - this.X + (1/2 * CCC.width) - (1/2 * 81 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 56 * 1), 81 * 1, 56 * 1);
+        }
+        else if (this.type == "xevolatiArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 649, 1849, 81, 56, X - this.X + (1/2 * CCC.width) - (1/2 * 81 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 56 * 1.4), 81 * 1.4, 56 * 1.4);
+        }
+        else if (this.type == "hummingbirdFeathers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 1093, 1328, 81, 56, X - this.X + (1/2 * CCC.width) - (1/2 * 81 * 0.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 56 * 0.4), 81 * 0.4, 56 * 0.4);
+        }
         else if (this.type == "quillwolfOutfit")
         {
             XXX.beginPath();
@@ -69923,6 +70477,101 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "nayuTail" || this.type == "yunaStalk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(joso, 627, 251, 83, 76, this.invX - (1/2 * 83 * 0.7), this.invY - (1/2 * 76 * 0.7), 83 * 0.7, 76 * 0.7);
+        }
+        else if (this.type == "rawTyaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(roost, 14, 52, 49, 27, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 27 * 1), 49 * 1, 27 * 1);
+        }
+        else if (this.type == "tyaMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(roost, 16, 73, 49, 27, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 27 * 1), 49 * 1, 27 * 1);
+        }
+        else if (this.type == "tyaWings")
+        {
+            LXX.beginPath();
+            LXX.drawImage(roost, -5, 24, 49, 27, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 27 * 1), 49 * 1, 27 * 1);
+        }
+        else if (this.type == "tyaFan")
+        {
+            LXX.beginPath();
+            LXX.drawImage(roost, -1, -1, 49, 27, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 27 * 1), 49 * 1, 27 * 1);
+        }
+        else if (this.type == "giavevSpike")
+        {
+            LXX.beginPath();
+            LXX.drawImage(vult, 347, 1498, 31, 29, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 29 * 1), 31 * 1, 29 * 1);
+        }
+        else if (this.type == "rawVelozaiFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(rapt, 708, 97, 42, 22, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 22 * 1), 42 * 1, 22 * 1);
+        }
+        else if (this.type == "velozaiMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(rapt, 739, 97, 42, 22, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 22 * 1), 42 * 1, 22 * 1);
+        }
+        else if (this.type == "velozaiHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(rapt, 723, 121, 42, 22, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 22 * 1), 42 * 1, 22 * 1);
+        }
+        else if (this.type == "velozaiFeathers")
+        {
+            LXX.beginPath();
+            LXX.drawImage(rapt, 64, 8, 42, 28, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "rawVultureFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(vult, 1109, 1016, 46, 36, this.invX - (1/2 * 46 * 1), this.invY - (1/2 * 36 * 1), 46 * 1, 36 * 1);
+        }
+        else if (this.type == "vultureMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(vult, 1167, 1015, 46, 36, this.invX - (1/2 * 46 * 1), this.invY - (1/2 * 36 * 1), 46 * 1, 36 * 1);
+        }
+        else if (this.type == "rawIguanaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(vult, 1109, 1016, 46, 36, this.invX - (1/2 * 26 * 0.7), this.invY - (1/2 * 40 * 0.7), 26 * 0.7, 40 * 0.7);
+        }
+        else if (this.type == "iguanaMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(vult, 1167, 1015, 46, 36, this.invX - (1/2 * 26 * 0.7), this.invY - (1/2 * 40 * 0.7), 26 * 0.7, 40 * 0.7);
+        }
+        else if (this.type == "LanternBugAbdomenRed")
+        {
+            LXX.beginPath();
+            LXX.drawImage(luciernaga, 710, 65, 61, 27, this.invX - (1/2 * 61 * 1), this.invY - (1/2 * 27 * 1), 61 * 1, 27 * 1);
+        }
+        else if (this.type == "LanternBugAbdomen")
+        {
+            LXX.beginPath();
+            LXX.drawImage(luciernaga, 639, 63, 61, 27, this.invX - (1/2 * 61 * 1), this.invY - (1/2 * 27 * 1), 61 * 1, 27 * 1);
+        }
+        else if (this.type == "xevolatiArmRed")
+        {
+            LXX.beginPath();
+            LXX.drawImage(joso, 653, 173, 81, 56, this.invX - (1/2 * 81 * 1), this.invY - (1/2 * 56 * 1), 81 * 1, 56 * 1);
+        }
+        else if (this.type == "xevolatiArm")
+        {
+            LXX.beginPath();
+            LXX.drawImage(joso, 649, 1849, 81, 56, this.invX - (1/2 * 81 * 1.4), this.invY - (1/2 * 56 * 1.4), 81 * 1.4, 56 * 1.4);
+        }
+        else if (this.type == "hummingbirdFeathers")
+        {
+            LXX.beginPath();
+            LXX.drawImage(joso, 1093, 1328, 81, 56, this.invX - (1/2 * 81 * 0.4), this.invY - (1/2 * 56 * 0.4), 81 * 0.4, 56 * 0.4);
+        }
         else if (this.type == "quillwolfOutfit")
         {
             LXX.beginPath();
@@ -78056,6 +78705,101 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "nayuTail" || this.type == "yunaStalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 627, 251, 83, 76, this.invX - (1/2 * 83 * 0.7), this.invY - (1/2 * 76 * 0.7), 83 * 0.7, 76 * 0.7);
+        }
+        else if (this.type == "rawTyaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 14, 52, 49, 27, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 27 * 1), 49 * 1, 27 * 1);
+        }
+        else if (this.type == "tyaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 16, 73, 49, 27, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 27 * 1), 49 * 1, 27 * 1);
+        }
+        else if (this.type == "tyaWings")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, -5, 24, 49, 27, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 27 * 1), 49 * 1, 27 * 1);
+        }
+        else if (this.type == "tyaFan")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, -1, -1, 49, 27, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 27 * 1), 49 * 1, 27 * 1);
+        }
+        else if (this.type == "giavevSpike")
+        {
+            XXX.beginPath();
+            XXX.drawImage(vult, 347, 1498, 31, 29, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 29 * 1), 31 * 1, 29 * 1);
+        }
+        else if (this.type == "rawVelozaiFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rapt, 708, 97, 42, 22, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 22 * 1), 42 * 1, 22 * 1);
+        }
+        else if (this.type == "velozaiMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rapt, 739, 97, 42, 22, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 22 * 1), 42 * 1, 22 * 1);
+        }
+        else if (this.type == "velozaiHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rapt, 723, 121, 42, 22, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 22 * 1), 42 * 1, 22 * 1);
+        }
+        else if (this.type == "velozaiFeathers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rapt, 64, 8, 42, 28, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "rawVultureFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(vult, 1109, 1016, 46, 36, this.invX - (1/2 * 46 * 1), this.invY - (1/2 * 36 * 1), 46 * 1, 36 * 1);
+        }
+        else if (this.type == "vultureMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(vult, 1167, 1015, 46, 36, this.invX - (1/2 * 46 * 1), this.invY - (1/2 * 36 * 1), 46 * 1, 36 * 1);
+        }
+        else if (this.type == "rawIguanaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(vult, 1109, 1016, 46, 36, this.invX - (1/2 * 26 * 0.7), this.invY - (1/2 * 40 * 0.7), 26 * 0.7, 40 * 0.7);
+        }
+        else if (this.type == "iguanaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(vult, 1167, 1015, 46, 36, this.invX - (1/2 * 26 * 0.7), this.invY - (1/2 * 40 * 0.7), 26 * 0.7, 40 * 0.7);
+        }
+        else if (this.type == "LanternBugAbdomenRed")
+        {
+            XXX.beginPath();
+            XXX.drawImage(luciernaga, 710, 65, 61, 27, this.invX - (1/2 * 61 * 1), this.invY - (1/2 * 27 * 1), 61 * 1, 27 * 1);
+        }
+        else if (this.type == "LanternBugAbdomen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(luciernaga, 639, 63, 61, 27, this.invX - (1/2 * 61 * 1), this.invY - (1/2 * 27 * 1), 61 * 1, 27 * 1);
+        }
+        else if (this.type == "xevolatiArmRed")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 653, 173, 81, 56, this.invX - (1/2 * 81 * 1), this.invY - (1/2 * 56 * 1), 81 * 1, 56 * 1);
+        }
+        else if (this.type == "xevolatiArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 649, 1849, 81, 56, this.invX - (1/2 * 81 * 1.4), this.invY - (1/2 * 56 * 1.4), 81 * 1.4, 56 * 1.4);
+        }
+        else if (this.type == "hummingbirdFeathers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 1093, 1328, 81, 56, this.invX - (1/2 * 81 * 0.4), this.invY - (1/2 * 56 * 0.4), 81 * 0.4, 56 * 0.4);
         }
         else if (this.type == "quillwolfOutfit")
         {

@@ -39420,6 +39420,74 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
+        else if (this.type == "yunaPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(2);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.summonTime = new Date().getTime() + (1000 - (2000 * Math.random()));
+            }
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                if (new Date().getTime() - this.summonTime > 4000)
+                {
+                    this.summonTime = new Date().getTime();
+                }
+                if (new Date().getTime() - this.summonTime < 2000)
+                {
+                    lights.push({X: this.X + Math.cos(this.rotation + 1/2 * Math.PI - 0.3) * 42, Y: this.Y + Math.sin(this.rotation + 1/2 * Math.PI - 0.3) * 42, size: 55, extraStops: true, GRD: 0.3, Alpha: 0.3, showMe: false});
+                }
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(joso, 877, 1284, 125, 168, -(1/2 * 125 * 0.7), -(1/2 * 168 * 0.7), 125 * 0.7, 168 * 0.7);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(joso, 983, 1280, 125, 168, -(1/2 * 125 * 0.7), -(1/2 * 168 * 0.7), 125 * 0.7, 168 * 0.7);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 16;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "yunaStalk")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("yunaStalk", false, false), 1]);
+                }
+            }
+        }
         else if (this.type == "bloodLilyPlant")
         {
             //TRAITS

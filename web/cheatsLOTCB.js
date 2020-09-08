@@ -10160,6 +10160,10 @@ function cheats()
         {
             player.survivalism = 0;
         }
+        else if (cheatcode == "army")
+        {
+            player.companionLimit = 16;
+        }
         else if (cheatcode == "showsize")
         {
             testingUnitSizes = true;

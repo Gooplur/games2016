@@ -718,7 +718,7 @@ function Adventurer()
     this.mounted = false; //Are you mounted?
     //companion variables
     this.companions = [];
-    this.companionLimit = 9;
+    this.companionLimit = 16; //9
     //economy variables
     this.earnings = 0;
     this.debt = 0;
@@ -32726,7 +32726,7 @@ function Adventurer()
     this.buildUIBar = function ()
     {
         var menuBarLock = true;
-        if (lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting" && lowBar != "spellbook" && lowBar != "beastJournal" && lowBar != "questLog" && lowBar != "reading" && lowBar != "storage" && lowBar != "factionMenu" && lowBar != "options")
+        if (lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting" && lowBar != "spellbook" && lowBar != "beastJournal" && lowBar != "questLog" && lowBar != "reading" && lowBar != "storage" && lowBar != "factionMenu" && lowBar != "companionMenu" && lowBar != "options")
         {
             menuBarLock = false;
         }
@@ -32776,7 +32776,7 @@ function Adventurer()
     //UI Buttons
     this.uiButton = function ()
     {
-        if (this.showStatBars && mouseY > 526 || !this.showStatBars && mouseY > 526 && mouseX > 151 || !this.showStatBars && showUiIcons || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting" || lowBar == "spellbook" || lowBar == "beastJournal" || lowBar == "questLog" || lowBar == "reading" || lowBar == "storage" || lowBar == "factionMenu"  || lowBar == "options")
+        if (this.showStatBars && mouseY > 526 || !this.showStatBars && mouseY > 526 && mouseX > 151 || !this.showStatBars && showUiIcons || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting" || lowBar == "spellbook" || lowBar == "beastJournal" || lowBar == "questLog" || lowBar == "reading" || lowBar == "storage" || lowBar == "factionMenu" || lowBar == "companionMenu"  || lowBar == "options")
         {
             //inventory button
             XXX.beginPath();
@@ -32848,25 +32848,39 @@ function Adventurer()
             XXX.stroke();
             XXX.drawImage(dolls, 132, 86, 24, 14, 278, 532, 20, 11.6);
 
+            //Companion Menu menu button
+            XXX.beginPath();
+            XXX.strokeStyle = "black";
+            XXX.lineWidth = 1;
+            XXX.fillStyle = "cornsilk";
+            XXX.rect(299, 527, 20, 22);
+            XXX.fill();
+            XXX.stroke();
+            XXX.save();
+            XXX.translate(299 - 0.75, 550.5);
+            XXX.rotate(-1/2 * Math.PI)
+            XXX.drawImage(quil, 518, 511, 86, 85, 0, 0, 22, 22);
+            XXX.restore();
+
             //Saving menu button
             XXX.beginPath();
             XXX.strokeStyle = "black";
             XXX.lineWidth = 1;
             XXX.fillStyle = "white";
-            XXX.rect(299, 527, 20, 22);
+            XXX.rect(320, 527, 20, 22);
             XXX.fill();
             XXX.stroke();
-            XXX.drawImage(polyPNG, 663, 1, 31, 24, 299, 530, 21, 15.6);
+            XXX.drawImage(polyPNG, 663, 1, 31, 24, 320, 530, 21, 15.6);
 
             //Options menu button
             XXX.beginPath();
             XXX.strokeStyle = "black";
             XXX.lineWidth = 1;
             XXX.fillStyle = "#DDC5B6";
-            XXX.rect(320, 527, 20, 22);
+            XXX.rect(341, 527, 20, 22);
             XXX.fill();
             XXX.stroke();
-            XXX.drawImage(poly, 411, 101, 17, 18, 320 + 1.5, 530, 17, 18);
+            XXX.drawImage(poly, 411, 101, 17, 18, 341 + 1.5, 530, 17, 18);
 
             //Game Clock
             XXX.beginPath();
@@ -33014,7 +33028,21 @@ function Adventurer()
         }
 
         //When the save button is clicked the lowbar shows the player the eight saving slots to choose from.
-        if (mouseX > 299 && mouseX < 320 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "save")
+        if (mouseX > 299 && mouseX < 320 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "companionMenu")
+        {
+            clickReleased = false;
+            lowBar = "companionMenu";
+            gameState = "paused";
+        }
+        else if (mouseX > 299 && mouseX < 320 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "companionMenu")
+        {
+            clickReleased = false;
+            lowBar = "information";
+            gameState = "active";
+        }
+
+        //When the save button is clicked the lowbar shows the player the eight saving slots to choose from.
+        if (mouseX > 320 && mouseX < 341 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "save")
         {
             clickReleased = false;
             if (saveLock == false)
@@ -33026,7 +33054,7 @@ function Adventurer()
                 gameState = "active";
             }
         }
-        else if (mouseX > 299 && mouseX < 320 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "save")
+        else if (mouseX > 320 && mouseX < 341 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "save")
         {
             clickReleased = false;
             lowBar = "information";
@@ -33034,13 +33062,13 @@ function Adventurer()
         }
 
         //When the save button is clicked the lowbar shows the player the eight saving slots to choose from.
-        if (mouseX > 320 && mouseX < 341 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "options")
+        if (mouseX > 341 && mouseX < 362 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "options")
         {
             clickReleased = false;
             lowBar = "options";
             gameState = "paused";
         }
-        else if (mouseX > 320 && mouseX < 341 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "options")
+        else if (mouseX > 341 && mouseX < 362 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "options")
         {
             clickReleased = false;
             lowBar = "information";
@@ -33093,17 +33121,23 @@ function Adventurer()
             XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
             XXX.fillRect(278, 527, 20, 23);
         }
-        else if (lowBar == "save")
+        else if (lowBar == "companionMenu")
         {
             XXX.beginPath();
             XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
             XXX.fillRect(299, 527, 20, 23);
         }
-        else if (lowBar == "options")
+        else if (lowBar == "save")
         {
             XXX.beginPath();
             XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
             XXX.fillRect(320, 527, 20, 23);
+        }
+        else if (lowBar == "options")
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
+            XXX.fillRect(341, 527, 20, 23);
         }
     };
 
@@ -36012,6 +36046,322 @@ function Adventurer()
             this.questCompleter();
             this.questScrolling();
             this.buildQuestList();
+        }
+    };
+
+    //COMPANION
+    this.displayCompanionMenu = function()
+    {
+        if (lowBar == "companionMenu")
+        {
+            //MAIN BACKGROUND
+            XXX.beginPath();
+            XXX.fillStyle = "lightGrey";
+            XXX.strokeStyle = "black";
+            XXX.lineWidth = 1;
+            XXX.rect(1, 1, 1398, 526);
+            XXX.fill();
+            XXX.stroke();
+
+            //Exit Button
+            //the button part
+            if (mouseX > 2 && mouseX < 2 + 148 && mouseY > 529 && mouseY < 529 + 20)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "gold";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 148, 20);
+                XXX.fill();
+                XXX.stroke();
+
+                if (clicked == true)
+                {
+                    clicked = false;
+                    lowBar = "information";
+                    gameState = "active";
+                }
+            }
+            else
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "E8E8E8";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 148, 20);
+                XXX.fill();
+                XXX.stroke();
+            }
+            //the text part
+            XXX.font = "bold 14px Book Antiqua";
+            XXX.fillStyle = "black";
+            XXX.textAlign = "center";
+            XXX.fillText("Exit Companion Menu", 75, 543);
+
+            //companion list
+            var companionShortList = []
+            var companionAccessList = [];
+            var companionFamiliars = 0;
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].familiar == true)
+                {
+                    if (companionFamiliars == 0)
+                    {
+                        ArtificialIntelligenceAccess[i].familiarColor = "maroon";
+                    }
+                    else if (companionFamiliars == 1)
+                    {
+                        ArtificialIntelligenceAccess[i].familiarColor = "blue";
+                    }
+                    else if (companionFamiliars == 2)
+                    {
+                        ArtificialIntelligenceAccess[i].familiarColor = "#024B31";
+                    }
+                    else if (companionFamiliars == 3)
+                    {
+                        ArtificialIntelligenceAccess[i].familiarColor = "darkOrange";
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess[i].familiarColor = "black";
+                    }
+
+                    companionFamiliars += 1;
+                }
+                if (ArtificialIntelligenceAccess[i].guarantee == true)
+                {
+                    companionShortList.push(ArtificialIntelligenceAccess[i]);
+                    companionAccessList.push(i);
+                }
+            }
+
+            for (var i = 0; i < Math.min(8, companionShortList.length); i++)
+            {
+                if (mouseX > 1 && mouseX < 1398 * 1/2 && mouseY > 1 + 65.8 * i && mouseY < 1 + 65.8 * i + 65.8)
+                {
+                    if (shiftKey == true && clicked == true)
+                    {
+                        clicked = false;
+                        var saveFamiliar = ArtificialIntelligenceAccess[companionAccessList[i]];
+                        ArtificialIntelligenceAccess.splice(companionAccessList[i], 1);
+                        ArtificialIntelligenceAccess.unshift(saveFamiliar);
+                    }
+                    if (shiftKey != true && dClick == true && ArtificialIntelligenceAccess[companionAccessList[i]].familiar == false && ArtificialIntelligenceAccess[companionAccessList[i]].type != "Person" && ArtificialIntelligenceAccess[companionAccessList[i]].type != "Soldier" && companionFamiliars < 1 + (player.getSurvivalism() / 25))
+                    {
+                        ArtificialIntelligenceAccess[companionAccessList[i]].nickname = prompt("Give your familiar a name.");
+                        if (!ArtificialIntelligenceAccess[companionAccessList[i]].nickname)
+                        {
+                            ArtificialIntelligenceAccess[companionAccessList[i]].nickname = ArtificialIntelligenceAccess[companionAccessList[i]].type;
+                        }
+                        ArtificialIntelligenceAccess[companionAccessList[i]].familiar = true;
+                    }
+                    XXX.beginPath();
+                    XXX.fillStyle = "#E8E8E8";
+                    if (ArtificialIntelligenceAccess[companionAccessList[i]].familiar == true)
+                    {
+                        XXX.strokeStyle = ArtificialIntelligenceAccess[companionAccessList[i]].familiarColor;
+                    }
+                    else
+                    {
+                        XXX.strokeStyle = "gold";
+                    }
+                    XXX.lineWidth = 4;
+                    XXX.rect(1, 1 + 65.8 * i, 1398 * 1/2, 65.8);
+                    XXX.fill();
+                    XXX.stroke();
+                }
+                else
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#E8E8E8";
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 1;
+                    XXX.rect(1, 1 + 65.8 * i, 1398 * 1/2, 65.8);
+                    XXX.fill();
+                    XXX.stroke();
+                }
+
+
+                //type top
+                XXX.font = "bold 20px Book Antiqua";
+                XXX.fillStyle = "black";
+                XXX.textAlign = "left";
+                XXX.fillText(companionShortList[i].type, 6, 20 + 65.8 * i);
+
+                //nickname top
+                if (companionShortList[i].nickname.length > 0)
+                {
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "left";
+                    XXX.fillText('"' + companionShortList[i].nickname + '"', 6 + 20 + companionShortList[i].type.length * 7, 20 + 65.8 * i);
+                }
+
+                //health
+                XXX.beginPath();
+                XXX.fillStyle = "red";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 1;
+                XXX.rect(6, 40 + 65.8 * i, 90, 15);
+                XXX.fill();
+                XXX.stroke();
+
+                XXX.beginPath();
+                XXX.fillStyle = "lightGreen";
+                XXX.lineWidth = 1;
+                XXX.rect(6, 40 + 65.8 * i, 90 * (ArtificialIntelligenceAccess[companionAccessList[i]].health / ArtificialIntelligenceAccess[companionAccessList[i]].healthMAX), 15);
+                XXX.fill();
+
+                if (ArtificialIntelligenceAccess[companionAccessList[i]].familiar)
+                {
+                    //xp
+                    XXX.beginPath();
+                    XXX.fillStyle = "darkGrey";
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 1;
+                    XXX.rect(106, 40 + 65.8 * i, 90, 15);
+                    XXX.fill();
+                    XXX.stroke();
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "orange";
+                    XXX.lineWidth = 1;
+                    XXX.rect(106, 40 + 65.8 * i, 90 * (ArtificialIntelligenceAccess[companionAccessList[i]].xp / ArtificialIntelligenceAccess[companionAccessList[i]].xpMAX), 15);
+                    XXX.fill();
+
+                    XXX.font = "bold 14px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "left";
+                    XXX.fillText('LV ' + ArtificialIntelligenceAccess[companionAccessList[i]].lv, 170 + companionShortList[i].type.length * 7, 52 + 65.8 * i);
+
+                    XXX.font = "bold 14px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "right";
+                    XXX.fillText('X ' + Math.round(ArtificialIntelligenceAccess[companionAccessList[i]].X) + " :: Y " + Math.round(ArtificialIntelligenceAccess[companionAccessList[i]].Y), 1/2 * 1388, 52 + 65.8 * i);
+                }
+                else
+                {
+                    XXX.font = "bold 14px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "right";
+                    XXX.fillText('X ' + Math.round(ArtificialIntelligenceAccess[companionAccessList[i]].X) + " :: Y " + Math.round(ArtificialIntelligenceAccess[companionAccessList[i]].Y), 1/2 * 1388, 52 + 65.8 * i);
+                }
+            }
+
+            for (var i = 8; i < companionShortList.length; i++)
+            {
+                if (mouseX > 1398 * 1/2 + 1 && mouseX < 1398 && mouseY > 1 + 65.8 * (i - 8) && mouseY < 1 + 65.8 * (i - 8) + 65.8)
+                {
+                    if (shiftKey == true && clicked == true)
+                    {
+                        clicked = false;
+                        var saveFamiliar = ArtificialIntelligenceAccess[companionAccessList[i]];
+                        ArtificialIntelligenceAccess.splice(companionAccessList[i], 1);
+                        ArtificialIntelligenceAccess.unshift(saveFamiliar);
+                    }
+                    if (shiftKey != true && dClick == true && ArtificialIntelligenceAccess[companionAccessList[i]].familiar == false && ArtificialIntelligenceAccess[companionAccessList[i]].type != "Person" && ArtificialIntelligenceAccess[companionAccessList[i]].type != "Soldier" && companionFamiliars < 1 + (player.getSurvivalism() / 25))
+                    {
+                        ArtificialIntelligenceAccess[companionAccessList[i]].nickname = prompt("Give your familiar a name.");
+                        if (!ArtificialIntelligenceAccess[companionAccessList[i]].nickname)
+                        {
+                            ArtificialIntelligenceAccess[companionAccessList[i]].nickname = ArtificialIntelligenceAccess[companionAccessList[i]].type;
+                        }
+                        ArtificialIntelligenceAccess[companionAccessList[i]].familiar = true;
+                    }
+                    XXX.beginPath();
+                    XXX.fillStyle = "#E8E8E8";
+                    if (ArtificialIntelligenceAccess[companionAccessList[i]].familiar == true)
+                    {
+                        XXX.strokeStyle = ArtificialIntelligenceAccess[companionAccessList[i]].familiarColor;
+                    }
+                    else
+                    {
+                        XXX.strokeStyle = "gold";
+                    }
+                    XXX.lineWidth = 4;
+                    XXX.rect(1 + 1398 * 1/2, 1 + 65.8 * (i - 8), 1398 * 1/2, 65.8);
+                    XXX.fill();
+                    XXX.stroke();
+                }
+                else
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#E8E8E8";
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 1;
+                    XXX.rect(1 + 1398 * 1/2, 1 + 65.8 * (i - 8), 1398 * 1/2, 65.8);
+                    XXX.fill();
+                    XXX.stroke();
+                }
+
+
+                //type top
+                XXX.font = "bold 20px Book Antiqua";
+                XXX.fillStyle = "black";
+                XXX.textAlign = "left";
+                XXX.fillText(companionShortList[i].type, 1398 * 1/2 + 6, 20 + 65.8 * (i - 8));
+
+                //nickname top
+                if (companionShortList[i].nickname.length > 0)
+                {
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "left";
+                    XXX.fillText('"' + companionShortList[i].nickname + '"', 1398 * 1/2 + 6 + 20 + companionShortList[i].type.length * 7, 20 + 65.8 * (i - 8));
+                }
+
+                //health
+                XXX.beginPath();
+                XXX.fillStyle = "red";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 1;
+                XXX.rect(1398 * 1/2 + 6, 40 + 65.8 * (i - 8), 90, 15);
+                XXX.fill();
+                XXX.stroke();
+
+                XXX.beginPath();
+                XXX.fillStyle = "lightGreen";
+                XXX.lineWidth = 1;
+                XXX.rect(1398 * 1/2 + 6, 40 + 65.8 * (i - 8), 90 * (ArtificialIntelligenceAccess[companionAccessList[i]].health / ArtificialIntelligenceAccess[companionAccessList[i]].healthMAX), 15);
+                XXX.fill();
+
+                if (ArtificialIntelligenceAccess[companionAccessList[i]].familiar)
+                {
+                    //xp
+                    XXX.beginPath();
+                    XXX.fillStyle = "darkGrey";
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 1;
+                    XXX.rect(1398 * 1/2 + 106, 40 + 65.8 * (i - 8), 90, 15);
+                    XXX.fill();
+                    XXX.stroke();
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "orange";
+                    XXX.lineWidth = 1;
+                    XXX.rect(1398 * 1/2 + 106, 40 + 65.8 * (i - 8), 90 * (ArtificialIntelligenceAccess[companionAccessList[i]].xp / ArtificialIntelligenceAccess[companionAccessList[i]].xpMAX), 15);
+                    XXX.fill();
+
+                    XXX.font = "bold 14px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "left";
+                    XXX.fillText('LV ' + ArtificialIntelligenceAccess[companionAccessList[i]].lv, 1398 * 1/2 + 170 + companionShortList[i].type.length * 7, 52 + 65.8 * (i - 8));
+
+                    XXX.font = "bold 14px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "right";
+                    XXX.fillText('X ' + Math.round(ArtificialIntelligenceAccess[companionAccessList[i]].X) + " :: Y " + Math.round(ArtificialIntelligenceAccess[companionAccessList[i]].Y), 1398 * 1/2 + 1/2 * 1388, 52 + 65.8 * (i - 8));
+                }
+                else
+                {
+                    XXX.font = "bold 14px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "right";
+                    XXX.fillText('X ' + Math.round(ArtificialIntelligenceAccess[companionAccessList[i]].X) + " :: Y " + Math.round(ArtificialIntelligenceAccess[companionAccessList[i]].Y), 1398 * 1/2 + 1/2 * 1388, 52 + 65.8 * (i - 8));
+                }
+                XXX.lineWidth = 1;
+            }
         }
     };
 
@@ -44893,6 +45243,9 @@ function Adventurer()
 
         //Beast Journal
         this.displayBeastJournal(); //#BeastJournal
+
+        //Companion Menu
+        this.displayCompanionMenu(); //#CompanionMenu
 
         //Quest Log
         this.displayQuestLog(); //#QuestLog

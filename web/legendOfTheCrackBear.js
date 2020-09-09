@@ -3291,6 +3291,7 @@ var foePerfectArmour = false;
 var xKey = false;
 var lKey = false;
 var pKey = false;
+var deleteKey = false;
 var cyberArTog = false;
 var buildMode = false;
 var buildToggle = 0;
@@ -3854,6 +3855,11 @@ function keyReleased(event)
     {
         escapeKey = false;
     }
+
+    if (key == 8)
+    {
+        deleteKey = false;
+    }
 }
 //when a key is held down
 function keyHeld(event)
@@ -4028,6 +4034,11 @@ function keyHeld(event)
     if (key == 27)
     {
         escapeKey = true;
+    }
+
+    if (key == 8)
+    {
+        deleteKey = true;
     }
 }
 

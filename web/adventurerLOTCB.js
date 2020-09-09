@@ -36140,14 +36140,20 @@ function Adventurer()
             {
                 if (mouseX > 1 && mouseX < 1398 * 1/2 && mouseY > 1 + 65.8 * i && mouseY < 1 + 65.8 * i + 65.8)
                 {
-                    if (shiftKey == true && clicked == true)
+                    if (deleteKey && clicked == true && ArtificialIntelligenceAccess[companionAccessList[i]].familiar != true)
+                    {
+                        clicked = false;
+                        ArtificialIntelligenceAccess[companionAccessList[i]].removeSelfFromCompanionList();
+                        ArtificialIntelligenceAccess[companionAccessList[i]].guarantee = false;
+                    }
+                    else if (shiftKey == true && clicked == true)
                     {
                         clicked = false;
                         var saveFamiliar = ArtificialIntelligenceAccess[companionAccessList[i]];
                         ArtificialIntelligenceAccess.splice(companionAccessList[i], 1);
                         ArtificialIntelligenceAccess.unshift(saveFamiliar);
                     }
-                    if (shiftKey != true && dClick == true && ArtificialIntelligenceAccess[companionAccessList[i]].familiar == false && ArtificialIntelligenceAccess[companionAccessList[i]].type != "Person" && ArtificialIntelligenceAccess[companionAccessList[i]].type != "Soldier" && companionFamiliars < 1 + (player.getSurvivalism() / 25))
+                    if (deleteKey != true && shiftKey != true && dClick == true && ArtificialIntelligenceAccess[companionAccessList[i]].familiar == false && ArtificialIntelligenceAccess[companionAccessList[i]].type != "Person" && ArtificialIntelligenceAccess[companionAccessList[i]].type != "Soldier" && companionFamiliars < 1 + (player.getSurvivalism() / 25))
                     {
                         ArtificialIntelligenceAccess[companionAccessList[i]].nickname = prompt("Give your familiar a name.");
                         if (!ArtificialIntelligenceAccess[companionAccessList[i]].nickname)
@@ -36253,14 +36259,20 @@ function Adventurer()
             {
                 if (mouseX > 1398 * 1/2 + 1 && mouseX < 1398 && mouseY > 1 + 65.8 * (i - 8) && mouseY < 1 + 65.8 * (i - 8) + 65.8)
                 {
-                    if (shiftKey == true && clicked == true)
+                    if (deleteKey && clicked == true && ArtificialIntelligenceAccess[companionAccessList[i]].familiar != true)
+                    {
+                        clicked = false;
+                        ArtificialIntelligenceAccess[companionAccessList[i]].removeSelfFromCompanionList();
+                        ArtificialIntelligenceAccess[companionAccessList[i]].guarantee = false;
+                    }
+                    else if (shiftKey == true && clicked == true)
                     {
                         clicked = false;
                         var saveFamiliar = ArtificialIntelligenceAccess[companionAccessList[i]];
                         ArtificialIntelligenceAccess.splice(companionAccessList[i], 1);
                         ArtificialIntelligenceAccess.unshift(saveFamiliar);
                     }
-                    if (shiftKey != true && dClick == true && ArtificialIntelligenceAccess[companionAccessList[i]].familiar == false && ArtificialIntelligenceAccess[companionAccessList[i]].type != "Person" && ArtificialIntelligenceAccess[companionAccessList[i]].type != "Soldier" && companionFamiliars < 1 + (player.getSurvivalism() / 25))
+                    if (deleteKey != true && shiftKey != true && dClick == true && ArtificialIntelligenceAccess[companionAccessList[i]].familiar == false && ArtificialIntelligenceAccess[companionAccessList[i]].type != "Person" && ArtificialIntelligenceAccess[companionAccessList[i]].type != "Soldier" && companionFamiliars < 1 + (player.getSurvivalism() / 25))
                     {
                         ArtificialIntelligenceAccess[companionAccessList[i]].nickname = prompt("Give your familiar a name.");
                         if (!ArtificialIntelligenceAccess[companionAccessList[i]].nickname)

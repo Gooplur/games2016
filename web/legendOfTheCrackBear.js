@@ -1699,6 +1699,42 @@ function harpPack()
 
     harp.onload = function()
     {
+        spidPack();
+    };
+}
+
+function spidPack()
+{
+    var spid = new Image();
+    spid.src = ("images/spid.png");
+    window.spid = spid;
+
+    spid.onload = function()
+    {
+        iderPack();
+    };
+}
+
+function iderPack()
+{
+    var ider = new Image();
+    ider.src = ("images/ider.png");
+    window.ider = ider;
+
+    ider.onload = function()
+    {
+        toothyPack();
+    };
+}
+
+function toothyPack()
+{
+    var toothy = new Image();
+    toothy.src = ("images/toothy.png");
+    window.toothy = toothy;
+
+    toothy.onload = function()
+    {
         gnollPack();
     };
 }

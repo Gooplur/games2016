@@ -41721,6 +41721,159 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
+        else if (this.type == "geomiTurret") //Orgish tunnel spider turret
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 60;
+            this.radius = 24;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.spider = this.temporary;
+                this.prey = false;
+                this.waitToLunge = 0;
+                this.phase = 0;
+                this.spiderHealthMAX = 11;
+                this.spiderHealth = 11;
+                this.spiderSpeed = 1.5;
+                this.entry = false;
+                this.entering = 0;
+            }
+            for (var tsh = 0; tsh < ArtificialIntelligenceAccess.length; tsh++)
+            {
+                var dist = (this.X - ArtificialIntelligenceAccess[tsh].X)*(this.X - ArtificialIntelligenceAccess[tsh].X)+(this.Y - ArtificialIntelligenceAccess[tsh].Y)*(this.Y - ArtificialIntelligenceAccess[tsh].Y);
+
+                if (ArtificialIntelligenceAccess[tsh].type == "Geomi" || ArtificialIntelligenceAccess[tsh].healthMAX >= 75 || ArtificialIntelligenceAccess[tsh].team == "geomi" || ArtificialIntelligenceAccess[tsh].ethereal != this.ethereal || ArtificialIntelligenceAccess[tsh].dmx != this.dmx)
+                {
+                    dist = 100000000000000000000000;
+                }
+
+                if (dist <= 175*175)
+                {
+                    this.prey = true;
+                    break;
+                }
+                else if ((this.X - X)*(this.X - X)+(this.Y - Y)*(this.Y - Y) <= 175*175)
+                {
+                    this.prey = true;
+                    break;
+                }
+                else
+                {
+                    this.prey = false;
+                }
+            }
+
+            //hunt for prey
+            if (this.spider == true)
+            {
+                if (this.prey == true)
+                {
+                    this.waitToLunge += 1;
+                    if (this.waitToLunge == 0)
+                    {
+                        this.phase = 0;
+                    }
+                    else if (this.waitToLunge >= 120)
+                    {
+                        if (this.waitToLunge <= 134)
+                        {
+                            this.phase = 1;
+                        }
+                        else if (this.waitToLunge <= 148)
+                        {
+                            this.phase = 2;
+                        }
+                        else
+                        {
+                            this.phase = 3;
+                        }
+                    }
+                }
+                else
+                {
+                    for (var sceno = 0; sceno < scenicList.length; sceno++)
+                    {
+                        if (scenicList[sceno].type == "geomiTurret" && scenicList[sceno].spider == false && scenicList[sceno].prey == true)
+                        {
+                            this.spider = false;
+                            scenicList[sceno].spider = true;
+                            scenicList[sceno].waitToLunge = -200 * Math.random();
+                            scenicList[sceno].phase = 0;
+                            scenicList[sceno].spiderHealthMAX = this.spiderHealthMAX;
+                            scenicList[sceno].spiderHealth = this.spiderHealth;
+                            scenicList[sceno].spiderSpeed = this.spiderSpeed;
+                            scenicList[sceno].entry = false;
+                            scenicList[sceno].entering = 0;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                this.waitToLunge = -200;
+                this.phase = 0;
+            }
+
+            if (this.entry == true)
+            {
+                this.entering += 1;
+            }
+
+            //DRAWSELF
+            if (this.phase == 0 && this.entry == false || this.entry == true && this.entering >= 18) //empty turret / spider lurking
+            {
+                this.entry = false;
+                this.entering = 0;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ider, 638, 35, 119, 114, -(1/2 * 119 * 1), -(1/2 * 114 * 1), 119 * 1, 114 * 1);
+                XXX.restore();
+            }
+            else if (this.phase == 1 && this.entry == false || this.entry == true && this.entering < 18) //emerging 1
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ider, 642, 254, 119, 114, -(1/2 * 119 * 1), -(1/2 * 114 * 1), 119 * 1, 114 * 1);
+                XXX.restore();
+            }
+            else if (this.phase == 2 && this.entry == false || this.entry == true && this.entering <= 9) //emerging 2
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ider, 643, 160, 119, 114, -(1/2 * 119 * 1), -(1/2 * 114 * 1), 119 * 1, 114 * 1);
+                XXX.restore();
+            }
+            else if (this.entry == false) //spider leaves turret
+            {
+                var tuntunspider = new Unit(this.X + Math.cos(this.rotation + Math.PI) * 15, this.Y + Math.sin(this.rotation + Math.PI) * 15, "Geomi", true, "geomi");
+                tuntunspider.speed = this.spiderSpeed;
+                tuntunspider.healthMAX = this.spiderHealthMAX;
+                tuntunspider.health = this.spiderHealth;
+                tuntunspider.rotation = this.rotation;
+                ArtificialIntelligenceAccess.push(tuntunspider);
+                this.spider = false;
+                this.entry = false;
+                this.entering = 0;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ider, 638, 35, 119, 114, -(1/2 * 119 * 1), -(1/2 * 114 * 1), 119 * 1, 114 * 1);
+                XXX.restore();
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "atsuiBambooPlant")
         {
             //TRAITS

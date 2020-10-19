@@ -1505,8 +1505,16 @@ function applySelectionsButton()
         }
         else if (player.raceName == "Noth")
         {
-            X = 330240.4050199153;
-            Y = -217778.84692034996;
+            if (player.title == "Vagabond")
+            {
+                X = 330240.4050199153;
+                Y = -217778.84692034996;
+            }
+            else
+            {
+                X = 348853.62898287503;
+                Y = -253908.9094633858;
+            }
         }
         else if (player.raceName == "Cephrite")
         {

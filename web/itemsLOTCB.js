@@ -3783,6 +3783,66 @@ function Item(type, x, y)
             this.buyValue = 4; // at max, buy for 4.
             this.sellValue = 4; // at max, sell for 4.
         }
+        else if (this.type == "rawGeomiFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Geomi Flesh";
+            this.weight = 0.9;
+            this.size = 9;
+            this.description = "The bright pinkish orange flesh of a geomi spider.";
+            this.intForDes = 2;
+            this.intDescription = "Eating geomi spider flesh raw is considered to be the best way to eat it. It has a particular spicyness, and a slightly chewy texture with a hint of sour and savoury.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8.5; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.01; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
+        else if (this.type == "geomiMeat")
+        {
+            //For All Items
+            this.identity = "Geomi Meat";
+            this.weight = 0.85;
+            this.size = 9;
+            this.description = "The bright pinkish orange flesh of a geomi spider.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is is tender but with a certain bite to it, it is mild and savoury with a slight touch of sour and spicy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 25); // at max, sell for 6.
+        }
         else if (this.type == "fegilRegurgitation")
         {
             //For All Items
@@ -5044,6 +5104,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "jackalPelt")
+        {
+            //For All Items
+            this.identity = "Jackal Pelt";
+            this.weight = 1.4;
+            this.size = 12;
+            this.description = "The thick golden haired pelt of an Orgish jackal.";
+            this.intForDes = 6;
+            this.intDescription = "Jackal pelts are used to make high quality clothing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 10); // at max, buy for 10.
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 15); // at max, sell for 10.
+        }
         else if (this.type == "yilotnyyPelt")
         {
             //For All Items
@@ -5821,6 +5901,70 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "rawJackalFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Jackal Flesh";
+            this.weight = 1.6;
+            this.size = 10;
+            this.description = "The raw flesh of a jackal.";
+            this.intForDes = 10;
+            this.intDescription = "Eating raw jackal flesh runs the risk of contracting flesh mites. It will be safer to cook it first.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "jackalMeat")
+        {
+            //For All Items
+            this.identity = "Jackal Meat";
+            this.weight = 1.5;
+            this.size = 10;
+            this.description = "The cooked meat of a jackal.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes savoury and has a fairly tough texture, but it actually tastes pretty good...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 9.5; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 3.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Raw Jackal Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 7; // at max, sell for 7.
+        }
         else if (this.type == "rawGribFlesh")
         {
             //For All Items
@@ -6030,6 +6174,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 8); // at max, buy for 9.
             this.sellValue = 4 + Math.floor(player.getCharisma() / 10); // at max, sell for 9.
+        }
+        else if (this.type == "bushmasterSkin")
+        {
+            //For All Items
+            this.identity = "Bushmaster Skin";
+            this.weight = 0.2;
+            this.size = 10;
+            this.description = "The red scalely skin of a bushmaster snake.";
+            this.intForDes = 6;
+            this.intDescription = "This can be used in alchemy as a changer.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
+        else if (this.type == "cobraSkin")
+        {
+            //For All Items
+            this.identity = "Cobra Skin";
+            this.weight = 0.15;
+            this.size = 8;
+            this.description = "The green scaley skin of a cobra.";
+            this.intForDes = 4;
+            this.intDescription = "This can be used in alchemy as a weak amplifier.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "gribPelt")
         {
@@ -15478,6 +15662,69 @@ function Item(type, x, y)
             this.buyValue = 39 - Math.floor(player.getCharisma() / 25); // at max, buy for 37.
             this.sellValue = 29 + Math.floor(player.getCharisma() / 6); // at max, sell for 37.
         }
+        else if (this.type == "rawRedPandaFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Red Panda Flesh";
+            this.weight = 0.9;
+            this.size = 10;
+            this.description = "The raw flesh of a red panda.";
+            this.intForDes = 5;
+            this.intDescription = "Eating the flesh of a red panda raw will make you feel ill.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.8; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "redPandaMeat")
+        {
+            //For All Items
+            this.identity = "Red Panda Meat";
+            this.weight = 0.9;
+            this.size = 10;
+            this.description = "The cooked meat of a red panda.";
+            this.intForDes = 0;
+            this.intDescription = "It is tough and chewy, not an ideal meat to eat by any stretch of the imagination...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.25; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Raw Red Panda Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "sagroHide")
         {
             //For All Items
@@ -15663,6 +15910,66 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 214 - Math.floor(player.getCharisma() / 1); // at max, buy for 164.
             this.sellValue = 113 + Math.floor(player.getCharisma() / 1); // at max, sell for 163.
+        }
+        else if (this.type == "echidnaPelt")
+        {
+            //For All Items
+            this.identity = "Echidna Pelt";
+            this.weight = 2;
+            this.size = 15;
+            this.description = "The pelt of an echidna.";
+            this.intForDes = 8;
+            this.intDescription = "This can be used to make the fine fur apparel.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 15); // at max, buy for 13.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 15); // at max, sell for 13.
+        }
+        else if (this.type == "redPandaPelt")
+        {
+            //For All Items
+            this.identity = "Red Panda Pelt";
+            this.weight = 0.7;
+            this.size = 11;
+            this.description = "The pelt of a red panda.";
+            this.intForDes = 7;
+            this.intDescription = "Red panda pelts are valued for their use in making fine clothing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
+        }
+        else if (this.type == "redPandaTail")
+        {
+            //For All Items
+            this.identity = "Red Panda Tail";
+            this.weight = 0.3;
+            this.size = 9;
+            this.description = "The tail of a red panda.";
+            this.intForDes = 9;
+            this.intDescription = "It is said that to keep a tail of a red panda close by will give you good fortune.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
         else if (this.type == "motylekhWing")
         {
@@ -17587,6 +17894,35 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+        }
+        else if (this.type == "drechFlesh")
+        {
+            //For All Items
+            this.identity = "Drech Flesh";
+            this.weight = 7.6;
+            this.size = 9;
+            this.description = "The pink gooey flesh and thin boney legs of a drech.";
+            this.intForDes = 15;
+            this.intDescription = "This is used as a changer in certain alchemy recipes.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -1; //heals health.
+            this.generation = -3; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
         else if (this.type == "yunaStalk")
         {
@@ -40747,6 +41083,35 @@ function Item(type, x, y)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 15); // at max, buy for 4.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
+        else if (this.type == "cobraVenomGland")
+        {
+            //For All Items
+            this.identity = "Cobra Venom Gland";
+            this.weight = 0.15;
+            this.size = 7;
+            this.description = "The gland within a cobra that allows it to produce its venom.";
+            this.intForDes = 10;
+            this.intDescription = "Cobra venom has no alchemic value.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "rattlerVenomGland")
         {
             //For All Items
@@ -41874,6 +42239,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "dragonflyWing")
+        {
+            //For All Items
+            this.identity = "Dragonfly Wing";
+            this.weight = 0.9;
+            this.size = 15;
+            this.description = "The wing of a giant dragonfly.";
+            this.intForDes = 5;
+            this.intDescription = "This variety of giant dragonfly is native to the glades of Orgell.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12 - Math.floor(player.getCharisma() / 15); // at max, buy for 9.
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 25); // at max, sell for 9.
+        }
+        else if (this.type == "libelulaWing")
+        {
+            //For All Items
+            this.identity = "Dragonfly Wing";
+            this.weight = 0.4;
+            this.size = 15;
+            this.description = "The wing of a giant dragonfly.";
+            this.intForDes = 5;
+            this.intDescription = "This variety of giant dragonfly is native to both Northern Orgell and Southern Noth.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
         else if (this.type == "cruorccaNeedle")
         {
@@ -62204,6 +62609,86 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "libelulaWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 485, 2884, 111, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 111 * 0.55), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 0.55), 111 * 0.55, 42 * 0.55);
+        }
+        else if (this.type == "dragonflyWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 678, 761, 111, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 111 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1), 111 * 1, 42 * 1);
+        }
+        else if (this.type == "cobraVenomGland")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 708, 448, 44, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 44 * 1, 36 * 1);
+        }
+        else if (this.type == "cobraSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 758, 447, 44, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 44 * 1, 36 * 1);
+        }
+        else if (this.type == "bushmasterSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 458, 1041, 44, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 44 * 1, 36 * 1);
+        }
+        else if (this.type == "rawGeomiFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ider, 687, 833, 25, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 25 * 1, 29 * 1);
+        }
+        else if (this.type == "geomiMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ider, 729, 834, 25, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 25 * 1, 29 * 1);
+        }
+        else if (this.type == "jackalPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 235, 392, 95, 51, X - this.X + (1/2 * CCC.width) - (1/2 * 95 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51 * 1.1), 95 * 1.1, 51 * 1.1);
+        }
+        else if (this.type == "rawJackalFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 181, 349, 34, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 0.9), 34 * 0.9, 38 * 0.9);
+        }
+        else if (this.type == "jackalMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 180, 391, 34, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 0.9), 34 * 0.9, 38 * 0.9);
+        }
+        else if (this.type == "echidnaPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(spid, 705, 13, 105, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 105 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1.3), 105 * 1.3, 39 * 1.3);
+        }
+        else if (this.type == "redPandaPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(spid, 138, 127, 45, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1.15), 45 * 1.15, 23 * 1.15);
+        }
+        else if (this.type == "redPandaTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(spid, 138, 154, 45, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1.15), 45 * 1.15, 23 * 1.15);
+        }
+        else if (this.type == "rawRedPandaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(spid, 152, 183, 18, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 18 * 1, 20 * 1);
+        }
+        else if (this.type == "redPandaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(spid, 131, 183, 18, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 18 * 1, 20 * 1);
+        }
+        else if (this.type == "drechFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toothy, 613, 838, 45, 51, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51 * 1), 45 * 1, 51 * 1);
+        }
         else if (this.type == "nayuTail" || this.type == "yunaStalk")
         {
             XXX.beginPath();
@@ -70477,6 +70962,86 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "libelulaWing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 485, 2884, 111, 42, this.invX - (1/2 * 111 * 0.55), this.invY - (1/2 * 42 * 0.55), 111 * 0.55, 42 * 0.55);
+        }
+        else if (this.type == "dragonflyWing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 678, 761, 111, 42, this.invX - (1/2 * 111 * 1), this.invY - (1/2 * 42 * 1), 111 * 1, 42 * 1);
+        }
+        else if (this.type == "cobraVenomGland")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 708, 448, 44, 36, this.invX - (1/2 * 44 * 1), this.invY - (1/2 * 36 * 1), 44 * 1, 36 * 1);
+        }
+        else if (this.type == "cobraSkin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 758, 447, 44, 36, this.invX - (1/2 * 44 * 1), this.invY - (1/2 * 36 * 1), 44 * 1, 36 * 1);
+        }
+        else if (this.type == "bushmasterSkin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 458, 1041, 44, 36, this.invX - (1/2 * 44 * 1), this.invY - (1/2 * 36 * 1), 44 * 1, 36 * 1);
+        }
+        else if (this.type == "rawGeomiFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ider, 687, 833, 25, 29, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 29 * 1), 25 * 1, 29 * 1);
+        }
+        else if (this.type == "geomiMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ider, 729, 834, 25, 29, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 29 * 1), 25 * 1, 29 * 1);
+        }
+        else if (this.type == "jackalPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 235, 392, 95, 51, this.invX - (1/2 * 95 * 0.74), this.invY - (1/2 * 51 * 0.74), 95 * 0.74, 51 * 0.74);
+        }
+        else if (this.type == "rawJackalFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 181, 349, 34, 38, this.invX - (1/2 * 34 * 0.9), this.invY - (1/2 * 38 * 0.9), 34 * 0.9, 38 * 0.9);
+        }
+        else if (this.type == "jackalMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 180, 391, 34, 38, this.invX - (1/2 * 34 * 0.9), this.invY - (1/2 * 38 * 0.9), 34 * 0.9, 38 * 0.9);
+        }
+        else if (this.type == "echidnaPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(spid, 705, 13, 105, 39, this.invX - (1/2 * 105 * 0.84), this.invY - (1/2 * 39 * 0.84), 105 * 0.84, 39 * 0.84);
+        }
+        else if (this.type == "redPandaPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(spid, 138, 127, 45, 23, this.invX - (1/2 * 45 * 1.15), this.invY - (1/2 * 23 * 1.15), 45 * 1.15, 23 * 1.15);
+        }
+        else if (this.type == "redPandaTail")
+        {
+            LXX.beginPath();
+            LXX.drawImage(spid, 138, 154, 45, 23, this.invX - (1/2 * 45 * 1.15), this.invY - (1/2 * 23 * 1.15), 45 * 1.15, 23 * 1.15);
+        }
+        else if (this.type == "rawRedPandaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(spid, 152, 183, 18, 20, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 20 * 1), 18 * 1, 20 * 1);
+        }
+        else if (this.type == "redPandaMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(spid, 131, 183, 18, 20, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 20 * 1), 18 * 1, 20 * 1);
+        }
+        else if (this.type == "drechFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toothy, 613, 838, 45, 51, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 51 * 1), 45 * 1, 51 * 1);
+        }
         else if (this.type == "nayuTail" || this.type == "yunaStalk")
         {
             LXX.beginPath();
@@ -78705,6 +79270,86 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "libelulaWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 485, 2884, 111, 42, this.invX - (1/2 * 111 * 0.55), this.invY - (1/2 * 42 * 0.55), 111 * 0.55, 42 * 0.55);
+        }
+        else if (this.type == "dragonflyWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 678, 761, 111, 42, this.invX - (1/2 * 111 * 1), this.invY - (1/2 * 42 * 1), 111 * 1, 42 * 1);
+        }
+        else if (this.type == "cobraVenomGland")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 708, 448, 44, 36, this.invX - (1/2 * 44 * 1), this.invY - (1/2 * 36 * 1), 44 * 1, 36 * 1);
+        }
+        else if (this.type == "cobraSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 758, 447, 44, 36, this.invX - (1/2 * 44 * 1), this.invY - (1/2 * 36 * 1), 44 * 1, 36 * 1);
+        }
+        else if (this.type == "bushmasterSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 458, 1041, 44, 36, this.invX - (1/2 * 44 * 1), this.invY - (1/2 * 36 * 1), 44 * 1, 36 * 1);
+        }
+        else if (this.type == "rawGeomiFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ider, 687, 833, 25, 29, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 29 * 1), 25 * 1, 29 * 1);
+        }
+        else if (this.type == "geomiMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ider, 729, 834, 25, 29, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 29 * 1), 25 * 1, 29 * 1);
+        }
+        else if (this.type == "jackalPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 235, 392, 95, 51, this.invX - (1/2 * 95 * 0.74), this.invY - (1/2 * 51 * 0.74), 95 * 0.74, 51 * 0.74);
+        }
+        else if (this.type == "rawJackalFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 181, 349, 34, 38, this.invX - (1/2 * 34 * 0.9), this.invY - (1/2 * 38 * 0.9), 34 * 0.9, 38 * 0.9);
+        }
+        else if (this.type == "jackalMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 180, 391, 34, 38, this.invX - (1/2 * 34 * 0.9), this.invY - (1/2 * 38 * 0.9), 34 * 0.9, 38 * 0.9);
+        }
+        else if (this.type == "echidnaPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(spid, 705, 13, 105, 39, this.invX - (1/2 * 105 * 0.84), this.invY - (1/2 * 39 * 0.84), 105 * 0.84, 39 * 0.84);
+        }
+        else if (this.type == "redPandaPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(spid, 138, 127, 45, 23, this.invX - (1/2 * 45 * 1.15), this.invY - (1/2 * 23 * 1.15), 45 * 1.15, 23 * 1.15);
+        }
+        else if (this.type == "redPandaTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(spid, 138, 154, 45, 23, this.invX - (1/2 * 45 * 1.15), this.invY - (1/2 * 23 * 1.15), 45 * 1.15, 23 * 1.15);
+        }
+        else if (this.type == "rawRedPandaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(spid, 152, 183, 18, 20, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 20 * 1), 18 * 1, 20 * 1);
+        }
+        else if (this.type == "redPandaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(spid, 131, 183, 18, 20, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 20 * 1), 18 * 1, 20 * 1);
+        }
+        else if (this.type == "drechFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toothy, 613, 838, 45, 51, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 51 * 1), 45 * 1, 51 * 1);
         }
         else if (this.type == "nayuTail" || this.type == "yunaStalk")
         {

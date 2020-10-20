@@ -7712,9 +7712,9 @@ function worldBuilder()
         region = "testMap";
         campout = true;
         //starting chamber
-        outlineBuilder(68,68, "vorcadian", -34, -34);
-        outlineBuilder(1,4, "murklake", 1, 1);
-        outlineBuilder(2, 1, "murklake", 4, -1);
+        outlineBuilder(68,68, "gladeGrass", -34, -34);
+        outlineBuilder(1,4, "glade", 1, 1);
+        outlineBuilder(2, 1, "glade", 4, -1);
     }
 }
 

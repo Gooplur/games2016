@@ -1759,6 +1759,18 @@ function bludPack()
 
     blud.onload = function()
     {
+        hnotPack();
+    };
+}
+
+function hnotPack()
+{
+    var hnot = new Image();
+    hnot.src = ("images/hnot.png");
+    window.hnot = hnot;
+
+    hnot.onload = function()
+    {
         olgPack();
     };
 }

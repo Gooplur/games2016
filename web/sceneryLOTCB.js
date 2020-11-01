@@ -18978,7 +18978,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.size = 0.77;
             }
 
-            this.phase += 0.1 * (TTD/16.75);
+            this.phase += 0.1 + (Math.random() * 0.05) * (TTD/16.75);
 
             //DRAWSELF
             if (this.phase <= 2)
@@ -19090,7 +19090,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(hnot, 706, 623, 271, 279, -(1/2 * 271 * this.size), -(1/2 * 279 * this.size), 271 * this.size, 279 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 3) //mudman hands x 2
+            else if (this.temporary == 4) //mudman hands x 2
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19098,7 +19098,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(hnot, 38, 1030, 80, 78, -(1/2 * 80 * this.size), -(1/2 * 78 * this.size), 80 * this.size, 78 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 4) //royal blue stone
+            else if (this.temporary == 5) //royal blue stone
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19106,7 +19106,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(hnot, 785, 1246, 31, 35, -(1/2 * 31 * this.size), -(1/2 * 35 * this.size), 31 * this.size, 35 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 5) //royal blue counter
+            else if (this.temporary == 6) //royal blue counter
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19114,7 +19114,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(hnot, 743, 1245, 121, 36, -(1/2 * 121 * this.size), -(1/2 * 36 * this.size), 121 * this.size, 36 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 6) //drying rack
+            else if (this.temporary == 7) //drying rack
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19122,7 +19122,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(hnot, 137, 1441, 378, 60, -(1/2 * 378 * this.size), -(1/2 * 60 * this.size), 378 * this.size, 60 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 7) //stretching rack
+            else if (this.temporary == 8) //stretching rack
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19130,7 +19130,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(hnot, 170, 1213, 278, 145, -(1/2 * 278 * this.size), -(1/2 * 145 * this.size), 278 * this.size, 145 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 8) //long royal blue stone shelf
+            else if (this.temporary == 9) //long royal blue stone shelf
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19138,7 +19138,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(hnot, 607, 1236, 272, 55, -(1/2 * 272 * this.size), -(1/2 * 55 * this.size), 272 * this.size, 55 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 9) //house spike
+            else if (this.temporary == 10) //house spike
             {
                 this.zIndex = 5;
                 XXX.save();
@@ -19147,7 +19147,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(hnot, 14, 1191, 91, 59, -(1/2 * 91 * this.size), -(1/2 * 59 * this.size), 91 * this.size, 59 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 10) //mud small counter
+            else if (this.temporary == 11) //mud small counter
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19155,7 +19155,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 651, 395, 39, 57, -(1/2 * 39 * this.size), -(1/2 * 57 * this.size), 39 * this.size, 57 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 11) //building wood
+            else if (this.temporary == 12) //building wood
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19163,20 +19163,12 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(hnot, 14, 1191, 91, 59, -(1/2 * 91 * this.size), -(1/2 * 59 * this.size), 91 * this.size, 59 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 12) //small mud pile
+            else if (this.temporary == 13) //small mud pile
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(mudm, 631, 294, 87, 62, -(1/2 * 87 * this.size), -(1/2 * 62 * this.size), 87 * this.size, 62 * this.size);
-                XXX.restore();
-            }
-            else if (this.temporary == 13) //large mud pile
-            {
-                XXX.save();
-                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
-                XXX.rotate(this.rotation);
-                XXX.drawImage(mudm, 591, 106, 148, 159, -(1/2 * 148 * this.size), -(1/2 * 159 * this.size), 148 * this.size, 159 * this.size);
                 XXX.restore();
             }
             else if (this.temporary == 14) //large mud pile
@@ -19187,7 +19179,15 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 591, 106, 148, 159, -(1/2 * 148 * this.size), -(1/2 * 159 * this.size), 148 * this.size, 159 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 15) //stalker leg
+            else if (this.temporary == 15) //large mud pile
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mudm, 591, 106, 148, 159, -(1/2 * 148 * this.size), -(1/2 * 159 * this.size), 148 * this.size, 159 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 16) //stalker leg
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19195,7 +19195,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 791, 98, 148, 159, -(1/2 * 148 * this.size), -(1/2 * 159 * this.size), 148 * this.size, 159 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 16) //stalker leg part
+            else if (this.temporary == 17) //stalker leg part
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19203,7 +19203,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 942, 137, 105, 99, -(1/2 * 105 * this.size), -(1/2 * 99 * this.size), 105 * this.size, 99 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 17) //stalker leg part pile 1
+            else if (this.temporary == 18) //stalker leg part pile 1
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19211,7 +19211,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 938, 265, 105, 99, -(1/2 * 105 * this.size), -(1/2 * 99 * this.size), 105 * this.size, 99 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 18) //stalker leg part pile 2
+            else if (this.temporary == 19) //stalker leg part pile 2
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19219,7 +19219,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 801, 264, 105, 99, -(1/2 * 105 * this.size), -(1/2 * 99 * this.size), 105 * this.size, 99 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 19) //split qiao
+            else if (this.temporary == 20) //split qiao
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19227,7 +19227,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 1090, 258, 40, 76, -(1/2 * 40 * this.size), -(1/2 * 76 * this.size), 40 * this.size, 76 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 20) //qiao log
+            else if (this.temporary == 21) //qiao log
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19235,7 +19235,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 1144, 259, 40, 76, -(1/2 * 40 * this.size), -(1/2 * 76 * this.size), 40 * this.size, 76 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 21) //string pile (made from dried bush leaves)
+            else if (this.temporary == 22) //string pile (made from dried bush leaves)
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19243,7 +19243,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 996, 0, 76, 72, -(1/2 * 76 * this.size), -(1/2 * 72 * this.size), 76 * this.size, 72 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 22) //bush leaves 1
+            else if (this.temporary == 23) //bush leaves 1
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19251,7 +19251,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 856, 1, 76, 72, -(1/2 * 76 * this.size), -(1/2 * 72 * this.size), 76 * this.size, 72 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 23) //bush leaves 2
+            else if (this.temporary == 24) //bush leaves 2
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19259,7 +19259,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 766, 2, 76, 72, -(1/2 * 76 * this.size), -(1/2 * 72 * this.size), 76 * this.size, 72 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 24) //bush leaves 3
+            else if (this.temporary == 25) //bush leaves 3
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19267,7 +19267,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 685, 1, 76, 72, -(1/2 * 76 * this.size), -(1/2 * 72 * this.size), 76 * this.size, 72 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 25) //dry leaves
+            else if (this.temporary == 26) //dry leaves
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19275,7 +19275,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 609, 1, 76, 72, -(1/2 * 76 * this.size), -(1/2 * 72 * this.size), 76 * this.size, 72 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 26) //bone pile 1
+            else if (this.temporary == 27) //bone pile 1
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19283,7 +19283,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 518, -2, 76, 72, -(1/2 * 76 * this.size), -(1/2 * 72 * this.size), 76 * this.size, 72 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 27) //bone pile 2
+            else if (this.temporary == 28) //bone pile 2
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19291,7 +19291,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 450, 0, 76, 72, -(1/2 * 76 * this.size), -(1/2 * 72 * this.size), 76 * this.size, 72 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 28) //bone
+            else if (this.temporary == 29) //bone
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19299,7 +19299,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 384, 0, 76, 72, -(1/2 * 76 * this.size), -(1/2 * 72 * this.size), 76 * this.size, 72 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 29) //mudman leg
+            else if (this.temporary == 30) //mudman leg
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19307,7 +19307,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 188, -2, 55, 72, -(1/2 * 55 * this.size), -(1/2 * 72 * this.size), 55 * this.size, 72 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 30) //mudman arm
+            else if (this.temporary == 31) //mudman arm
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19315,7 +19315,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 238, -2, 66, 72, -(1/2 * 66 * this.size), -(1/2 * 72 * this.size), 66 * this.size, 72 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 31) //mudman leg 2
+            else if (this.temporary == 32) //mudman leg 2
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19323,7 +19323,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 101, -2, 66, 72, -(1/2 * 66 * this.size), -(1/2 * 72 * this.size), 66 * this.size, 72 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 32) //mudman body (clean) 1
+            else if (this.temporary == 33) //mudman body (clean) 1
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19331,7 +19331,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 271, 1652, 159, 141, -(1/2 * 159 * this.size), -(1/2 * 141 * this.size), 159 * this.size, 141 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 33) //mudman body (clean) 2
+            else if (this.temporary == 34) //mudman body (clean) 2
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19339,7 +19339,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 266, 2060, 159, 141, -(1/2 * 159 * this.size), -(1/2 * 141 * this.size), 159 * this.size, 141 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 34) //mudman body (bloody)
+            else if (this.temporary == 35) //mudman body (bloody)
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19347,7 +19347,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 246, 3046, 159, 141, -(1/2 * 159 * this.size), -(1/2 * 141 * this.size), 159 * this.size, 141 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 35) //dry leaves pile 1
+            else if (this.temporary == 36) //dry leaves pile 1
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19355,7 +19355,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 1083, 2, 119, 92, -(1/2 * 119 * this.size), -(1/2 * 92 * this.size), 119 * this.size, 92 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 36) //dry leaves pile 2
+            else if (this.temporary == 37) //dry leaves pile 2
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19363,7 +19363,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 1076, 127, 119, 92, -(1/2 * 119 * this.size), -(1/2 * 92 * this.size), 119 * this.size, 92 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 37) //branches pile 1
+            else if (this.temporary == 38) //branches pile 1
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19371,7 +19371,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 454, 375, 99, 88, -(1/2 * 99 * this.size), -(1/2 * 88 * this.size), 99 * this.size, 88 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 38) //branches pile 2
+            else if (this.temporary == 39) //branches pile 2
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19379,7 +19379,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 454, 278, 99, 88, -(1/2 * 99 * this.size), -(1/2 * 88 * this.size), 99 * this.size, 88 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 39) //branch 1
+            else if (this.temporary == 40) //branch 1
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19387,7 +19387,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 445, 170, 99, 88, -(1/2 * 99 * this.size), -(1/2 * 88 * this.size), 99 * this.size, 88 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 40) //branch 2
+            else if (this.temporary == 41) //branch 2
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19395,7 +19395,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 450, 105, 99, 88, -(1/2 * 99 * this.size), -(1/2 * 88 * this.size), 99 * this.size, 88 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 41) //used fire wood pile
+            else if (this.temporary == 42) //used fire wood pile
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19403,7 +19403,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 13, 599, 99, 88, -(1/2 * 99 * this.size), -(1/2 * 88 * this.size), 99 * this.size, 88 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 42) //long dry mud bench
+            else if (this.temporary == 43) //long dry mud bench
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19411,7 +19411,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 31, 99, 47, 131, -(1/2 * 47 * this.size), -(1/2 * 131 * this.size), 47 * this.size, 131 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 43) //angled dry mud bench
+            else if (this.temporary == 44) //angled dry mud bench
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -19419,7 +19419,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 107, 100, 139, 131, -(1/2 * 139 * this.size), -(1/2 * 131 * this.size), 139 * this.size, 131 * this.size);
                 XXX.restore();
             }
-            else if (this.temporary == 44) //burnt out fire wood
+            else if (this.temporary == 45) //burnt out fire wood
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -32825,6 +32825,32 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 this.activate = false;
                 give("vardanianThrowingSpear", 1);
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+        }
+        else if (this.type == "nothArrow")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 60;
+
+            this.zIndex = 2;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(mrol, 602, 856, 88, 33, -(1/2 * 88 * 1), -(1/2 * 33 * 1), 88 * 1, 33 * 1);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 11;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                give("nothArrow", 1);
                 scenicList.splice(scenicList.indexOf(this), 1);
             }
         }

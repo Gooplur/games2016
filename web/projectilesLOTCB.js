@@ -54,6 +54,8 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     this.stickDifRot = 0;
     this.stickDifX = 0;
     this.stickDifY = 0;
+    //do once
+    this.unaVez = true;
 
     //PROJECTILE AI
     //TODO this is where unique projectile AI like target following would be added.
@@ -1374,6 +1376,66 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
                 XXX.rotate(this.rotation + (1 / 2 * Math.PI));
                 XXX.drawImage(hydra, 293, 603, 18, 9, 0, 0, 18, 9);
+                XXX.restore();
+            }
+        }
+        else if (type == "nothArrow") //thrown
+        {
+            this.radius = 5;
+            this.thrown = true;
+            this.thrownID = "nothArrow";
+            this.thrownRotation = this.rotation + (1 / 2 * Math.PI);
+
+            if (list == playerProjectiles && this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                if (this.unaVez)
+                {
+                    this.unaVez = false;
+                    this.negateArmour += 6;
+                    this.speed = this.speed * 1.1;
+                    this.rotation += Math.PI;
+                    this.shoot();
+                    this.shoot();
+                    this.shoot();
+                }
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.rotation - (1 / 2 * Math.PI) + Math.PI);
+                XXX.drawImage(mrol, 599, 861, 72, 22, -1/2 * 72, -1/2 * 22, 72, 22);
+                XXX.restore();
+            }
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                if (this.unaVez)
+                {
+                    this.unaVez = false;
+                    this.negateArmour += 6;
+                    this.speed = this.speed * 1.1;
+                    this.rotation += Math.PI;
+                    this.shoot();
+                    this.shoot();
+                    this.shoot();
+                }
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.rotation + (1 / 2 * Math.PI) + Math.PI);
+                XXX.drawImage(mrol, 599, 861, 72, 22, -1/2 * 72, -1/2 * 22, 72, 22);
                 XXX.restore();
             }
         }

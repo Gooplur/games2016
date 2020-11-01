@@ -12721,6 +12721,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "strilt") //mud strider leg
+        {
+            //For All Items
+            this.identity = "Strilt";
+            this.weight = 0.7;
+            this.size = 9;
+            this.description = "A piece of mud strider leg.";
+            this.intForDes = 6;
+            this.intDescription = "This is a material that is carved into blades and tools in Noth culture.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
         else if (this.type == "stovolBeetleMandable")
         {
             //For All Items
@@ -45713,6 +45733,39 @@ function Item(type, x, y)
             this.buyValue = 44 - Math.floor(player.getCharisma() / 8); // at max, buy for 38.
             this.sellValue = 23 + Math.floor(player.getCharisma() / 3); // at max, sell for 38.
         }
+        else if (this.type == "nothWarBow")
+        {
+            //For All Items
+            this.identity = "Noth War Bow";
+            this.weight = 2.7;
+            this.size = 25;
+            this.description = "A war bow crafted from a carved qiao protuberance.";
+            this.intForDes = 4;
+            this.intDescription = "Noth war bows are the only type of bow that can shoot Noth arrows.";
+
+            //Define Utility
+            this.utility = "ranged";
+            //Sub Utility
+            this.subUtility = "bow";
+
+            //Utility Focused
+            this.range = 1200 + (250 * player.getRanged() / 50);
+            this.rate = Math.max(0.25, 40 - (30 * player.getRanged() / 50));
+            this.speed = 6.5 + (3 * player.getRanged() / 50);
+            this.negateArmour = 9 + (4 * player.getRanged() / 50);
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 30;
+            this.ingredients = [["Qiao Protuberance", 1], ["Noth String", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 55 - Math.floor(player.getCharisma() / 5); // at max, buy for 45.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 3); // at max, sell for 45.
+        }
         else if (this.type == "aldrekiiLongbow")
         {
             //For All Items
@@ -46034,6 +46087,38 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 20 - Math.floor(player.getCharisma() / 10); // at max, buy for 15.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
+        }
+        else if (this.type == "nothArrow")
+        {
+            //For All Items
+            this.identity = "Noth Arrow";
+            this.weight = 0.2;
+            this.size = 8;
+            this.description = "A long carved bone arrow that is extremely hard and sharp.";
+            this.intForDes = 4;
+            this.intDescription = "Noth arrows are carved from vodmena bone. They are particularly good at piercing armour, and they are very durable.";
+
+            //Define Utility
+            this.utility = "ammunition";
+            //Sub Utility
+            this.subUtility = "arrow";
+            this.subUtilityName = "Arrow";
+
+            //Utility Focused
+            this.damage = 6 * (1 + player.getRanged() / 25);
+            this.magicalDamage = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 29;
+            this.ingredients = [["Vodmena Bones", 1], ["Dried Noth Brush Leaves", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7; // at max, buy for 7.
+            this.sellValue = 7; // at max, sell for 7.
         }
         else if (this.type == "timeArrow")
         {
@@ -60350,6 +60435,138 @@ function Item(type, x, y)
             this.buyValue = 110 - Math.floor(player.getCharisma() / 8); // at max, buy for 104.
             this.sellValue = 90 + Math.floor(player.getCharisma() / 3.57); // at max, sell for 104.
         }
+        else if (this.type == "smallNothAxe")
+        {
+            //For All Items
+            this.identity = "Small Nothian Axe";
+            this.weight = 1.75;
+            this.size = 10;
+            this.description = "A small axe built for hacking down qiao protuberances.";
+            this.intForDes = 1;
+            this.intDescription = "This axe is of Nothian design.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 1;
+            this.distance = 34 + (this.range * 7);
+            this.range = 2;
+            this.rate = 135 - (1/2 * player.getDexterity());
+            this.damage = (3 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 0.5;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 6;
+            this.intForCraft = 12;
+            this.ingredients = [["Noth String", 6], ["Sagro Hide", 1], ["strilt", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 25); // at max, buy for 8.
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 50); // at max, sell for 8.
+        }
+        else if (this.type == "nothAxe")
+        {
+            //For All Items
+            this.identity = "Nothian Axe";
+            this.weight = 7.5;
+            this.size = 23;
+            this.description = "A large axe built for hacking down qiao protuberances and people you don't like.";
+            this.intForDes = 3;
+            this.intDescription = "This axe is the primary weapon of most Noth warriors.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 6;
+            this.distance = 46 + (this.range * 7);
+            this.range = 2.5;
+            this.rate = 185 - (1/2 * player.getDexterity());
+            this.damage = (8 - this.damageHandicap * 3) * (this.leveledDamageMultiple / 25) + ((5/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 1.75;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 3;
+            this.intForCraft = 26;
+            this.ingredients = [["Noth String", 9], ["Sagro Hide", 1], ["strilt", 10]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 75 - Math.floor(player.getCharisma() / 10); // at max, buy for 70.
+            this.sellValue = 45 + Math.floor(player.getCharisma() / 2); // at max, sell for 70.
+        }
+        else if (this.type == "nothBlade")
+        {
+            //For All Items
+            this.identity = "Nothian War Blade";
+            this.weight = 1.2;
+            this.size = 14;
+            this.description = "A curved Nothian blade made of carved and sharpened vodmena bone.";
+            this.intForDes = 2;
+            this.intDescription = "Some people are large and heavy handed, but others are swift and agile: this blade is for the latter group.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 4;
+            this.distance = 33 + (this.range * 7);
+            this.range = 4.5;
+            this.rate = 115 - (1/2 * player.getDexterity());
+            this.damage = (3.9 - this.damageHandicap * 1.4) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getDexterity());
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 37;
+            this.ingredients = [["Vodmena Bones", 4], ["strilt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 60 - Math.floor(player.getCharisma() / 2); // at max, buy for 35.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 10); // at max, sell for 35.
+        }
+        else if (this.type == "nothSpear")
+        {
+            //For All Items
+            this.identity = "Nothian Stinger Spear";
+            this.weight = 12.1;
+            this.size = 28;
+            this.description = "A long strilt carved shaft with a mounted bog wasp stinger at the end.";
+            this.intForDes = 10;
+            this.intDescription = "The stinger is not connected to the bog wasps main venom sac anymore, but there is still some weak, residual venom left.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 4;
+            this.distance = 109 + (this.range * 7);
+            this.range = 2.5;
+            this.rate = 125;
+            this.damage = (3 - this.damageHandicap * 1) * (this.leveledDamageMultiple / 25) + ((3.5/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 2.5;
+
+            //ability
+            this.ability = "acidI";
+
+            this.yield = 1;
+            this.intForCraft = 20;
+            this.ingredients = [["Bog Wasp Stinger", 1], ["Sagro Hide", 1], ["strilt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 35 - Math.floor(player.getCharisma() / 5); // at max, buy for 25.
+            this.sellValue = 20 + Math.floor(player.getCharisma() / 10); // at max, sell for 25.
+        }
         else if (this.type == "vardanianAxe")
         {
             //For All Items
@@ -62608,6 +62825,41 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "nothSpear")
+        {
+            XXX.beginPath();
+            XXX.drawImage(enwi, 230, 3267, 75, 152, X - this.X + (1/2 * CCC.width) - (1/2 * 75 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 152 * 1), 75 * 1, 152 * 1);
+        }
+        else if (this.type == "smallNothAxe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mrol, 683, 854, 52, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 52 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 52 * 1, 39 * 1);
+        }
+        else if (this.type == "nothAxe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mrol, 490, 823, 91, 77, X - this.X + (1/2 * CCC.width) - (1/2 * 91 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 77 * 1), 91 * 1, 77 * 1);
+        }
+        else if (this.type == "nothBlade")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mrol, 421, 833, 42, 74, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 74 * 1), 42 * 1, 74 * 1);
+        }
+        else if (this.type == "strilt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mudm, 945, 140, 100, 88, X - this.X + (1/2 * CCC.width) - (1/2 * 100 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 88 * 1), 100 * 1, 88 * 1);
+        }
+        else if (this.type == "nothWarBow")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nobo, 181, 19, 81, 85, X - this.X + (1/2 * CCC.width) - (1/2 * 81), Y - this.Y + (1/2 * CCC.height) - (1/2 * 85), 81, 85);
+        }
+        else if (this.type == "nothArrow")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nobo, 84, 49, 20, 70, X - this.X + (1/2 * CCC.width) - (1/2 * 20), Y - this.Y + (1/2 * CCC.height) - (1/2 * 70), 20, 70);
         }
         else if (this.type == "libelulaWing")
         {
@@ -70962,6 +71214,41 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "nothSpear")
+        {
+            LXX.beginPath();
+            LXX.drawImage(enwi, 230, 3267, 75, 152, this.invX - (1/2 * 75 * 0.5), this.invY - (1/2 * 152 * 0.5), 75 * 0.5, 152 * 0.5);
+        }
+        else if (this.type == "smallNothAxe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mrol, 683, 854, 52, 39, this.invX - (1/2 * 52 * 1), this.invY - (1/2 * 39 * 1), 52 * 1, 39 * 1);
+        }
+        else if (this.type == "nothAxe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mrol, 490, 823, 91, 77, this.invX - (1/2 * 91 * 0.95), this.invY - (1/2 * 77 * 0.95), 91 * 0.95, 77 * 0.95);
+        }
+        else if (this.type == "nothBlade")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mrol, 421, 833, 42, 74, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 74 * 1), 42 * 1, 74 * 1);
+        }
+        else if (this.type == "strilt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mudm, 945, 140, 100, 88, this.invX - (1/2 * 100 * 1), this.invY - (1/2 * 88 * 1), 100 * 1, 88 * 1);
+        }
+        else if (this.type == "nothArrow")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nobo, 84, 49, 20, 70, this.invX - (1/2 * 20), this.invY - (1/2 * 70), 20, 70);
+        }
+        else if (this.type == "nothWarBow")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nobo, 181, 19, 81, 85, this.invX - (1/2 * 81), this.invY - (1/2 * 85), 81, 85);
+        }
         else if (this.type == "libelulaWing")
         {
             LXX.beginPath();
@@ -79270,6 +79557,41 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "nothSpear")
+        {
+            XXX.beginPath();
+            XXX.drawImage(enwi, 230, 3267, 75, 152, this.invX - (1/2 * 75 * 0.5), this.invY - (1/2 * 152 * 0.5), 75 * 0.5, 152 * 0.5);
+        }
+        else if (this.type == "smallNothAxe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mrol, 683, 854, 52, 39, this.invX - (1/2 * 52 * 1), this.invY - (1/2 * 39 * 1), 52 * 1, 39 * 1);
+        }
+        else if (this.type == "nothAxe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mrol, 490, 823, 91, 77, this.invX - (1/2 * 91 * 0.95), this.invY - (1/2 * 77 * 0.95), 91 * 0.95, 77 * 0.95);
+        }
+        else if (this.type == "nothBlade")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mrol, 421, 833, 42, 74, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 74 * 1), 42 * 1, 74 * 1);
+        }
+        else if (this.type == "strilt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mudm, 945, 140, 100, 88, this.invX - (1/2 * 100 * 1), this.invY - (1/2 * 88 * 1), 100 * 1, 88 * 1);
+        }
+        else if (this.type == "nothArrow")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nobo, 84, 49, 20, 70, this.invX - (1/2 * 20), this.invY - (1/2 * 70), 20, 70);
+        }
+        else if (this.type == "nothWarBow")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nobo, 181, 19, 81, 85, this.invX - (1/2 * 81), this.invY - (1/2 * 85), 81, 85);
         }
         else if (this.type == "libelulaWing")
         {

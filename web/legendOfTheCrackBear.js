@@ -1771,6 +1771,30 @@ function hnotPack()
 
     hnot.onload = function()
     {
+        noboPack();
+    };
+}
+
+function noboPack()
+{
+    var nobo = new Image();
+    nobo.src = ("images/nobo.png");
+    window.nobo = nobo;
+
+    nobo.onload = function()
+    {
+        enwiPack();
+    };
+}
+
+function enwiPack()
+{
+    var enwi = new Image();
+    enwi.src = ("images/enwi.png");
+    window.enwi = enwi;
+
+    enwi.onload = function()
+    {
         olgPack();
     };
 }
@@ -5537,6 +5561,12 @@ function theLegend()
     allWeapons.push(new Item("kama"));//121
     allWeapons.push(new Item("yari"));//122
     allWeapons.push(new Item("husk"));//123
+    allWeapons.push(new Item("nothWarBow"));//124
+    allWeapons.push(new Item("nothArrow"));//125
+    allWeapons.push(new Item("smallNothAxe"));//126
+    allWeapons.push(new Item("nothAxe"));//127
+    allWeapons.push(new Item("nothBlade"));//128
+    allWeapons.push(new Item("nothSpear"));//129
 
 
 
@@ -5806,6 +5836,7 @@ function theLegend()
     smithing.push(new Item("longbow", false));
     smithing.push(new Item("arrow", false));
     smithing.push(new Item("aldrekiiLongbow", false));
+    smithing.push(new Item("nothWarBow", false));
     smithing.push(new Item("lifeLeachArrow", false));
     smithing.push(new Item("freezingArrow", false));
     smithing.push(new Item("fireArrow", false));
@@ -5939,6 +5970,11 @@ function theLegend()
     smithing.push(new Item("ashigaruArmour", false));
     smithing.push(new Item("greyAshigaruArmour", false));
     smithing.push(new Item("purpleAshigaruArmour", false));
+    smithing.push(new Item("nothArrow", false));
+    smithing.push(new Item("smallNothAxe", false));
+    smithing.push(new Item("nothAxe", false));
+    smithing.push(new Item("nothBlade", false));
+    smithing.push(new Item("nothSpear", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];

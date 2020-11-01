@@ -1109,6 +1109,32 @@ function applySelectionsButton()
                 Inventory.push([new Item("aldrekiiLongbow", false, false), 1], [new Item("aldrekiiArrow", false, false), 50]);
             }
         }
+        else if (player.class == "Ranger" && player.raceName == "Noth")
+        {
+            if (player.title == "Vagabond")
+            {
+                Inventory.push([new Item("nothWarBow", false, false), 1], [new Item("nothArrow", false, false), 1]);
+            }
+            else if (player.title == "Peasant")
+            {
+                Inventory.push([new Item("nothWarBow", false, false), 1], [new Item("nothArrow", false, false), 2]);
+            }
+            else if (player.title == "Commoner")
+            {
+                Inventory.push([new Item("nothWarBow", false, false), 1], [new Item("nothArrow", false, false), 3]);
+            }
+            else if (player.title == "Tradefolk")
+            {
+                Inventory.push([new Item("nothWarBow", false, false), 1], [new Item("nothArrow", false, false), 5]);
+            }
+            else
+            {
+                if (player.gender == "Male")
+                {
+                    Inventory.push([new Item("nothWarBow", false, false), 1], [new Item("nothArrow", false, false), 50]);
+                }
+            }
+        }
         else if (player.class == "Ranger" && player.raceName == "Orgell")
         {
             if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner")

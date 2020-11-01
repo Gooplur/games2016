@@ -12921,7 +12921,7 @@ function Adventurer()
             {
                 for (var i = Inventory.length - 1; i > -1; i--)
                 {
-                    if (Inventory[i][0].utility == "ammunition" && Inventory[i][0].subUtility == "arrow" && Inventory[i][0].equipped == true && this.rangedWeaponType == "bow")
+                    if (Inventory[i][0].utility == "ammunition" && Inventory[i][0].subUtility == "arrow" && Inventory[i][0].equipped == true && this.rangedWeaponType == "bow" && Inventory[i][0].identity != "Noth Arrow" || Inventory[i][0].utility == "ammunition" && Inventory[i][0].subUtility == "arrow" && Inventory[i][0].equipped == true && this.rangedWeaponType == "bow" && Inventory[i][0].identity == "Noth Arrow" && this.weapon.type == "nothWarBow")
                     {
                         if (this.attacking != true && this.projectileReleased == true)
                         {
@@ -13338,7 +13338,7 @@ function Adventurer()
                     {
                         if (bothwaysBool == false) // if the animation is one way it ends here...
                         {
-                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "venandi" && this.weaponEquipped != "husk")
+                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "venandi" && this.weaponEquipped != "husk" && this.weaponEquipped != "nothBlade")
                             {
 
                                 self.finalAttackStage = true;
@@ -13351,7 +13351,7 @@ function Adventurer()
                         }
                         else if (bothwaysBool == true) //but if it is two directional it swings back to frame zero.
                         {
-                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "venandi" && this.weaponEquipped != "husk")
+                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "venandi" && this.weaponEquipped != "husk" && this.weaponEquipped != "nothBlade")
                             {
                                 if (this.frameOrder == "positive")
                                 {
@@ -20977,6 +20977,231 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //NOTH STINGER SPEAR
+        if (this.weaponEquipped == "nothSpear")
+        {
+            this.stageEngine(7, 0.21, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(enwi, 466, 3256, 147, 295, -1/2 * 147, -1/2 * 295, 147, 295);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(enwi, 621, 3256, 147, 295, -1/2 * 147, -1/2 * 295, 147, 295);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(enwi, 789, 3256, 147, 295, -1/2 * 147, -1/2 * 295, 147, 295);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(enwi, 951, 3262, 147, 295, -1/2 * 147, -1/2 * 295, 147, 295);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(enwi, 1121, 3259, 147, 295, -1/2 * 147, -1/2 * 295, 147, 295);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(enwi, 1275, 3260, 147, 295, -1/2 * 147, -1/2 * 295, 147, 295);
+                XXX.restore();
+            }
+        }
+        //SMALL NOTH AXE
+        if (this.weaponEquipped == "smallNothAxe")
+        {
+            this.stageEngine(6, 0.19, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 984, 1040, 115, 95, -1/2 * 115, -1/2 * 95, 115, 95);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1115, 1042, 115, 95, -1/2 * 115, -1/2 * 95, 115, 95);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1251, 1046, 115, 95, -1/2 * 115, -1/2 * 95, 115, 95);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1371, 1046, 115, 95, -1/2 * 115, -1/2 * 95, 115, 95);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1485, 1029, 115, 128, -1/2 * 115, -1/2 * 128, 115, 128);
+                XXX.restore();
+            }
+        }
+        //NOTH AXE
+        if (this.weaponEquipped == "nothAxe")
+        {
+            this.stageEngine(7, 0.22, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, -39, 1075, 197, 135, -1/2 * 197, -1/2 * 135, 197, 135);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 125, 1083, 173, 135, -1/2 * 173, -1/2 * 135, 173, 135);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 277, 1082, 173, 135, -1/2 * 173, -1/2 * 135, 173, 135);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 416, 1080, 173, 135, -1/2 * 173, -1/2 * 135, 173, 135);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 590, 1075, 173, 135, -1/2 * 173, -1/2 * 135, 173, 135);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 740, 1070, 173, 135, -1/2 * 173, -1/2 * 135, 173, 135);
+                XXX.restore();
+            }
+        }
         //YARI
         if (this.weaponEquipped == "yari")
         {
@@ -27016,6 +27241,224 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //NOTHIAN WAR BLADE
+        if (this.weaponEquipped == "nothBlade")
+        {
+            this.stageEngine(15, 0.24, false);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0) //A
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 800, 648, 133, 113,- 1/2 * 133, -1/2 * 113, 133, 113);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1) //B
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 944, 648, 133, 113,- 1/2 * 133, -1/2 * 113, 133, 113);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2) //C
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1083, 648, 133, 113,- 1/2 * 133, -1/2 * 113, 133, 113);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3) //C
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1247, 648, 133, 113,- 1/2 * 133, -1/2 * 113, 133, 113);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4) //C
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1387, 626, 132, 159,- 1/2 * 132, -1/2 * 159, 132, 159);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                if (this.attackManual == false)
+                {
+                    this.attackManual = true;
+
+                    this.finalAttackStage = true;
+                    this.attackPause = 0;
+                    this.attack();
+                }
+
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1528, 622, 132, 159,- 1/2 * 132, -1/2 * 159, 132, 159);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 6) //C
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1663, 620, 132, 159,- 1/2 * 132, -1/2 * 159, 132, 159);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 7) //C
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1663, 620, 132, 159,- 1/2 * 132, -1/2 * 159, 132, 159);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 8) //C
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1663, 620, 132, 159,- 1/2 * 132, -1/2 * 159, 132, 159);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 9) //B
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 820, 784, 132, 159,- 1/2 * 132, -1/2 * 159, 132, 159);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 10) //A
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 957, 784, 132, 159,- 1/2 * 132, -1/2 * 159, 132, 159);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 11) //B2
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1087, 782, 132, 159,- 1/2 * 132, -1/2 * 159, 132, 159);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 12) //C2
+            {
+                if (this.attackManual == false)
+                {
+                    this.attackManual = true;
+
+                    this.finalAttackStage = true;
+                    this.attackCooldown = new Date().getTime();
+                    this.attackPause = 0;
+                }
+
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1236, 777, 132, 159,- 1/2 * 132, -1/2 * 159, 132, 159);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 13) //D
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 1378, 774, 132, 159,- 1/2 * 132, -1/2 * 159, 132, 159);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 14) //C2
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(mrol, 944, 624, 132, 159,- 1/2 * 132, -1/2 * 159, 132, 159);
+                XXX.restore();
+            }
+        }
         //PICKAXE
         if (this.weaponEquipped == "pickaxe")
         {
@@ -29706,6 +30149,123 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //NOTH WAR BOW
+        if (this.weaponEquipped == "nothWarBow")
+        {
+            //for ranged this sets the stage back so that it can start again.
+            if (this.ammoLoaded == false && new Date().getTime() - this.reloadTime > allWeapons[5].rate * 100 && this.releaseStage == true)
+            {
+                this.stage = 0;
+                this.releaseStage = false;
+            }
+
+            //If the stage is less than full drawback then draw back when attacking is triggered.
+            if (this.stage < 6)
+            {
+                this.stageEngine(8, 0.17, false);
+            }
+
+            //ATTACK ANIMATION
+            //This cycles through the stages of the attack
+            if (Math.floor(this.stage) <= 0 && this.releaseStage == false)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(nobo, 15, 147, 122, 137, -1/2 * 122, -1/2 * 137, 122, 137);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1 && this.releaseStage == false)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(nobo, 15, 147, 122, 137, -1/2 * 122, -1/2 * 137, 122, 137);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2 && this.releaseStage == false)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(nobo, 15, 147, 122, 137, -1/2 * 122, -1/2 * 137, 122, 137);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3 && this.releaseStage == false)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(nobo, 143, 148, 122, 137, -1/2 * 122, -1/2 * 137, 122, 137);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4 && this.releaseStage == false)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(nobo, 267, 151, 87, 126, -1/2 * 87, -1/2 * 126, 87, 126);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5 && this.releaseStage == false)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(nobo, 394, 153, 87, 126, -1/2 * 87, -1/2 * 126, 87, 126);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 6 && this.releaseStage == false)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(nobo, 553, 156, 87, 126, -1/2 * 87, -1/2 * 126, 87, 126);
+                XXX.restore();
+                this.ammoLoaded = true;
+            }
+            //This is an extra stage for the release, it is specially triggered by the release of the space bar.
+            if (this.releaseStage == true)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(nobo, 740, 156, 87, 126, -1/2 * 87, -1/2 * 126, 87, 126);
+                XXX.restore();
+            }
+        }
         //VARDANIAN CROSSBOW
         if (this.weaponEquipped == "vardanianCrossbow")
         {
@@ -30728,6 +31288,14 @@ function Adventurer()
             this.projectileX = -3;
             this.projectileY = -3;
         }
+        else if (this.weaponEquipped == "nothWarBow")
+        {
+            this.weapon = allWeapons[124];
+
+            //This adjusts the starting position of the arrow/bolt.
+            this.projectileX = 0;
+            this.projectileY = 0;
+        }
         else if (this.weaponEquipped == "crossbow")
         {
             this.weapon = allWeapons[22];
@@ -31623,6 +32191,38 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 17);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 17);
         }
+        else if (this.weaponEquipped == "smallNothAxe")
+        {
+            this.weapon = allWeapons[126];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.7 / 5 * Math.PI) * (this.mySize + 34);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.7 / 5 * Math.PI) * (this.mySize + 34);
+        }
+        else if (this.weaponEquipped == "nothAxe")
+        {
+            this.weapon = allWeapons[127];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.82 / 5 * Math.PI) * (this.mySize + 46);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.82 / 5 * Math.PI) * (this.mySize + 46);
+        }
+        else if (this.weaponEquipped == "nothBlade")
+        {
+            this.weapon = allWeapons[128];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 33);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 33);
+        }
+        else if (this.weaponEquipped == "nothSpear")
+        {
+            this.weapon = allWeapons[129];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 109);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 109);
+        }
     };
 
     //BLOCKING FUNCTION
@@ -31929,6 +32529,11 @@ function Adventurer()
                             {
                                 ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
                                 ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+                            }
+                            else if (this.weapon.ability == "acidI" && justDealt > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].acidI = true;
+                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 10000;
                             }
                             else if (this.weapon.ability == "poisonI" && justDealt > 0)
                             {
@@ -45819,7 +46424,7 @@ function Adventurer()
                 }
 
                 //this is rare, but some weapons draw below the body layer.
-                if (this.outfitZ == "mid" || this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow" || this.weaponEquipped == "throwingStar" || this.weaponEquipped == "pitchfork" || this.weaponEquipped == "cultistScythe" || this.weaponEquipped == "sceptreOfRadiance" || this.weaponEquipped == "longBone" || this.weaponEquipped == "theWendigosCleaver" || this.weaponEquipped == "beulingerrPike" || this.weaponEquipped == "sackmansSword" || this.weaponEquipped == "throwingKnife" || this.weaponEquipped == "poisonCoatedThrowingKnife" || this.weaponEquipped == "cephrianPikeAndShield" || this.weaponEquipped == "cephrianBlade" || this.weaponEquipped == "cephrianDagger" || this.weaponEquipped == "cephrianRapier") //add more cases for more overhead weapons.
+                if (this.outfitZ == "mid" || this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow" || this.weaponEquipped == "throwingStar" || this.weaponEquipped == "pitchfork" || this.weaponEquipped == "cultistScythe" || this.weaponEquipped == "sceptreOfRadiance" || this.weaponEquipped == "longBone" || this.weaponEquipped == "theWendigosCleaver" || this.weaponEquipped == "beulingerrPike" || this.weaponEquipped == "sackmansSword" || this.weaponEquipped == "throwingKnife" || this.weaponEquipped == "poisonCoatedThrowingKnife" || this.weaponEquipped == "cephrianPikeAndShield" || this.weaponEquipped == "cephrianBlade" || this.weaponEquipped == "cephrianDagger" || this.weaponEquipped == "cephrianRapier" || this.weaponEquipped == "nothWarBow" || this.weaponEquipped == "smallNothAxe" || this.weaponEquipped == "nothAxe" || this.weaponEquipped == "nothBlade") //add more cases for more overhead weapons.
                 {
                     if (this.weaponEquipped != "cephrianPikeAndShield" || !altKey && !sKey || this.outfitEquipped != "none")
                     {
@@ -46953,7 +47558,7 @@ function Adventurer()
                 }
 
                 //most weapons draw beneath the armour layer.
-                if (this.outfitZ != "mid" && this.wepLayer == "standard" || this.outfitZ != "mid" && this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow" && this.weaponEquipped != "throwingStar" && this.weaponEquipped != "pitchfork" && this.weaponEquipped != "cultistScythe" && this.weaponEquipped != "sceptreOfRadiance" && this.weaponEquipped != "longBone" && this.weaponEquipped != "theWendigosCleaver" && this.weaponEquipped != "beulingerrPike" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "throwingKnife" && this.weaponEquipped != "poisonCoatedThrowingKnife" && this.weaponEquipped != "cephrianPikeAndShield" && this.weaponEquipped != "cephrianBlade" && this.weaponEquipped != "cephrianDagger" && this.weaponEquipped != "cephrianRapier") //add more cases for more overhead weapons.
+                if (this.outfitZ != "mid" && this.wepLayer == "standard" || this.outfitZ != "mid" && this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow" && this.weaponEquipped != "throwingStar" && this.weaponEquipped != "pitchfork" && this.weaponEquipped != "cultistScythe" && this.weaponEquipped != "sceptreOfRadiance" && this.weaponEquipped != "longBone" && this.weaponEquipped != "theWendigosCleaver" && this.weaponEquipped != "beulingerrPike" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "throwingKnife" && this.weaponEquipped != "poisonCoatedThrowingKnife" && this.weaponEquipped != "cephrianPikeAndShield" && this.weaponEquipped != "cephrianBlade" && this.weaponEquipped != "cephrianDagger" && this.weaponEquipped != "cephrianRapier" && this.weaponEquipped != "nothWarBow" && this.weaponEquipped != "smallNothAxe" && this.weaponEquipped != "nothAxe" && this.weaponEquipped != "nothBlade") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }

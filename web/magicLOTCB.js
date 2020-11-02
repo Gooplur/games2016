@@ -71,6 +71,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         this.targeted = "none"; //this is a variable that is not for use in functions meant to serve as a standard targeting tool.
         this.ready = false; //ready is an alternative to alert just in case alert is already being used for something.
         this.goTic = 0;
+        this.fire = false; //lets other things like scenery objects know if a spell can catch them on fire.
         //SPELL BUILDER (functions that can be given to each individual spell to define its characteristics)
         this.spellTimer = function(duration, alert)
         {
@@ -1503,6 +1504,13 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         if (this.spellType == "eruption")
         {
             this.orientToCaster(0, 2*Math.PI*Math.random());
+        }
+        //FIRE
+        if (this.spellType == "fire")
+        {
+            this.X = this.orders[0];
+            this.Y = this.orders[1];
+            this.rotation = 2*Math.PI*Math.random();
         }
         //DRAKE BREATH
         if (this.spellType == "drakeBreath")
@@ -4137,6 +4145,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
 
             if (this.spellType == "fireballI")
             {
+                this.fire = true;
                 if (caster)
                 {
                     if (this.cnx >= 30)
@@ -4193,6 +4202,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
 
             if (this.spellType == "eruption")
             {
+                this.fire = true;
                 this.size = 1;
                 this.goTic += 9;
                 if (caster)
@@ -4277,6 +4287,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
 
             if (this.spellType == "drakeBreath")
             {
+                this.fire = true;
                 this.size = 1;
                 this.goTic += 9;
                 if (caster)
@@ -4344,6 +4355,81 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                     this.contactDamage(false, 18, ((8 + 0.1 * this.cnx) / 9), 3, "fire");
                     this.project(this.rotation, 85, 2, true);
                 }
+            }
+
+            if (this.spellType == "fire") //firefire
+            {
+                this.fire = true;
+                this.size = this.orders[2];
+                this.goTic += 9;
+                if (this.goTic < 10)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(0);
+                    XXX.globalAlpha = 0.75;
+                    XXX.drawImage(humpa, 10, 968, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                    XXX.restore();
+                }
+                else if (this.goTic < 20)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(0);
+                    XXX.globalAlpha = 0.75;
+                    XXX.drawImage(humpa, 10, 1009, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                    XXX.restore();
+                }
+                else if (this.goTic < 30)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(0);
+                    XXX.globalAlpha = 0.75;
+                    XXX.drawImage(humpa, 10, 1057, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                    XXX.restore();
+                }
+                else if (this.goTic < 40)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(0);
+                    XXX.globalAlpha = 0.75;
+                    XXX.drawImage(humpa, 11, 1106, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                    XXX.restore();
+                }
+                else if (this.goTic <= 50 || this.goTic > 50)
+                {
+                    if (Math.random())
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.globalAlpha = 0.75;
+                        XXX.drawImage(humpa, 10, 1057, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.globalAlpha = 0.75;
+                        XXX.drawImage(humpa, 10, 1009, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                        XXX.restore();
+                    }
+
+                    if (this.goTic > 50)
+                    {
+                        this.goTic = 0;
+                    }
+                }
+                if (timeOfDay != "Day" || player.underground)
+                {
+                    lights.push({X: this.X, Y: this.Y, size: 28 * this.size, extraStops: true, GRD: 0, Alpha: 0.9, showMe: false});
+                }
+                this.contactDamage(false, 18 * this.size, ((8 + 0.1 * this.cnx) / 9), 3, "fire");
+                this.spellTimer(3.5);
             }
 
             if (this.spellType == "shadowFog")
@@ -5009,6 +5095,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
 
             if (this.spellType == "vrezinDust")
             {
+                this.fire = true;
                 var szx = 3;
                 if (caster)
                 {

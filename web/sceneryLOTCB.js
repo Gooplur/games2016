@@ -34651,6 +34651,209 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.activate = false;
             }
         }
+        else if (this.type == "birchRootsTrap")
+        {
+            //TRAITS
+            this.interactionRange = 90;
+            this.size = 1;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+
+                this.solid = false;
+                this.tic = 0;
+
+                this.captor = false;
+                this.sprungHealth = 24;
+                this.captive = "none";
+                this.livspan = 3400;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 55 * this.size;
+
+            this.captor = false;
+
+            if (this.sprungHealth > 0)
+            {
+                if (this.captive == "player" || ((this.X - X)*(this.X - X)+(this.Y - Y)*(this.Y - Y)) <= this.radius*this.radius && player.flying != true && map == this.dmx && player.form != "werewolf" && player.form != "wendigo")
+                {
+                    this.captor = true;
+                    this.tic += 1 * (TTD/16.75);
+                    if (this.tic > 14)
+                    {
+                        if (player.form == "werewolf" || player.form == "wendigo")
+                        {
+                            this.sprungHealth = 0;
+                        }
+
+                        this.captive = "player";
+                        X = this.X;
+                        Y = this.Y;
+                        if (this.tic > 28)
+                        {
+                            if (player.form != "vampire")
+                            {
+                                player.stunnedXV = true;
+                                player.stunnedTime = Math.max(2, player.stunnedTime);
+                                player.asfixiationII = true;
+                                player.asfixiationTime = Math.max(2, player.asfixiationTime);
+                            }
+                        }
+                    }
+                }
+
+
+                if (this.captive != "player")
+                {
+                    for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                    {
+                        if (ArtificialIntelligenceAccess[j].type != "Spriggan" && ArtificialIntelligenceAccess[j].type != "Leshy")
+                        {
+                            if (this.captive == "none" && (this.X - ArtificialIntelligenceAccess[j].X)*(this.X - ArtificialIntelligenceAccess[j].X)+(this.Y - ArtificialIntelligenceAccess[j].Y)*(this.Y - ArtificialIntelligenceAccess[j].Y) <= (this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius))*(this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius)) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx && ArtificialIntelligenceAccess[j].healthMAX < 90 || (this.X - ArtificialIntelligenceAccess[j].X)*(this.X - ArtificialIntelligenceAccess[j].X)+(this.Y - ArtificialIntelligenceAccess[j].Y)*(this.Y - ArtificialIntelligenceAccess[j].Y) <= (this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius))*(this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius)) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx && ArtificialIntelligenceAccess[j].type == "Person" || (this.X - ArtificialIntelligenceAccess[j].X)*(this.X - ArtificialIntelligenceAccess[j].X)+(this.Y - ArtificialIntelligenceAccess[j].Y)*(this.Y - ArtificialIntelligenceAccess[j].Y) <= (this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius))*(this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius)) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx && ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].dmx == this.dmx && ArtificialIntelligenceAccess[j].barcode == this.captive)
+                            {
+                                this.tic += 1 * (TTD/16.75);
+                                this.captor = true;
+                                if (this.tic > 14)
+                                {
+                                    if (ArtificialIntelligenceAccess[j].type == "Werewolf" || ArtificialIntelligenceAccess[j].type == "Wendigo")
+                                    {
+                                        this.sprungHealth = 0;
+                                    }
+
+                                    this.captive = ArtificialIntelligenceAccess[j].barcode;
+                                    ArtificialIntelligenceAccess[j].X = this.X;
+                                    ArtificialIntelligenceAccess[j].Y = this.Y;
+                                    if (this.tic > 28)
+                                    {
+                                        if (ArtificialIntelligenceAccess[j].type != "Vampire")
+                                        {
+                                            ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                                            ArtificialIntelligenceAccess[j].health -= 0.025 * (TTD/16.75);
+                                            ArtificialIntelligenceAccess[j].stunXV = true;
+                                            ArtificialIntelligenceAccess[j].stunTimer = Math.max(2, ArtificialIntelligenceAccess[j].stunTimer);
+                                            ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (this.captor == false)
+            {
+                this.captive = "squabbldysquooks";
+                this.tic -= 1 * (TTD/16.75);
+                if (this.tic <= 0)
+                {
+                    this.tic = 0;
+                    this.captive = "none";
+                }
+                if (this.sprungHealth > 0)
+                {
+                    this.sprungHealth = 24;
+                }
+            }
+
+            //DRAWSELF
+            if (this.sprungHealth <= 0)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(enwi, 1673, 56, 109, 107, -(1/2 * 109 * this.size), -(1/2 * 107 * this.size), 109 * this.size, 107 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic == 0)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(enwi, 827, 61, 109, 107, -(1/2 * 109 * this.size), -(1/2 * 107 * this.size), 109 * this.size, 107 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic <= 14)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(enwi, 963, 60, 109, 107, -(1/2 * 109 * this.size), -(1/2 * 107 * this.size), 109 * this.size, 107 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic <= 28)
+            {
+                this.zIndex = 2;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(enwi, 1106, 61, 109, 107, -(1/2 * 109 * this.size), -(1/2 * 107 * this.size), 109 * this.size, 107 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic <= 42)
+            {
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(enwi, 1244, 62, 109, 107, -(1/2 * 109 * this.size), -(1/2 * 107 * this.size), 109 * this.size, 107 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic <= 56)
+            {
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(enwi, 1385, 59, 109, 107, -(1/2 * 109 * this.size), -(1/2 * 107 * this.size), 109 * this.size, 107 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                this.tic = 58;
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(enwi, 1531, 58, 109, 107, -(1/2 * 109 * this.size), -(1/2 * 107 * this.size), 109 * this.size, 107 * this.size);
+                XXX.restore();
+            }
+
+            if (this.temporary == false)
+            {
+                this.livspan -= 1 * (TTD/16.75);
+            }
+
+            if (this.livspan <= 200)
+            {
+                this.sprungHealth = 0;
+            }
+
+            if (this.livspan <= 0)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            if (this.captor == false)
+            {
+                this.zIndex = 1;
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.captor == true)
+                {
+                    this.sprungHealth -= (8 / 50) * player.getStrength();
+                }
+            }
+        }
         else if (this.type == "light")
         {
             //TRAITS
@@ -55773,6 +55976,816 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (hits == Inventory.length)
                     {
                         Inventory.push([new Item("acaciaWood", false, false), Math.round(30 * this.size)]);
+                        this.treePhase = 2;
+                    }
+                }
+                this.activate = false;
+            }
+
+            if (this.treePhase == 0) //if this tree is in its cut down phase.
+            {
+                //console.log(player.finalAttackStage);
+                if (player.weaponEquipped == "vardanianAxe" && player.cutcut == true && this.playerer < 130 * this.size || player.weaponEquipped == "vardanianAxeDual" && player.cutcut == true && this.playerer < 130 * this.size)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    //console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 35)
+                    {
+                        this.treeHealth -= 0.45;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "timberAxe" && player.cutcut == true && this.playerer < 130 * this.size)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    //console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 35)
+                    {
+                        this.treeHealth -= 2;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "vardanianBattleAxe" && player.cutcut == true && this.playerer < 130 * this.size || player.weaponEquipped == "freydicWarAxe" && player.cutcut == true  && this.playerer < 130 * this.size)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    //console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 35)
+                    {
+                        this.treeHealth -= 0.2;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "dualVardanianBattleAxe" && player.cutcut == true && this.playerer < 130 * this.size)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    //console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 10 + 35)
+                    {
+                        this.treeHealth -= 0.35;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "chainsaw" && player.cutcut == true && this.playerer < 130 * this.size)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    //console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 10 + 35)
+                    {
+                        this.treeHealth -= 20;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+            }
+        }
+        else if (this.type == "birchTree") //seasonal
+        {
+            this.tree = true;
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.size = this.temporary;
+                this.treeHealth = 45 * this.size;
+                this.tic = 0;
+                this.burnt = false;
+                this.onfire = false;
+                this.onfireTime = 0;
+                this.burnTime = 0;
+            }
+
+            //TRAITS
+            if (this.treePhase == 0)
+            {
+                this.solid = true;
+            }
+            else
+            {
+                this.solid = false;
+            }
+            this.interactionRange = 75 * this.size;
+
+            //DRAWSELF
+
+            if (this.burnt == true)
+            {
+                if (this.treePhase == 0)
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(trea, 174, 1315, 154, 145, -(1/2 * 154 * 1 * this.size), -(1/2 * 145 * 1 * this.size), 154 * 1 * this.size, 145 * 1 * this.size);
+                    XXX.restore();
+                }
+                else if (this.treePhase == 1) //260, 1379
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(trea, 335, 1294, 200, 230, -(1/2 * 200 * 1 * this.size) + 75 * this.size, -(1/2 * 230 * 1 * this.size) - 85 * this.size, 200 * 1 * this.size, 230 * 1 * this.size);
+                    XXX.restore();
+                }
+                else if (this.treePhase == 2)
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(trea, 351, 1486, 17, 18, -(1/2 * 17 * 1 * this.size), -(1/2 * 18 * 1 * this.size), 17 * 1 * this.size, 18 * 1 * this.size);
+                    XXX.restore();
+                }
+            }
+            else if (currentSeason == "Harvest")
+            {
+                if (this.information == 1)
+                {
+                    if (this.treePhase == 0)
+                    {
+                        if (this.playerer < 82 * this.size)
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.globalAlpha = 0.75;
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 340, 28, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 340, 28, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.treePhase == 1)
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, -164, 719, 348, 255, -(1/2 * 348 * 1 * this.size), -(1/2 * 255 * 1 * this.size) - 73 * this.size, 348 * 1 * this.size, 255 * 1 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.treePhase == 2)
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 3, 647, 16, 18, -(1/2 * 16 * 1 * this.size), -(1/2 * 18 * 1 * this.size), 16 * 1 * this.size, 18 * 1 * this.size);
+                        XXX.restore();
+                    }
+                }
+                else if (this.information == 2)
+                {
+                    if (this.treePhase == 0)
+                    {
+                        if (this.playerer < 82 * this.size)
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.globalAlpha = 0.75;
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 478, 1031, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 478, 1031, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.treePhase == 1) //104, 1080
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 185, 997, 283, 255, -(1/2 * 283 * 1 * this.size) + 81 * this.size, -(1/2 * 255 * 1 * this.size) - 83 * this.size, 283 * 1 * this.size, 255 * 1 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.treePhase == 2)
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 3, 647, 16, 18, -(1/2 * 16 * 1 * this.size), -(1/2 * 18 * 1 * this.size), 16 * 1 * this.size, 18 * 1 * this.size);
+                        XXX.restore();
+                    }
+                }
+                else if (this.information == 3)
+                {
+                    if (this.treePhase == 0)
+                    {
+                        if (this.playerer < 82 * this.size)
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.globalAlpha = 0.75;
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 2, 16, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 2, 16, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.treePhase == 1) //85, 606
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 179, 512, 283, 255, -(1/2 * 283 * 1 * this.size) + 94 * this.size, -(1/2 * 255 * 1 * this.size) - 94 * this.size, 283 * 1 * this.size, 255 * 1 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.treePhase == 2)
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 3, 647, 16, 18, -(1/2 * 16 * 1 * this.size), -(1/2 * 18 * 1 * this.size), 16 * 1 * this.size, 18 * 1 * this.size);
+                        XXX.restore();
+                    }
+                }
+                else if (this.information == 4)
+                {
+                    if (this.treePhase == 0)
+                    {
+                        if (this.playerer < 82 * this.size)
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.globalAlpha = 0.75;
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 524, 1541, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 524, 1541, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.treePhase == 1) //255, 1608
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 340, 1511, 200, 230, -(1/2 * 200 * 1 * this.size) + 85 * this.size, -(1/2 * 230 * 1 * this.size) - 97 * this.size, 200 * 1 * this.size, 230 * 1 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.treePhase == 2)
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 3, 647, 16, 18, -(1/2 * 16 * 1 * this.size), -(1/2 * 18 * 1 * this.size), 16 * 1 * this.size, 18 * 1 * this.size);
+                        XXX.restore();
+                    }
+                }
+                else if (this.information == 5)
+                {
+                    if (this.treePhase == 0)
+                    {
+                        if (this.playerer < 82 * this.size)
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.globalAlpha = 0.75;
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 477, 835, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 477, 835, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.treePhase == 1) //110, 846
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 180, 755, 283, 255, -(1/2 * 283 * 1 * this.size) + 70 * this.size, -(1/2 * 255 * 1 * this.size) - 91 * this.size, 283 * 1 * this.size, 255 * 1 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.treePhase == 2)
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 3, 647, 16, 18, -(1/2 * 16 * 1 * this.size), -(1/2 * 18 * 1 * this.size), 16 * 1 * this.size, 18 * 1 * this.size);
+                        XXX.restore();
+                    }
+                }
+                else if (this.information == 6) //bloodwood (year long)
+                {
+                    if (this.treePhase == 0)
+                    {
+                        if (this.playerer < 82 * this.size)
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.globalAlpha = 0.75;
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 477, 835, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 477, 835, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.treePhase == 1) //110, 846
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 180, 755, 283, 255, -(1/2 * 283 * 1 * this.size) + 70 * this.size, -(1/2 * 255 * 1 * this.size) - 91 * this.size, 283 * 1 * this.size, 255 * 1 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.treePhase == 2)
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 3, 647, 16, 18, -(1/2 * 16 * 1 * this.size), -(1/2 * 18 * 1 * this.size), 16 * 1 * this.size, 18 * 1 * this.size);
+                        XXX.restore();
+                    }
+                }
+            }
+            else if (currentSeason == "Frost")
+            {
+                if (this.treePhase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                    XXX.restore();
+                }
+                else if (this.treePhase == 1)
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(trea, -138, 474, 299, 225, -(1/2 * 299 * 1 * this.size) + 35 * this.size, -(1/2 * 225 * 1 * this.size) - 70 * this.size, 229 * 1 * this.size, 225 * 1 * this.size);
+                    XXX.restore();
+                }
+                else if (this.treePhase == 2)
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(trea, 3, 647, 16, 18, -(1/2 * 16 * 1 * this.size), -(1/2 * 18 * 1 * this.size), 16 * 1 * this.size, 18 * 1 * this.size);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (this.information == 6) //bloodwood (year long)
+                {
+                    if (this.treePhase == 0)
+                    {
+                        if (this.playerer < 82 * this.size)
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.globalAlpha = 0.75;
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 477, 835, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 477, 835, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.treePhase == 1) //110, 846
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 180, 755, 283, 255, -(1/2 * 283 * 1 * this.size) + 70 * this.size, -(1/2 * 255 * 1 * this.size) - 91 * this.size, 283 * 1 * this.size, 255 * 1 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.treePhase == 2)
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 3, 647, 16, 18, -(1/2 * 16 * 1 * this.size), -(1/2 * 18 * 1 * this.size), 16 * 1 * this.size, 18 * 1 * this.size);
+                        XXX.restore();
+                    }
+                }
+                else
+                {
+                    if (this.treePhase == 0)
+                    {
+                        if (this.playerer < 82 * this.size)
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.globalAlpha = 0.75;
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 174, 26, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            this.zIndex = 6;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 548, 216, 138, 147, -(1/2 * 138 * 1 * this.size), -(1/2 * 147 * 1 * this.size), 138 * 1 * this.size, 147 * 1 * this.size);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(trea, 174, 26, 186, 157, -(1/2 * 186 * 1 * this.size), -(1/2 * 157 * 1 * this.size), 186 * 1 * this.size, 157 * 1 * this.size);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.treePhase == 1)
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, -163, 1000, 348, 255, -(1/2 * 348 * 1 * this.size), -(1/2 * 255 * 1 * this.size) - 78 * this.size, 348 * 1 * this.size, 255 * 1 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.treePhase == 2)
+                    {
+                        this.zIndex = 1;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(trea, 3, 647, 16, 18, -(1/2 * 16 * 1 * this.size), -(1/2 * 18 * 1 * this.size), 16 * 1 * this.size, 18 * 1 * this.size);
+                        XXX.restore();
+                    }
+                }
+            }
+
+            if (this.onfire == true && this.burnt != true)
+            {
+                if (this.onfireTime <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.globalAlpha = 0.55;
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(carillo, 398, 9, 184, 167, -(1/2 * 184 * 1.25 * this.size), -(1/2 * 167 * 1.25 * this.size), 184 * 1.25 * this.size, 167 * 1.25 * this.size);
+                    XXX.restore();
+                }
+                else if (this.onfireTime <= 6)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.globalAlpha = 0.55;
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(carillo, 590, 7, 184, 167, -(1/2 * 184 * 1.25 * this.size), -(1/2 * 167 * 1.25 * this.size), 184 * 1.25 * this.size, 167 * 1.25 * this.size);
+                    XXX.restore();
+                }
+                else if (this.onfireTime <= 9)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.globalAlpha = 0.55;
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(carillo, 785, 11, 184, 167, -(1/2 * 184 * 1.25 * this.size), -(1/2 * 167 * 1.25 * this.size), 184 * 1.25 * this.size, 167 * 1.25 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.globalAlpha = 0.55;
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(carillo, 398, 9, 184, 167, -(1/2 * 184 * 1.25 * this.size), -(1/2 * 167 * 1.25 * this.size), 184 * 1.25 * this.size, 167 * 1.25 * this.size);
+                    XXX.restore();
+                    this.onfireTime = 0;
+                }
+                this.onfireTime += 1 * (TTD/16.75);
+                this.burnTime += 1 * (TTD/16.75);
+                //light
+                if (timeOfDay != "Day" || player.underground == true)
+                {
+                    lights.push({X:this.X, Y: this.Y, size: 200 * 1.5 * this.size, extraStops: true, GRD: 0.15, Alpha: 0.8, showMe: false});
+                }
+                if (((this.X - X)*(this.X - X)+(this.Y - Y)*(this.Y - Y)) <= 105*105 * this.size*this.size) //fire burns the player but heat resistance can reduce the damage it does.
+                {
+                    if (player.mageShield > 0)
+                    {
+                        player.mageShield -= 0.2;
+                        player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                    }
+                    else
+                    {
+                        player.health += player.mageShield;
+                        player.mageShield = 0;
+
+                        player.health -= Math.max(0, (0.2 - (player.heatResistance / 200)));
+                        player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                        player.burningTime = new Date().getTime();
+                    }
+                }
+                else if (((this.X - X)*(this.X - X)+(this.Y - Y)*(this.Y - Y)) <= 155*155 * this.size*this.size)
+                {
+                    player.warmth += Math.max(0, (0.9 - (player.heatResistance / 200)));
+                }
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].flying == false && ArtificialIntelligenceAccess[i].underground == false && ArtificialIntelligenceAccess[i].dmx == this.dmx)
+                    {
+                        if (this.ethereal == ArtificialIntelligenceAccess[i].ethereal || this.ethereal == "avatar" || ArtificialIntelligenceAccess[i].ethereal == "avatar")
+                        {
+                            if (((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X)+(this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y)) < 105*105 * this.size*this.size)
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (0.2 - (ArtificialIntelligenceAccess[i].heatResistance / 100)));
+                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (this.burnt != true && this.treePhase < 2)
+            {
+                //if the player has a fire weapon
+                if (player.weapon.ability == "burning" && this.playerer <= player.weapon.distance)
+                {
+                    if (player.cutcut == true && Math.random() > 0.67)
+                    {
+                        this.onfire = true;
+                    }
+                }
+
+                //projectiles cause fire
+                for (var jju = 0; jju < playerProjectiles.length; jju++)
+                {
+                    if (playerProjectiles[jju].ability == "burning" && ((this.X - playerProjectiles[jju].X)*(this.X - playerProjectiles[jju].X)+(this.Y - playerProjectiles[jju].Y)*(this.Y - playerProjectiles[jju].Y)) <= (70*this.size)*(70*this.size))
+                    {
+                        if (Math.random() > 0.999)
+                        {
+                            this.onfire = true;
+                        }
+                    }
+                }
+
+                //magic causes fire
+                for (var jju = 0; jju < magicList.length; jju++)
+                {
+                    if (magicList[jju].fire == true && ((this.X - magicList[jju].X)*(this.X - magicList[jju].X)+(this.Y - magicList[jju].Y)*(this.Y - magicList[jju].Y)) <= (70*this.size)*(70*this.size))
+                    {
+                        if (magicList[jju].spellType == "fire")
+                        {
+                            if (Math.random() > 0.996)
+                            {
+                                this.onfire = true;
+                            }
+                        }
+                        else
+                        {
+                            if (Math.random() > 0.9)
+                            {
+                                this.onfire = true;
+                            }
+                        }
+                    }
+                }
+
+                //scenery causes fire
+                for (var jju = 0; jju < scenicList.length; jju++)
+                {
+                    if (scenicList[jju].type == "birchTree" && scenicList[jju].onfire == true && ((this.X - scenicList[jju].X)*(this.X - scenicList[jju].X)+(this.Y - scenicList[jju].Y)*(this.Y - scenicList[jju].Y)) <= (155*this.size)*(155*this.size) + (105 * scenicList[jju].size)*(105 * scenicList[jju].size) || scenicList[jju].type == "spilledSpellOil" && scenicList[jju].ignited == true && ((this.X - scenicList[jju].X)*(this.X - scenicList[jju].X)+(this.Y - scenicList[jju].Y)*(this.Y - scenicList[jju].Y)) <= (95*this.size)*(95*this.size) || scenicList[jju].type == "dragonFire" && ((this.X - scenicList[jju].X)*(this.X - scenicList[jju].X)+(this.Y - scenicList[jju].Y)*(this.Y - scenicList[jju].Y)) <= (155*this.size)*(155*this.size) + (scenicList[jju].radius)*(scenicList[jju].radius))
+                    {
+                        if (Math.random() > 0.997)
+                        {
+                            this.onfire = true;
+                        }
+                    }
+                }
+
+                if (this.onfire == true)
+                {
+                    //delete nearby plants due to fire
+                    for (var jju = scenicList.length - 1; jju >= 0; jju--)
+                    {
+                        if (scenicList[jju].variety == "plant" && scenicList[jju].tree != true && ((this.X - scenicList[jju].X)*(this.X - scenicList[jju].X)+(this.Y - scenicList[jju].Y)*(this.Y - scenicList[jju].Y)) <= (190*this.size)*(190*this.size) + (scenicList[jju].radius)*(scenicList[jju].radius))
+                        {
+                            if (scenicList[jju].phase != "picked")
+                            {
+                                magicList.push(new Magic({ID: "fire", CNX: 50}, false, [scenicList[jju].X, scenicList[jju].Y, (1 + scenicList[jju].radius/10)]));
+                            }
+                            scenicList.splice(jju, 1);
+                        }
+                    }
+                }
+            }
+
+            if (this.burnTime > 1550 && this.burnt != true)
+            {
+                this.treePhase = -1 + Math.round(Math.random() * 2);
+                if (this.treePhase < 0)
+                {
+                    this.treePhase = 0;
+                }
+                this.burnt = true;
+                this.onfire = false;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10 * this.size;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.treePhase == 1 && this.burnt != true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "birchWood")
+                        {
+                            Inventory[i][1] += Math.round(6 * this.size);
+                            this.treePhase = 2;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("birchWood", false, false), Math.round(6 * this.size)]);
                         this.treePhase = 2;
                     }
                 }

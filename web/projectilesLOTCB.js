@@ -1399,8 +1399,11 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                     this.speed = this.speed * 1.1;
                     this.rotation += Math.PI;
                     this.shoot();
+                    this.impact();
                     this.shoot();
+                    this.impact();
                     this.shoot();
+                    this.impact();
                 }
                 this.shoot();
                 this.impact();
@@ -1425,8 +1428,11 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                     this.speed = this.speed * 1.1;
                     this.rotation += Math.PI;
                     this.shoot();
+                    this.impact();
                     this.shoot();
+                    this.impact();
                     this.shoot();
+                    this.impact();
                 }
                 this.shoot();
                 this.impact();

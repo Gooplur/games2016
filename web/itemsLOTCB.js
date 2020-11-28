@@ -3683,6 +3683,41 @@ function Item(type, x, y)
                 this.sellValue = 23 + Math.floor(player.getCharisma() / 10); // at max, sell for 28.
             }
         }
+        else if (this.type == "cookedChickenEgg")
+        {
+            //For All Items
+            this.identity = "Fried Red Jungle Fowl Egg";
+            this.weight = 0.23;
+            this.size = 7;
+            this.description = "A cooked red jungle fowl egg.";
+            this.intForDes = 11;
+            this.intDescription = "It has a protien rich albumen, and a fatty, rich yolk.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 9;
+            this.ingredients = [["Red Jungle Fowl Egg", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
         else if (this.type == "cookedTurkeyEgg")
         {
             //For All Items
@@ -14366,31 +14401,6 @@ function Item(type, x, y)
 
             //ability
             this.ability = "radiateII";
-
-            //radioactive in world
-            if (this.X !== false)
-            {
-                if (player.radProof != true)
-                {
-                    var pluyaDista = (X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y);
-                    if (pluyaDista <= (83 * 83))
-                    {
-                        player.radiation += 0.005;
-                    }
-                }
-
-                for (var iiiii = 0; iiiii < ArtificialIntelligenceAccess.length; iiiii++)
-                {
-                    if (ArtificialIntelligenceAccess[iiiii].radProof != true)
-                    {
-                        var pluyaDista = (ArtificialIntelligenceAccess[iiiii].X - this.X) * (ArtificialIntelligenceAccess[iiiii].X - this.X) + (ArtificialIntelligenceAccess[iiiii].Y - this.Y) * (ArtificialIntelligenceAccess[iiiii].Y - this.Y);
-                        if (pluyaDista <= (83 * 83))
-                        {
-                            ArtificialIntelligenceAccess[iiiii].radiation += 0.005;
-                        }
-                    }
-                }
-            }
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 6; // at max, buy for 6.
@@ -27296,7 +27306,8 @@ function Item(type, x, y)
             this.utility = "material";
 
             //ability
-            this.ability = "qiaoCampfire";
+            this.ability = "none";
+            this.subUtility = "qiaoCampFire";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8; // at max, buy for 8.
@@ -60386,6 +60397,45 @@ function Item(type, x, y)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
         }
+        else if (this.type == "redJungleFowlEgg")
+        {
+            //For All Items
+            this.identity = "Red Jungle Fowl Egg";
+            this.weight = 0.26;
+            this.size = 6;
+            this.description = "An egg layed by a red jungle fowl.";
+            this.intForDes = 1;
+            this.intDescription = "Eggs are for throwing at people you don't like, right?";
+
+            //Define Utility
+            if (this.equipped == true || !shiftKey)
+            {
+                this.utility = "weapon";
+                this.subUtility = "thrown";
+                this.ability = "none";
+            }
+            else
+            {
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "chickenHatch";
+            }
+
+            //Utility Focused
+            this.energyCost = 0.75;
+            this.range = 325 + (300 * player.getStrength() / 50);
+            this.speed = 5 + (1 * player.getStrength() / 50);
+            this.rate = (156 - Math.max(Math.min(20, 20 * player.getDexterity() / 50), 0));
+            this.damage = (0.65) + ((0.65/50) * player.getStrength());
+            this.negateArmour = 0.4 + ((0.4/50) * player.getStrength());
+            this.magicalDamage = 0;
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "vardanianPolehammer")
         {
             //For All Items
@@ -65102,6 +65152,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(pavo, 713, 207, 19, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.1), 19 * 1.1, 19 * 1.1);
+        }
+        else if (this.type == "cookedChickenEgg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 28, 374, 17, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1), 17 * 1, 18 * 1);
+        }
+        else if (this.type == "redJungleFowlEgg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 10, 255, 34, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1), 34 * 1, 25 * 1);
         }
         else if (this.type == "turkeyFeathers")
         {
@@ -73479,6 +73539,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(pavo, 713, 207, 19, 19, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 19 * 1.5), 19 * 1.5, 19 * 1.5);
         }
+        else if (this.type == "cookedChickenEgg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(roost, 28, 374, 17, 18, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 18 * 1), 17 * 1, 18 * 1);
+        }
+        else if (this.type == "redJungleFowlEgg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(roost, 10, 255, 34, 25, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 25 * 1), 34 * 1, 25 * 1);
+        }
         else if (this.type == "turkeyFeathers")
         {
             LXX.beginPath();
@@ -81817,6 +81887,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(pavo, 713, 207, 19, 19, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 19 * 1.5), 19 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "cookedChickenEgg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 28, 374, 17, 18, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 18 * 1), 17 * 1, 18 * 1);
+        }
+        else if (this.type == "redJungleFowlEgg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 10, 255, 34, 25, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 25 * 1), 34 * 1, 25 * 1);
         }
         else if (this.type == "turkeyFeathers")
         {

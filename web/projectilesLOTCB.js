@@ -1713,6 +1713,51 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.restore();
             }
         }
+        else if (type == "redJungleFowlEgg") //thrown
+        {
+            this.radius = 4;
+            this.thrown = true;
+            this.thrownID = "redJungleFowlEgg";
+            this.thrownRotation = this.rotation + (1 / 2 * Math.PI);
+            this.spin += 0.04;
+
+            if (list == playerProjectiles && this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.damage = damage;
+                this.magicalDamage = magicDamage;
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.spin);
+                XXX.drawImage(roost, 18, 260, 20, 14, -1/2 * (20 * 1), -1/2 * (14 * 1), 20 * 1, 14 * 1);
+                XXX.restore();
+            }
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.damage = damage;
+                this.magicalDamage = magicDamage;
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.spin);
+                XXX.drawImage(roost, 18, 260, 20, 14, -1/2 * (20 * 1), -1/2 * (14 * 1), 20 * 1, 14 * 1);
+                XXX.restore();
+            }
+        }
         else if (type == "throwingKnife") //thrown
         {
             if (this.radius < 5)

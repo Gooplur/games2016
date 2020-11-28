@@ -3616,6 +3616,11 @@ function heartsAndDaggers()
     }
 }
 
+function chess()
+{
+
+}
+
 function cardDrawer(X, Y, rotation, scale, context, card)
 {
     //todo fix bug where the game crashes due to some sort of dud that the ai places (daggers)

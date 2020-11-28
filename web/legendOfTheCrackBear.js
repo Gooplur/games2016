@@ -1593,6 +1593,22 @@ function envPack()
     vardanSwamp.src = ("images/vardanSwamp.jpg");
     window.vardanSwamp = vardanSwamp;
 
+    var royalDirt = new Image();
+    royalDirt.src = ("images/royalDirt.png");
+    window.royalDirt = royalDirt;
+
+    var royalWater = new Image();
+    royalWater.src = ("images/royalWater.png");
+    window.royalWater = royalWater;
+
+    var royalSummer = new Image();
+    royalSummer.src = ("images/royalSummer.png");
+    window.royalSummer = royalSummer;
+
+    var royalWoods = new Image();
+    royalWoods.src = ("images/royalWoods.png");
+    window.royalWoods = royalWoods;
+
     var labEnv = new Image();
     labEnv.src = ("images/labTexture.jpg");
     window.labEnv = labEnv;
@@ -1650,6 +1666,30 @@ function nalPack()
     window.nal = nal;
 
     nal.onload = function()
+    {
+        chesPack();
+    };
+}
+
+function chesPack()
+{
+    var ches = new Image();
+    ches.src = ("images/ches.png");
+    window.ches = ches;
+
+    ches.onload = function()
+    {
+        bordaPack();
+    };
+}
+
+function bordaPack()
+{
+    var borda = new Image();
+    borda.src = ("images/borda.png");
+    window.borda = borda;
+
+    borda.onload = function()
     {
         nulgPack();
     };
@@ -2887,6 +2927,18 @@ function wolfPack()
 
     folw.onload = function()
     {
+        bantPack();
+    };
+}
+
+function bantPack()
+{
+    var bant = new Image();
+    bant.src = ("images/bant.png");
+    window.bant = bant;
+
+    bant.onload = function()
+    {
         beetlePack();
     };
 }
@@ -3413,6 +3465,7 @@ var escapeKey = false;
 var menuCheckTime = new Date().getUTCHours();
 var ketsuekiX;
 var ketsuekiY;
+var sprig = false;
 var minigame = {};
 
 //This sets the items that are in shops.
@@ -5567,6 +5620,7 @@ function theLegend()
     allWeapons.push(new Item("nothAxe"));//127
     allWeapons.push(new Item("nothBlade"));//128
     allWeapons.push(new Item("nothSpear"));//129
+    allWeapons.push(new Item("redJungleFowlEgg"));//130
 
 
 
@@ -6160,6 +6214,7 @@ function theLegend()
     foods.push(new Item("badgerMeat", false));
     foods.push(new Item("turkeyMeat", false));
     foods.push(new Item("cookedTurkeyEgg", false));
+    foods.push(new Item("cookedChickenEgg", false));
     foods.push(new Item("roastedGlazaRoot", false));
     foods.push(new Item("cebollaHorneada", false));
     foods.push(new Item("cebollaPicadaCocinada", false));

@@ -878,13 +878,6 @@ function Adventurer()
                     player.radiation += 0.01;
                 }
             }
-            else if (Inventory[iiiiii][0].type == "shenqianshouFlesh") //radioactive ooze remains
-            {
-                if (player.radProof != true)
-                {
-                    player.radiation += 0.005;
-                }
-            }
             else if (Inventory[iiiiii][0].type == "sceptreOfRadiance") //radioactive sceptre
             {
                 if (player.radProof != true)
@@ -23146,6 +23139,121 @@ function Adventurer()
                 }
             }
         }
+        //RED JUNGLE FOWL EGG
+        if (this.weaponEquipped == "redJungleFowlEgg")
+        {
+            this.stageEngine(6, 0.10, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(roost, 351, 363, 76, 61, -1/2 * 76, -1/2 * 61, 76, 61);
+                XXX.restore();
+
+                this.attackManual = false;
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(roost, 461, 361, 76, 61, -1/2 * 76, -1/2 * 61, 76, 61);
+                XXX.restore();
+
+                this.attackManual = false;
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(roost, 351, 363, 76, 61, -1/2 * 76, -1/2 * 61, 76, 61);
+                XXX.restore();
+
+                this.attackManual = false;
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(roost, 461, 361, 76, 61, -1/2 * 76, -1/2 * 61, 76, 61);
+                XXX.restore();
+
+                if (this.attackManual == false)
+                {
+                    this.attackManual = true;
+
+                    //throw on this frame
+                    playerProjectiles.push(new Projectile(this.weaponEquipped, X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI, this.weapon.speed, this.weapon.range, this.weapon.negateArmour, playerProjectiles, this.weapon.damage, this.weapon.magicalDamage, "none", false, "Player", this.ethereal));
+                }
+            }
+            else if (Math.floor(this.stage) >= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(roost, 560, 359, 76, 61, -1/2 * 76, -1/2 * 61, 76, 61);
+                XXX.restore();
+                if (Math.floor(this.stage) <= 5)
+                {
+                    var thrownWepUsing = -1;
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].type == this.weaponEquipped && Inventory[i][0].equipped == true)
+                        {
+                            thrownWepUsing = i;
+                            break;
+                        }
+                    }
+
+                    //deletes the weapon that was thrown from the inv
+                    if (thrownWepUsing > -1)
+                    {
+                        if (Inventory[thrownWepUsing][1] > 1)
+                        {
+                            this.attacking = false;
+                            this.attackCooldown = new Date().getTime();
+                            Inventory[thrownWepUsing][1] -= 1;
+                            this.stage = 0;
+                        }
+                        else
+                        {
+                            this.attacking = false;
+                            this.attackCooldown = new Date().getTime();
+                            this.weaponEquipped = "none";
+                            this.weaponIsRanged = false;
+                            this.isWeaponEquipped = false;
+                            Inventory.splice(thrownWepUsing, 1);
+                            this.stage = 0;
+                        }
+                    }
+                }
+            }
+        }
         //VARDANIAN POLEHAMMER
         if (this.weaponEquipped == "vardanianPolehammer")
         {
@@ -31399,6 +31507,14 @@ function Adventurer()
             //This adjusts the starting position of the spear.
             this.projectileX = 2;
             this.projectileY = 2;
+        }
+        else if (this.weaponEquipped == "redJungleFowlEgg")
+        {
+            this.weapon = allWeapons[130];
+
+            //This adjusts the starting position of the egg.
+            this.projectileX = 9;
+            this.projectileY = 9;
         }
 
         //Access Stats for each weapon first. //1/2 is directly forward facing.
@@ -44258,6 +44374,34 @@ function Adventurer()
                                 break;
                             }
                         }
+                        else if (Inventory[i][0].ability == "chickenHatch")
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //6 is the radius of turkeyEgg Scenery Object.
+                                if (scenicList[j].X - 6 <= X + scenicList[j].radius && scenicList[j].X + 6 >= X - scenicList[j].radius && scenicList[j].Y - 6 <= Y + scenicList[j].radius && scenicList[j].Y + 6 >= Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("chickenEgg", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
                         else if (Inventory[i][0].ability == "dalgerHatch")
                         {
                             var canPlace = true;
@@ -44578,6 +44722,46 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("campFire", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].subUtility == "qiaoCampFire")
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //19 is the radius of qiaoCampFire Scenery Object.
+                                if (scenicList[j].X - 21 <= X + scenicList[j].radius && scenicList[j].X + 21 >= X - scenicList[j].radius && scenicList[j].Y - 21 <= Y + scenicList[j].radius && scenicList[j].Y + 21 >= Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+                            for (var j = 0; j < Inventory.length; j++)
+                            {
+                                if (Inventory[j][0].identity != "Fire-Starter")
+                                {
+                                    hits += 1;
+                                }
+                            }
+
+                            if (hits == Inventory.length)
+                            {
+                                canPlace = false;
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("qiaoCampFire", X, Y, (Math.random() * (2 * Math.PI)), false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {

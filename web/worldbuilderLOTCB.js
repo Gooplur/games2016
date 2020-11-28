@@ -959,6 +959,34 @@ function worldBuilder()
             outlineBuilder(1, 4, "southbogMud", -1116, 798);
             outlineBuilder(1, 1, "southbogMud", -1114, 799);
         }
+        //mapS24w34
+        if (Y > -248711 && Y < -237943 && X < 354544 && X > 342860) //X34
+        {
+            elevation = -2;
+            region = "s24w34";
+            campout = true;
+            outlineBuilder(34, 34, "outline", -1176, 796); //vardanianWetlands
+
+            outlineBuilder(6, 1, "vardanianStone", -1150, 796);
+            outlineBuilder(1, 3, "vardanianStone", -1152, 802);
+            outlineBuilder(1, 1, "vardanianStone", -1152, 803);
+            outlineBuilder(1, 3, "vardanianStone", -1154, 804);
+            outlineBuilder(1, 1, "vardanianStone", -1154, 805);
+            outlineBuilder(1, 3, "vardanianStone", -1156, 806);
+            outlineBuilder(8, 1, "vardanianStone", -1157, 806);
+            outlineBuilder(9, 1, "vardanianStone", -1158, 813);
+            outlineBuilder(2, 1, "vardanianStone", -1157, 821);
+            outlineBuilder(2, 1, "vardanianStone", -1156, 822);
+            outlineBuilder(2, 1, "vardanianStone", -1155, 823);
+            outlineBuilder(1, 2, "vardanianStone", -1154, 824);
+            outlineBuilder(1, 2, "vardanianStone", -1153, 825);
+            outlineBuilder(1, 3, "vardanianStone", -1152, 826);
+            outlineBuilder(5, 1, "vardanianStone", -1150, 826);
+
+            //outlineBuilder(1, 2, "crag", -1137, 815);
+            //outlineBuilder(1, 3, "southbog", -1140, 796);
+            //outlineBuilder(1, 1, "southbogMud", -1114, 799);
+        }
         //Layer -23 (warm region): elev -2
         //mapS23
         if (Y > -238507 && Y < -227726 && X < 7687 && X > - 3901) //X0
@@ -7712,8 +7740,8 @@ function worldBuilder()
         region = "testMap";
         campout = true;
         //starting chamber
-        outlineBuilder(68,68, "gladeGrass", -34, -34);
-        outlineBuilder(1,4, "glade", 1, 1);
+        outlineBuilder(68,68, "gladeGrass", -34, -34); //gladeGrass //royalwoods
+        outlineBuilder(1,4, "glade", 1, 1); //glade //royalwater
         outlineBuilder(2, 1, "glade", 4, -1);
     }
 }
@@ -8349,6 +8377,31 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "badlands")
                 {
                     XXX.drawImage(utah, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "royalwater")
+                {
+                    over("sea", j, i, extraX, extraY);
+
+                    XXX.drawImage(royalWater, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "royaldirt")
+                {
+                    XXX.drawImage(royalDirt, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "royalwoods")
+                {
+                    if (currentSeason == "Frost")
+                    {
+                        XXX.drawImage(royalDirt, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        XXX.drawImage(royalWoods, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else
+                    {
+                        XXX.drawImage(royalSummer, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
                 }
                 else if (terrain == "huskcave")
                 {

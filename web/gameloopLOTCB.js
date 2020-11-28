@@ -360,4 +360,5 @@ function gameloopOfDestiny(time)
     }
     firstIdSet = false;
     player.fear = false;
+    sprig = false;
 }

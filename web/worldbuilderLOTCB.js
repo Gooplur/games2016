@@ -1271,8 +1271,19 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s22w32";
-            campout = true;
-            outlineBuilder( 34, 34, "outline", -1108, 728); //vardanianGrass
+            campout = false;
+            outlineBuilder( 34, 34, "vardanianGrass", -1108, 728);
+
+            outlineBuilder(1, 2, "graveyard", -1100, 730);
+            outlineBuilder(14, 4, "graveyard", -1097, 728);
+            outlineBuilder(13, 10, "graveyard", -1093, 728);
+            outlineBuilder(7, 2, "graveyard", -1083, 730);
+            outlineBuilder(6, 3, "graveyard", -1082, 731);
+            outlineBuilder(3, 3, "graveyard", -1101, 731);
+            outlineBuilder(2, 4, "graveyard", -1102, 733);
+            outlineBuilder(2, 4, "graveyard", -1101, 735);
+            outlineBuilder(3, 2, "graveyard", -1100, 737);
+            outlineBuilder(1, 1, "graveyard", -1099, 740);
 
             outlineBuilder(28, 1, "vardanianStone", -1098, 728);
             outlineBuilder(1, 11, "vardanianStone", -1108, 748);
@@ -1425,6 +1436,11 @@ function worldBuilder()
             outlineBuilder(6, 1, "vardanianStone", -1082, 694);
             outlineBuilder(1, 1, "vardanianStone", -1081, 699);
             outlineBuilder(13, 1, "vardanianStone", -1080, 699);
+
+            outlineBuilder(5, 7, "graveyard", -1090, 723);
+            outlineBuilder(1, 4, "graveyard", -1094, 725);
+            outlineBuilder(1, 5, "graveyard", -1095, 726);
+            outlineBuilder(1, 6, "graveyard", -1096, 727);
         }
         //mapS21W33 //Boroye (city)
         if (Y > -218110 && Y < -207328 && X < 344333 && X > 332640) //X33
@@ -8406,6 +8422,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "huskcave")
                 {
                     XXX.drawImage(huskTile, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "graveyard")
+                {
+                    XXX.drawImage(vardanGraveyardEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "sewage")
                 {

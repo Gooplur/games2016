@@ -25,6 +25,7 @@ Spali - A red bush with wide, thin, pointed, red leaves. Bushmaster snakes, one 
     //ITEMS NOT YET ADDED
 Bamboo - Tall orgish bamboo (information: 1 = packed, 0 = spread) (extra: 1 = webbed, 2 = burnt chopped, else = normal)
 BirchTree - Thin trees with white and black speckled papery bark on their trunks (longevity: normal size 1min - 1.5max blood wood size 1min - 1.7max) (information: 1-5 different fall colours, 6 blood wood year round)
+Banticul - A large, colorful, pointed, flat-leaved plant with a giant, bulbous, orange, ooze sac in the center. It is a carnivorous plant that lures herbivores to a terrible acidy death by extending its nutritious, and hairy leaf stalks as a food offering — when the unsuspecting prey pounces on one of the stalks, the plant pulls the rest of its stalks into its bulbous mass and releases acidic orange ooze that spills over the top and melts the prey into the soil around its base for its subterranean structures to absorb.
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase, and you should write Plant at the end unless it is a tree)
     //FARM

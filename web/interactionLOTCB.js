@@ -168,7 +168,7 @@ function interaction(me)
     {
         //Interaction with...
         var dtp = self.DTP();
-        if (dtp < 200 && player.druidBear != true && player.ethereal == self.ethereal || dtp < 200 && player.druidBear != true && player.ethereal == "avatar")
+        if (dtp < 200 && player.druidBear != true && player.form != "frog" && player.ethereal == self.ethereal || dtp < 200 && player.druidBear != true && player.form != "frog" && player.ethereal == "avatar")
         {
             var dtm = self.DTM();
 
@@ -3146,6 +3146,1461 @@ function interaction(me)
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
                                 self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Dasab Omeqor" || conversationID[0] == "Dasab")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Dasab";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.aDuelForLoveDasabReto == true)
+                                {
+                                    player.dialogueOptions = [["...", false, "d"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Poopy Butt.", false, "a"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Oh good day to you too! It's just lovely don't you think?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Just cleanin' the furs. You got to clean 'em before you can make 'em into something.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Oh you know... A bit o' cleaning a bit o' stitchin', mostly cleanin' though.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (uniqueChars.mundiLDS == true)
+                            {
+                                setMsg("(Directed at Mundi) Mundi! You Mazareen dog! How dare you attempt to defile my sister's honour! I challenge you to a duel here at the well, we will settle this vile attempt to corrupt my sister's purity by spell and blade!");
+                            }
+                            else
+                            {
+                                setMsg("That mazareen dog got what he deserved!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                quests.aDuelForLoveAtWell = false;
+                                quests.aDuelForLoveDasabAfter = true;
+                                quests.aDuelForLoveDasabReto = false;
+                                self.SC();
+
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Natsatara Omeqor" || conversationID[0] == "Natsatara")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Natsatara";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (have("mundiLoveLetter", 1))
+                                {
+                                    player.dialogueOptions = [["Here is a letter.", false, "a"], ["A man named Mundi told me to give you this letter.", false, "b"], ["I have a letter for you from a man named Mundi, that will be 10 coins for postage.", false, "c"]];
+                                }
+                                else if (quests.aDuelForLoveWellMeeting == true)
+                                {
+                                    player.dialogueOptions = [["Mundi wants you to meet him by the well on the east side of town...", false, "d"]];
+                                }
+                                else if (quests.aDuelForLoveAtWell == true)
+                                {
+                                    player.dialogueOptions = [["...", false, "e"]];
+                                }
+                                else if (quests.aDuelForLoveDasabAfter == true && quests.aDuelForLoveOptions != true)
+                                {
+                                    player.dialogueOptions = [["How do you think Mundi will do in the duel?", false, "f"]];
+                                }
+                                else if (quests.aDuelForLoveOptions == true && quests.aDuelForLoveFakedDeath != true)
+                                {
+                                    player.dialogueOptions = [];
+                                    player.dialogueOptions.push(["Tell me more about how drugging your brother would work...", false, "g"]);
+                                    player.dialogueOptions.push(["Tell me more about training Mundi to use a rapier...", false, "h"]);
+                                    player.dialogueOptions.push(["Tell me more about the face changing elixir...", false, "i"]);
+                                }
+                                else if (quests.aDuelForLoveFakedDeath == true)
+                                {
+                                    player.dialogueOptions = [["...", false, "j"], ["He's not really dead, he's faked his death so that you two can run away together...", false, "k"]];
+                                }
+                                else if (quests.aDuelForLoveFinale == true)
+                                {
+                                    player.dialogueOptions = [["...", false, "l"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Poopy butt.", false, "a"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0j";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "k")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0k";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "l")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0l";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.gender == "Female")
+                            {
+                                setMsg("You wrote this for me!? I, I am afraid to tell you that I do not share your affections, I do not wish to have a romantic relationship with another woman. Besides, all my love is reserved for another.");
+                            }
+                            else
+                            {
+                                if (player.charisma >= 40 || player.title == "Nobility")
+                                {
+                                    if (uniqueChars.dasabLDS == true && player.title != "Nobility")
+                                    {
+                                        setMsg("You wrote this for me? I, I do not know what to say! A handsome princely stranger has just professed his undying love for me. Life is so random, but beatiful! I have only just met you but I feel deeply enamored by your manly charm. Knowing that you feel this way about me makes my heart ache to consumate our love! (Suddenly Dasab Omeqor enters the room before you can react and he challenges you to a duel for the honor of his sister. Before you can explain yourself he is waving his rapier at you wildly...)");
+                                    }
+                                    else
+                                    {
+                                        setMsg("You wrote this for me? I, I do not know what to say! A handsome princely stranger has just professed his undying love for me. Life is so random, but beatiful! I have only just met you but I feel deeply enamored by your manly charm. Knowing that you feel this way about me makes my heart ache to consumate our love!");
+                                    }
+                                }
+                                else
+                                {
+                                    setMsg("You wrote this for me!? I, I am afraid to tell you that I do not share your affections... I love another man.");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+
+                                if (player.gender != "Female")
+                                {
+                                    if (player.charisma >= 40 && player.title != "Nobility")
+                                    {
+                                        take("mundiLoveLetter", 1);
+                                        player.blinded = true;
+                                        player.blindedStoreTime = new Date().getTime();
+                                        player.blindedTime = 1;
+                                        quests.aDuelForLovePlayerLove = true;
+                                        reiniciar();
+                                        change = "dasabVplayer";
+                                    }
+                                    else if (player.charisma >= 40 || player.title == "Nobility")
+                                    {
+                                        take("mundiLoveLetter", 1);
+                                        quests.aDuelForLovePlayerLove = true;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Oh this is so sweet! Thank you for bringing this to me! Mundi has always been such a creative spirit... this letter is so poetic, so deep and meaningful, I know it comes from the heart! Now I know he feels the same for me as I do for him! (Natsatara takes out her ink and quill and quickly writes a response to Mundi's love letter) Here, take this and bring it to him I will give you 20 coins for your trouble.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("mundiLoveLetter", 1);
+                                give("natLoveLetter", 1);
+                                give("coins", 20);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("You need 10 coins for postage? Here you go! (She hands you 10 coins) Oh this is so sweet! Mundi has always been such a creative spirit... this letter is so poetic, so deep and thoughtful! Now I know that he feels the same for me as I do for him! (Natsatara takes out her ink and quill and quickly writes a response to Mundi's love letter) Here, take this and bring it to him I will give you 10 more coins for your trouble.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                give("coins", 20);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("I would love to meet my sweet Mundi by the well, I will leave at once to meet him!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aDuelForLoveWellMeeting = false;
+                                quests.aDuelForLoveAtWell = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Shhh... Mundi is telling me a love poem.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("My brother Dasab will skewer my poor, pathetic, weak, beloved Mundi, before he even raises his blade to strike. We must intervene. I have a few ideas, hear me out... We can drug my brother so that Mundi has a chance against him. Or, we can teach Mundi how to use a rapier. Or, you could take Mundi's place by drinking a face changing illusion elixir, I would get that ready for you and give it to you right before the duel... What do you think?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aDuelForLoveOptions = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            if (quests.aDuelForLoveDrug == true)
+                            {
+                                //text dialogue
+                                setMsg("I only had one, if you lost it then we will have to try out another plan...");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("Give my brother this slice of Sonja Melon, I dosed it with opium, so he will become slow and unfocused.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    give("druggedSonjaSlice", 1);
+
+                                    quests.aDuelForLoveDrug = true;
+                                    quests.aDuelForLoveChosen = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            if (player.dexterity >= 20 || player.strength >= 20)
+                            {
+                                setMsg("Mundi has spent all of his time practicing artistic persuits and appreciating the beautiful things in life, he has never learnt to use a blade of any kind. You seem capable, maybe you could show him a thing or two...");
+                            }
+                            else
+                            {
+                                if (quests.aDuelForLoveTrain == false)
+                                {
+                                    setMsg("Mundi has spent all of his time practicing artistic persuits and appreciating the beautiful things in life, he has never learnt to use a blade of any kind. I bet there is someone around town who could be hired to train Mundi to use a blade. Here, take 50 coins so that you can pay whoever you find to train him. I will also give you 10 coins to keep for going through the trouble.");
+                                }
+                                else
+                                {
+                                    setMsg("If they charge more than 50 coins to train Mundi, try bargaining down the price or finding someone else to do it.");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.aDuelForLoveTrain == false)
+                                {
+                                    give("coins", 60);
+                                }
+                                quests.aDuelForLoveTrain = true;
+                                quests.aDuelForLoveChosen = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            if (player.gender == "Male" && player.raceName == "Cephrite")
+                            {
+                                setMsg("So, the face changing elixir is something that you would apply to your face before the duel and it would make people think that you were my Mundi. It wouldn't last very long... Just long enough for the duel to take place. This is assuming that you can take my brother in a fight...");
+                            }
+                            else
+                            {
+                                setMsg("So, since you are clearly not a man, we will need more than just a small application of the face changing elixir to make you appear to be Mundi for any duration. You will have to cover your entire body in the elixir for it to be convincing to anyone. It does not actually physically change you, it is just an illusion, so don't worry about deformation... The real concern is, would you even be able to beat my brother in a fight...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aDuelForLoveChosen = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0j")
+                        {
+                            //text dialogue
+                            setMsg("Nooooooo!!!! My beloved Mundi!!! He is dead!!! Life is pointless without my poor sweet Mundi! (Crying out in anguish, Natsatara stabs herself in the heart with a dagger)");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                self.health = 0;
+                                self.killNotByPlayer = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                reiniciar();
+                                change = "mundiWakes";
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0k")
+                        {
+                            //text dialogue
+                            setMsg("So you are saying that he is faking this? How insensitive are you!? (She paused and thinks about it for a moment, finally she gets a look on her face like she has a plan. Then she starts kicking Mundi's body yelling) WAKE UP! WAKE UP! WAKE UP!!! (Of course after kicking Mundi's unconscious body a few times she stops kicking him and turns back to you with tears streaming down her cheeks) You lied to me, your lied to me and now I have dishonored Mundi's corpse. (She turns to Mundi and profusely apologizes to him while sobbing uncontrollably) My poor sweet Mundi, I cannot bear to live this life without you!! (She finally plunges a dagger into her heart)");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                self.health = 0;
+                                self.killNotByPlayer = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                reiniciar();
+                                change = "mundiWakes";
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0l")
+                        {
+                            //text dialogue
+                            if (uniqueChars.mundiLDS == true && uniqueChars.dasabLDS == false)
+                            {
+                                setMsg("Now my beloved Mundi and I can have a future together! I will move into his family home with him!");
+                            }
+                            else if (uniqueChars.mundiLDS == false && uniqueChars.dasabLDS == true)
+                            {
+                                setMsg("NOOOOO!!! My poor Mundi, I can't stand to live without him! Brother you have killed me! (She lifts up a dagger she brought with her and plunges it into her heart)");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                if (uniqueChars.mundiLDS == true && uniqueChars.dasabLDS == false)
+                                {
+                                    quests.aDuelForLoveHappily = true;
+
+                                    quests.aDuelForLoveCompletionStyle = "happy";
+                                    quests.aDuelForLoveQuest = "complete";
+
+                                    quests.completeQuests.push({name: "A Duel for Love", description: "Mundi survived the duel and his beloved Natsatara formally united with him!"});
+
+                                    player.cephriteFaction += 90;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                    {
+                                        player.magicalExperience += 325;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 550;
+                                    }
+                                    player.fame += 2;
+                                }
+                                else if (uniqueChars.mundiLDS == false && uniqueChars.dasabLDS == true)
+                                {
+                                    self.health = 0;
+
+                                    quests.aDuelForLoveCompletionStyle = "sad";
+                                    quests.aDuelForLoveQuest = "complete";
+
+                                    quests.completeQuests.push({name: "A Duel for Love", description: "Mundi was slain in the duel and his beloved Natsatara followed him to his grave..."});
+
+                                    player.cephriteFaction += 10;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                    {
+                                        player.magicalExperience += 95;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 180;
+                                    }
+                                    player.fame += 2;
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.aDuelForLovePlayerLove == true)
+                                {
+                                    if (uniqueChars.dasabLDS == true)
+                                    {
+                                        if (quests.aDuelForLovePlayerLoveAccepted != true)
+                                        {
+                                            player.dialogueOptions = [["Oh no, goodness no! I did not write this letter. It is from a man named Mundi.", false, "a"], ["I love you, and I want you to be by my side forever!", false, "c"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["My love, let us lay together...", false, "e"], ["How do you fair my love?", false, "f"]];
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (quests.aDuelForLovePlayerLoveAccepted != true)
+                                        {
+                                            player.dialogueOptions = [["Well, this is awkward, everything happened so fast I had not time to explain myself... The letter is not from me, it is from a man named Mundi.", false, "b"], ["I love you, and I want you to be by my side forever!", false, "c"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["My love, let us lay together...", false, "e"], ["How do you fair my love?", false, "f"]];
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (have("mundiLoveLetter", 1))
+                                    {
+                                        player.dialogueOptions = [["This letter is not from me, a man named Mundi asked me to give it to you.", false, "d"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["I just wanted to say, the letter I presented to you before was not from me.", false, "g"]];
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1g";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("Oh... that's disappointing, though I suppose Mundi would be the one to be sending me outlandish poetry about his heart. Give him this letter, if you don't mind. (She hands you the letter before you have a chance to respond)");
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                give("natLoveLetter", 1);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("But, but... but you have slain my brother for my love, how can you say that this letter is from Mundi. My heart is broken, I was convinced that you were the love of my life and now you rip my hopes and dreams away like prying the shell from a giant killer termite... Well... I suppose I will always have Mundi. Let him know that my brother is dead and that we can be together in peace now. My father may protest, but he is far to old to challenge anyone to a duel with swords.");
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            if (player.title == "Nobility")
+                            {
+                                setMsg("You are so thoughtful, and artistic! I love your expressive poetic diction, let us be joined in union from this moment unto eternity! My golden cage will always be open to your fluttering bird... We will be together forever! (She kisses you romantically)");
+                            }
+                            else
+                            {
+                                setMsg("You are so valient and honorable, you have dueled my brother for my love and won! We will be together forever!");
+                            }
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                quests.aDuelForLovePlayerLoveAccepted = true;
+                                self.SC();
+
+                                quests.aDuelForLoveCompletionStyle = "intercept";
+                                quests.aDuelForLoveQuest = "complete";
+
+                                quests.completeQuests.push({name: "A Duel for Love", description: "Natsatara thought that Mundi's love letter was written by you, so she fell deeply in love with you."});
+
+                                player.cephriteFaction += 100;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 175;
+                                }
+                                else
+                                {
+                                    player.experience += 250;
+                                }
+                                player.fame += 1;
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            //text dialogue
+                            setMsg("Oh, of course it is! My sweet beloved Mundi! Please, give him this letter. (She quickly writes a letter with her ink and quill and hands it to you)");
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                take("mundiLoveLetter", 1);
+                                give("natLoveLetter", 1);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1e")
+                        {
+                            //text dialogue
+                            setMsg("My prince, I yearn to feel your tender caress!");
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                reiniciar();
+                                change = "natLoveMaking";
+                                if (player.title == "Nobility" && player.raceName == "Cephrite")
+                                {
+                                    X = 1902.0974782319142;
+                                    Y = -343611.8330929075;
+                                }
+                                else
+                                {
+                                    X = 4744.220478042528;
+                                    Y = -344267.2760180689;
+                                }
+
+                                sleep();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1f")
+                        {
+                            //text dialogue
+                            setMsg("I can't stand to be without you, my love, you are my whole world!");
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1g")
+                        {
+                            //text dialogue
+                            setMsg("I understand your desire to save face, but do not be embarrassed about your affections for me. A heart in love can not be changed. I wish your heart well. All the same, my heart belongs to another...");
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Mundi Mazareen" || conversationID[0] == "Mundi")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Mundi";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.aDuelForLoveQuest == false)
+                                {
+                                    player.dialogueOptions = [["What are you doing?", false, "a"], ["Why are you staring at that plant?", false, "a"], ["What is going on? You seem sad.", false, "a"], ["Why do you maintain such a glum disposition?", false, "a"], ["...", false, "a"]];
+                                }
+                                else
+                                {
+                                    if (quests.aDuelForLovePlayerLoveAccepted == true)
+                                    {
+                                        if (player.raceName == "Cephrite" && player.title == "Nobility")
+                                        {
+                                            player.dialogueOptions = [["Save your ink, boy, Natsatara is my betrothed now!", false, "b"], ["Natsatara is my betrothed now, if you dare approach her I will have your head.", false, "b"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["Natsatara is my lover now, you better stay away from her!", false, "b"]];
+                                        }
+                                    }
+                                    else if (have("natLoveLetter", 1))
+                                    {
+                                        if (quests.aDuelForLovePlayerMundi == true)
+                                        {
+                                            player.dialogueOptions = [["No, no no no... no way! The letter is from Natsatara, not me!!!", false, "c"], ["This letter is not from me, Idiot! Natsatara wrote it for you!", false, "c"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["Here is a letter.", false, "d"], ["I gave Natsatara your letter and she wrote you back.", false, "c"], ["Just so you know, I'm not a courier... but here is Natsatara's response to your letter.", false, "c"]];
+                                        }
+                                    }
+                                    else if (quests.aDuelForLoveAtWell == true)
+                                    {
+                                        player.dialogueOptions = [["...", false, "e"]];
+                                    }
+                                    else if (quests.aDuelForLoveDasabAfter == true)
+                                    {
+                                        if (quests.aDuelForLoveChosen == true || quests.aDuelForLoveOptions == true)
+                                        {
+                                            player.dialogueOptions = [];
+                                            player.dialogueOptions.push(["I am going to take your place in the duel by using a face changing illusion to trick Dasab.", false, "g"]);
+                                            if (player.strength >= 20 || player.dexterity >= 20)
+                                            {
+                                                player.dialogueOptions.push(["I am here to train you to use a blade so that you will stand a chance in the duel...", false, "i"]);
+                                            }
+                                            if (quests.aDuelForLoveFakeDeath == true)
+                                            {
+                                                player.dialogueOptions.push(["That sounds like a terrible idea! What if Natsatara thinks you're actually dead and then kills herself then you see her dead and you kill yourself...", false, "k"]);
+                                                player.dialogueOptions.push(["Faking your own death, that sounds like a good plan I guess...", false, "l"]);
+                                            }
+                                            else
+                                            {
+                                                player.dialogueOptions.push(["Are you sure you want to go through with this duel?", false, "j"]);
+                                            }
+                                            player.dialogueOptions.push(["[Start the Duel]", false, "h"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["How do you feel about the duel?", false, "f"]];
+                                        }
+                                    }
+                                    else if (quests.aDuelForLoveFakedDeath == true)
+                                    {
+                                        player.dialogueOptions = [["...", false, "m"]];
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0j";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "k")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0k";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "l")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0l";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "m")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0m";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("I stand thinking about this wonderful nupala bush, how it rises from a pool of crystal water... but its beauty, its elegance, it amounts to nothing. The sky, the moon, all the riches and jewels in the lands, none of them matter without love. My true love, Natsatara is only a house away, but it feels like we are trapped worlds apart. My beloved's family is wicked and conspires to keep us apart. I wrote my love a letter. Please, kind stranger, I beseech thee, deliver this letter into my love's soft hands. (He hands you the letter quickly without allowing you time to decline)");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+
+                                give("mundiLoveLetter", 1);
+                                quests.aDuelForLoveQuest = true;
+                                quests.activeQuests.push({name: "A Duel for Love", description: "Mundi Mazareen is madly in love with Natsatara Omeqor, but their families respectively hate each other..."});
+
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("You are the most wicked of men, you are the prince of thieves and lord of liars! You used the letter I wrote to win Natsatara's heart! I trusted you and you stole her away from me! I will never know happiness again...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 10;
+                                uniqueChars.mundiLDS = false;
+                                quests.aDuelForLovePlayerSuicidio = true;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I feel so elated I could swim in the air! By the colors of day, she feels the same for me as I do for her! My heart has never known such joy! Thank you courier for bringing me this message, would you like 5 coins to deliver another one? What am I saying, of course you do! Go tell Natsatara that we should meet by the well on the east side of the city. There we can share our love for each other with sweet sonnets that taste like a first kiss.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("natLoveLetter", 1);
+                                give("coins", 5);
+                                quests.aDuelForLoveWellMeeting = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("The letter I gave you was not meant for you! I did not mean for you to think that I was in love with you... I'm sure you have a lovely personality, but I cannot return your affection, Natsatara is my true love! My love can only be for her!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+
+                                quests.aDuelForLovePlayerMundi = true;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("...and the way your hair blows like a wildflower breeze... I love every blossom of your honey sweet personality! And your nose- Oh its you again, courier, can't you see I am busy bestowing poetry upon my true love. Please leave us be for now, Her and I, we have a lifetime of lost love to make up for...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                reiniciar();
+                                quests.aDuelForLoveDasabReto = true;
+                                change = "dasabDuel";
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("The power of love will trump hatred and wickedness every time! I have never swung a sword before in my life, but for love I can win any duel! Nothing will keep me apart from my true love! Nothing!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("That's a brilliant idea! Or at least it is if you know how to duel, otherwise you will just be putting yourself in danger... And well, if you die wearing my face then I will have to go into hiding or else people will know I wasn't really there, and then Dasab would come after me. So, um, don't lose please.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aDuelForLoveFaceChange = true;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                change = "duelFinale";
+
+                                X = 876.3175834168372;
+                                Y = -342084.21460686397;
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("All right, I am ready to face Dasab at the well! For love and honour!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                reiniciar();
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                change = "duelFinale";
+
+                                X = 869.4259256062288;
+                                Y = -342175.0977811893;
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("(After hours of instruction in how to use a rapier) Okay, wait, so basically you are saying to hold the handle part and then stab him with the pointy part? When I face Dasab, he will be surprised how formidible a sword fighter I have become with your training! Thanks for all of your help! Where did a courier like you learn to swordfight by the way? Oh well, that's not important! Let's get to that duel I want to be there honorably early so that my love can see that I am willing to fight for her.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aDuelForLoveTrained = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0j")
+                        {
+                            //text dialogue
+                            setMsg("Well, no, actually I have devised a plan to be with my true love that doesn't involve dying in a sword fight. My household has some left over pufferfish venom that we got from importing raw pufferfish for an exotic feast we had recently... When I ingest it I will drift into a deep sleep that will make it look as though I have died. I will have a servant sneak my body out of the city while I am unconscious, and then Natsatara will run away from home to join me. We will run away to a place far away from here. Unless you think that is a bad idea...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aDuelForLoveFakeDeath = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0k")
+                        {
+                            //text dialogue
+                            setMsg("Wow, you have a creative imagination! I'm sure that would never happen, but fine, I will not do that plan.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0l")
+                        {
+                            //text dialogue
+                            setMsg("Great, I will ingest the venom near the well so that Dasab sees my body and thinks I'm really dead.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aDuelForLoveFakedDeath = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                reiniciar();
+                                change = "fakeDeath";
+
+                                X = 1086.4450130385485;
+                                Y = -342046.09593406436;
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0m")
+                        {
+                            //text dialogue
+                            setMsg("... Ow my head hurts, that is the last time I will ever fake my own death... Did we make it? Where are we? ... Wait a second, we are still at the well! Oh no!!! Natsatara!! (He falls to his knees before her dead body and begins to pout deeply)");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                quests.aDuelForLoveCompletionStyle = "classic";
+                                quests.aDuelForLoveQuest = "complete";
+
+                                quests.completeQuests.push({name: "A Duel for Love", description: "Mundi's plan to fake his own death to get out of the duel ended in tragedy..."});
+
+                                player.cephriteFaction += 10;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 105;
+                                }
+                                else
+                                {
+                                    player.experience += 225;
+                                }
+
+                                reiniciar();
+                                change = "dasabAngry";
                             }
                             else
                             {
@@ -7297,7 +8752,7 @@ function interaction(me)
 
                                 if (quests.aDuelForLoveMomTold == true && quests.aDuelForLoveQuest == true)
                                 {
-                                    if (have("natsataraLoveLetter", 1))
+                                    if (have("natLoveLetter", 1))
                                     {
                                         player.dialogueOptions.unshift(["(lie) I don't have it.", false, "g"]);
                                         player.dialogueOptions.unshift(["Here is the letter. [hand Natsatara's letter to her mother]", false, "f"]);
@@ -7497,7 +8952,7 @@ function interaction(me)
                             {
                                 msgReset();
 
-                                take("natsataraLoveLetter", 1)
+                                take("natLoveLetter", 1)
                                 quests.aDuelForLoveCompletionStyle = "mother";
                                 quests.aDuelForLoveQuest = "complete";
 
@@ -7647,17 +9102,35 @@ function interaction(me)
                         else if (conversationID[1] == "0a")
                         {
                             //text dialogue
-                            if (player.title == "Nobility" || player.title == "Royalty")
+                            if (quests.aDuelForLovePlayerSuicidio == true && uniqueChars.mundiLDS == false)
                             {
-                                setMsg("Good day. I am honoured to have someone of your stature visite my illustrious home, do feel free to settle in and make yourself comfortable.");
-                            }
-                            else if (player.title == "Highfolk")
-                            {
-                                setMsg("Good day and welcome to my home. Feel free to admire the beauty of this illustrious estate, but please do refrain from touching anything.");
+                                if (player.title == "Nobility" || player.title == "Royalty")
+                                {
+                                    setMsg("I am honoured to have someone of your stature visite my illustrious home. I am sorry that my mood is not so hospitable, the Omeqor's bewitched my poor son to take his own life, and the pain of it lingers in my heart like a scoundrel's dagger.");
+                                }
+                                else if (player.title == "Highfolk")
+                                {
+                                    setMsg("Welcome to my home... All of this beauty surrounds me, but now that the Omeqor's have bewitched my son and heir to take his own life this great wealth I have will die with me... Cursed may the Omeqors be!!");
+                                }
+                                else
+                                {
+                                    setMsg("What do you want, visitor? I have already lost everything... The Omeqors saw to that! They bewitched my son and made him take his own life!");
+                                }
                             }
                             else
                             {
-                                setMsg("Good day, Visitor. Welcome to my home... if anything goes missing I will make sure the soldiers deprive you of your filthy commonblood hands.");
+                                if (player.title == "Nobility" || player.title == "Royalty")
+                                {
+                                    setMsg("Good day. I am honoured to have someone of your stature visite my illustrious home, do feel free to settle in and make yourself comfortable.");
+                                }
+                                else if (player.title == "Highfolk")
+                                {
+                                    setMsg("Good day and welcome to my home. Feel free to admire the beauty of this illustrious estate, but please do refrain from touching anything.");
+                                }
+                                else
+                                {
+                                    setMsg("Good day, Visitor. Welcome to my home... if anything goes missing I will make sure the soldiers deprive you of your filthy commonblood hands.");
+                                }
                             }
 
                             //on ended text dialogue
@@ -9785,6 +11258,10 @@ function interaction(me)
                             if (tellMessage == "reset")
                             {
                                 msgReset();
+
+                                minigame = new Minigame("Chess", Math.floor(self.ultra.wager * (1 + (player.charisma / 50))), 1);
+                                gameState = "minigame";
+                                requestAnimationFrame(minigameLoop, CCC);
 
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;

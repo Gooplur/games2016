@@ -1365,6 +1365,10 @@ function envPack()
     savannahDirtEnv.src = ("images/savannahDirt.png");
     window.savannahDirtEnv = savannahDirtEnv;
 
+    var vardanGraveyardEnv = new Image();
+    vardanGraveyardEnv.src = ("images/vardanGraveyard.png");
+    window.vardanGraveyardEnv = vardanGraveyardEnv;
+
     var mushBlur = new Image();
     mushBlur.src = ("images/blurredGreenSwish.jpg");
     window.mushBlur = mushBlur;
@@ -3466,6 +3470,7 @@ var menuCheckTime = new Date().getUTCHours();
 var ketsuekiX;
 var ketsuekiY;
 var sprig = false;
+var frogme = false;
 var minigame = {};
 
 //This sets the items that are in shops.
@@ -5166,6 +5171,25 @@ function theLegend()
         aDuelForLoveCorrespondence: false,
         aDuelForLoveMomTold: false,
         aDuelForLoveMomLetter: false,
+        aDuelForLovePlayerLove: false,
+        aDuelForLovePlayerLoveAccepted: false,
+        aDuelForLovePlayerSuicidio: false,
+        aDuelForLovePlayerMundi: false,
+        aDuelForLoveWellMeeting: false,
+        aDuelForLoveAtWell: false,
+        aDuelForLoveDasabReto: false,
+        aDuelForLoveDasabAfter: false,
+        aDuelForLoveOptions: false,
+        aDuelForLoveChosen: false,
+        aDuelForLoveDrug: false,
+        aDuelForLoveTrain: false,
+        aDuelForLoveFakeDeath: false,
+        aDuelForLoveFakedDeath: false,
+        aDuelForLoveDrugged: false,
+        aDuelForLoveTrained: false,
+        aDuelForLoveFinale: false,
+        aDuelForLoveFaceChange: false,
+        aDuelForLoveHappily: false,
 
         //QUEST: The Mazareens did it ----- given by Dasan Omeqor
         theMazareensDidItQuest: false,
@@ -5482,7 +5506,7 @@ function theLegend()
     Inventory = [];
 
     //All of the spells in the game -----------> except [new Item("potatoInvisibility", false, false), 1],  which is exclusive to a Jinn wish.
-    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1], [new Item("doppelganger", false, false), 1], [new Item("shadowSwitch", false, false), 1], [new Item("eruption", false, false), 1], [new Item("drakeBreath", false, false), 1], [new Item("undyingWard", false, false), 1], [new Item("flamingMissiles", false, false), 1], [new Item("arcaneOrbs", false, false), 1], [new Item("despell", false, false), 1], [new Item("powerDraw", false, false), 1], [new Item("theFrozenWord", false, false), 1], [new Item("shell", false, false), 1], [new Item("corporalityWard", false, false), 1], [new Item("windBlast", false, false), 1], [new Item("spiritBear", false, false), 1], [new Item("shadowCrow", false, false), 1], [new Item("antherPlague", false, false), 1], [new Item("beholderRift", false, false), 1]];
+    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1], [new Item("doppelganger", false, false), 1], [new Item("shadowSwitch", false, false), 1], [new Item("eruption", false, false), 1], [new Item("drakeBreath", false, false), 1], [new Item("undyingWard", false, false), 1], [new Item("flamingMissiles", false, false), 1], [new Item("arcaneOrbs", false, false), 1], [new Item("despell", false, false), 1], [new Item("powerDraw", false, false), 1], [new Item("theFrozenWord", false, false), 1], [new Item("shell", false, false), 1], [new Item("corporalityWard", false, false), 1], [new Item("windBlast", false, false), 1], [new Item("spiritBear", false, false), 1], [new Item("shadowCrow", false, false), 1], [new Item("antherPlague", false, false), 1], [new Item("beholderRift", false, false), 1], [new Item("frogify", false, false), 1]];
 //Test Spells
     primarySpells = [];
     secondarySpells = [];
@@ -5621,6 +5645,8 @@ function theLegend()
     allWeapons.push(new Item("nothBlade"));//128
     allWeapons.push(new Item("nothSpear"));//129
     allWeapons.push(new Item("redJungleFowlEgg"));//130
+    allWeapons.push(new Item("thenganWarCleaver"));//131
+    allWeapons.push(new Item("thenganFangCleaver"));//132
 
 
 
@@ -6029,6 +6055,8 @@ function theLegend()
     smithing.push(new Item("nothAxe", false));
     smithing.push(new Item("nothBlade", false));
     smithing.push(new Item("nothSpear", false));
+    smithing.push(new Item("thenganWarCleaver", false));
+    smithing.push(new Item("thenganFangCleaver", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];

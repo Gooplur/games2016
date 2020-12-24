@@ -1080,6 +1080,16 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
                                     ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
                                 }
+                                else if (kind == "frogify")
+                                {
+                                    if (ArtificialIntelligenceAccess[i].type == "Person" || ArtificialIntelligenceAccess[i].type == "Soldier")
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].magicalResistance < 4)
+                                        {
+                                            ArtificialIntelligenceAccess[i].frogaform = true;
+                                        }
+                                    }
+                                }
                                 else if (kind == "decay")
                                 {
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
@@ -1181,6 +1191,16 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                         player.thirst -= Math.max(0, damage - player.heatResistance);
                                         player.burningTime = new Date().getTime();
                                     }
+                                    else if (kind == "frogify")
+                                    {
+                                        if (player.wendigo != true && player.lycanthropy != true && player.vamprism != true)
+                                        {
+                                            if (player.magicalResistanceTotal < 4)
+                                            {
+                                                player.frogaform = true;
+                                            }
+                                        }
+                                    }
                                     else if (kind == "decay")
                                     {
                                         this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
@@ -1268,6 +1288,16 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     {
                                         ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
                                         ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                                    }
+                                    else if (kind == "frogify")
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].type == "Person" || ArtificialIntelligenceAccess[i].type == "Soldier")
+                                        {
+                                            if (ArtificialIntelligenceAccess[i].magicalResistance < 4)
+                                            {
+                                                ArtificialIntelligenceAccess[i].frogaform = true;
+                                            }
+                                        }
                                     }
                                     else if (kind == "decay")
                                     {
@@ -1369,6 +1399,16 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     player.health -= Math.max(0, damage - player.heatResistance);
                                     player.thirst -= Math.max(0, damage - player.heatResistance);
                                     player.burningTime = new Date().getTime();
+                                }
+                                else if (kind == "frogify")
+                                {
+                                    if (player.wendigo != true && player.lycanthropy != true && player.vamprism != true)
+                                    {
+                                        if (player.magicalResistanceTotal < 4)
+                                        {
+                                            player.frogaform = true;
+                                        }
+                                    }
                                 }
                                 else if (kind == "decay")
                                 {
@@ -1644,6 +1684,20 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 {
                     this.momentum = this.unitRotation + 10/16 * Math.PI;
                 }
+            }
+        }
+        //FROGIFY
+        if (this.spellType == "frogify")
+        {
+            this.orientToCaster(27, 1 / 2 * Math.PI);
+
+            if (caster == true)
+            {
+                this.rotation = player.rotation;
+            }
+            else
+            {
+                this.rotation = this.unitRotation;
             }
         }
         //DESPELL
@@ -4136,6 +4190,22 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         this.project(this.rotation + 1/2 * Math.PI, 100, 2 * ((50 + (this.cnx / 5)) / 50), true);
                     }
 
+                }
+                else
+                {
+                    //Todo add the Ai part of this spell...
+                }
+            }
+
+            if (this.spellType == "frogify")
+            {
+                if (caster)
+                {
+                    var szx = 0.6;
+                    this.contactDamage(false, 30 * szx, 0, 40,  "frogify", "frogify");
+                    this.flashAnimate(90, this.rotation + 1/2 * Math.PI, 0.88, [{image: shor, imgX: 478, imgY: 91, portionW: 89, portionH: 45, adjX: -1 / 2 * 89 * szx, adjY: -1 / 2 * 45 * szx, width: 85 * szx, height: 45 * szx}, {image: shor, imgX: 542, imgY: 139, portionW: 89, portionH: 45, adjX: -1 / 2 * 89 * szx, adjY: -1 / 2 * 45 * szx, width: 85 * szx, height: 45 * szx}, {image: shor, imgX: 602, imgY: 90, portionW: 89, portionH: 45, adjX: -1 / 2 * 89 * szx, adjY: -1 / 2 * 45 * szx, width: 85 * szx, height: 45 * szx}]);
+                    lights.push({X: this.X, Y: this.Y, size: 62, extraStops: true, GRD: 1, Alpha: 0.3, showMe: false});
+                    this.project(this.playerRotation + 1/2 * Math.PI, 240 * ((50 + this.cnx) / 50), 4 * ((50 + this.cnx) / 50), true);
                 }
                 else
                 {

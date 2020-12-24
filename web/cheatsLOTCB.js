@@ -10611,6 +10611,10 @@ function cheats()
         {
             sleeperTime -= (60 * 60 * 1);
         }
+        else if (cheatcode == "frogme" || cheatcode == "froglegs")
+        {
+            player.frogaform = true;
+        }
         else if (cheatcode == "IBEMANGIRL" || cheatcode == "ibegirlman")
         {
             player.gender = "Hermaphrodite";
@@ -10933,6 +10937,13 @@ function cheats()
             if (player.name == "Gooplur" && player.race == "#336600")
             {
                 player.charisma = 50;
+            }
+        }
+        else if (cheatcode == "CRONE")
+        {
+            if (player.name == "Gooplur" && player.race == "#336600")
+            {
+                primarySpells.unshift({name: "Frog Curse", ID: "frogify", equipped: false, cost: 0.5, cooldown: 0.145, description: "The ancient curse that turns human beings into frogs.", EXP: 5, CNX: 50});
             }
         }
         else if (cheatcode == "OOP")

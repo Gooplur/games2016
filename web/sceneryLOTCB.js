@@ -101,6 +101,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
     this.pop = 0;
     //other
     this.etapa = 0;
+    this.transporter = false;
 
     //Scenery Item
 
@@ -708,7 +709,11 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (dClick)
             {
                 dClick = false;
-                this.activate = true;
+
+                if (player.form != "frog" || this.transporter == true)
+                {
+                    this.activate = true;
+                }
             }
         }
 
@@ -24526,6 +24531,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         }
         else if (this.type == "cave")
         {
+            this.transporter = true;
             //TRAITS
             this.solid = true;
             this.interactionRange = 200;
@@ -24551,6 +24557,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         }
         else if (this.type == "huskcave")
         {
+            this.transporter = true;
             //TRAITS
             this.solid = true;
             this.interactionRange = 200;
@@ -24587,6 +24594,8 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         }
         else if (this.type == "sewerDrain")
         {
+            this.transporter = true;
+
             //TRAITS
             this.interactionRange = 200;
             if (this.treeHealth >= 100)
@@ -24763,6 +24772,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         }
         else if (this.type == "caves")
         {
+            this.transporter = true;
             //TRAITS
             this.solid = true;
             this.interactionRange = 200;
@@ -24933,6 +24943,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         }
         else if (this.type == "caveExit")
         {
+            this.transporter = true;
             //TRAITS
             this.solid = false;
             this.interactionRange = 60;
@@ -24993,6 +25004,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         }
         else if (this.type == "cavePassage")
         {
+            this.transporter = true;
             //TRAITS
             this.solid = false;
             this.interactionRange = 60;
@@ -25160,6 +25172,8 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             //DRAWSELF
             if (this.phase == 0)
             {
+                this.transporter = false;
+
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
@@ -25168,6 +25182,8 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             }
             else
             {
+                this.transporter = true;
+
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
@@ -33386,6 +33402,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             }
             else if (this.temporary == 1) //teleporter
             {
+                this.transporter = true;
                 this.size = this.information[0];
                 this.interactionRange = 70 * this.size;
                 this.radius = 10 * this.size;
@@ -34779,6 +34796,118 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             XXX.rotate(this.rotation);
             XXX.drawImage(verse, 3080, 90, 71, 48, -(1/2 * 71 * this.size), -(1/2 * 48 * this.size), 71 * this.size, 48 * this.size);
             XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "banticulAcid")
+        {
+            //TRAITS
+            this.solid = false;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+
+                this.size = 1;
+                this.changuh = false;
+                this.fadde = 0.95;
+            }
+
+            if (this.changuh == false)
+            {
+                this.size += 0.024;
+            }
+            else if (this.fadde >= 0.95)
+            {
+                this.size += 0.008;
+            }
+            else
+            {
+                this.size += 0.001;
+            }
+
+            //DRAWSELF
+
+            if (this.changuh == false)
+            {
+                if (this.size > 1.2)
+                {
+                    this.size = 1;
+                    this.changuh = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.globalAlpha = this.fadde;
+                    XXX.drawImage(bant, 1011, 849, 271, 239, -(1/2 * 271 * this.size), -(1/2 * 239 * this.size), 271 * this.size, 239 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.globalAlpha = this.fadde;
+                    XXX.drawImage(bant, 1011, 849, 271, 239, -(1/2 * 271 * this.size), -(1/2 * 239 * this.size), 271 * this.size, 239 * this.size);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (this.size > 1.7)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.globalAlpha = this.fadde;
+                    XXX.drawImage(bant, 1376, 573, 340, 304, -(1/2 * 340 * this.size), -(1/2 * 304 * this.size), 340 * this.size, 304 * this.size);
+                    XXX.restore();
+                    this.fadde -= 0.02;
+
+                    if (this.fadde <= 0.04)
+                    {
+                        scenicList.splice(scenicList.indexOf(this), 1);
+                    }
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.globalAlpha = this.fadde;
+                    XXX.drawImage(bant, 1376, 573, 340, 304, -(1/2 * 340 * this.size), -(1/2 * 304 * this.size), 340 * this.size, 304 * this.size);
+                    XXX.restore();
+                }
+            }
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if ((this.X - ArtificialIntelligenceAccess[j].X)*(this.X - ArtificialIntelligenceAccess[j].X)+(this.Y - ArtificialIntelligenceAccess[j].Y)*(this.Y - ArtificialIntelligenceAccess[j].Y) <= (117 * this.size)*(117 * this.size) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                {
+                    ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                    ArtificialIntelligenceAccess[j].stunII = true;
+                    ArtificialIntelligenceAccess[j].stunTimer = Math.max(5, ArtificialIntelligenceAccess[j].stunTimer);
+                    ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+
+                    ArtificialIntelligenceAccess[j].acidIV = true;
+                    ArtificialIntelligenceAccess[j].acidTime = Math.max(ArtificialIntelligenceAccess[j].acidTime, new Date().getTime() + 13000);
+                }
+            }
+
+            if ((this.X - X)*(this.X - X)+(this.Y - Y)*(this.Y - Y) <= (117 * this.size)*(117 * this.size) && player.flying != true && map == this.dmx)
+            {
+                player.stunnedII = true;
+                player.stunnedTime = Math.max(player.stunnedTime, 5);
+
+                player.acidIV = true;
+                player.acidTime = Math.max(player.acidTime, new Date().getTime() + 13000);
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
@@ -41063,6 +41192,154 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 {
                     Inventory.push([new Item("neprilneBerries", false, false), 1]);
                 }
+            }
+        }
+        else if (this.type == "banticulPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(20);
+            this.solid = true;
+            this.interactionRange = 100;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+
+                this.pop = 0;
+                this.makeAcid = false;
+            }
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.pop = 0;
+                this.makeAcid = false;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bant, 26, 566, 272, 251, -(1/2 * 272), -(1/2 * 251), 272, 251);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                this.pop += 1;
+                if (this.pop <= 10)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bant, -59, 850, 272, 251, -(1/2 * 272), -(1/2 * 251), 272, 251);
+                    XXX.restore();
+                    this.makeAcid = false;
+                }
+                else if (this.pop <= 20)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bant, 183, 848, 272, 251, -(1/2 * 272), -(1/2 * 251), 272, 251);
+                    XXX.restore();
+                    this.makeAcid = false;
+                }
+                else if (this.pop <= 26)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bant, 434, 842, 272, 251, -(1/2 * 272), -(1/2 * 251), 272, 251);
+                    XXX.restore();
+                    this.makeAcid = false;
+                }
+                else if (this.pop <= 32)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bant, 708, 847, 272, 251, -(1/2 * 272), -(1/2 * 251), 272, 251);
+                    XXX.restore();
+                    this.makeAcid = false;
+                }
+                else if (this.pop <= 60)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bant, 1277, 889, 202, 196, -(1/2 * 202), -(1/2 * 196), 202, 196);
+                    XXX.restore();
+                    if (this.makeAcid == false)
+                    {
+                        this.makeAcid = true;
+                        scenicList.push(new Scenery("banticulAcid", this.X, this.Y, 2*Math.PI*Math.random(), true));
+                    }
+                }
+                else if (this.pop <= 222)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bant, 1458, 887, 202, 196, -(1/2 * 202), -(1/2 * 196), 202, 196);
+                    XXX.restore();
+                }
+                else if (this.pop <= 284)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bant, 1627, 888, 202, 196, -(1/2 * 202), -(1/2 * 196), 202, 196);
+                    XXX.restore();
+                }
+                else if (this.pop <= 5445)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bant, -21, 876, 202, 196, -(1/2 * 202), -(1/2 * 196), 202, 196);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.phase = 0;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bant, -21, 876, 202, 196, -(1/2 * 202), -(1/2 * 196), 202, 196);
+                    XXX.restore();
+                }
+
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 50;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "banticulLeaf")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("banticulLeaf", false, false), 1]);
+                }
+            }
+            else if (this.pop > 284 && this.activate == true && this.phase == "picked")
+            {
+                this.activate = false;
+                this.pop = 0;
+                this.makeAcid = false;
             }
         }
         else if (this.type == "yunaPlant")

@@ -3261,6 +3261,50 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 29;
             this.spellRange = "Short";
         }
+        else if (this.type == "frogify")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 12)
+            {
+                this.identity = "Scroll of Frogify";
+                this.description = "Studying this scroll will teach you how to cast forth a fae curse that turns human beings into frogs.";
+                this.intForDes = 0;
+                this.intDescription = "The inked sybols on this scroll seem so deeply engraved in the parchment that they should go through the other side, but they don't.";
+                this.buyValue = 3000 - Math.floor(player.getCharisma() / 0.0625); // at max, buy for 2200.
+                this.sellValue = 1600 + Math.floor(player.getCharisma() / 0.125); // at max, sell for 2000.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 3000 - Math.floor(player.getCharisma() / 0.0625); // at max, buy for 2200.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 14;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = true;
+            this.spellCost = Math.max(1, 20 + (10 / 50) * player.getConcentration() - (15 / 50) * player.getEminence());
+            this.spellGroup = "Form";
+            this.spellGenre = "Transfiguration";
+            this.spellName = "Frogify";
+            this.spellID = "frogify";
+            this.spellDamage = 0;
+            this.spellEXP = 5 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(1, 30 + (10/50) * player.getConcentration() - (20/50) * player.getEminence());
+            this.spellDescription = "A powerful blast of fae magic that transfigures humans permanently into frogs.";
+            this.spellKnowledgeRequirement = 40;
+            this.spellRange = "Short-Medium";
+        }
         else if (this.type == "electricBolt")
         {
             //For All Items
@@ -8122,6 +8166,36 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 34; // at max, buy for 34.
             this.sellValue = 30 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 34.
+        }
+        else if (this.type == "druggedSonjaSlice")
+        {
+            //For All Items
+            this.identity = "Drugged Sonja Slice";
+            this.weight = 0.63;
+            this.size = 8;
+            this.description = "A tender and glistening golden-yellow slice of sonja fruit laced with pure opium.";
+            this.intForDes = 0;
+            this.intDescription = "It has a sweet, smooth, tropical flavour with some notes of honey, ripe mango, and honeysuckle. Oh and it will get you super high...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4.6; //satisfies hunger.
+            this.thirst = 0.8; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+            this.cooling = 0.25; //cools player.
+
+            //ability
+            this.ability = "superOpium";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
         }
         else if (this.type == "sonjaSlice")
         {
@@ -61888,6 +61962,124 @@ function Item(type, x, y)
             this.buyValue = 50 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 30.
             this.sellValue = 18 + Math.floor(player.getCharisma() / 5); // at max, sell for 28.
         }
+        else if (this.type == "thenganWarCleaver")
+        {
+            //For All Items
+            this.identity = "Thengan War Cleaver";
+            this.weight = 6;
+            this.size = 16;
+            this.description = "A long handled cleaver with a curved and weighted blade with a spike off the back for stabbing.";
+            this.intForDes = 2;
+            this.intDescription = "This blade is meant for use against unarmoured foes.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            if (player.getEndurance() >= 15)
+            {
+                this.energyCost = 6;
+            }
+            else
+            {
+                this.energyCost = 7;
+            }
+            this.distance = 13 + (this.range * 7);
+            this.range = (5 + 3/7);
+            this.rate = 132 - (42 / Math.min(1, 51 - player.getDexterity()));
+
+            if (player.getStrength() >= 27)
+            {
+                this.damage = (10) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+            }
+            else if (player.getStrength() >= 15)
+            {
+                this.damage = (9) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+            }
+            else if (player.getStrength() >= 9)
+            {
+                this.damage = (8.5) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+            }
+            else
+            {
+                this.damage = (8 - (this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+            }
+
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 37;
+            this.ingredients = [["Steel", 3], ["Nechrovite", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 240 - Math.floor(player.getCharisma() / 2); // at max, buy for 215.
+            this.sellValue = 165 + Math.floor(player.getCharisma() / 1); // at max, sell for 215.
+        }
+        else if (this.type == "thenganFangCleaver")
+        {
+            //For All Items
+            this.identity = "Thengan Fang Cleaver";
+            this.weight = 6;
+            this.size = 16;
+            this.description = "A long handled cleaver with a curved and weighted blade with two spikes off the back like long fangs for stabbing.";
+            this.intForDes = 2;
+            this.intDescription = "This blade is meant for use against unarmoured foes.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            if (player.getEndurance() >= 20)
+            {
+                this.energyCost = 6;
+            }
+            else if (player.getEndurance() >= 10)
+            {
+                this.energyCost = 7;
+            }
+            else
+            {
+                this.energyCost = 8;
+            }
+            this.distance = 15 + (this.range * 7);
+            this.range = (5 + 6/7);
+            this.rate = 152 - (42 / Math.min(1, 51 - player.getDexterity()));
+
+            if (player.getStrength() >= 28)
+            {
+                this.damage = (11) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+            }
+            else if (player.getStrength() >= 16)
+            {
+                this.damage = (9.5) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+            }
+            else if (player.getStrength() >= 8)
+            {
+                this.damage = (9) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+            }
+            else
+            {
+                this.damage = (8.5 - (this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+            }
+
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 39;
+            this.ingredients = [["Steel", 4], ["Nechrovite", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 270 - Math.floor(player.getCharisma() / 2); // at max, buy for 245.
+            this.sellValue = 195 + Math.floor(player.getCharisma() / 1); // at max, sell for 245.
+        }
         else if (this.type == "vardanianHeavyCleaver")
         {
             //For All Items
@@ -62495,6 +62687,46 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "mundiLoveLetter")
+        {
+            //For All Items
+            this.identity = "Mundi's Love Letter";
+            this.weight = 0.001;
+            this.size = 12;
+            this.description = "A love letter written to a young lady by the name of Natsatara.";
+            this.intForDes = 9;
+            this.intDescription = "Mundi's grasp of poetry is feeble at best.";
+
+            //Define Utility
+            this.utility = "note";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "natLoveLetter")
+        {
+            //For All Items
+            this.identity = "Natsatara's Love Letter";
+            this.weight = 0.001;
+            this.size = 12;
+            this.description = "A love letter written to a young man by the name of Mundi.";
+            this.intForDes = 9;
+            this.intDescription = "Natsatara's message is both highly suggestive, and a bit creepy.";
+
+            //Define Utility
+            this.utility = "note";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "paperwork")
         {
             //For All Items
@@ -62856,7 +63088,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid" || this.type == "huskLoveLetter")
+        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid" || this.type == "huskLoveLetter" || this.type == "natLoveLetter" || this.type == "mundiLoveLetter")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
@@ -62875,6 +63107,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "thenganWarCleaver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 590, 606, 49, 75, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 75 * 1), 49 * 1, 75 * 1);
+        }
+        else if (this.type == "thenganFangCleaver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 729, 733, 49, 75, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 75 * 1), 49 * 1, 75 * 1);
         }
         else if (this.type == "nothSpear")
         {
@@ -66576,7 +66818,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(humpa, 708, 1116, 20, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
         }
-        else if (this.type == "sonjaSlice")
+        else if (this.type == "sonjaSlice" || this.type == "druggedSonjaSlice")
         {
             XXX.beginPath();
             XXX.drawImage(humpa, 726, 1116, 20, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
@@ -70112,7 +70354,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1804, 36, 26, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 26), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23), 26, 23);
         }
-        else if (this.type == "iceberg" || this.type == "whirlwind" || this.type == "doppelganger")
+        else if (this.type == "iceberg" || this.type == "whirlwind" || this.type == "doppelganger" || this.type == "frogify")
         {
             XXX.beginPath();
             XXX.drawImage(zapa, 455, 455, 39, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.22), 39 * 1.22, 24 * 1.22);
@@ -71259,7 +71501,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid" || this.type == "huskLoveLetter")
+        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid" || this.type == "huskLoveLetter" || this.type == "natLoveLetter" || this.type == "mundiLoveLetter")
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
@@ -71273,6 +71515,16 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "thenganWarCleaver")
+        {
+            LXX.beginPath();
+            LXX.drawImage(orco, 590, 606, 49, 75, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 75 * 1), 49 * 1, 75 * 1);
+        }
+        else if (this.type == "thenganFangCleaver")
+        {
+            LXX.beginPath();
+            LXX.drawImage(orco, 729, 733, 49, 75, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 75 * 1), 49 * 1, 75 * 1);
         }
         else if (this.type == "nothSpear")
         {
@@ -74950,7 +75202,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(humpa, 708, 1116, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
         }
-        else if (this.type == "sonjaSlice")
+        else if (this.type == "sonjaSlice" || this.type == "druggedSonjaSlice")
         {
             LXX.beginPath();
             LXX.drawImage(humpa, 726, 1116, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
@@ -78552,7 +78804,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow" || this.type == "antherPlague" || this.type == "beholderRift")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow" || this.type == "antherPlague" || this.type == "beholderRift" || this.type == "frogify")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -79608,7 +79860,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid" || this.type == "huskLoveLetter")
+        else if (this.type == "madmanNote" || this.type == "sackmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders" || this.type == "killDruid" || this.type == "huskLoveLetter" || this.type == "natLoveLetter" || this.type == "mundiLoveLetter")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
@@ -79627,6 +79879,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "thenganWarCleaver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 590, 606, 49, 75, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 75 * 1), 49 * 1, 75 * 1);
+        }
+        else if (this.type == "thenganFangCleaver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 729, 733, 49, 75, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 75 * 1), 49 * 1, 75 * 1);
         }
         else if (this.type == "nothSpear")
         {
@@ -83299,7 +83561,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(humpa, 708, 1116, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
         }
-        else if (this.type == "sonjaSlice")
+        else if (this.type == "sonjaSlice" || this.type == "druggedSonjaSlice")
         {
             XXX.beginPath();
             XXX.drawImage(humpa, 726, 1116, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
@@ -86899,7 +87161,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow" || this.type == "antherPlague" || this.type == "beholderRift")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow" || this.type == "antherPlague" || this.type == "beholderRift" || this.type == "frogify")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

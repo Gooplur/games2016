@@ -43083,6 +43083,11 @@ function Adventurer()
                                 this.magicalSkillPoints += magickPuntos;
                                 this.spell = "none";
                             }
+                            else if (Inventory[i][0].ability == "faeBlood")
+                            {
+                                this.recoveryTime = 200000;
+                                this.recoverIII = true;
+                            }
                             else if (Inventory[i][0].ability == "satiate" || Inventory[i][0].ability == "satiation") //Food with this effect will keep you fed for a little bit.
                             {
                                 if (this.wendigo != true)

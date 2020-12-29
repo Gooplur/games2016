@@ -3,6 +3,7 @@
 Alcachofa - an artichoke plant...
 Berenjena - an eggplant/aubergine plant...
 Onion - an onion...
+Squash - A bright squash (summer squash) farm crop that is cultivated in Thengaria, particularly in central Thengaria around Cergadet and Leikshor.
     //WILD
 Karm - A southern temperate bush that hosts a small green fruit
 Clobe - A plant that grows in temperate regions that has three swollen curved leaves full of a thick green sap
@@ -22,10 +23,19 @@ Eneoji - A pink bush covered in delicate petal-like golden-pink leaves that cont
 Milsan - An orange flower that grows in the Orgish jungle and that has poisonous green filtration pods
 Hikari - A slime-like fungus that grows on the walls of tropical caves (almost exclusively in the Orgish glades) it eats a bug called the purpura bug which it uses as an energy source to create purple light which it uses to attract more purpura bugs in order to get more food, and so the cycle continues...
 Spali - A red bush with wide, thin, pointed, red leaves. Bushmaster snakes, one of the most venemous types of snakes in the world, love the scent of the leaves, and the bush's potential for providing it natural camoflauge, and so they may be found resting inside of this type of bush.
-    //ITEMS NOT YET ADDED
+LeikshorLilypads - The laushtaa variety of lilypad that grows natively in the Leikshor region of Thengaria
+SpruceTree - An bluish green needled evergreen tree native to the Leikshor region of Thengaria
 Bamboo - Tall orgish bamboo (information: 1 = packed, 0 = spread) (extra: 1 = webbed, 2 = burnt chopped, else = normal)
+Banticul - A large, colorful, pointed, flat-leaved plant with a giant, bulbous, orange, ooze sac in the center. It is a carnivorous plant that lures herbivores to a terrible acidy death by extending its nutritious, and hairy leaf stalks as a food offering — when the unsuspecting prey pounces on one of the stalks, the plant pulls the rest of its stalks into its bulbous mass and releases acidic orange ooze that spills over the top and melts the prey into the soil around its base for its subterranean structures to absorb. The really old Banticul plants can no longer regenerate or produce enough acid to eat, so those are the ones that most Orgish people get their banta from. (Banta is the tuberous stalk that connects the leaf to the body of the plant; it is a nutritious vegetable.)
+Andrezil - A long stemmed swamp plant with bright pink flowers, native to the Leikshor region of Thengaria
+Reyasinth - A regal red flower native to the Leikshor region of Thengaria that has a long golden yellow stamen. This beautiful type of flower represents both fertility and virility in central Thengan culture.
+Muscha - A bulbous tan plant that is full of sweet sap. The sweet smell of the sap carries in the breeze and attracts small insects to go to it. The sap digests those insects as they fly into it... The sap gives the Leikshor region of Thengaria, in which the muscha plant grows natively, a characteristically sweet and pleasant aroma.
+Laushtaa - A Thengan variety of lotus that grows in the beautious swamplands of the Leikshor region
+Nimhoc - A viney plant that grows natively in the Leikshor swamplands of Thengaria.
+Tosk - A water plant that grows in shallow water and along the shorelines in the Leikshor region of Thengaria.
+Nahaline - A gorgeous blue flower that smells lovely and grows natively in the Leikshor region of Thengaria
+    //ITEMS NOT YET ADDED
 BirchTree - Thin trees with white and black speckled papery bark on their trunks (longevity: normal size 1min - 1.5max blood wood size 1min - 1.7max) (information: 1-5 different fall colours, 6 blood wood year round)
-Banticul - A large, colorful, pointed, flat-leaved plant with a giant, bulbous, orange, ooze sac in the center. It is a carnivorous plant that lures herbivores to a terrible acidy death by extending its nutritious, and hairy leaf stalks as a food offering — when the unsuspecting prey pounces on one of the stalks, the plant pulls the rest of its stalks into its bulbous mass and releases acidic orange ooze that spills over the top and melts the prey into the soil around its base for its subterranean structures to absorb.
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase, and you should write Plant at the end unless it is a tree)
     //FARM

@@ -8,7 +8,7 @@
 //top priority
 
 //Image sheet ideas
-//todo orgish image sheet part II: Odachi, sticky bug trap flower, slothbear, cobra, hummingbird, orgish fish + fishing spot
+//todo orgish image sheet part II: Orgish fish + fishing spot, Orgish food, Orgish buildings
 //todo far north fish
 //todo furry snow beast
 //todo frost wyrm (with frost breath) (ridable)
@@ -22,10 +22,9 @@
 //todo name the largest misty woods The Dermohr Forest
 //todo name the smaller misty woods The Schwarza Woods
 //todo add Cranheim (city)
-//todo add Cergadet (town)
-//todo fill in the plains and farmlands around Cergadet
 //todo fill in The Schwarza Woods
 //todo Make a cure for internal warts that relies upon fermented vodkapa spleen and some other ingredients
+//todo add Leikshor (town) + add leikshor swamp/forest biome
 
 //Kerib Update
 //todo add the karib tribe's village (zarbu themed tribe)
@@ -57,7 +56,6 @@
 
 //Cephrian/Jungle Update
 //todo piranha fish swarm (water creature) [Only attacks the player if not in a boat]
-//todo add a cephrian city directly to the south of the jungle map "Holuim City" (a town bustling with tropical market places and various magic venders)
 //todo add the 'air staff' from Theng img sheet
 //todo add weaken spell
 //todo add arrow mods such as toxic/poison, electric, armour piercing...
@@ -74,7 +72,7 @@
 
 //Cranheim Update
 //todo add the city Cranheim to the west of Lethik in Thengaria
-//todo add wearwolf quest
+//todo add werewolf quest
 
 //Vardania Update
 //todo add a vardanian city to the south west of the hamlet - Morrow City
@@ -88,7 +86,6 @@
 //todo add a witch trap house where the witch becomes a mutated magical beast and tries to kill you
 
 //todo add more jewelry from 'polpol' IMG
-//todo add haeflower drug trip monsters from 'zapa' IMG
 //todo add a spell that casts out a blast that causes a small rock explosion (use IMG from 'nognog')
 //todo finish adding the beast journal.
 //todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
@@ -6322,6 +6319,13 @@ function theLegend()
     foods.push(new Item("redPandaMeat", false));
     foods.push(new Item("jackalMeat", false));
     foods.push(new Item("geomiMeat", false));
+    foods.push(new Item("cookedSquash", false));
+    foods.push(new Item("cookedSlicedSquash", false));
+    foods.push(new Item("hoffalgreAndSquash", false));
+    foods.push(new Item("roastedBullfrogLeg", false));
+    foods.push(new Item("faeBlood", false));
+    foods.push(new Item("shelisherMeat", false));
+    foods.push(new Item("moppotMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -6620,6 +6624,7 @@ function theLegend()
     forge.push(new Item("shomeDust", false));
     forge.push(new Item("cephrianTincturePot", false));
     forge.push(new Item("tinctureCup", false));
+    forge.push(new Item("jarOfFaeBlood", false));
 
 //Handcrafted (things the player can do without a work station of some kind)
     handcrafted = [];
@@ -6791,6 +6796,12 @@ function theLegend()
     handcrafted.push(new Item("nulgaFeathers", false));
     handcrafted.push(new Item("packedEneoji", false));
     handcrafted.push(new Item("avatarOutfit", false));
+    handcrafted.push(new Item("driedBamboo", false));
+    handcrafted.push(new Item("bamboo", false));
+    handcrafted.push(new Item("banticulLeaf", false));
+    handcrafted.push(new Item("banta", false));
+    handcrafted.push(new Item("slicedSquash", false));
+    handcrafted.push(new Item("rawShelisherFlesh", false));
 
 
     //Activate Important Game Functions Here:

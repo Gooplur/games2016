@@ -10611,6 +10611,45 @@ function cheats()
         {
             sleeperTime -= (60 * 60 * 1);
         }
+        else if (cheatcode == "hotterthanchurchonatuesday")
+        {
+            for (var l = 0; l < 12; l++)
+            {
+                magicList.push(new Magic({ID: "firestorm", CNX: 50}, true, {X: X, Y: Y}, false, false));
+                magicList[magicList.length - 1].X = X + Math.random() * 1000 - 500;
+                magicList[magicList.length - 1].Y = Y + Math.random() * 1000 - 500;
+            }
+        }
+        else if (cheatcode == "flowerstorm")
+        {
+            magicList.push(new Magic({ID: "flowerStormFlower", CNX: 50}, false, {X: X, Y: Y , sort: 0}, this, false));
+            magicList[magicList.length - 1].X = X + Math.random() * 1800 - 900;
+            magicList[magicList.length - 1].Y = Y + Math.random() * 1800 - 900;
+            magicList.push(new Magic({ID: "flowerStormFlower", CNX: 50}, false, {X: X, Y: Y , sort: 0}, this, false));
+            magicList[magicList.length - 1].X = X + Math.random() * 1800 - 900;
+            magicList[magicList.length - 1].Y = Y + Math.random() * 1800 - 900;
+            magicList.push(new Magic({ID: "flowerStormFlower", CNX: 50}, false, {X: X, Y: Y , sort: 0}, this, false));
+            magicList[magicList.length - 1].X = X + Math.random() * 1800 - 900;
+            magicList[magicList.length - 1].Y = Y + Math.random() * 1800 - 900;
+            magicList.push(new Magic({ID: "flowerStormFlower", CNX: 50}, false, {X: X, Y: Y , sort: 1}, this, false));
+            magicList[magicList.length - 1].X = X + Math.random() * 1800 - 900;
+            magicList[magicList.length - 1].Y = Y + Math.random() * 1800 - 900;
+            magicList.push(new Magic({ID: "flowerStormFlower", CNX: 50}, false, {X: X, Y: Y , sort: 1}, this, false));
+            magicList[magicList.length - 1].X = X + Math.random() * 1800 - 900;
+            magicList[magicList.length - 1].Y = Y + Math.random() * 1800 - 900;
+            magicList.push(new Magic({ID: "flowerStormFlower", CNX: 50}, false, {X: X, Y: Y , sort: 2}, this, false));
+            magicList[magicList.length - 1].X = X + Math.random() * 1800 - 900;
+            magicList[magicList.length - 1].Y = Y + Math.random() * 1800 - 900;
+            magicList.push(new Magic({ID: "flowerStormFlower", CNX: 50}, false, {X: X, Y: Y , sort: 3}, this, false));
+            magicList[magicList.length - 1].X = X + Math.random() * 1800 - 900;
+            magicList[magicList.length - 1].Y = Y + Math.random() * 1800 - 900;
+            magicList.push(new Magic({ID: "flowerStormFlower", CNX: 50}, false, {X: X, Y: Y , sort: 3}, this, false));
+            magicList[magicList.length - 1].X = X + Math.random() * 1800 - 900;
+            magicList[magicList.length - 1].Y = Y + Math.random() * 1800 - 900;
+            magicList.push(new Magic({ID: "flowerStormFlower", CNX: 50}, false, {X: X, Y: Y , sort: 3}, this, false));
+            magicList[magicList.length - 1].X = X + Math.random() * 1800 - 900;
+            magicList[magicList.length - 1].Y = Y + Math.random() * 1800 - 900;
+        }
         else if (cheatcode == "frogme" || cheatcode == "froglegs")
         {
             player.frogaform = true;

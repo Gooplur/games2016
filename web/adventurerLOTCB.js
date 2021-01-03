@@ -5776,6 +5776,7 @@ function Adventurer()
                     this.form = "frog";
                     this.mounted = true;
                     frogme = false;
+                    this.energy = 0;
                 }
             }
             else
@@ -13639,6 +13640,22 @@ function Adventurer()
                             this.will -= secondarySpells[i].cost;
                             this.magicalExperience += secondarySpells[i].EXP;
                             magicList.push(new Magic(secondarySpells[i], true));
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
+                    //Firestorm
+                    if (secondarySpells[i].ID == "firestorm")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+                            for (var l = 0; l < 8 + Math.floor(1/5 * player.getConcentration()); l++)
+                            {
+                                magicList.push(new Magic(secondarySpells[i], true, {X: X, Y: Y}, false, false));
+                                magicList[magicList.length - 1].X = X + Math.random() * 1000 - 500;
+                                magicList[magicList.length - 1].Y = Y + Math.random() * 1000 - 500;
+                            }
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
                     }

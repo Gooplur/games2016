@@ -72,6 +72,8 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         this.ready = false; //ready is an alternative to alert just in case alert is already being used for something.
         this.goTic = 0;
         this.fire = false; //lets other things like scenery objects know if a spell can catch them on fire.
+        this.tic = 0;
+        this.toc = 0;
         //SPELL BUILDER (functions that can be given to each individual spell to define its characteristics)
         this.spellTimer = function(duration, alert)
         {
@@ -892,7 +894,6 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     {
                                         ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                                     }
-
                                 }
                             }
                             else if (whatDoIDo == "electricity")
@@ -1080,6 +1081,24 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
                                     ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
                                 }
+                                else if (kind == "faeSparkle")
+                                {
+                                    if (ArtificialIntelligenceAccess[i].magicalResistance < 4)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].type == "Person" || ArtificialIntelligenceAccess[i].type == "Soldier")
+                                        {
+                                            ArtificialIntelligenceAccess[i].stunI = true;
+                                            ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 1);
+                                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                        }
+                                        else
+                                        {
+                                            ArtificialIntelligenceAccess[i].charmedTeam = "fae";
+                                            ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 90000;
+                                            ArtificialIntelligenceAccess[i].offended = true;
+                                        }
+                                    }
+                                }
                                 else if (kind == "frogify")
                                 {
                                     if (ArtificialIntelligenceAccess[i].type == "Person" || ArtificialIntelligenceAccess[i].type == "Soldier")
@@ -1191,6 +1210,13 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                         player.thirst -= Math.max(0, damage - player.heatResistance);
                                         player.burningTime = new Date().getTime();
                                     }
+                                    else if (kind == "faeSparkle")
+                                    {
+                                        player.energy = Math.max(-15, player.energy - 1);
+                                        player.will = Math.max(-1, player.will - 0.5);
+                                        player.stunnedI = true;
+                                        player.stunnedTime = 2;
+                                    }
                                     else if (kind == "frogify")
                                     {
                                         if (player.wendigo != true && player.lycanthropy != true && player.vamprism != true)
@@ -1288,6 +1314,24 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     {
                                         ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
                                         ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                                    }
+                                    else if (kind == "faeSparkle")
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].magicalResistance < 4)
+                                        {
+                                            if (ArtificialIntelligenceAccess[i].type == "Person" || ArtificialIntelligenceAccess[i].type == "Soldier")
+                                            {
+                                                ArtificialIntelligenceAccess[i].stunI = true;
+                                                ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 1);
+                                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                            }
+                                            else
+                                            {
+                                                ArtificialIntelligenceAccess[i].charmedTeam = "fae";
+                                                ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 90000;
+                                                ArtificialIntelligenceAccess[i].offended = true;
+                                            }
+                                        }
                                     }
                                     else if (kind == "frogify")
                                     {
@@ -1399,6 +1443,13 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     player.health -= Math.max(0, damage - player.heatResistance);
                                     player.thirst -= Math.max(0, damage - player.heatResistance);
                                     player.burningTime = new Date().getTime();
+                                }
+                                else if (kind == "faeSparkle")
+                                {
+                                    player.energy = Math.max(-15, player.energy - 1);
+                                    player.will = Math.max(-1, player.will - 0.5);
+                                    player.stunnedI = true;
+                                    player.stunnedTime = 2;
                                 }
                                 else if (kind == "frogify")
                                 {
@@ -1689,15 +1740,15 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         //FROGIFY
         if (this.spellType == "frogify")
         {
-            this.orientToCaster(27, 1 / 2 * Math.PI);
-
             if (caster == true)
             {
                 this.rotation = player.rotation;
+                this.orientToCaster(27, 1 / 2 * Math.PI);
             }
             else
             {
                 this.rotation = this.unitRotation;
+                this.orientToCaster(60 * unitSelf.alphaSize, Math.PI);
             }
         }
         //DESPELL
@@ -1793,6 +1844,31 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         {
             this.orientToCaster(23, 1 / 2 * Math.PI);
             this.drawWithRotation(polypol, 1691, 184, 24, 23, 29, 26, player.rotation, -1 / 2 * 24, -1 / 2 * 23);
+        }
+        //FLOWERSTORM FLOWER
+        if (this.spellType == "flowerStormFlower")
+        {
+            this.fade = 1;
+            this.flowerstormSpeed = 0.2 + 0.25 * Math.random();
+            this.flowerSpeed = 4 + 7 * Math.random();
+            this.spiralDist = 200 * Math.random() + 90;
+            this.rotation = Math.atan2(this.orders.X - this.X, this.orders.Y - this.Y);
+        }
+        //FAE SPARKLE
+        if (this.spellType == "faeSparkle")
+        {
+            this.fade = 0.4;
+            this.speed = 3 + 5 * Math.random();
+            this.rotation = Math.random() * 2*Math.PI;
+        }
+        //FIRESTORM
+        if (this.spellType == "firestorm")
+        {
+            this.fade = 1;
+            this.flowerstormSpeed = (0.15 + 0.25 * Math.random() / 10);
+            this.flowerSpeed = 5 + 6 * Math.random();
+            this.spiralDist = 260 * Math.random() + 120;
+            this.rotation = Math.atan2(this.orders.X - this.X, this.orders.Y - this.Y);
         }
         //Decay I
         if (this.spellType == "decayI")
@@ -4204,12 +4280,192 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                     var szx = 0.6;
                     this.contactDamage(false, 30 * szx, 0, 40,  "frogify", "frogify");
                     this.flashAnimate(90, this.rotation + 1/2 * Math.PI, 0.88, [{image: shor, imgX: 478, imgY: 91, portionW: 89, portionH: 45, adjX: -1 / 2 * 89 * szx, adjY: -1 / 2 * 45 * szx, width: 85 * szx, height: 45 * szx}, {image: shor, imgX: 542, imgY: 139, portionW: 89, portionH: 45, adjX: -1 / 2 * 89 * szx, adjY: -1 / 2 * 45 * szx, width: 85 * szx, height: 45 * szx}, {image: shor, imgX: 602, imgY: 90, portionW: 89, portionH: 45, adjX: -1 / 2 * 89 * szx, adjY: -1 / 2 * 45 * szx, width: 85 * szx, height: 45 * szx}]);
-                    lights.push({X: this.X, Y: this.Y, size: 62, extraStops: true, GRD: 1, Alpha: 0.3, showMe: false});
+                    lights.push({X: this.X, Y: this.Y, size: 32, extraStops: true, GRD: 0, Alpha: 0.15, showMe: false});
                     this.project(this.playerRotation + 1/2 * Math.PI, 240 * ((50 + this.cnx) / 50), 4 * ((50 + this.cnx) / 50), true);
                 }
                 else
                 {
-                    //Todo add the Ai part of this spell...
+                    var szx = 0.6;
+                    this.contactDamage(true, 30 * szx, 0, 40,  "frogify", "frogify");
+                    this.flashAnimate(90, this.rotation, 0.88, [{image: shor, imgX: 478, imgY: 91, portionW: 89, portionH: 45, adjX: -1 / 2 * 89 * szx, adjY: -1 / 2 * 45 * szx, width: 85 * szx, height: 45 * szx}, {image: shor, imgX: 542, imgY: 139, portionW: 89, portionH: 45, adjX: -1 / 2 * 89 * szx, adjY: -1 / 2 * 45 * szx, width: 85 * szx, height: 45 * szx}, {image: shor, imgX: 602, imgY: 90, portionW: 89, portionH: 45, adjX: -1 / 2 * 89 * szx, adjY: -1 / 2 * 45 * szx, width: 85 * szx, height: 45 * szx}]);
+                    lights.push({X: this.X, Y: this.Y, size: 32, extraStops: true, GRD: 0, Alpha: 0.15, showMe: false});
+                    this.project(this.unitRotation, 240 * ((50 + this.cnx) / 50), 4 * ((50 + this.cnx) / 50), true);
+                }
+            }
+
+            if (this.spellType == "faeSparkle")
+            {
+                this.spin += 0.55;
+                var szx = 0.6;
+                this.contactDamage(true, 35 * szx, 0, 40,  "faeSparkle", "faeSparkle");
+
+                if (timeOfDay != "Day" || player.underground == true)
+                {
+                    lights.push({X: this.X, Y: this.Y, size: 70, extraStops: false, GRD: 0, Alpha: 0.1, showMe: false});
+                }
+                this.project(this.rotation, 320, this.speed, "alert");
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.spin);
+                XXX.globalAlpha = this.fade;
+                XXX.drawImage(shor, 167, 300, 33, 66, - (1/2 * 33 * 1), - (1/2 * 66 * 1), 33 * 1, 66 * 1);
+                XXX.restore();
+
+                if (this.alert == true)
+                {
+                    this.fade -= 0.01;
+                    if (this.fade < 0.03)
+                    {
+                        magicList.splice(magicList.indexOf(this), 1);
+                    }
+                }
+            }
+
+            if (this.spellType == "flowerStormFlower")
+            {
+                this.X += Math.cos(this.rotation) * this.flowerSpeed;
+                this.Y += Math.sin(this.rotation) * this.flowerSpeed;
+
+                this.rotation = Math.atan2(this.orders.Y + Math.sin(this.toc) * this.spiralDist - this.Y, this.orders.X + Math.cos(this.toc) * this.spiralDist - this.X);
+
+                this.toc += this.flowerstormSpeed;
+
+                this.spin += 0.22;
+                if (this.orders.sort == 0)
+                {
+                    this.spellTimer(18, true);
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.spin);
+                    XXX.globalAlpha = this.fade;
+                    XXX.drawImage(shor, 413, 35, 29, 29, - (1/2 * 29 * 1), - (1/2 * 29 * 1), 29 * 1, 29 * 1);
+                    XXX.restore();
+
+                    if (this.alert == true)
+                    {
+                        this.fade -= 0.025;
+                        if (this.fade < 0.05)
+                        {
+                            magicList.splice(magicList.indexOf(this), 1);
+                        }
+                    }
+                }
+                else if (this.orders.sort == 1)
+                {
+                    this.spellTimer(18, true);
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.spin);
+                    XXX.globalAlpha = this.fade;
+                    XXX.drawImage(orco, 91, -2, 29, 29, - (1/2 * 29 * 1), - (1/2 * 29 * 1), 29 * 1, 29 * 1);
+                    XXX.restore();
+
+                    if (this.alert == true)
+                    {
+                        this.fade -= 0.025;
+                        if (this.fade < 0.05)
+                        {
+                            magicList.splice(magicList.indexOf(this), 1);
+                        }
+                    }
+                }
+                else if (this.orders.sort == 2)
+                {
+                    this.spellTimer(18, true);
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.spin);
+                    XXX.globalAlpha = this.fade;
+                    XXX.drawImage(shor, 145, 74, 29, 29, - (1/2 * 29 * 1), - (1/2 * 29 * 1), 29 * 1, 29 * 1);
+                    XXX.restore();
+
+                    if (this.alert == true)
+                    {
+                        this.fade -= 0.025;
+                        if (this.fade < 0.05)
+                        {
+                            magicList.splice(magicList.indexOf(this), 1);
+                        }
+                    }
+                }
+                else if (this.orders.sort == 3)
+                {
+                    this.spellTimer(18, true);
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.spin);
+                    XXX.globalAlpha = this.fade;
+                    XXX.drawImage(shor, 308, 152, 17, 10, - (1/2 * 17 * 1), - (1/2 * 10 * 1), 17 * 1, 10 * 1);
+                    XXX.restore();
+
+                    if (this.alert == true)
+                    {
+                        this.fade -= 0.025;
+                        if (this.fade < 0.05)
+                        {
+                            magicList.splice(magicList.indexOf(this), 1);
+                        }
+                    }
+                }
+                else
+                {
+                    this.X = this.orders.X;
+                    this.Y = this.orders.Y;
+                    this.spellTimer(16, true);
+                    if (this.alert == true)
+                    {
+                        this.tic += 1;
+                        if (this.tic > 125)
+                        {
+                            //spawn fae young then delete this spell
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Fae", false, "Fae Young"));
+                            magicList.splice(magicList.indexOf(this), 1);
+                        }
+                        else
+                        {
+                            if (timeOfDay != "Day" || player.underground == true)
+                            {
+                                lights.push({X: this.orders.X, Y: this.orders.Y, size: 290, extraStops: true, GRD: 0.25, Alpha: 0.2, showMe: false});
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (this.spellType == "firestorm")
+            {
+                this.fire = true;
+
+                if (caster == true)
+                {
+                    this.X = X + Math.cos(this.toc) * this.spiralDist;
+                    this.Y = Y + Math.sin(this.toc) * this.spiralDist;
+                }
+                else
+                {
+                    this.X = this.castor.X + Math.cos(this.toc) * this.spiralDist;
+                    this.Y = this.castor.Y + Math.sin(this.toc) * this.spiralDist;
+                }
+
+                this.toc += this.flowerstormSpeed * (TTD / 16.75);
+
+                this.spin += 0.02;
+
+                this.contactDamage(false, 81, ((Math.random() * 10 + 10) + 0.35 * this.cnx) / 5, 100,  "fire", "none");
+                this.flashAnimate(90, this.spin, this.fade, [{image: polypol, imgX: 1691, imgY: 184, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 9.25, adjY: -1 / 2 * 23 * 9.25, width: 24 * 9.25, height: 23 * 9.25}, {image: polypol, imgX: 1721, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 9.25, adjY: -1 / 2 * 23 * 9.25, width: 24 * 9.25, height: 23 * 9.25}, {image: polypol, imgX: 1750, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 9.25, adjY: -1 / 2 * 23 * 9.25, width: 24 * 9.25, height: 23 * 9.25}, {image: polypol, imgX: 1783, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 9.25, adjY: -1 / 2 * 23 * 9.25, width: 24 * 9.25, height: 23 * 9.25}]);
+                if (timeOfDay != "Day" || player.underground == true)
+                {
+                    lights.push({X: this.X, Y: this.Y, size: 90, extraStops: true, GRD: 0.2, Alpha: 0.5, showMe: false});
+                }
+
+                this.spellTimer(29, true);
+                if (this.alert == true)
+                {
+                    this.fade -= 0.02;
+                    if (this.fade < 0.04)
+                    {
+                        magicList.splice(magicList.indexOf(this), 1);
+                    }
                 }
             }
 

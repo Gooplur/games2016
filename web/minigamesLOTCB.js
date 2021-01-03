@@ -55,6 +55,7 @@ function Minigame(type, wager, AI)
     this.knight = 3;
     this.queen = 9;
     this.king = 1000;
+    this.inquisitor = 4;
     this.doubleSquare = {X: -10, Y:-10};
     this.doubledSquare = false;
     this.kingsMov = []; //tracks how many moves the king has available.
@@ -62,7 +63,8 @@ function Minigame(type, wager, AI)
     this.mate = false; //Has the player lost
     this.aiCheck = false; //Is the AI king checked?
     this.aiMate = false; //has the AI lost?
-
+    this.chessType = 1; //0 is default, 1 is with special pieces
+    this.aiTurn = false;
 
     var self = this;
     this.shuffle = function(restart, joker)
@@ -172,10 +174,12 @@ function Minigame(type, wager, AI)
         if (Math.round(Math.random()))
         {
             this.col = true; //white
+            this.turn = true;
         }
         else
         {
             this.col = false; //black
+            this.turn = false;
         }
 
         //define the chess squares
@@ -185,35 +189,35 @@ function Minigame(type, wager, AI)
             {
                 if (kla == 0)
                 {
-                    minigame.ajedrez.push({square:"A" + (kli + 1), X: (kla + 1), Y: (kli + 1), material: "none", value: 0});
+                    minigame.ajedrez.push({square:"A" + (kli + 1), X: (kla + 1), Y: (kli + 1), material: "none", value: 0, moved: false});
                 }
                 else if (kla == 1)
                 {
-                    minigame.ajedrez.push({square:"B" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0});
+                    minigame.ajedrez.push({square:"B" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0, moved: false});
                 }
                 else if (kla == 2)
                 {
-                    minigame.ajedrez.push({square:"C" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0});
+                    minigame.ajedrez.push({square:"C" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0, moved: false});
                 }
                 else if (kla == 3)
                 {
-                    minigame.ajedrez.push({square:"D" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0});
+                    minigame.ajedrez.push({square:"D" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0, moved: false});
                 }
                 else if (kla == 4)
                 {
-                    minigame.ajedrez.push({square:"E" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0});
+                    minigame.ajedrez.push({square:"E" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0, moved: false});
                 }
                 else if (kla == 5)
                 {
-                    minigame.ajedrez.push({square:"F" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0});
+                    minigame.ajedrez.push({square:"F" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0, moved: false});
                 }
                 else if (kla == 6)
                 {
-                    minigame.ajedrez.push({square:"G" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0});
+                    minigame.ajedrez.push({square:"G" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0, moved: false});
                 }
                 else if (kla == 7)
                 {
-                    minigame.ajedrez.push({square:"H" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0});
+                    minigame.ajedrez.push({square:"H" + (kli + 1), X: (kla + 1), Y: (kli + 1) , material: "none", value: 0, moved: false});
                 }
             }
         }
@@ -222,15 +226,42 @@ function Minigame(type, wager, AI)
         for (var kli = 0; kli < minigame.ajedrez.length; kli++)
         {
             //set up pawns
-            if (minigame.ajedrez[kli].Y == 7)
+            if (this.chessType == 0)
             {
-                minigame.ajedrez[kli].material = "bPawn";
-                minigame.ajedrez[kli].value = minigame.pawn;
+                if (minigame.ajedrez[kli].Y == 7)
+                {
+                    minigame.ajedrez[kli].material = "bPawn";
+                    minigame.ajedrez[kli].value = minigame.pawn;
+                }
+                else if (minigame.ajedrez[kli].Y == 2)
+                {
+                    minigame.ajedrez[kli].material = "wPawn";
+                    minigame.ajedrez[kli].value = minigame.pawn;
+                }
             }
-            else if (minigame.ajedrez[kli].Y == 2)
+            else if (this.chessType == 1)
             {
-                minigame.ajedrez[kli].material = "wPawn";
-                minigame.ajedrez[kli].value = minigame.pawn;
+                if (minigame.ajedrez[kli].Y == 7 && minigame.ajedrez[kli].X != 2 && minigame.ajedrez[kli].X != 7)
+                {
+                    minigame.ajedrez[kli].material = "bPawn";
+                    minigame.ajedrez[kli].value = minigame.pawn;
+                }
+                else if (minigame.ajedrez[kli].Y == 2 && minigame.ajedrez[kli].X != 2 && minigame.ajedrez[kli].X != 7)
+                {
+                    minigame.ajedrez[kli].material = "wPawn";
+                    minigame.ajedrez[kli].value = minigame.pawn;
+                }
+
+                if (minigame.ajedrez[kli].X == 2 && minigame.ajedrez[kli].Y == 2 || minigame.ajedrez[kli].X == 7 && minigame.ajedrez[kli].Y == 2)
+                {
+                    minigame.ajedrez[kli].material = "wInquisitor";
+                    minigame.ajedrez[kli].value = minigame.inquisitor;
+                }
+                if (minigame.ajedrez[kli].X == 2 && minigame.ajedrez[kli].Y == 7 || minigame.ajedrez[kli].X == 7 && minigame.ajedrez[kli].Y == 7)
+                {
+                    minigame.ajedrez[kli].material = "bInquisitor";
+                    minigame.ajedrez[kli].value = minigame.inquisitor;
+                }
             }
 
             if (minigame.ajedrez[kli].Y == 1)
@@ -292,15 +323,42 @@ function Minigame(type, wager, AI)
         }
     };
 
-    this.pawnMove = function(moveX, moveY, board, double)
+    this.pawnMove = function(moveX, moveY, board, double, color)
     {
         var canMove = true;
         for (var kli = 0; kli < board.length; kli++)
         {
-            if (board[kli].X == moveX && board[kli].Y == moveY && board[kli].material != "none")
+            if (double == true)
             {
-                canMove = false;
-                break;
+                if (board[kli].X == moveX && board[kli].Y == moveY && board[kli].material != "none")
+                {
+                    canMove = false;
+                    break;
+                }
+                if (color == true)
+                {
+                    if (board[kli].X == moveX && board[kli].Y == moveY - 1 && board[kli].material != "none")
+                    {
+                        canMove = false;
+                        break;
+                    }
+                }
+                else
+                {
+                    if (board[kli].X == moveX && board[kli].Y == moveY + 1 && board[kli].material != "none")
+                    {
+                        canMove = false;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                if (board[kli].X == moveX && board[kli].Y == moveY && board[kli].material != "none")
+                {
+                    canMove = false;
+                    break;
+                }
             }
         }
         if (canMove == true)
@@ -314,8 +372,12 @@ function Minigame(type, wager, AI)
                 if (double == true)
                 {
                     minigame.doubledSquare = {X: moveX, Y: moveY};
+                    minigame.chsMov.push({X: moveX, Y: moveY, value: 0, extra: -1});
                 }
-                minigame.chsMov.push({X: moveX, Y: moveY, value: 0, extra: -1});
+                else
+                {
+                    minigame.chsMov.push({X: moveX, Y: moveY, value: 0, extra: -1});
+                }
             }
         }
     };
@@ -332,7 +394,7 @@ function Minigame(type, wager, AI)
         }
     };
 
-    this.takeMove = function(moveX, moveY, color, board)
+    this.takeMove = function(moveX, moveY, color, board, castle)
     {
         var canMove = true;
         for (var kli = 0; kli < board.length; kli++)
@@ -346,18 +408,113 @@ function Minigame(type, wager, AI)
         }
         if (canMove == true)
         {
-            minigame.chsMov.push({X: moveX, Y: moveY, value: 0, extra: -1});
+            if (typeof(castle) != "undefined")
+            {
+                minigame.chsMov.push({X: moveX, Y: moveY, value: 0, extra: -1, castle});
+            }
+            else
+            {
+                minigame.chsMov.push({X: moveX, Y: moveY, value: 0, extra: -1});
+            }
         }
     };
 
-    this.playChessMove = function(klo, kla, kli)
+    this.aiPlayChess = function()
     {
+        minigame.aiTurn = true;
+
+    }
+
+    this.playChessMove = function(klo, bord)
+    {
+        if (typeof(minigame.myMoves[klo].castle) != "undefined" && minigame.myMoves[klo].castle == "kingside" || typeof(minigame.myMoves[klo].castle) != "undefined" && minigame.myMoves[klo].castle == "queenside")
+        {
+            if (minigame.myMoves[klo].castle == "kingside")
+            {
+                if (minigame.col == true)
+                {
+                    for (var kliii = 0; kliii < bord.length; kliii++)
+                    {
+                        if (bord[kliii].square == "F1")
+                        {
+                            bord[kliii].moved = true;
+                            bord[kliii].material = "wRook";
+                            bord[kliii].value = minigame.rook;
+                        }
+                        if (bord[kliii].square == "H1")
+                        {
+                            bord[kliii].moved = false;
+                            bord[kliii].material = "none";
+                            bord[kliii].value = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    for (var kliii = 0; kliii < bord.length; kliii++)
+                    {
+                        if (bord[kliii].square == "F8")
+                        {
+                            bord[kliii].moved = true;
+                            bord[kliii].material = "bRook";
+                            bord[kliii].value = minigame.rook;
+                        }
+                        if (bord[kliii].square == "H8")
+                        {
+                            bord[kliii].moved = false;
+                            bord[kliii].material = "none";
+                            bord[kliii].value = 0;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (minigame.col == true)
+                {
+                    for (var kliii = 0; kliii < bord.length; kliii++)
+                    {
+                        if (bord[kliii].square == "D1")
+                        {
+                            bord[kliii].moved = true;
+                            bord[kliii].material = "wRook";
+                            bord[kliii].value = minigame.rook;
+                        }
+                        if (bord[kliii].square == "A1")
+                        {
+                            bord[kliii].moved = false;
+                            bord[kliii].material = "none";
+                            bord[kliii].value = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    for (var kliii = 0; kliii < bord.length; kliii++)
+                    {
+                        if (bord[kliii].square == "D8")
+                        {
+                            bord[kliii].moved = true;
+                            bord[kliii].material = "bRook";
+                            bord[kliii].value = minigame.rook;
+                        }
+                        if (bord[kliii].square == "A8")
+                        {
+                            bord[kliii].moved = false;
+                            bord[kliii].material = "none";
+                            bord[kliii].value = 0;
+                        }
+                    }
+                }
+            }
+        }
         if (minigame.chessSelect.material.includes("Pawn"))
         {
-            if (minigame.myMoves[klo].extra != -1 && minigame.ajedrez[kla + 8 * kli].X == minigame.myMoves[klo].X && minigame.ajedrez[kla + 8 * kli].Y == minigame.myMoves[klo].Y)
+            if (minigame.myMoves[klo].extra != -1 && bord[kla + 8 * kli].X == minigame.myMoves[klo].X && bord[kla + 8 * kli].Y == minigame.myMoves[klo].Y)
             {
                 minigame.myMoves[klo].extra.material = "none";
-                minigame.myMoves[klo].extra.value = "none";
+                minigame.myMoves[klo].extra.value = 0;
+                minigame.myMoves[klo].extra.moved = false;
             }
             if (minigame.doubledSquare != false)
             {
@@ -369,36 +526,66 @@ function Minigame(type, wager, AI)
                 minigame.doubleSquare = {X: -10, Y: -10};
             }
         }
-        minigame.ajedrez[kla + 8 * kli].value = minigame.chessSelect.value;
-        minigame.ajedrez[kla + 8 * kli].material = minigame.chessSelect.material;
+
+        var chessMvPos = -1;
+        for (var eekaboo = 0; eekaboo < bord.length; eekaboo++)
+        {
+            if (bord[eekaboo].X == minigame.myMoves[klo].X && bord[eekaboo].Y == minigame.myMoves[klo].Y)
+            {
+                chessMvPos = eekaboo;
+            }
+        }
+        bord[chessMvPos].value = minigame.chessSelect.value;
+        bord[chessMvPos].material = minigame.chessSelect.material;
+        bord[chessMvPos].moved = true;
+        minigame.chessSelect.moved = false;
         minigame.chessSelect.material = "none";
         minigame.chessSelect.value = 0;
         minigame.chessSelect = -1;
         minigame.myMoves = [];
 
-        for (var pn = 0; pn < minigame.ajedrez.length; pn++)
+        for (var pn = 0; pn < bord.length; pn++)
         {
-            if (minigame.ajedrez[pn].material.includes("King") && minigame.ajedrez[pn].material[0] == "w" && minigame.col == true || minigame.ajedrez[pn].material.includes("King") && minigame.ajedrez[pn].material[0] == "b" && minigame.col == false)
+            if (minigame.turn == true)
             {
-                this.checkmate(minigame.ajedrez[pn], minigame.ajedrez);
-                break;
+                if (bord[pn].material.includes("King") && bord[pn].material[0] == "w" && minigame.col == true || bord[pn].material.includes("King") && bord[pn].material[0] == "b" && minigame.col == false)
+                {
+                    this.checkmate(bord[pn], bord);
+                    break;
+                }
+            }
+            else
+            {
+                if (bord[pn].material.includes("King") && bord[pn].material[0] == "b" && minigame.col == true || bord[pn].material.includes("King") && bord[pn].material[0] == "w" && minigame.col == false)
+                {
+                    this.checkmate(bord[pn], bord);
+                    break;
+                }
             }
         }
-        if (minigame.mate == true)
+
+        if (bord == minigame.ajedrez)
         {
-            console.log("checkmate");
-            //todo game over.
+            if (minigame.turn == true && minigame.aiTurn != true && minigame.mate == true)
+            {
+                console.log("checkmate");
+                //todo game over.
+            }
+            else if (minigame.turn == true && minigame.aiTurn != true && minigame.check == true)
+            {
+                console.log("check");
+                minigame.redoBord();
+            }
+            else if (minigame.turn == true && minigame.aiTurn != true)
+            {
+                console.log("normal");
+                minigame.saveBord();
+            }
         }
-        else if (minigame.check == true)
+
+        if (bord != minigame.ajedrez)
         {
-            console.log("check");
-            minigame.redoBord();
-        }
-        else
-        {
-            console.log("normal");
-            minigame.saveBord();
-            minigame.turn = false;
+            //todo what happens when the ai plays on a theoretical board...
         }
     }
 
@@ -535,6 +722,61 @@ function Minigame(type, wager, AI)
         }
     };
 
+    this.isSquareAttacked = function(color, square, bord)
+    {
+        var matCol;
+        if (color == true)
+        {
+            var matCol = "w";
+        }
+        else
+        {
+            var matCol = "b";
+        }
+        var squar = square;
+        minigame.enPassant = -1;
+        minigame.chsMov = [];
+        var isAtked = false;
+
+        for (var klii = 0; klii < bord.length; klii++)
+        {
+            var moovz = [];
+            if (bord[klii].material[0] != matCol && !bord[klii].material.includes("Pawn") && bord[klii].material != "none")
+            {
+                moovz = this.chessMoves(bord[klii], bord, true);
+                for (var kloo = 0; kloo < moovz.length; kloo++)
+                {
+                    if (moovz[kloo].X == squar.X && moovz[kloo].Y == squar.Y)
+                    {
+                        isAtked = true;
+                    }
+                }
+            }
+            else if (bord[klii].material[0] != matCol && bord[klii].material.includes("Pawn")) {
+                minigame.chsMov = [];
+                if (bord[klii].material[0] == "w")
+                {
+                    this.takeMove(bord[klii].X - 1, bord[klii].Y + 1, bord[klii].material[0], bord);
+                    this.takeMove(bord[klii].X + 1, bord[klii].Y + 1, bord[klii].material[0], bord);
+                }
+                else
+                {
+                    this.takeMove(bord[klii].X - 1, bord[klii].Y - 1, bord[klii].material[0], bord);
+                    this.takeMove(bord[klii].X + 1, bord[klii].Y - 1, bord[klii].material[0], bord);
+                }
+                for (var kloo = 0; kloo < minigame.chsMov.length; kloo++)
+                {
+                    if (minigame.chsMov[kloo].X == squar.X && minigame.chsMov[kloo].Y == squar.Y)
+                    {
+                        isAtked = true;
+                    }
+                }
+            }
+        }
+
+        return isAtked;
+    };
+
     this.chessMoves = function(piece, bord, king)
     {
         var matType = piece.material.slice(1);
@@ -548,7 +790,7 @@ function Minigame(type, wager, AI)
                 if (piece.Y == 7)
                 {
                     this.pawnMove(piece.X, piece.Y - 1, bord);
-                    this.pawnMove(piece.X, piece.Y - 2, bord, true);
+                    this.pawnMove(piece.X, piece.Y - 2, bord, true, false);
                 }
                 else
                 {
@@ -585,7 +827,7 @@ function Minigame(type, wager, AI)
                 if (piece.Y == 2)
                 {
                     this.pawnMove(piece.X, piece.Y + 1, bord);
-                    this.pawnMove(piece.X, piece.Y + 2, bord, true);
+                    this.pawnMove(piece.X, piece.Y + 2, bord, true, true);
                 }
                 else
                 {
@@ -848,6 +1090,158 @@ function Minigame(type, wager, AI)
                 }
             }
         }
+        else if (matType == "Inquisitor")
+        {
+            for (var kloo = 0; kloo < 2; kloo++)
+            {
+                var chsBlockup = false;
+                var chsNoGo = false;
+                for (var klo = 0; klo < bord.length; klo++)
+                {
+                    if (king != true && bord[klo].material[0] == matCol && bord[klo].X == piece.X + (kloo + 1) && bord[klo].Y == piece.Y + (kloo + 1))
+                    {
+                        chsNoGo = true;
+                    }
+                    if (bord[klo].material != "none" && bord[klo].material[0] != matCol && bord[klo].X == piece.X + (kloo + 1) && bord[klo].Y == piece.Y + (kloo + 1) && king != true || king == true && !bord[klo].material.includes("King") && bord[klo].material != "none" && bord[klo].X == piece.X + (kloo + 1) && bord[klo].Y == piece.Y + (kloo + 1))
+                    {
+                        chsBlockup = true;
+                    }
+                }
+                if (chsNoGo != true)
+                {
+                    this.takeMove(piece.X + (kloo + 1), piece.Y + (kloo + 1), matCol, bord);
+                }
+                if (chsBlockup == true || chsNoGo == true)
+                {
+                    break;
+                }
+            }
+
+            for (var kloo = 0; kloo < 2; kloo++)
+            {
+                var chsBlockup = false;
+                var chsNoGo = false;
+                for (var klo = 0; klo < bord.length; klo++)
+                {
+                    if (king != true && bord[klo].material[0] == matCol && bord[klo].X == piece.X + (kloo + 1) && bord[klo].Y == piece.Y + ((kloo + 1) * -1))
+                    {
+                        chsNoGo = true;
+                    }
+                    if (bord[klo].material != "none" && bord[klo].material[0] != matCol && bord[klo].X == piece.X + (kloo + 1) && bord[klo].Y == piece.Y + ((kloo + 1) * -1) && king != true || king == true && !bord[klo].material.includes("King") && bord[klo].material != "none" && bord[klo].X == piece.X + (kloo + 1) && bord[klo].Y == piece.Y + ((kloo + 1) * -1))
+                    {
+                        chsBlockup = true;
+                    }
+                }
+                if (chsNoGo != true)
+                {
+                    this.takeMove(piece.X + (kloo + 1), piece.Y + ((kloo + 1) * -1), matCol, bord);
+                }
+                if (chsBlockup == true || chsNoGo == true)
+                {
+                    break;
+                }
+            }
+
+            for (var kloo = 0; kloo < 2; kloo++)
+            {
+                var chsBlockup = false;
+                var chsNoGo = false;
+                for (var klo = 0; klo < bord.length; klo++)
+                {
+                    if (king != true && bord[klo].material[0] == matCol && bord[klo].X == piece.X + ((kloo + 1) * -1) && bord[klo].Y == piece.Y + (kloo + 1))
+                    {
+                        chsNoGo = true;
+                    }
+                    if (bord[klo].material != "none" && bord[klo].material[0] != matCol && bord[klo].X == piece.X + ((kloo + 1) * -1) && bord[klo].Y == piece.Y + (kloo + 1) && king != true || king == true && !bord[klo].material.includes("King") && bord[klo].material != "none" && bord[klo].X == piece.X + ((kloo + 1) * -1) && bord[klo].Y == piece.Y + (kloo + 1))
+                    {
+                        chsBlockup = true;
+                    }
+                }
+                if (chsNoGo != true)
+                {
+                    this.takeMove(piece.X + ((kloo + 1) * -1), piece.Y + (kloo + 1), matCol, bord);
+                }
+                if (chsBlockup == true || chsNoGo == true)
+                {
+                    break;
+                }
+            }
+
+            for (var kloo = 0; kloo < 2; kloo++)
+            {
+                var chsBlockup = false;
+                var chsNoGo = false;
+                for (var klo = 0; klo < bord.length; klo++)
+                {
+                    if (king != true && bord[klo].material[0] == matCol && bord[klo].X == piece.X + ((kloo + 1) * -1) && bord[klo].Y == piece.Y + ((kloo + 1) * -1))
+                    {
+                        chsNoGo = true;
+                    }
+                    if (bord[klo].material != "none" && bord[klo].material[0] != matCol && bord[klo].X == piece.X + ((kloo + 1) * -1) && bord[klo].Y == piece.Y + ((kloo + 1) * -1) && king != true || king == true && !bord[klo].material.includes("King") && bord[klo].material != "none" && bord[klo].X == piece.X + ((kloo + 1) * -1) && bord[klo].Y == piece.Y + ((kloo + 1) * -1))
+                    {
+                        chsBlockup = true;
+                    }
+                }
+                if (chsNoGo != true)
+                {
+                    this.takeMove(piece.X + ((kloo + 1) * -1), piece.Y + ((kloo + 1) * -1), matCol, bord);
+                }
+                if (chsBlockup == true || chsNoGo == true)
+                {
+                    break;
+                }
+            }
+
+            for (var kloo = 0; kloo < 3; kloo++)
+            {
+                var chsBlockup = false;
+                var chsNoGo = false;
+                for (var klo = 0; klo < bord.length; klo++)
+                {
+                    if (king != true && bord[klo].material[0] == matCol && bord[klo].X == piece.X && bord[klo].Y == piece.Y + (kloo + 1))
+                    {
+                        chsNoGo = true;
+                    }
+                    if (bord[klo].material != "none" && bord[klo].material[0] != matCol && bord[klo].X == piece.X && bord[klo].Y == piece.Y + (kloo + 1) && king != true || king == true && !bord[klo].material.includes("King") && bord[klo].material != "none" && bord[klo].X == piece.X && bord[klo].Y == piece.Y + (kloo + 1))
+                    {
+                        chsBlockup = true;
+                    }
+                }
+                if (chsNoGo != true)
+                {
+                    this.takeMove(piece.X, piece.Y + (kloo + 1), matCol, bord);
+                }
+                if (chsBlockup == true || chsNoGo == true)
+                {
+                    break;
+                }
+            }
+
+            for (var kloo = 0; kloo < 3; kloo++)
+            {
+                var chsBlockup = false;
+                var chsNoGo = false;
+                for (var klo = 0; klo < bord.length; klo++)
+                {
+                    if (king != true && bord[klo].material[0] == matCol && bord[klo].X == piece.X && bord[klo].Y == piece.Y + ((kloo + 1) * -1))
+                    {
+                        chsNoGo = true;
+                    }
+                    if (bord[klo].material != "none" && bord[klo].material[0] != matCol && bord[klo].X == piece.X && bord[klo].Y == piece.Y + ((kloo + 1) * -1) && king != true || king == true && !bord[klo].material.includes("King") && bord[klo].material != "none" && bord[klo].X == piece.X && bord[klo].Y == piece.Y + ((kloo + 1) * -1))
+                    {
+                        chsBlockup = true;
+                    }
+                }
+                if (chsNoGo != true)
+                {
+                    this.takeMove(piece.X, piece.Y + ((kloo + 1) * -1), matCol, bord);
+                }
+                if (chsBlockup == true || chsNoGo == true)
+                {
+                    break;
+                }
+            }
+        }
         else if (matType == "Queen")
         {
             for (var kloo = 0; kloo < 8; kloo++)
@@ -1052,6 +1446,193 @@ function Minigame(type, wager, AI)
         }
         else if (matType == "King")
         {
+            //castling
+            var kingEligible = false;
+            var queensideRook = false;
+            var kingsideRook = false;
+            var queensideClear = false;
+            var kingsideClear = false;
+            if (king != true)
+            {
+                if (minigame.col == true && minigame.turn == true || minigame.col == false && minigame.turn == false)
+                {
+                    //is the king elegible to castle based on having moved already or not
+                    for (var klo = 0; klo < bord.length; klo++)
+                    {
+                        if (bord[klo].material == "wKing" && bord[klo].moved != true)
+                        {
+                            kingEligible = true;
+                            break;
+                        }
+                    }
+
+                    //if so, then is it eligible based on whether or not the rook in question has moved
+                    if (kingEligible == true)
+                    {
+                        for (var klo = 0; klo < bord.length; klo++)
+                        {
+                            if (bord[klo].square == "H1" && bord[klo].material == "wRook" && bord[klo].moved != true)
+                            {
+                                kingsideRook = true;
+                            }
+                            else if (bord[klo].square == "A1" && bord[klo].material == "wRook" && bord[klo].moved != true)
+                            {
+                                queensideRook = true;
+                            }
+                        }
+                    }
+
+                    if (kingsideRook == true)
+                    {
+                        var hitsos = 0;
+                        for (var klo = 0; klo < bord.length; klo++)
+                        {
+                            if (bord[klo].square == "G1" && bord[klo].material == "none" && this.isSquareAttacked(true, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                            else if (bord[klo].square == "F1" && bord[klo].material == "none" && this.isSquareAttacked(true, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                            else if (bord[klo].square == "E1" && this.isSquareAttacked(true, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                        }
+                        if (hitsos >= 3)
+                        {
+                            kingsideClear = true;
+                        }
+                    }
+                    if (queensideRook == true)
+                    {
+                        var hitsos = 0;
+                        for (var klo = 0; klo < bord.length; klo++)
+                        {
+                            if (bord[klo].square == "B1" && bord[klo].material == "none" && this.isSquareAttacked(true, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                            else if (bord[klo].square == "C1" && bord[klo].material == "none" && this.isSquareAttacked(true, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                            else if (bord[klo].square == "D1" && bord[klo].material == "none" && this.isSquareAttacked(true, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                            else if (bord[klo].square == "E1" && this.isSquareAttacked(true, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                        }
+                        if (hitsos >= 4)
+                        {
+                            queensideClear = true;
+                        }
+                    }
+
+                    if (kingsideClear)
+                    {
+                        this.takeMove(piece.X + 2, piece.Y, matCol, bord, "kingside");
+                    }
+                    if (queensideClear)
+                    {
+                        this.takeMove(piece.X - 2, piece.Y, matCol, bord, "queenside");
+                    }
+                }
+                else if (minigame.col == false && minigame.turn == true || minigame.col == true && minigame.turn == false)
+                {
+                    //is the king elegible to castle based on having moved already or not
+                    for (var klo = 0; klo < bord.length; klo++)
+                    {
+                        if (bord[klo].material == "bKing" && bord[klo].moved != true)
+                        {
+                            kingEligible = true;
+                            break;
+                        }
+                    }
+
+                    //if so, then is it eligible based on whether or not the rook in question has moved
+                    if (kingEligible == true)
+                    {
+                        for (var klo = 0; klo < bord.length; klo++)
+                        {
+                            if (bord[klo].square == "H8" && bord[klo].material == "bRook" && bord[klo].moved != true)
+                            {
+                                kingsideRook = true;
+                            }
+                            else if (bord[klo].square == "A8" && bord[klo].material == "bRook" && bord[klo].moved != true)
+                            {
+                                queensideRook = true;
+                            }
+                        }
+                    }
+
+                    if (kingsideRook == true)
+                    {
+                        var hitsos = 0;
+                        for (var klo = 0; klo < bord.length; klo++)
+                        {
+                            if (bord[klo].square == "G8" && bord[klo].material == "none" && this.isSquareAttacked(false, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                            else if (bord[klo].square == "F8" && bord[klo].material == "none" && this.isSquareAttacked(false, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                            else if (bord[klo].square == "E8" && this.isSquareAttacked(false, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                        }
+                        if (hitsos >= 3)
+                        {
+                            kingsideClear = true;
+                        }
+                    }
+                    if (queensideRook == true)
+                    {
+                        var hitsos = 0;
+                        for (var klo = 0; klo < bord.length; klo++)
+                        {
+                            if (bord[klo].square == "B8" && bord[klo].material == "none" && this.isSquareAttacked(false, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                            else if (bord[klo].square == "C8" && bord[klo].material == "none" && this.isSquareAttacked(false, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                            else if (bord[klo].square == "D8" && bord[klo].material == "none" && this.isSquareAttacked(false, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                            else if (bord[klo].square == "E8" && this.isSquareAttacked(false, bord[klo], bord) != true)
+                            {
+                                hitsos += 1;
+                            }
+                        }
+                        if (hitsos >= 4)
+                        {
+                            queensideClear = true;
+                        }
+                    }
+
+                    if (kingsideClear)
+                    {
+                        this.takeMove(piece.X + 2, piece.Y, matCol, bord, "kingside");
+                    }
+                    if (queensideClear)
+                    {
+                        this.takeMove(piece.X - 2, piece.Y, matCol, bord, "queenside");
+                    }
+                }
+            }
+
+
             for (var kloo = 0; kloo < 1; kloo++)
             {
                 var chsBlockup = false;
@@ -1328,6 +1909,10 @@ function Minigame(type, wager, AI)
             {
                 XXX.save();
                 XXX.translate(x, y);
+                if (minigame.col == true)
+                {
+                    XXX.rotate(Math.PI)
+                }
                 XXX.drawImage(ches, 325, 262, 36, 33, -1/2 * 36 * minigame.chessScale, -1/2 * 33 * minigame.chessScale, 36 * minigame.chessScale * 1.15, 33 * minigame.chessScale * 1.15);
                 XXX.restore();
             }
@@ -1335,6 +1920,10 @@ function Minigame(type, wager, AI)
             {
                 XXX.save();
                 XXX.translate(x, y);
+                if (minigame.col == true)
+                {
+                    XXX.rotate(Math.PI)
+                }
                 XXX.drawImage(ches, 311, 98, 36, 33, -1/2 * 36 * minigame.chessScale, -1/2 * 33 * minigame.chessScale, 36 * minigame.chessScale * 1.15, 33 * minigame.chessScale * 1.15);
                 XXX.restore();
             }
@@ -1407,6 +1996,23 @@ function Minigame(type, wager, AI)
                 XXX.restore();
             }
         }
+        else if (matType == "bInquisitor")
+        {
+            if (bw)
+            {
+                XXX.save();
+                XXX.translate(x, y);
+                XXX.drawImage(ches, 370, 260, 39, 38, -1/2 * 39 * minigame.chessScale, -1/2 * 38 * minigame.chessScale, 39 * minigame.chessScale * 1.15, 38 * minigame.chessScale * 1.15);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(x, y);
+                XXX.drawImage(ches, 356, 95, 39, 38, -1/2 * 39 * minigame.chessScale, -1/2 * 38 * minigame.chessScale, 39 * minigame.chessScale * 1.15, 38 * minigame.chessScale * 1.15);
+                XXX.restore();
+            }
+        }
         else if (matType == "wPawn")
         {
             if (bw)
@@ -1430,6 +2036,10 @@ function Minigame(type, wager, AI)
             {
                 XXX.save();
                 XXX.translate(x, y);
+                if (minigame.col == false)
+                {
+                    XXX.rotate(Math.PI)
+                }
                 XXX.drawImage(ches, 324, 201, 36, 33, -1/2 * 36 * minigame.chessScale, -1/2 * 33 * minigame.chessScale, 36 * minigame.chessScale * 1.15, 33 * minigame.chessScale * 1.15);
                 XXX.restore();
             }
@@ -1437,6 +2047,10 @@ function Minigame(type, wager, AI)
             {
                 XXX.save();
                 XXX.translate(x, y);
+                if (minigame.col == false)
+                {
+                    XXX.rotate(Math.PI)
+                }
                 XXX.drawImage(ches, 311, 24, 36, 33, -1/2 * 36 * minigame.chessScale, -1/2 * 33 * minigame.chessScale, 36 * minigame.chessScale * 1.15, 33 * minigame.chessScale * 1.15);
                 XXX.restore();
             }
@@ -1506,6 +2120,23 @@ function Minigame(type, wager, AI)
                 XXX.save();
                 XXX.translate(x, y);
                 XXX.drawImage(ches, 137, 22, 45, 41, -1/2 * 45 * minigame.chessScale, -1/2 * 41 * minigame.chessScale, 45 * minigame.chessScale * 1.1, 41 * minigame.chessScale * 1.1);
+                XXX.restore();
+            }
+        }
+        else if (matType == "wInquisitor")
+        {
+            if (bw)
+            {
+                XXX.save();
+                XXX.translate(x, y);
+                XXX.drawImage(ches, 369, 199, 39, 38, -1/2 * 39 * minigame.chessScale, -1/2 * 38 * minigame.chessScale, 39 * minigame.chessScale * 1.15, 38 * minigame.chessScale * 1.15);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(x, y);
+                XXX.drawImage(ches, 356, 21, 39, 38, -1/2 * 39 * minigame.chessScale, -1/2 * 38 * minigame.chessScale, 39 * minigame.chessScale * 1.15, 38 * minigame.chessScale * 1.15);
                 XXX.restore();
             }
         }
@@ -4995,15 +5626,21 @@ function chess()
     XXX.drawImage(borda, 0, 0, 847, 882, 400, 0, 847 * 0.8, 882 * 0.8);
     LXX.drawImage(borda, -60, 0, 1500, 140);
     //console.log(minigame.ajedrez);
-    minigame.turn = true; //test
-    minigame.col = true; //test
-    if (escapeKey == true)
+    //minigame.turn = true; //test
+    // minigame.col = true; //test
+
+    if (minigame.turn != true || minigame.aiTurn == true)
+    {
+        minigame.aiPlayChess();
+    }
+
+    if (escapeKey == true && minigame.turn == true && minigame.aiTurn != true)
     {
         minigame.chessSelect = -1;
         minigame.myMoves = [];
     }
 
-    if (minigame.turn == true)
+    if (minigame.turn == true && minigame.aiTurn != true)
     {
         if (minigame.chessSelect != -1)
         {
@@ -5018,7 +5655,7 @@ function chess()
         {
             for (var kli = 0; kli < 8; kli++)
             {
-                if (mouseX >= (minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseX < (minigame.ajedrez[kla + 8 * kli].X) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseY >= (9 - minigame.ajedrez[kla + 8 * kli].Y - 1) * minigame.chessScale * 80 * 0.825 + 15 && mouseY < (9 - minigame.ajedrez[kla + 8 * kli].Y) * minigame.chessScale * 80 * 0.825 + 15 && minigame.turn == true)
+                if (mouseX >= (minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseX < (minigame.ajedrez[kla + 8 * kli].X) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseY >= (9 - minigame.ajedrez[kla + 8 * kli].Y - 1) * minigame.chessScale * 80 * 0.825 + 15 && mouseY < (9 - minigame.ajedrez[kla + 8 * kli].Y) * minigame.chessScale * 80 * 0.825 + 15 && minigame.turn == true && minigame.aiTurn != true)
                 {
                     if (clicked == true)
                     {
@@ -5035,7 +5672,7 @@ function chess()
                         }
                     }
                     //minigame.ajedrez[kla * (kli + 1)].
-                    if (minigame.chessSelect == -1)
+                    if (minigame.chessSelect == -1 && minigame.turn == true && minigame.aiTurn != true)
                     {
                         if (minigame.ajedrez[kla + 8 * kli].material != "none" && minigame.ajedrez[kla + 8 * kli].material[0] == "w")
                         {
@@ -5069,7 +5706,7 @@ function chess()
 
                 for (var klo = 0; klo < minigame.myMoves.length; klo++)
                 {
-                    if (player.getIntelligence() >= 15)
+                    if (player.getIntelligence() >= 15 && minigame.turn == true && minigame.aiTurn != true)
                     {
                         if (minigame.ajedrez[kla + 8 * kli].X == minigame.myMoves[klo].X && minigame.ajedrez[kla + 8 * kli].Y == minigame.myMoves[klo].Y)
                         {
@@ -5082,14 +5719,14 @@ function chess()
                         }
                     }
 
-                    if (minigame.ajedrez[kla + 8 * kli].X == minigame.myMoves[klo].X && minigame.ajedrez[kla + 8 * kli].Y == minigame.myMoves[klo].Y)
+                    if (minigame.ajedrez[kla + 8 * kli].X == minigame.myMoves[klo].X && minigame.ajedrez[kla + 8 * kli].Y == minigame.myMoves[klo].Y && minigame.turn == true && minigame.aiTurn != true)
                     {
-                        if (mouseX >= (minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseX < (minigame.ajedrez[kla + 8 * kli].X) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseY >= (9 - minigame.ajedrez[kla + 8 * kli].Y - 1) * minigame.chessScale * 80 * 0.825 + 15 && mouseY < (9 - minigame.ajedrez[kla + 8 * kli].Y) * minigame.chessScale * 80 * 0.825 + 15 && minigame.turn == true)
+                        if (mouseX >= (minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseX < (minigame.ajedrez[kla + 8 * kli].X) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseY >= (9 - minigame.ajedrez[kla + 8 * kli].Y - 1) * minigame.chessScale * 80 * 0.825 + 15 && mouseY < (9 - minigame.ajedrez[kla + 8 * kli].Y) * minigame.chessScale * 80 * 0.825 + 15 && minigame.turn == true && minigame.aiTurn != true)
                         {
                             if (clicked == true)
                             {
                                 clicked = false;
-                                minigame.playChessMove(klo, kla, kli);
+                                minigame.playChessMove(klo, minigame.ajedrez);
                             }
                         }
                     }
@@ -5097,7 +5734,7 @@ function chess()
 
                 minigame.drawChess(minigame.ajedrez[kla + 8 * kli], (minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 + 1/2 * 80 * 0.8 * minigame.chessScale, (9 - minigame.ajedrez[kla + 8 * kli].Y - 1) * minigame.chessScale * 80 * 0.825 + 15 + 1/2 * 80 * 0.8 * minigame.chessScale, minigame.blackwhite);
 
-                if (mouseX >= (minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseX < (minigame.ajedrez[kla + 8 * kli].X) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseY >= (9 - minigame.ajedrez[kla + 8 * kli].Y - 1) * minigame.chessScale * 80 * 0.825 + 15 && mouseY < (9 - minigame.ajedrez[kla + 8 * kli].Y) * minigame.chessScale * 80 * 0.825 + 15 && minigame.turn == true && player.getIntelligence() >= 5)
+                if (mouseX >= (minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseX < (minigame.ajedrez[kla + 8 * kli].X) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseY >= (9 - minigame.ajedrez[kla + 8 * kli].Y - 1) * minigame.chessScale * 80 * 0.825 + 15 && mouseY < (9 - minigame.ajedrez[kla + 8 * kli].Y) * minigame.chessScale * 80 * 0.825 + 15 && minigame.turn == true && minigame.aiTurn != true && player.getIntelligence() >= 5)
                 {
                     if (minigame.ajedrez[kla + 8 * kli].material != "none" && minigame.ajedrez[kla + 8 * kli].material[0] == "b" && minigame.blackwhite == true)
                     {
@@ -5125,7 +5762,7 @@ function chess()
         {
             for (var kli = 0; kli < 8; kli++)
             {
-                if (mouseX >= (9 - minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseX < (9 - minigame.ajedrez[kla + 8 * kli].X) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseY >= (minigame.ajedrez[kla + 8 * kli].Y -1) * minigame.chessScale * 80 * 0.825 + 15 && mouseY < (minigame.ajedrez[kla + 8 * kli].Y) * minigame.chessScale * 80 * 0.825 + 15 && minigame.turn == true)
+                if (mouseX >= (9 - minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseX < (9 - minigame.ajedrez[kla + 8 * kli].X) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseY >= (minigame.ajedrez[kla + 8 * kli].Y -1) * minigame.chessScale * 80 * 0.825 + 15 && mouseY < (minigame.ajedrez[kla + 8 * kli].Y) * minigame.chessScale * 80 * 0.825 + 15 && minigame.turn == true && minigame.aiTurn != true)
                 {
                     if (clicked == true)
                     {
@@ -5142,7 +5779,7 @@ function chess()
                         }
                     }
                     //minigame.ajedrez[kla * (kli + 1)].
-                    if (minigame.chessSelect == -1)
+                    if (minigame.chessSelect == -1 && minigame.turn == true && minigame.aiTurn != true)
                     {
                         if (minigame.ajedrez[kla + 8 * kli].material != "none" && minigame.ajedrez[kla + 8 * kli].material[0] == "b")
                         {
@@ -5178,7 +5815,7 @@ function chess()
                 {
                     if (player.getIntelligence() >= 15)
                     {
-                        if (minigame.ajedrez[kla + 8 * kli].X == minigame.myMoves[klo].X && minigame.ajedrez[kla + 8 * kli].Y == minigame.myMoves[klo].Y)
+                        if (minigame.ajedrez[kla + 8 * kli].X == minigame.myMoves[klo].X && minigame.ajedrez[kla + 8 * kli].Y == minigame.myMoves[klo].Y && minigame.turn == true && minigame.aiTurn != true)
                         {
                             XXX.save();
                             XXX.globalAlpha = 0.5;
@@ -5189,14 +5826,14 @@ function chess()
                         }
                     }
 
-                    if (minigame.ajedrez[kla + 8 * kli].X == minigame.myMoves[klo].X && minigame.ajedrez[kla + 8 * kli].Y == minigame.myMoves[klo].Y)
+                    if (minigame.ajedrez[kla + 8 * kli].X == minigame.myMoves[klo].X && minigame.ajedrez[kla + 8 * kli].Y == minigame.myMoves[klo].Y && minigame.turn == true && minigame.aiTurn != true)
                     {
                         if (mouseX >= (9 - minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseX < (9 - minigame.ajedrez[kla + 8 * kli].X) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseY >= (minigame.ajedrez[kla + 8 * kli].Y -1) * minigame.chessScale * 80 * 0.825 + 15 && mouseY < (minigame.ajedrez[kla + 8 * kli].Y) * minigame.chessScale * 80 * 0.825 + 15 && minigame.turn == true)
                         {
                             if (clicked == true)
                             {
                                 clicked = false;
-                                minigame.playChessMove(klo, kla, kli);
+                                minigame.playChessMove(klo, kla, kli, minigame.ajedrez);
                             }
                         }
                     }
@@ -5204,7 +5841,7 @@ function chess()
 
                 minigame.drawChess(minigame.ajedrez[kla + 8 * kli], (9 - minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 + 1/2 * 80 * 0.8 * minigame.chessScale, (minigame.ajedrez[kla + 8 * kli].Y -1) * minigame.chessScale * 80 * 0.825 + 15 + 1/2 * 80 * 0.8 * minigame.chessScale, minigame.blackwhite);
 
-                if (mouseX >= (9 - minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseX < (9 - minigame.ajedrez[kla + 8 * kli].X) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseY >= (minigame.ajedrez[kla + 8 * kli].Y -1) * minigame.chessScale * 80 * 0.825 + 15 && mouseY < (minigame.ajedrez[kla + 8 * kli].Y) * minigame.chessScale * 80 * 0.825 + 15 && minigame.turn == true && player.getIntelligence() >= 5)
+                if (mouseX >= (9 - minigame.ajedrez[kla + 8 * kli].X - 1) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseX < (9 - minigame.ajedrez[kla + 8 * kli].X) * minigame.chessScale * 80 * 0.825 + 415 + 0.5 && mouseY >= (minigame.ajedrez[kla + 8 * kli].Y -1) * minigame.chessScale * 80 * 0.825 + 15 && mouseY < (minigame.ajedrez[kla + 8 * kli].Y) * minigame.chessScale * 80 * 0.825 + 15 && minigame.turn == true && minigame.aiTurn != true && player.getIntelligence() >= 5)
                 {
                     if (minigame.ajedrez[kla + 8 * kli].material != "none" && minigame.ajedrez[kla + 8 * kli].material[0] == "b" && minigame.blackwhite == true)
                     {
@@ -5723,6 +6360,11 @@ function minigameLoop()
         {
             minigame.setupTabla();
             minigame.saveBord();
+
+            minigame.preBoard = JSON.parse(JSON.stringify(minigame.ajedrez));
+            minigame.valueSaveList = [];
+            minigame.foeValueSaveList = [];
+            minigame.hypoBoard = true;
         }
     }
     else

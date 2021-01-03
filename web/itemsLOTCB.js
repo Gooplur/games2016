@@ -3129,6 +3129,50 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 2;
             this.spellRange = "Medium-Long";
         }
+        else if (this.type == "firestorm")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 41)
+            {
+                this.identity = "Scroll of Firestorm";
+                this.description = "Studying this scroll will teach you how to summon a spiralling vortex of flame around you.";
+                this.intForDes = 0;
+                this.intDescription = "This scroll looks old and withered, but the magical writing is still clear enough to read.";
+                this.buyValue = 5000 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 4800.
+                this.sellValue = 4600 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 4800.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 5000 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 4800.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 14;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = true;
+            this.spellCost = Math.max(5, 25 + (25 / 50) * player.getConcentration() - (30 / 50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Fire";
+            this.spellName = "Firestorm";
+            this.spellID = "firestorm";
+            this.spellDamage = 15 + 0.35 * player.getConcentration()
+            this.spellEXP = 20 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(1, 90 + (60/50) * player.getConcentration() - (110/50) * player.getEminence());
+            this.spellDescription = "A spiralling vortex of flames.";
+            this.spellKnowledgeRequirement = 41;
+            this.spellRange = "Medium";
+        }
         else if (this.type == "flamingMissiles")
         {
             //For All Items
@@ -3264,7 +3308,7 @@ function Item(type, x, y)
         else if (this.type == "frogify")
         {
             //For All Items
-            if (player.getKnowledge() >= 12)
+            if (player.getKnowledge() >= 34)
             {
                 this.identity = "Scroll of Frogify";
                 this.description = "Studying this scroll will teach you how to cast forth a fae curse that turns human beings into frogs.";
@@ -3302,7 +3346,7 @@ function Item(type, x, y)
             this.spellEXP = 5 * ((50 + player.getMemory()) / 50);
             this.spellCooldown = Math.max(1, 30 + (10/50) * player.getConcentration() - (20/50) * player.getEminence());
             this.spellDescription = "A powerful blast of fae magic that transfigures humans permanently into frogs.";
-            this.spellKnowledgeRequirement = 40;
+            this.spellKnowledgeRequirement = 34;
             this.spellRange = "Short-Medium";
         }
         else if (this.type == "electricBolt")
@@ -71507,7 +71551,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1922, 4, 23, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 23), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 23, 32);
         }
-        else if (this.type == "magicMissiles" || this.type == "entanglement" || this.type == "summonGriffin" || this.type == "flamingMissiles" || this.type == "windBlast" || this.type == "antherPlague")
+        else if (this.type == "magicMissiles" || this.type == "entanglement" || this.type == "summonGriffin" || this.type == "flamingMissiles" || this.type == "windBlast" || this.type == "antherPlague" || this.type == "firestorm")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1804, 36, 26, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 26), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23), 26, 23);
@@ -80137,7 +80181,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow" || this.type == "antherPlague" || this.type == "beholderRift" || this.type == "frogify")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow" || this.type == "antherPlague" || this.type == "beholderRift" || this.type == "frogify" || this.type == "firestorm")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -88669,7 +88713,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow" || this.type == "antherPlague" || this.type == "beholderRift" || this.type == "frogify")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow" || this.type == "antherPlague" || this.type == "beholderRift" || this.type == "frogify" || this.type == "firestorm")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

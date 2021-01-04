@@ -4144,6 +4144,73 @@ function worldBuilder()
             outlineBuilder( 34, 34, "greenGrass", -20, 252);
             outlineBuilder( 34, 1, "stonePath", -20, 252);
         }
+        //mapS8W25
+        if (Y > -85605 && Y < -74729 && X < 262722 && X > 251041) //X-25
+        {
+            elevation = 0;
+            region = "s8w25";
+            campout = true;
+            outlineBuilder(34, 34, "murkwoods", -870, 252);
+
+            outlineBuilder(7, 34, "mistywoods", -870, 252);
+            outlineBuilder(2, 10, "mistywoods", -870, 259);
+            outlineBuilder(1, 16, "mistywoods", -859, 259);
+            outlineBuilder(2, 13, "mistywoods", -858, 260);
+            outlineBuilder(1, 3, "mistywoods", -840, 259);
+            outlineBuilder(2, 1, "mistywoods", -839, 260);
+            outlineBuilder(2, 9, "mistywoods", -855, 262);
+            outlineBuilder(1, 2, "mistywoods", -846, 262);
+            outlineBuilder(2, 4, "mistywoods", -870, 261);
+            outlineBuilder(1, 3, "mistywoods", -866, 261);
+            outlineBuilder(1, 1, "mistywoods", -862, 261);
+            outlineBuilder(1, 2, "mistywoods", -849, 264);
+            outlineBuilder(1, 1, "mistywoods", -855, 264);
+            outlineBuilder(1, 1, "mistywoods", -856, 263);
+            outlineBuilder(1, 1, "mistywoods", -870, 263);
+
+            outlineBuilder( 7, 1, "brickRoad", -855, 252);
+            outlineBuilder(1, 2, "brickRoad", -854, 258);
+            outlineBuilder(9, 1, "brickRoad", -852, 258);
+            outlineBuilder(20, 1, "brickRoad", -851, 266);
+
+            outlineBuilder(3, 7, "murklake", -855, 271);
+            outlineBuilder(4, 1, "murklake", -848, 269);
+            outlineBuilder(4, 1, "murklake", -847, 269);
+            outlineBuilder(4, 1, "murklake", -846, 267);
+            outlineBuilder(3, 5, "murklake", -845, 267);
+            outlineBuilder(1, 1, "murklake", -846, 271);
+            outlineBuilder(1, 1, "murklake", -845, 270);
+            outlineBuilder(3, 4, "murklake", -840, 266);
+            outlineBuilder(2, 4, "murklake", -846, 275);
+            outlineBuilder(3, 1, "murklake", -848, 273);
+            outlineBuilder(3, 1, "murklake", -847, 275);
+            outlineBuilder(1, 4, "murklake", -845, 271);
+            outlineBuilder(5, 1, "murklake", -843, 270);
+            outlineBuilder(1, 1, "murklake", -847, 274);
+            outlineBuilder(1, 1, "murklake", -844, 272);
+            outlineBuilder(2, 1, "murklake", -845, 277);
+            outlineBuilder(1, 1, "murklake", -844, 277);
+            outlineBuilder(5, 1, "murklake", -856, 272);
+            outlineBuilder(6, 1, "murklake", -857, 272);
+            outlineBuilder(5, 1, "murklake", -858, 273);
+            outlineBuilder(3, 6, "murklake", -864, 276);
+            outlineBuilder(3, 6, "murklake", -870, 277);
+            outlineBuilder(2, 2, "murklake", -868, 282);
+            outlineBuilder(2, 1, "murklake", -861, 283);
+            outlineBuilder(2, 1, "murklake", -869, 283);
+            outlineBuilder(1, 2, "murklake", -846, 280);
+            outlineBuilder(1, 2, "murklake", -840, 282);
+            outlineBuilder(1, 1, "murklake", -838, 277);
+            outlineBuilder(1, 1, "murklake", -849, 281);
+            outlineBuilder(2, 2, "murklake", -846, 284);
+            outlineBuilder(3, 1, "murklake", -856, 280);
+            outlineBuilder(2, 2, "murklake", -855, 281);
+            outlineBuilder(1, 2, "murklake", -855, 283);
+            outlineBuilder(2, 1, "murklake", -854, 284);
+            outlineBuilder(1, 1, "murklake", -853, 284);
+            outlineBuilder(1, 1, "murklake", -857, 280);
+            outlineBuilder(1, 1, "murklake", -863, 281);
+        }
         //mapS8W30
         if (Y > -85605 && Y < -74729 && X < 313753 && X > 302099) //X-30
         {

@@ -41604,7 +41604,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 var hits = 0;
                 for (var i = 0; i < Inventory.length; i ++)
                 {
-                    if (Inventory[i][0].type == "laushtaaLotus")
+                    if (Inventory[i][0].type == "laushtaa")
                     {
                         Inventory[i][1] += 1;
                         break;
@@ -41616,7 +41616,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
                 if (hits == Inventory.length)
                 {
-                    Inventory.push([new Item("laushtaaLotus", false, false), 1]);
+                    Inventory.push([new Item("laushtaa", false, false), 1]);
                 }
             }
         }

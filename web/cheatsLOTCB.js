@@ -7030,6 +7030,7 @@ function cheats()
                 xKey = false;
                 console.log('scenicList.push(new Scenery("qiaoPlant", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase + '));');
                 scenicList.push(new Scenery("qiaoPlant", X, Y, buildRot, buildClase));
+                buildRot = 2*Math.PI*Math.random();
             }
 
             var islonDDDD = new Scenery("qiaoPlant", X, Y, buildRot, buildClase);
@@ -10340,6 +10341,7 @@ function cheats()
                 xKey = false;
                 console.log('scenicList.push(new Scenery("spruceTree", ' + X + ', ' + Y + ', ' + buildRot + ', ' + ssszzx + '));');
                 scenicList.push(new Scenery("spruceTree", X, Y, buildRot, ssszzx));
+                buildRot = 2*Math.PI*Math.random();
             }
 
             var islonDDDD = new Scenery("spruceTree", X, Y, buildRot, 1.25);

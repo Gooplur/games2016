@@ -3841,6 +3841,135 @@ function Item(type, x, y)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
             this.sellValue = 2; // at max, sell for 2.
         }
+        else if (this.type == "rawGremlingFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Gremling Flesh";
+            this.weight = 0.7;
+            this.size = 13;
+            this.description = "The light, fatty, pinkish flesh of a gremling.";
+            this.intForDes = 3;
+            this.intDescription = "Eating gremling flesh raw tastes good, but it can give you food poisoning.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
+        }
+        else if (this.type == "gremlingMeat")
+        {
+            //For All Items
+            this.identity = "Gremling Meat";
+            this.weight = 0.7;
+            this.size = 13;
+            this.description = "The crisp, tender, light, fatty, roasted meat from a gremling.";
+            this.intForDes = 0;
+            this.intDescription = "Gremling meat is highly satisfying to eat...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 15; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Raw Gremling Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18 - Math.floor(player.getCharisma() / 25); // at max, buy for 16.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 25); // at max, sell for 16.
+        }
+        else if (this.type == "rawGremlinFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Gremlin Flesh";
+            this.weight = 2.6;
+            this.size = 14;
+            this.description = "The slimey murky green flesh of a gremlin.";
+            this.intForDes = 3;
+            this.intDescription = "Eating gremlin flesh raw is absolutely disgusting and induces vomiting.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = -5; //restores will.
+
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "gremlinMeat")
+        {
+            //For All Items
+            this.identity = "Gremlin Meat";
+            this.weight = 2.6;
+            this.size = 14;
+            this.description = "The toxic smelling, slimey burnt-green meat from a gremlin.";
+            this.intForDes = 4;
+            this.intDescription = "Eating gremlin meat is absolutely disgusting and not to mention poisonous.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -2; //heals health.
+            this.generation = -6; //recoops lost energy.
+            this.replenish = -6; //restores will.
+
+            //ability
+            this.ability = "poisonI";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Raw Gremlin Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "rawRibbackFlesh")
         {
             //For All Items
@@ -4532,6 +4661,86 @@ function Item(type, x, y)
             this.buyValue = 5; // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
         }
+        else if (this.type == "redJungleFowlFeathers")
+        {
+            //For All Items
+            this.identity = "Red Jungle Fowl Feathers";
+            this.weight = 0.05;
+            this.size = 9;
+            this.description = "Some feathers from a red jungle fowl.";
+            this.intForDes = 6;
+            this.intDescription = "These feathers can be used decoratively, as well as for stuffing cushions.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "roosterTail")
+        {
+            //For All Items
+            this.identity = "Rooster Tail";
+            this.weight = 0.1;
+            this.size = 9;
+            this.description = "The tail feathers of a male red jungle fowl.";
+            this.intForDes = 3;
+            this.intDescription = "Roosters use their fancy looks to attract mates. With similar purpose, some people use these as an aphrodisiac...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "gremlingEar")
+        {
+            //For All Items
+            this.identity = "Gremling Ear";
+            this.weight = 0.1;
+            this.size = 7;
+            this.description = "The fuzzy, hairy, white ear of a gremling.";
+            this.intForDes = 6;
+            this.intDescription = "The fuzzy hairs on the ear are an extremely soft type of fiber that turns into a greenish-transparent goop in water.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "shishizheLeg")
+        {
+            //For All Items
+            this.identity = "Shishizhe Leg";
+            this.weight = 4.9;
+            this.size = 18;
+            this.description = "The long, pointed, orange and black exoskeletal leg of a shishizhe spider.";
+            this.intForDes = 1;
+            this.intDescription = "This trophy is a testiment to having slain a shishizhe spider.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
         else if (this.type == "purpuraLanternCharged")
         {
             //For All Items
@@ -4598,15 +4807,15 @@ function Item(type, x, y)
             this.buyValue = 4; // at max, buy for 4.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
-        else if (this.type == "velozaiHide")
+        else if (this.type == "erokiraHide")
         {
             //For All Items
-            this.identity = "Velozai Hide";
+            this.identity = "Erokira Hide";
             this.weight = 1.3;
             this.size = 10;
-            this.description = "The scaley hide of a velozai.";
+            this.description = "The scaley hide of an erokira.";
             this.intForDes = 1;
-            this.intDescription = "Velozai hide is used to make light armour and apparel..";
+            this.intDescription = "Erokira hide is used to make light armour and apparel..";
 
             //Define Utility
             this.utility = "material";
@@ -4618,15 +4827,15 @@ function Item(type, x, y)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
-        else if (this.type == "velozaiFeathers")
+        else if (this.type == "erokiraFeathers")
         {
             //For All Items
-            this.identity = "Velozai Feathers";
+            this.identity = "Erokira Feathers";
             this.weight = 0.3;
             this.size = 9;
-            this.description = "The colourful tail feathers of a velozai.";
+            this.description = "The colourful tail feathers of an erokira.";
             this.intForDes = 1;
-            this.intDescription = "Velozai feathers are used decoratively and sometimes kept as a trophy.";
+            this.intDescription = "Erokira feathers are used decoratively and sometimes kept as a trophy.";
 
             //Define Utility
             this.utility = "material";
@@ -4637,6 +4846,35 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5; // at max, buy for 5.
             this.sellValue = 4 + Math.floor(player.getCharisma() / 50); // at max, sell for 5.
+        }
+        else if (this.type == "laumeiNeuralChords")
+        {
+            //For All Items
+            this.identity = "Laumei Neural Chords";
+            this.weight = 0.37;
+            this.size = 9;
+            this.description = "The brainstem of a laumei.";
+            this.intForDes = 11;
+            this.intDescription = "This is an ingredient in alchemy, but be careful not to consume it alone as it has some volitile toxins.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
         }
         else if (this.type == "tyaFan")
         {
@@ -4740,6 +4978,69 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5; // at max, buy for 5.
             this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "rawChickenFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Red Jungle Fowl Flesh";
+            this.weight = 4;
+            this.size = 15;
+            this.description = "The whole defeathered and eviscerated body of a red jungle fowl.";
+            this.intForDes = 1;
+            this.intDescription = "Eating red jungle fowl flesh raw is unsafe and will give you food poisoning.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -3.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "chickenMeat")
+        {
+            //For All Items
+            this.identity = "Red Jungle Fowl Meat";
+            this.weight = 4;
+            this.size = 15;
+            this.description = "A whole roasted red jungle fowl.";
+            this.intForDes = 0;
+            this.intDescription = "Red jungle fowl tastes like undomesticated chicken...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 20; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 7; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 15;
+            this.ingredients = [["Raw Red Jungle Fowl Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 50); // at max, buy for 19.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 12); // at max, sell for 19.
         }
         else if (this.type == "giavevSpike")
         {
@@ -6867,6 +7168,106 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawKhorkhoiFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Khorkhoi Flesh";
+            this.weight = 2;
+            this.size = 13;
+            this.description = "The raw flesh of a khorkhoi. The flesh is moist, with a pale greenish colour to it.";
+            this.intForDes = 0;
+
+            //Define Utility
+            this.utility = "food";
+
+            if (player.raceName == "Noth")
+            {
+                this.intDescription = "Khorkhoi is traditionally served and eaten raw in Noth culture.";
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 9; //satisfies hunger.
+                this.thirst = 3; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.1; //recoops lost energy.
+                this.replenish = 0; //restores will.
+                this.cooling = 2; //cools player.
+
+                //ability
+                this.ability = "satiate";
+            }
+            else
+            {
+                this.intDescription = "It is edible raw, and despite its rather bizarre flavour, it is somewhat filling.";
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 7; //satisfies hunger.
+                this.thirst = 2; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+                this.cooling = 2; //cools player.
+
+                //ability
+                this.ability = "none";
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11 - Math.floor(player.getCharisma() / 50); // at max, buy for 10.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
+        }
+        else if (this.type == "khorkhoiMeat")
+        {
+            //For All Items
+            this.identity = "Khorkhoi Meat";
+            this.weight = 0.9;
+            this.size = 13;
+            this.description = "The shrivelled meat from a Khorkhoi.";
+            this.intForDes = 0;
+
+            //Define Utility
+            this.utility = "food";
+
+            if (player.raceName == "Noth")
+            {
+                this.intDescription = "Everyone in Noth knows that khorkhoi is supposed to be eaten raw, cooking it is just plain stupid.";
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.5; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 1; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -1.5; //recoops lost energy.
+                this.replenish = -1.5; //restores will.
+
+                //ability
+                this.ability = "none";
+            }
+            else
+            {
+                this.intDescription = "This meat tastes sort of gross...";
+                //Utility Focused
+                this.hunger = 0.5; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 1; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -1.5; //recoops lost energy.
+                this.replenish = -1.5; //restores will.
+
+                //ability
+                this.ability = "none";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Raw Khorkhoi Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "rawMoppotFlesh")
         {
             //For All Items
@@ -7245,6 +7646,71 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 16 - Math.floor(player.getCharisma() / 50); // at max, buy for 15.
             this.sellValue = 14 + Math.floor(player.getCharisma() / 50); // at max, sell for 15.
+        }
+        else if (this.type == "rawQuillWolfFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Quillwolf Flesh";
+            this.weight = 3.2;
+            this.size = 14;
+            this.description = "The raw flesh of a quillwolf.";
+            this.intForDes = 1;
+            this.intDescription = "Eating this raw is unsafe since quillwolfs often harbor fleshmites in their flesh. Also the quills are sharp...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -1.5; //heals health.
+            this.generation = -3.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1 - Math.floor(player.getCharisma() / 50); // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "quillWolfMeat")
+        {
+            //For All Items
+            this.identity = "Quillwolf Meat";
+            this.weight = 3;
+            this.size = 14;
+            this.description = "The roasted meat of a quillwolf.";
+            this.intForDes = 0;
+            this.intDescription = "It is rather tough and chewy, and tastes sort of like meat...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 11; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -3.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 9;
+            this.ingredients = [["Raw Quillwolf Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue =  9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 50); // at max, sell for 7.
         }
         else if (this.type == "searedFalder")
         {
@@ -7810,9 +8276,77 @@ function Item(type, x, y)
             //ability
             this.ability = "satiation";
 
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 20;
+            this.ingredients = [["Raw Taebjuur Flesh", 1]];
+
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 19; // at max, buy for 19.
             this.sellValue = 17 + Math.floor(player.getCharisma() / 25); // at max, sell for 19.
+        }
+        else if (this.type == "rawBahvsegFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Bahvseg Flesh";
+            this.weight = 1.5;
+            this.size = 15;
+            this.description = "The raw flesh of a bahvseg.";
+            this.intForDes = 0;
+            this.intDescription = "Eating bahvseg flesh raw is unsafe as it is often host to gutworms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0.6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutworms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "bahvsegMeat")
+        {
+            //For All Items
+            this.identity = "Bahvseg Meat";
+            this.weight = 1.5;
+            this.size = 15;
+            this.description = "The cooked meat from a bahvseg.";
+            this.intForDes = 0;
+            this.intDescription = "Bahvseg meat is a bit tough, and sort of chewy, but it does have a nice hearty, wild, and somewhat gamey flavor.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 16; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 13;
+            this.ingredients = [["Raw Bahvseg Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 12); // at max, buy for 16.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 25); // at max, sell for 16.
         }
         else if (this.type == "apple")
         {
@@ -8014,6 +8548,66 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "khorkhoiFang")
+        {
+            //For All Items
+            this.identity = "Khorkhoi Fang";
+            this.weight = 0.2;
+            this.size = 6;
+            this.description = "A sharp brown fang from a Khorkoi.";
+            this.intForDes = 3;
+            this.intDescription = "Khorkoi fangs can be kept as trophies or used to adorn apparel or other things.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "bahvsegPelt")
+        {
+            //For All Items
+            this.identity = "Bahvseg Shell";
+            this.weight = 1.7;
+            this.size = 17;
+            this.description = "The hairy, ringed, plated shell of a bahvseg.";
+            this.intForDes = 7;
+            this.intDescription = "Bahvseg shells can be broken into parts and made into apparel or other useful things.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19; // at max, buy for 19.
+            this.sellValue = 19; // at max, sell for 19.
+        }
+        else if (this.type == "bahvsegWings")
+        {
+            //For All Items
+            this.identity = "Bahvseg Wings";
+            this.weight = 2.4;
+            this.size = 23;
+            this.description = "The large leathery wings of a bahvseg.";
+            this.intForDes = 2;
+            this.intDescription = "Bahvsegs use their wings to leap and glide from qiao to qiao so that they can swoop down to attack their prey from above.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
         }
         else if (this.type == "boiledFrijols")
         {
@@ -10973,6 +11567,132 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "rawEglimFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Eglim Flesh";
+            this.weight = 3;
+            this.size = 16;
+            this.description = "The raw flesh from an eglim.";
+            this.intForDes = 5;
+            this.intDescription = "Eglim flesh often has gutworms in it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutworms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "eglimMeat")
+        {
+            //For All Items
+            this.identity = "Eglim Meat";
+            this.weight = 2.7;
+            this.size = 16;
+            this.description = "The cooked meat of an eglim.";
+            this.intForDes = 0;
+            this.intDescription = "Though not the best tasting meat ever, Eglim meat is certainly edible.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10.5; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 7;
+            this.ingredients = [["Raw Eglim Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 9.
+            this.sellValue = 7; // at max, sell for 7.
+        }
+        else if (this.type == "rawIbabiFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Ibabi Flesh";
+            this.weight = 7;
+            this.size = 16;
+            this.description = "The raw flesh from an ibabi. It is thick, firm, and wet with a dark black blood.";
+            this.intForDes = 6;
+            this.intDescription = "Ibabi flesh is poisonous to consume.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 2.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -10; //recoops lost energy.
+            this.replenish = -3; //restores will.
+
+            //ability
+            this.ability = "poisonII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "ibabiMeat")
+        {
+            //For All Items
+            this.identity = "Ibabi Meat";
+            this.weight = 6.5;
+            this.size = 16;
+            this.description = "The cooked meat of an ibabi.";
+            this.intForDes = 8;
+            this.intDescription = "Ibabi meat tastes bitter and it contains poisonous enzymes that are lethal to humans.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 13; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -10; //recoops lost energy.
+            this.replenish = -3; //restores will.
+
+            //ability
+            this.ability = "poisonII";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Raw Ibabi Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "fermentedUtTentacle")
         {
             //For All Items
@@ -11075,6 +11795,126 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 19 - Math.floor(player.getCharisma() / 15); // at max, buy for 16.
             this.sellValue = 8 + Math.floor(player.getCharisma() / 6); // at max, sell for 16.
+        }
+        else if (this.type == "saelcheagEyestalk")
+        {
+            //For All Items
+            this.identity = "Saelcheag Eyestalk";
+            this.weight = 0.15;
+            this.size = 8;
+            this.description = "The eyestalk of a sealcheag.";
+            this.intForDes = 16;
+            this.intDescription = "This is both an amplifier and a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none"
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
+        }
+        else if (this.type == "kthetratClaw")
+        {
+            //For All Items
+            this.identity = "Kthetrat Claw";
+            this.weight = 0.9;
+            this.size = 10;
+            this.description = "The absurdly long two-talon claw of a kthetrat.";
+            this.intForDes = 1;
+            this.intDescription = "Kthetrats are known for their aggressive behaviour and their extremely long claws that they use to slash apart their prey before eating it.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none"
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "kthetratPelt")
+        {
+            //For All Items
+            this.identity = "Kthetrat Pelt";
+            this.weight = 0.8;
+            this.size = 12;
+            this.description = "The short furred, rodent-like pelt of a kthetrat.";
+            this.intForDes = 8;
+            this.intDescription = "Kthetrat pelts smell generally unpleasant.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none"
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "eglimHide")
+        {
+            //For All Items
+            this.identity = "Eglim Hide";
+            this.weight = 2;
+            this.size = 19;
+            this.description = "The thick smooth green hide of an eglim.";
+            this.intForDes = 8;
+            this.intDescription = "Eglim hide can be made into hide armour.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none"
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "ibabiTeeth")
+        {
+            //For All Items
+            this.identity = "Ibabi Teeth";
+            this.weight = 0.6;
+            this.size = 14;
+            this.description = "The long, sharp, curved teeth of an ibabi.";
+            this.intForDes = 9;
+            this.intDescription = "Ibabi teeth can be used to decorate or adorn things, and they also have a use in alchemy as a changer.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none"
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7; // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
+        else if (this.type == "quillWolfPelt")
+        {
+            //For All Items
+            this.identity = "Quillwolf Pelt";
+            this.weight = 1.8;
+            this.size = 14;
+            this.description = "A bristling grey coat of pointed quills from a Quillwolf.";
+            this.intForDes = 5;
+            this.intDescription = "Quillwolf pelt can be used to make light armour and other apparel.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none"
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
         }
         else if (this.type == "lombrisFlesh")
         {
@@ -14256,15 +15096,15 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
-        else if (this.type == "rawVelozaiFlesh")
+        else if (this.type == "rawErokiraFlesh")
         {
             //For All Items
-            this.identity = "Raw Velozai Flesh";
+            this.identity = "Raw Erokira Flesh";
             this.weight = 1;
             this.size = 9;
-            this.description = "The raw flesh from a velozai.";
+            this.description = "The raw flesh from a erokira.";
             this.intForDes = 4;
-            this.intDescription = "Velozai flesh is unsafe to eat raw due to gut worms.";
+            this.intDescription = "Erokira flesh is unsafe to eat raw due to gut worms.";
 
             //Define Utility
             this.utility = "food";
@@ -14285,13 +15125,13 @@ function Item(type, x, y)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
-        else if (this.type == "velozaiMeat")
+        else if (this.type == "erokiraMeat")
         {
             //For All Items
-            this.identity = "Velozai Meat";
+            this.identity = "Erokira Meat";
             this.weight = 1;
             this.size = 9;
-            this.description = "The cooked meat of a velozai.";
+            this.description = "The cooked meat of a erokira.";
             this.intForDes = 4;
             this.intDescription = "It is safe to eat but it is tough and unappetizing.";
 
@@ -14313,7 +15153,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 5;
-            this.ingredients = [["Raw Velozai Flesh", 1]];
+            this.ingredients = [["Raw Erokira Flesh", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
@@ -64135,6 +64975,156 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "redJungleFowlFeathers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 74, 23, 36, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 36 * 1, 28 * 1);
+        }
+        else if (this.type == "roosterTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 74, -5, 36, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 36 * 1, 28 * 1);
+        }
+        else if (this.type == "rawChickenFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 711, 279, 36, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 36 * 1, 28 * 1);
+        }
+        else if (this.type == "chickenMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 711, 309, 36, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 36 * 1, 28 * 1);
+        }
+        else if (this.type == "khorkhoiFang")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1618, 1141, 38, 49, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 49 * 1), 38 * 1, 49 * 1);
+        }
+        else if (this.type == "rawKhorkhoiFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1667, 1143, 38, 49, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 49 * 1), 38 * 1, 49 * 1);
+        }
+        else if (this.type == "khorkhoiMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1706, 1143, 38, 49, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 49 * 1), 38 * 1, 49 * 1);
+        }
+        else if (this.type == "bahvsegWings")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1689, 1023, 87, 72, X - this.X + (1/2 * CCC.width) - (1/2 * 87 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 72 * 1), 87 * 1, 72 * 1);
+        }
+        else if (this.type == "bahvsegPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1499, 1025, 87, 72, X - this.X + (1/2 * CCC.width) - (1/2 * 87 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 72 * 1), 87 * 1, 72 * 1);
+        }
+        else if (this.type == "rawBahvsegFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1590, 1039, 40, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1), 40 * 1, 41 * 1);
+        }
+        else if (this.type == "bahvsegMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1634, 1041, 40, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1), 40 * 1, 41 * 1);
+        }
+        else if (this.type == "shishizheLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ider, 602, 852, 73, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 73 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 1), 73 * 1, 37 * 1);
+        }
+        else if (this.type == "rawGremlinFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(grem, 167, 0, 42, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "gremlinMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(grem, 17, 36, 42, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "gremlingMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(grem, 11, 2, 42, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "rawGremlingFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(grem, 120, 1, 42, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "gremlingEar")
+        {
+            XXX.beginPath();
+            XXX.drawImage(grem, 96, 2, 24, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 24 * 1, 27 * 1);
+        }
+        else if (this.type == "kthetratPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(slug, 821, 298, 36, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 36 * 1, 21 * 1);
+        }
+        else if (this.type == "kthetratClaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(slug, 823, 320, 36, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 36 * 1, 21 * 1);
+        }
+        else if (this.type == "saelcheagEyestalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(slug, 146, 27, 36, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 36 * 1, 21 * 1);
+        }
+        else if (this.type == "rawQuillWolfFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(quil, 197, 118, 68, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 68 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32 * 1), 68 * 1, 32 * 1);
+        }
+        else if (this.type == "quillWolfMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(quil, 194, 153, 68, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 68 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32 * 1), 68 * 1, 32 * 1);
+        }
+        else if (this.type == "quillWolfPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(quil, 188, 69, 91, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 91 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32 * 1), 91 * 1, 32 * 1);
+        }
+        else if (this.type == "rawEglimFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 335, 2, 28, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 28 * 1, 23 * 1);
+        }
+        else if (this.type == "eglimMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 366, 1, 28, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 28 * 1, 23 * 1);
+        }
+        else if (this.type == "eglimHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 293, 0, 39, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 39 * 1, 24 * 1);
+        }
+        else if (this.type == "rawIbabiFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 219, 1, 28, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 28 * 1, 23 * 1);
+        }
+        else if (this.type == "ibabiMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 259, 1, 28, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 28 * 1, 23 * 1);
+        }
+        else if (this.type == "laumeiNeuralChords")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 126, 2, 19, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 19 * 1, 16 * 1);
+        }
+        else if (this.type == "ibabiTeeth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 187, 5, 25, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 25 * 1, 19 * 1);
+        }
         else if (this.type == "moppotMeat")
         {
             XXX.beginPath();
@@ -64465,22 +65455,22 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(vult, 347, 1498, 31, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 31 * 1, 29 * 1);
         }
-        else if (this.type == "rawVelozaiFlesh")
+        else if (this.type == "rawErokiraFlesh")
         {
             XXX.beginPath();
             XXX.drawImage(rapt, 708, 97, 42, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1), 42 * 1, 22 * 1);
         }
-        else if (this.type == "velozaiMeat")
+        else if (this.type == "erokiraMeat")
         {
             XXX.beginPath();
             XXX.drawImage(rapt, 739, 97, 42, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1), 42 * 1, 22 * 1);
         }
-        else if (this.type == "velozaiHide")
+        else if (this.type == "erokiraHide")
         {
             XXX.beginPath();
             XXX.drawImage(rapt, 723, 121, 42, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1), 42 * 1, 22 * 1);
         }
-        else if (this.type == "velozaiFeathers")
+        else if (this.type == "erokiraFeathers")
         {
             XXX.beginPath();
             XXX.drawImage(rapt, 64, 8, 42, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 42 * 1, 28 * 1);
@@ -72718,6 +73708,156 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "redJungleFowlFeathers")
+        {
+            LXX.beginPath();
+            LXX.drawImage(roost, 74, 23, 36, 28, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 28 * 1), 36 * 1, 28 * 1);
+        }
+        else if (this.type == "roosterTail")
+        {
+            LXX.beginPath();
+            LXX.drawImage(roost, 74, -5, 36, 28, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 28 * 1), 36 * 1, 28 * 1);
+        }
+        else if (this.type == "rawChickenFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(roost, 711, 279, 36, 28, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 28 * 1), 36 * 1, 28 * 1);
+        }
+        else if (this.type == "chickenMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(roost, 711, 309, 36, 28, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 28 * 1), 36 * 1, 28 * 1);
+        }
+        else if (this.type == "khorkhoiFang")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sheg, 1618, 1141, 38, 49, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 49 * 1), 38 * 1, 49 * 1);
+        }
+        else if (this.type == "rawKhorkhoiFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sheg, 1667, 1143, 38, 49, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 49 * 1), 38 * 1, 49 * 1);
+        }
+        else if (this.type == "khorkhoiMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sheg, 1706, 1143, 38, 49, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 49 * 1), 38 * 1, 49 * 1);
+        }
+        else if (this.type == "bahvsegWings")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sheg, 1689, 1023, 87, 72, this.invX - (1/2 * 87 * 0.9), this.invY - (1/2 * 72 * 0.9), 87 * 0.9, 72 * 0.9);
+        }
+        else if (this.type == "bahvsegPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sheg, 1499, 1025, 87, 72, this.invX - (1/2 * 87 * 1), this.invY - (1/2 * 72 * 1), 87 * 1, 72 * 1);
+        }
+        else if (this.type == "rawBahvsegFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sheg, 1590, 1039, 40, 41, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 41 * 1), 40 * 1, 41 * 1);
+        }
+        else if (this.type == "bahvsegMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sheg, 1634, 1041, 40, 41, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 41 * 1), 40 * 1, 41 * 1);
+        }
+        else if (this.type == "shishizheLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ider, 602, 852, 73, 37, this.invX - (1/2 * 73 * 1), this.invY - (1/2 * 37 * 1), 73 * 1, 37 * 1);
+        }
+        else if (this.type == "rawGremlinFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(grem, 167, 0, 42, 28, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "gremlinMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(grem, 17, 36, 42, 28, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "gremlingMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(grem, 11, 2, 42, 28, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "rawGremlingFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(grem, 120, 1, 42, 28, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "gremlingEar")
+        {
+            LXX.beginPath();
+            LXX.drawImage(grem, 96, 2, 24, 27, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 27 * 1), 24 * 1, 27 * 1);
+        }
+        else if (this.type == "kthetratPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(slug, 821, 298, 36, 21, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 21 * 1), 36 * 1, 21 * 1);
+        }
+        else if (this.type == "kthetratClaw")
+        {
+            LXX.beginPath();
+            LXX.drawImage(slug, 823, 320, 36, 21, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 21 * 1), 36 * 1, 21 * 1);
+        }
+        else if (this.type == "saelcheagEyestalk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(slug, 146, 27, 36, 21, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 21 * 1), 36 * 1, 21 * 1);
+        }
+        else if (this.type == "rawQuillWolfFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(quil, 197, 118, 68, 32, this.invX - (1/2 * 68 * 1), this.invY - (1/2 * 32 * 1), 68 * 1, 32 * 1);
+        }
+        else if (this.type == "quillWolfMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(quil, 194, 153, 68, 32, this.invX - (1/2 * 68 * 1), this.invY - (1/2 * 32 * 1), 68 * 1, 32 * 1);
+        }
+        else if (this.type == "quillWolfPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(quil, 188, 69, 91, 32, this.invX - (1/2 * 91 * 1), this.invY - (1/2 * 32 * 1), 91 * 1, 32 * 1);
+        }
+        else if (this.type == "rawEglimFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(orco, 335, 2, 28, 23, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 23 * 1), 28 * 1, 23 * 1);
+        }
+        else if (this.type == "eglimMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(orco, 366, 1, 28, 23, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 23 * 1), 28 * 1, 23 * 1);
+        }
+        else if (this.type == "eglimHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(orco, 293, 0, 39, 24, this.invX - (1/2 * 39 * 1), this.invY - (1/2 * 24 * 1), 39 * 1, 24 * 1);
+        }
+        else if (this.type == "laumeiNeuralChords")
+        {
+            LXX.beginPath();
+            LXX.drawImage(orco, 126, 2, 19, 16, this.invX - (1/2 * 19 * 1), this.invY - (1/2 * 16 * 1), 19 * 1, 16 * 1);
+        }
+        else if (this.type == "rawIbabiFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(orco, 219, 1, 28, 23, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 23 * 1), 28 * 1, 23 * 1);
+        }
+        else if (this.type == "ibabiMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(orco, 259, 1, 28, 23, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 23 * 1), 28 * 1, 23 * 1);
+        }
+        else if (this.type == "ibabiTeeth")
+        {
+            LXX.beginPath();
+            LXX.drawImage(orco, 187, 5, 25, 19, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 19 * 1), 25 * 1, 19 * 1);
+        }
         else if (this.type == "moppotMeat")
         {
             LXX.beginPath();
@@ -72731,7 +73871,7 @@ function Item(type, x, y)
         else if (this.type == "moppotPelt")
         {
             LXX.beginPath();
-            LXX.drawImage(slug, 713, 389, 91, 80, this.invX - (1/2 * 91 * 1), this.invY - (1/2 * 80 * 1), 91 * 1, 80 * 1);
+            LXX.drawImage(slug, 713, 389, 91, 80, this.invX - (1/2 * 91 * 0.85), this.invY - (1/2 * 80 * 0.85), 91 * 0.85, 80 * 0.85);
         }
         else if (this.type == "bridgeTrollHorn")
         {
@@ -73048,22 +74188,22 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(vult, 347, 1498, 31, 29, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 29 * 1), 31 * 1, 29 * 1);
         }
-        else if (this.type == "rawVelozaiFlesh")
+        else if (this.type == "rawErokiraFlesh")
         {
             LXX.beginPath();
             LXX.drawImage(rapt, 708, 97, 42, 22, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 22 * 1), 42 * 1, 22 * 1);
         }
-        else if (this.type == "velozaiMeat")
+        else if (this.type == "erokiraMeat")
         {
             LXX.beginPath();
             LXX.drawImage(rapt, 739, 97, 42, 22, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 22 * 1), 42 * 1, 22 * 1);
         }
-        else if (this.type == "velozaiHide")
+        else if (this.type == "erokiraHide")
         {
             LXX.beginPath();
             LXX.drawImage(rapt, 723, 121, 42, 22, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 22 * 1), 42 * 1, 22 * 1);
         }
-        else if (this.type == "velozaiFeathers")
+        else if (this.type == "erokiraFeathers")
         {
             LXX.beginPath();
             LXX.drawImage(rapt, 64, 8, 42, 28, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 28 * 1), 42 * 1, 28 * 1);
@@ -81257,6 +82397,156 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "redJungleFowlFeathers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 74, 23, 36, 28, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 28 * 1), 36 * 1, 28 * 1);
+        }
+        else if (this.type == "roosterTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 74, -5, 36, 28, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 28 * 1), 36 * 1, 28 * 1);
+        }
+        else if (this.type == "rawChickenFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 711, 279, 36, 28, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 28 * 1), 36 * 1, 28 * 1);
+        }
+        else if (this.type == "chickenMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(roost, 711, 309, 36, 28, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 28 * 1), 36 * 1, 28 * 1);
+        }
+        else if (this.type == "khorkhoiFang")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1618, 1141, 38, 49, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 49 * 1), 38 * 1, 49 * 1);
+        }
+        else if (this.type == "rawKhorkhoiFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1667, 1143, 38, 49, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 49 * 1), 38 * 1, 49 * 1);
+        }
+        else if (this.type == "khorkhoiMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1706, 1143, 38, 49, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 49 * 1), 38 * 1, 49 * 1);
+        }
+        else if (this.type == "bahvsegWings")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1689, 1023, 87, 72, this.invX - (1/2 * 87 * 0.9), this.invY - (1/2 * 72 * 0.9), 87 * 0.9, 72 * 0.9);
+        }
+        else if (this.type == "bahvsegPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1499, 1025, 87, 72, this.invX - (1/2 * 87 * 1), this.invY - (1/2 * 72 * 1), 87 * 1, 72 * 1);
+        }
+        else if (this.type == "rawBahvsegFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1590, 1039, 40, 41, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 41 * 1), 40 * 1, 41 * 1);
+        }
+        else if (this.type == "bahvsegMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sheg, 1634, 1041, 40, 41, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 41 * 1), 40 * 1, 41 * 1);
+        }
+        else if (this.type == "shishizheLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ider, 602, 852, 73, 37, this.invX - (1/2 * 73 * 1), this.invY - (1/2 * 37 * 1), 73 * 1, 37 * 1);
+        }
+        else if (this.type == "rawGremlinFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(grem, 167, 0, 42, 28, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "gremlinMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(grem, 17, 36, 42, 28, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "gremlingMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(grem, 11, 2, 42, 28, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "rawGremlingFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(grem, 120, 1, 42, 28, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 28 * 1), 42 * 1, 28 * 1);
+        }
+        else if (this.type == "gremlingEar")
+        {
+            XXX.beginPath();
+            XXX.drawImage(grem, 96, 2, 24, 27, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 27 * 1), 24 * 1, 27 * 1);
+        }
+        else if (this.type == "kthetratPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(slug, 821, 298, 36, 21, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 21 * 1), 36 * 1, 21 * 1);
+        }
+        else if (this.type == "kthetratClaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(slug, 823, 320, 36, 21, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 21 * 1), 36 * 1, 21 * 1);
+        }
+        else if (this.type == "saelcheagEyestalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(slug, 146, 27, 36, 21, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 21 * 1), 36 * 1, 21 * 1);
+        }
+        else if (this.type == "rawQuillWolfFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(quil, 197, 118, 68, 32, this.invX - (1/2 * 68 * 1), this.invY - (1/2 * 32 * 1), 68 * 1, 32 * 1);
+        }
+        else if (this.type == "quillWolfMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(quil, 194, 153, 68, 32, this.invX - (1/2 * 68 * 1), this.invY - (1/2 * 32 * 1), 68 * 1, 32 * 1);
+        }
+        else if (this.type == "quillWolfPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(quil, 188, 69, 91, 32, this.invX - (1/2 * 91 * 1), this.invY - (1/2 * 32 * 1), 91 * 1, 32 * 1);
+        }
+        else if (this.type == "rawEglimFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 335, 2, 28, 23, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 23 * 1), 28 * 1, 23 * 1);
+        }
+        else if (this.type == "eglimMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 366, 1, 28, 23, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 23 * 1), 28 * 1, 23 * 1);
+        }
+        else if (this.type == "eglimHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 293, 0, 39, 24, this.invX - (1/2 * 39 * 1), this.invY - (1/2 * 24 * 1), 39 * 1, 24 * 1);
+        }
+        else if (this.type == "rawIbabiFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 219, 1, 28, 23, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 23 * 1), 28 * 1, 23 * 1);
+        }
+        else if (this.type == "ibabiMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 259, 1, 28, 23, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 23 * 1), 28 * 1, 23 * 1);
+        }
+        else if (this.type == "laumeiNeuralChords")
+        {
+            XXX.beginPath();
+            XXX.drawImage(slug, 126, 2, 19, 16, this.invX - (1/2 * 19 * 1), this.invY - (1/2 * 16 * 1), 19 * 1, 16 * 1);
+        }
+        else if (this.type == "ibabiTeeth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(orco, 187, 5, 25, 19, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 19 * 1), 25 * 1, 19 * 1);
+        }
         else if (this.type == "moppotMeat")
         {
             XXX.beginPath();
@@ -81270,7 +82560,7 @@ function Item(type, x, y)
         else if (this.type == "moppotPelt")
         {
             XXX.beginPath();
-            XXX.drawImage(slug, 713, 389, 91, 80, this.invX - (1/2 * 91 * 1), this.invY - (1/2 * 80 * 1), 91 * 1, 80 * 1);
+            XXX.drawImage(slug, 713, 389, 91, 80, this.invX - (1/2 * 91 * 0.85), this.invY - (1/2 * 80 * 0.85), 91 * 0.85, 80 * 0.85);
         }
         else if (this.type == "bridgeTrollHorn")
         {
@@ -81587,22 +82877,22 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(vult, 347, 1498, 31, 29, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 29 * 1), 31 * 1, 29 * 1);
         }
-        else if (this.type == "rawVelozaiFlesh")
+        else if (this.type == "rawErokiraFlesh")
         {
             XXX.beginPath();
             XXX.drawImage(rapt, 708, 97, 42, 22, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 22 * 1), 42 * 1, 22 * 1);
         }
-        else if (this.type == "velozaiMeat")
+        else if (this.type == "erokiraMeat")
         {
             XXX.beginPath();
             XXX.drawImage(rapt, 739, 97, 42, 22, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 22 * 1), 42 * 1, 22 * 1);
         }
-        else if (this.type == "velozaiHide")
+        else if (this.type == "erokiraHide")
         {
             XXX.beginPath();
             XXX.drawImage(rapt, 723, 121, 42, 22, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 22 * 1), 42 * 1, 22 * 1);
         }
-        else if (this.type == "velozaiFeathers")
+        else if (this.type == "erokiraFeathers")
         {
             XXX.beginPath();
             XXX.drawImage(rapt, 64, 8, 42, 28, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 28 * 1), 42 * 1, 28 * 1);

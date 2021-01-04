@@ -6272,6 +6272,7 @@ function theLegend()
     foods.push(new Item("roastedMotylekhLeg", false));
     foods.push(new Item("bulkMotylinka", false));
     foods.push(new Item("lyagushkaMeat", false));
+    foods.push(new Item("quillWolfMeat", false));
     foods.push(new Item("roastedSagroTailSml", false));
     foods.push(new Item("roastedSagroTailLrg", false));
     foods.push(new Item("sagroMeat", false));
@@ -6312,10 +6313,15 @@ function theLegend()
     foods.push(new Item("harvestmanMeat", false));
     foods.push(new Item("jarOfHarvestmanOil", false));
     foods.push(new Item("roastedNeth", false));
+    foods.push(new Item("bahvsegMeat", false));
+    foods.push(new Item("gremlingMeat", false));
+    foods.push(new Item("gremlinMeat", false));
+    foods.push(new Item("khorkhoiMeat", false));
     foods.push(new Item("vultureMeat", false));
-    foods.push(new Item("velozaiMeat", false));
+    foods.push(new Item("erokiraMeat", false));
     foods.push(new Item("iguanaMeat", false));
     foods.push(new Item("tyaMeat", false));
+    foods.push(new Item("chickenMeat", false));
     foods.push(new Item("redPandaMeat", false));
     foods.push(new Item("jackalMeat", false));
     foods.push(new Item("geomiMeat", false));
@@ -6326,6 +6332,8 @@ function theLegend()
     foods.push(new Item("faeBlood", false));
     foods.push(new Item("shelisherMeat", false));
     foods.push(new Item("moppotMeat", false));
+    foods.push(new Item("ibabiMeat", false));
+    foods.push(new Item("eglimMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];

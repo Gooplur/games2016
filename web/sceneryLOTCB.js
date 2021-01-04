@@ -41262,7 +41262,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(shor, 187, 84, 87, 45, -(1/2 * 87), -(1/2 * 45), 87, 45);
+                XXX.drawImage(shor, 392, 79, 51, 50, -(1/2 * 51), -(1/2 * 50), 51, 50);
                 XXX.restore();
             }
             else if (this.phase == "picked")
@@ -41270,7 +41270,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(shor, 299, 83, 87, 45, -(1/2 * 87), -(1/2 * 45), 87, 45);
+                XXX.drawImage(shor, 392, 140, 51, 50, -(1/2 * 51), -(1/2 * 50), 51, 50);
                 XXX.restore();
             }
 
@@ -56099,12 +56099,12 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.size = Math.min(2, this.temporary);
                 this.treeHealth = Math.ceil(90 * (this.size /4.5));
             }
-            this.interactionRange = 100 * (this.size /4.5);
+            this.interactionRange = 140 * (this.size /4.5);
 
             //DRAWSELF
             if (this.treePhase == 0)
             {
-                if (this.playerer < (130 * (this.size /4.5)))
+                if (this.playerer < (210 * (this.size /4.5)))
                 {
                     this.zIndex = 6;
                     XXX.save();
@@ -56152,7 +56152,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 20 * (this.size /4.5);
+            this.radius = 30 * (this.size /4.5);
 
             //INTERACTION
             if (this.activate == true)

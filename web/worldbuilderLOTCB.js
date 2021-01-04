@@ -1376,6 +1376,23 @@ function worldBuilder()
             outlineBuilder(1, 3, "southbogMud", -1155, 757);
             outlineBuilder(1, 2, "southbogMud", -1153, 755);
         }
+        //mapS22w35
+        if (Y > -228312 && Y < -217520 && X < 364713 && X > 353021) //X35
+        {
+            elevation = -2;
+            region = "s22w35";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianGrass", -1210, 728);
+
+            outlineBuilder(4, 1, "vardanianWetlands", -1177, 758);
+            outlineBuilder(2, 3, "vardanianWetlands", -1180, 760);
+            outlineBuilder(1, 2, "vardanianWetlands", -1182, 761);
+
+            outlineBuilder(1, 34, "vardanianStone", -1210, 748);
+
+            outlineBuilder(2, 3, "vardanianFarmland", -1195, 756);
+            outlineBuilder(2, 1, "vardanianFarmland", -1187, 754);
+        }
         //Layer -21 (warm region): elev -2
         //mapS21
         if (Y > -218110 && Y < -207328 && X < 7687 && X > - 3901) //X0

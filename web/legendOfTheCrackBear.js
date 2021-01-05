@@ -2868,6 +2868,18 @@ function coolioPack()
 
     coolio.onload = function()
     {
+        minnoPack();
+    };
+}
+
+function minnoPack()
+{
+    var minno = new Image();
+    minno.src = ("images/minno.png");
+    window.minno = minno;
+
+    minno.onload = function()
+    {
         candlewicPack();
     };
 }

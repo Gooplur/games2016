@@ -2880,6 +2880,18 @@ function minnoPack()
 
     minno.onload = function()
     {
+        yoniPack();
+    };
+}
+
+function yoniPack()
+{
+    var yoni = new Image();
+    yoni.src = ("images/yoni.png");
+    window.yoni = yoni;
+
+    yoni.onload = function()
+    {
         candlewicPack();
     };
 }

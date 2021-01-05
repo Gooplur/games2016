@@ -2856,6 +2856,18 @@ function moltePack()
 
     molte.onload = function()
     {
+        coolioPack();
+    };
+}
+
+function coolioPack()
+{
+    var coolio = new Image();
+    coolio.src = ("images/coolio.png");
+    window.coolio = coolio;
+
+    coolio.onload = function()
+    {
         candlewicPack();
     };
 }

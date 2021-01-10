@@ -2892,6 +2892,30 @@ function yoniPack()
 
     yoni.onload = function()
     {
+        lespPack();
+    };
+}
+
+function lespPack()
+{
+    var lesp = new Image();
+    lesp.src = ("images/lesp.png");
+    window.lesp = lesp;
+
+    lesp.onload = function()
+    {
+        shrumPack();
+    };
+}
+
+function shrumPack()
+{
+    var shrum = new Image();
+    shrum.src = ("images/shrum.png");
+    window.shrum = shrum;
+
+    shrum.onload = function()
+    {
         candlewicPack();
     };
 }

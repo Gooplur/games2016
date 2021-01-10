@@ -34322,6 +34322,78 @@ function Item(type, x, y)
             this.buyValue = 300 - Math.floor(player.getCharisma() / 1); // at max, buy for 250.
             this.sellValue = 150 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 250.
         }
+        else if (this.type == "naume")
+        {
+            //For All Items
+            this.identity = "Naume Flowers";
+            this.weight = 2;
+            this.size = 12;
+            this.description = "Beautiful pink flowers with a thick white stamen.";
+            this.intForDes = 12;
+            this.intDescription = "This type of flower is considered extremely fancy and desirable, outside of Thengaria where they grow commonly.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Thengar")
+                {
+                    this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
+                    this.sellValue = 1; // at max, sell for 1.
+                }
+                else
+                {
+                    this.buyValue = 9 - Math.floor(player.getCharisma() / 15); // at max, buy for 6.
+                    this.sellValue = 2 + Math.floor(player.getCharisma() / 12); // at max, sell for 6.
+                }
+            }
+            else
+            {
+                this.buyValue = 9 - Math.floor(player.getCharisma() / 15); // at max, buy for 6.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 12); // at max, sell for 6.
+            }
+        }
+        else if (this.type == "vuhuhn")
+        {
+            //For All Items
+            this.identity = "Vuhuhn Flower";
+            this.weight = 2;
+            this.size = 12;
+            this.description = "A bright light blue flower with white pollen.";
+            this.intForDes = 10;
+            this.intDescription = "This flower is a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Thengar")
+                {
+                    this.buyValue = 1 - Math.floor(player.getCharisma() / 50); // at max, buy for 0.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+                else
+                {
+                    this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+                    this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+                }
+            }
+            else
+            {
+                this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
+        }
         else if (this.type == "yeolWood")
         {
             //For All Items
@@ -64975,6 +65047,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "naume")
+        {
+            XXX.beginPath();
+            XXX.drawImage(coolio, 3066, 339, 29, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 1), 29 * 1, 40 * 1);
+        }
+        else if (this.type == "vuhuhn")
+        {
+            XXX.beginPath();
+            XXX.drawImage(coolio, 2947, 428, 29, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 1), 29 * 1, 40 * 1);
+        }
         else if (this.type == "redJungleFowlFeathers")
         {
             XXX.beginPath();
@@ -71528,12 +71610,12 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(theCrack, 197, 528, 18, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.5), 18 * 1.5, 17 * 1.5);
         }
-        else if (this.type == "ishBranch")
+        else if (this.type == "itlinBranch")
         {
             XXX.beginPath();
             XXX.drawImage(theCrack, 865, 550, 18, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 18), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 18, 21);
         }
-        else if (this.type == "itlinBranch")
+        else if (this.type == "ishBranch")
         {
             XXX.beginPath();
             XXX.drawImage(mufmuf, 477, 103, 12, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 2), 12 * 2, 10 * 2);
@@ -73707,6 +73789,16 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "naume")
+        {
+            LXX.beginPath();
+            LXX.drawImage(coolio, 3066, 339, 29, 40, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 40 * 1), 29 * 1, 40 * 1);
+        }
+        else if (this.type == "vuhuhn")
+        {
+            LXX.beginPath();
+            LXX.drawImage(coolio, 2947, 428, 29, 40, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 40 * 1), 29 * 1, 40 * 1);
         }
         else if (this.type == "redJungleFowlFeathers")
         {
@@ -80314,12 +80406,12 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(theCrack, 197, 528, 18, 17, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 17 * 1.5), 18 * 1.5, 17 * 1.5);
         }
-        else if (this.type == "ishBranch")
+        else if (this.type == "itlinBranch")
         {
             LXX.beginPath();
             LXX.drawImage(theCrack, 865, 550, 18, 21, this.invX - (1/2 * 18), this.invY - (1/2 * 21), 18, 21);
         }
-        else if (this.type == "itlinBranch")
+        else if (this.type == "ishBranch")
         {
             LXX.beginPath();
             LXX.drawImage(mufmuf, 477, 103, 12, 10, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 10 * 2), 12 * 2, 10 * 2);
@@ -82396,6 +82488,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "naume")
+        {
+            XXX.beginPath();
+            XXX.drawImage(coolio, 3066, 339, 29, 40, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 40 * 1), 29 * 1, 40 * 1);
+        }
+        else if (this.type == "vuhuhn")
+        {
+            XXX.beginPath();
+            XXX.drawImage(coolio, 2947, 428, 29, 40, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 40 * 1), 29 * 1, 40 * 1);
         }
         else if (this.type == "redJungleFowlFeathers")
         {
@@ -88996,12 +89098,12 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(theCrack, 197, 528, 18, 17, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 17 * 1.5), 18 * 1.5, 17 * 1.5);
         }
-        else if (this.type == "ishBranch")
+        else if (this.type == "itlinBranch")
         {
             XXX.beginPath();
             XXX.drawImage(theCrack, 865, 550, 18, 21, this.invX - (1/2 * 18), this.invY - (1/2 * 21), 18, 21);
         }
-        else if (this.type == "itlinBranch")
+        else if (this.type == "ishBranch")
         {
             XXX.beginPath();
             XXX.drawImage(mufmuf, 477, 103, 12, 10, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 10 * 2), 12 * 2, 10 * 2);

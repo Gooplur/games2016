@@ -4407,6 +4407,44 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         }
                     }
                 }
+                else if (this.orders.sort == 4)
+                {
+                    this.spellTimer(18, true);
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.spin);
+                    XXX.globalAlpha = this.fade;
+                    XXX.drawImage(coolio, 2947, 428, 29, 40, - (1/2 * 29 * 1), - (1/2 * 40 * 1), 29 * 1, 40 * 1);
+                    XXX.restore();
+
+                    if (this.alert == true)
+                    {
+                        this.fade -= 0.025;
+                        if (this.fade < 0.05)
+                        {
+                            magicList.splice(magicList.indexOf(this), 1);
+                        }
+                    }
+                }
+                else if (this.orders.sort == 5)
+                {
+                    this.spellTimer(18, true);
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.spin);
+                    XXX.globalAlpha = this.fade;
+                    XXX.drawImage(coolio, 3056, 290, 29, 40, - (1/2 * 29 * 1), - (1/2 * 40 * 1), 29 * 1, 40 * 1);
+                    XXX.restore();
+
+                    if (this.alert == true)
+                    {
+                        this.fade -= 0.025;
+                        if (this.fade < 0.05)
+                        {
+                            magicList.splice(magicList.indexOf(this), 1);
+                        }
+                    }
+                }
                 else
                 {
                     this.X = this.orders.X;

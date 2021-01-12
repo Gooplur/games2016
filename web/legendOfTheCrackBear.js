@@ -2892,6 +2892,18 @@ function yoniPack()
 
     yoni.onload = function()
     {
+        carbuPack();
+    };
+}
+
+function carbuPack()
+{
+    var carbu = new Image();
+    carbu.src = ("images/carbu.png");
+    window.carbu = carbu;
+
+    carbu.onload = function()
+    {
         lespPack();
     };
 }
@@ -5247,6 +5259,7 @@ function theLegend()
         aDuelForLoveFinale: false,
         aDuelForLoveFaceChange: false,
         aDuelForLoveHappily: false,
+        aDuelForLoveFeudOver: false,
 
         //QUEST: The Mazareens did it ----- given by Dasan Omeqor
         theMazareensDidItQuest: false,

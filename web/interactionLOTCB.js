@@ -1645,7 +1645,7 @@ function interaction(me)
                                 quests.magicalDissertationQuest = "complete";
                                 quests.completeQuests.push({name: "Magical Dissertation", description: "You obtained evidence of Niljada the Sorceress's crime of tearing the fabric of reality and reported it to the guards."});
                                 player.cephriteFaction += 25;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 65;
                                 }
@@ -3169,13 +3169,39 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                if (quests.aDuelForLoveDasabReto == true)
+                                if (quests.aDuelForLoveDasabReto == true && quests.aDuelForLoveDasabAfter != true && quests.aDuelForLoveQuest == true)
                                 {
                                     player.dialogueOptions = [["...", false, "d"]];
                                 }
+                                else if (quests.aDuelForLoveDasabAfter == true && quests.aDuelForLoveQuest == true && quests.aDuelForLoveDrugged != true)
+                                {
+                                    if (player.getCharisma() >= 25)
+                                    {
+                                        player.dialogueOptions = [["You challenged Mundi to protect your house's honour, but your sister and Mundi truly love each other. It is most honourable to let them unite, for doing so would end your families' feud.", false, "b"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["I saw you challenge Mundi to a duel, is there any way that you would consider rescinding your challenge?", false, "b"]];
+                                    }
+                                    if (have("druggedSonjaSlice", 1))
+                                    {
+                                        player.dialogueOptions.push(["Your sister asked me to give this to you so that you will have the energy you need for the duel with Mundi Mazareen.", false, "e"]);
+                                    }
+                                }
+                                else if (quests.aDuelForLoveFeudOver == true)
+                                {
+                                    player.dialogueOptions = [["Good to see you again!", false, "c"]];
+                                }
                                 else
                                 {
-                                    player.dialogueOptions = [["Poopy Butt.", false, "a"]];
+                                    if (uniqueChars.natsataraLDS == true)
+                                    {
+                                        player.dialogueOptions = [["Good day!", false, "a"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["...", false, "a"]];
+                                    }
                                 }
                             }
                             else if (player.dialogueChoiceMade == true)
@@ -3209,6 +3235,12 @@ function interaction(me)
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0d";
                                         }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
                                     }
                                 }
                             }
@@ -3216,7 +3248,21 @@ function interaction(me)
                         else if (conversationID[1] == "0a")
                         {
                             //text dialogue
-                            setMsg("Oh good day to you too! It's just lovely don't you think?");
+                            if (uniqueChars.natsataraLDS == true)
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("Good day sweet lady!");
+                                }
+                                else
+                                {
+                                    setMsg("Good day.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("My sweet sister has passed away... leave me to grieve in solitude.");
+                            }
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -3236,27 +3282,76 @@ function interaction(me)
                         else if (conversationID[1] == "0b")
                         {
                             //text dialogue
-                            setMsg("Just cleanin' the furs. You got to clean 'em before you can make 'em into something.");
-
-                            //on ended text dialogue
-                            if (tellMessage == "reset")
+                            if (player.getCharisma() >= 25)
                             {
-                                msgReset();
+                                setMsg("I did not think of it that way. True love seems such a rare thing, I simply did not want a mazareen to play my sister for a fool and stain our house's honour in the process. I would be happy to see an end to our houses feuding! I will rescind my challenge.");
 
-                                playersTurnToSpeak = true;
-                                player.dialoguePosition = 0;
-                                conversationID[1] = 0;
-                                self.SC();
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+
+                                    quests.aDuelForLoveCompletionStyle = "happy";
+                                    quests.aDuelForLoveQuest = "complete";
+
+                                    quests.aDuelForLoveFeudOver = true;
+
+                                    quests.completeQuests.push({name: "A Duel for Love", description: "You convinced Dasab Omeqor to consent to the union of his sister, Natsatara Omeqor, and Mundi Mazareen. Their union under these peaseful conditions has brought about the end of the Mazareen-Omeqor Feud."});
+
+                                    player.cephriteFaction += 125;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                    {
+                                        player.magicalExperience += 500;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 900;
+                                    }
+                                    player.fame += 3;
+                                    reiniciar();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
                             }
                             else
                             {
-                                self.SC();
+                                setMsg("I will not rescind my challenge, that man is a lecherous snob who wishes to defile my sister. It is not just the honour of my sister, who can be admittedly rather impulsive at times, that is at stake here, her honour is inherently connected with that of our house. I will not let this snivelling Mazareen desecrate my sister's honour nor that of the house of Omeqor. A duel is the only honourable way to settle this matter.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
                             }
                         }
                         else if (conversationID[1] == "0c")
                         {
                             //text dialogue
-                            setMsg("Oh you know... A bit o' cleaning a bit o' stitchin', mostly cleanin' though.");
+                            if (uniqueChars.natsataraLDS == true)
+                            {
+                                setMsg("Yes, I am glad that you convinced me not to duel Mundi. Though I find him to be a pitiful excuse for a man, I have never seen my sister so happy, and I can already sense the tension between our houses settling down. Our parents still hate each other, but it will be impossible for me to hate the Mazareens soon enough as they will be my own nieses and nephews...");
+                            }
+                            else
+                            {
+                                setMsg("My sweet sister has passed away... I do not wish to speak with you any longer.");
+                            }
+
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -3308,6 +3403,28 @@ function interaction(me)
                                 self.SC();
                             }
                         }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Thank you! Tell my sister that I am doing this for her and that I love her.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aDuelForLoveDrugged = true;
+                                take("druggedSonjaSlice", 1);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
                     }
 
                     if (self.ID == "Natsatara Omeqor" || conversationID[0] == "Natsatara")
@@ -3337,11 +3454,11 @@ function interaction(me)
                                 {
                                     player.dialogueOptions = [["...", false, "e"]];
                                 }
-                                else if (quests.aDuelForLoveDasabAfter == true && quests.aDuelForLoveOptions != true)
+                                else if (quests.aDuelForLoveDasabAfter == true && quests.aDuelForLoveOptions != true && quests.aDuelForLoveFinale != true)
                                 {
                                     player.dialogueOptions = [["How do you think Mundi will do in the duel?", false, "f"]];
                                 }
-                                else if (quests.aDuelForLoveOptions == true && quests.aDuelForLoveFakedDeath != true)
+                                else if (quests.aDuelForLoveOptions == true && quests.aDuelForLoveFakedDeath != true && quests.aDuelForLoveFinale != true)
                                 {
                                     player.dialogueOptions = [];
                                     player.dialogueOptions.push(["Tell me more about how drugging your brother would work...", false, "g"]);
@@ -3352,13 +3469,21 @@ function interaction(me)
                                 {
                                     player.dialogueOptions = [["...", false, "j"], ["He's not really dead, he's faked his death so that you two can run away together...", false, "k"]];
                                 }
+                                else if (quests.aDuelForLoveFaceChange == true && quests.aDuelForLoveQuest == true)
+                                {
+                                    player.dialogueOptions = [["...", false, "m"]];
+                                }
+                                else if (quests.aDuelForLoveCompletionStyle == "happy")
+                                {
+                                    player.dialogueOptions = [["How do you do?", false, "n"], ["What are you looking at?", false, "o"]];
+                                }
                                 else if (quests.aDuelForLoveFinale == true)
                                 {
                                     player.dialogueOptions = [["...", false, "l"]];
                                 }
                                 else
                                 {
-                                    player.dialogueOptions = [["Poopy butt.", false, "a"]];
+                                    player.dialogueOptions = [["Hello.", false, "p"]];
                                 }
                             }
                             else if (player.dialogueChoiceMade == true)
@@ -3439,6 +3564,30 @@ function interaction(me)
                                             tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0l";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "m")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0m";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "n")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0n";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "o")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0o";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "p")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0p";
                                         }
                                     }
                                 }
@@ -3537,6 +3686,8 @@ function interaction(me)
                             {
                                 msgReset();
 
+                                take("mundiLoveLetter", 1);
+                                give("natLoveLetter", 1);
                                 give("coins", 20);
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
@@ -3841,6 +3992,125 @@ function interaction(me)
                                     }
                                     player.fame += 2;
                                 }
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0m")
+                        {
+                            //text dialogue
+                            setMsg("Wow, with that elixir you look just like mundi! Thanks for taking his place in the duel! Mundi and I will be ever grateful to you! (she kisses you on the cheek) Now I can move in with my beloved mundi in his family home and be with him forever! Thank you so much!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                quests.aDuelForLoveHappily = true;
+
+                                quests.aDuelForLoveCompletionStyle = "happy";
+                                quests.aDuelForLoveQuest = "complete";
+
+                                quests.completeQuests.push({name: "A Duel for Love", description: "Using a magical illusion elixir to take the appearance of Mundi temporarily, you have taken Mundi's place in the duel with Dasab Omeqor and won!"});
+
+                                player.cephriteFaction += 90;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                                {
+                                    player.magicalExperience += 325;
+                                }
+                                else
+                                {
+                                    player.experience += 550;
+                                }
+                                player.fame += 2;
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0n")
+                        {
+                            //text dialogue
+                            if (uniqueChars.mundiLDS == true)
+                            {
+                                setMsg("I am well, as is my beloved Mundi. We are so happy together! Though, many of the Mazareen household customs are distinct from those of my own house, I am so very pleased to be with my true love! He will be mine now and forever! I have you to thank for that! Thank you so much for all of the help you have given us!");
+                            }
+                            else
+                            {
+                                setMsg("My poor Mundi is dead... The mazareens have been so supportive... They are the only ones who understand the pain I feel! (She sobs dramatically)");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0o")
+                        {
+                            //text dialogue
+                            if (uniqueChars.mundiLDS == true)
+                            {
+                                setMsg("I am enjoying the simple beauties of life... The natural beauty of a nupala plant can be so easy to overlook, but my love Mundi reminds me every day that we can take nothing for granted. We must live while we are alive and admire the world around us for its hidden beauty. I love the way Mundi thinks... I love everything about Mundi!");
+                            }
+                            else
+                            {
+                                setMsg("My poor Mundi is dead... I can do nothing but mourn and think of how empty everything is without him. How can this nupala continue to thrive while my beloved mundi is gone from this world. (She weeps painfully)");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0p")
+                        {
+                            //text dialogue
+                            if (quests.aDuelForLoveQuest != true)
+                            {
+                                setMsg("I don't mean to be rude, but may I please beg your pardon in asking you to let me be, I am reading and wish not to be disturbed.");
+                            }
+                            else
+                            {
+                                setMsg("Hello.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
                             }
                             else
                             {
@@ -4128,7 +4398,11 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                if (quests.aDuelForLoveQuest == false)
+                                if (quests.aDuelForLoveCompletionStyle == "happy")
+                                {
+                                    player.dialogueOptions = [["How are you?", false, "n"]];
+                                }
+                                else if (quests.aDuelForLoveQuest == false)
                                 {
                                     player.dialogueOptions = [["What are you doing?", false, "a"], ["Why are you staring at that plant?", false, "a"], ["What is going on? You seem sad.", false, "a"], ["Why do you maintain such a glum disposition?", false, "a"], ["...", false, "a"]];
                                 }
@@ -4277,6 +4551,12 @@ function interaction(me)
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0m";
                                         }
+                                        else if (player.dialogueOptions[i][2] == "n")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0n";
+                                        }
                                     }
                                 }
                             }
@@ -4300,6 +4580,7 @@ function interaction(me)
                                 quests.activeQuests.push({name: "A Duel for Love", description: "Mundi Mazareen is madly in love with Natsatara Omeqor, but their families respectively hate each other..."});
 
                                 self.SC();
+                                reiniciar();
                             }
                             else
                             {
@@ -4345,6 +4626,7 @@ function interaction(me)
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
                                 self.SC();
+                                reiniciar();
                             }
                             else
                             {
@@ -4601,6 +4883,33 @@ function interaction(me)
 
                                 reiniciar();
                                 change = "dasabAngry";
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0n")
+                        {
+                            //text dialogue
+                            if (uniqueChars.natsataraLDS == true)
+                            {
+                                setMsg("My beautiful Natsatara and I are so happy! Our love is stronger than a gazillion mountains.... Our love is forever!");
+                            }
+                            else
+                            {
+                                setMsg("I am undone... my beloved is dead and yet I remain. What cruel demon has arranged our fates so!? Why must my one true love depart this world without me!? (He sobs terribly)");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
                             }
                             else
                             {
@@ -9037,10 +9346,10 @@ function interaction(me)
                         }
                     }
 
-                    if (self.ID == "Yaduni Mazareen" || conversationID[0] == "Yuduni")
+                    if (self.ID == "Yaduni Mazareen" || conversationID[0] == "Yaduni")
                     {
                         lowBar = "dialogue";
-                        conversationID[0] = "Yuduni";
+                        conversationID[0] = "Yaduni";
 
                         if (clickReleased)
                         {
@@ -9115,6 +9424,39 @@ function interaction(me)
                                 else
                                 {
                                     setMsg("What do you want, visitor? I have already lost everything... The Omeqors saw to that! They bewitched my son and made him take his own life!");
+                                }
+                            }
+                            else if (quests.aDuelForLoveCompletionStyle == "happy")
+                            {
+                                if (quests.aDuelForLoveFeudOver == true)
+                                {
+                                    if (player.title == "Nobility" || player.title == "Royalty")
+                                    {
+                                        setMsg("Good day! I am honoured to have someone of your stature visite my illustrious home, do feel free to settle in and make yourself comfortable. I will also add that I am most humbled by your support for the house of Mazareen! Your role in helping my son be united with the Omeqor girl will not be forgotten! I must also admit that I am hopeful for the future of the Omeqors, their son is a reasonable man. He consented to his sister's union with my son after all...");
+                                    }
+                                    else if (player.title == "Highfolk")
+                                    {
+                                        setMsg("Good day. My son Mundi has told me about you, you convinced the Omeqor boy to come to reason. There is hope for that wretched family yet! And as for you, you are always welcome in my home!");
+                                    }
+                                    else
+                                    {
+                                        setMsg("Ah, Mundi has told me about you! You are the courier that convinced the Omeqor boy to come to reason. There is hope for that wretched family yet! Welcome to my home!");
+                                    }
+                                }
+                                else
+                                {
+                                    if (player.title == "Nobility" || player.title == "Royalty")
+                                    {
+                                        setMsg("Good day! I am honoured to have someone of your stature visite my illustrious home, do feel free to settle in and make yourself comfortable. I will also add that I am most humbled by your support for the house of Mazareen! Your role in helping my son be united with the Omeqor girl will not be forgotten!");
+                                    }
+                                    else if (player.title == "Highfolk")
+                                    {
+                                        setMsg("Good day. My son Mundi has told me about you, you helped him be united with his wife by covertly carrying messages between them right under the noses of the Omeqors. Any friend of Mundi's is a friend of mine! Welcome to my home!");
+                                    }
+                                    else
+                                    {
+                                        setMsg("Ah, Mundi has told me about you! You are the courier that daringly delivered messages to the daughter of Omeqor so that my son could save her from her family's wicked ways. Welcome to my home!");
+                                    }
                                 }
                             }
                             else
@@ -9268,38 +9610,74 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                player.dialogueOptions = [["Good day.", false, "a"], ["...", false, "b"], ["Tell me about the house of Omeqor.", false, "c"], ["Why do you hate the Mazareens?", false, "d"]];
-
-                                if (quests.theMazareensDidItTalk == true && quests.theMazareensDidItQuest == false )
+                                if (quests.aDuelForLoveFeudOver == true)
                                 {
-                                    player.dialogueOptions.unshift(["You mentioned a pyromoth silk operation that was sabotaged?", false, "e"]);
-                                }
+                                    player.dialogueOptions = [["Good day.", false, "k"], ["...", false, "b"], ["Tell me about the house of Omeqor.", false, "c"], ["Why do you hate the Mazareens?", false, "d"]];
 
-                                if (quests.theMazareensDidItTalk == true && quests.theMazareensDidItQuest == false && quests.theMazareensDidItFungus == true)
+                                    if (quests.theMazareensDidItTalk == true && quests.theMazareensDidItQuest == false )
+                                    {
+                                        player.dialogueOptions.unshift(["You mentioned a pyromoth silk operation that was sabotaged?", false, "e"]);
+                                    }
+
+                                    if (quests.theMazareensDidItTalk == true && quests.theMazareensDidItQuest == false && quests.theMazareensDidItFungus == true)
+                                    {
+                                        player.dialogueOptions.unshift(["I passed through a pyromoth silking village when I was in the jungle a little bit ago. It was completely overrun by venandi.", false, "i"]);
+                                    }
+
+                                    if (quests.theMazareensDidItInterview == true && quests.theMazareensDidItQuest == true)
+                                    {
+                                        player.dialogueOptions.unshift(["Yaduni Mazareen said that he did not have anything to do with sabotaging your silk operation.", false, "f"]);
+                                    }
+
+                                    if (quests.theMazareensDidItFungus == true && quests.theMazareensDidItQuest == true)
+                                    {
+                                        player.dialogueOptions.unshift(["I went to your pyromoth silking village and the entire place was infected by cerebrus mushrooms and mycelium, even the workers!", false, "g"]);
+                                    }
+
+                                    if (quests.theMazareensDidItSaraQuestioned == true)
+                                    {
+                                        player.dialogueOptions.unshift(["I overheard you asking my wife some disturbing questions pertaining to our marriage. This can only be the work of the Mazareens speaking ill of us to you. I assure you that this slanderous rumor lacks credibility, and I urge you to keep your distance from that wicked Yaduni Mazareen, his lying tongue spreads the most foul gossip... those that lend him their ear only subject themselves to the mad ravings of his depraved and twisted mind.", false, "j"]);
+                                    }
+
+                                    if (quests.theMazareensDidItQuest == true)
+                                    {
+                                        player.dialogueOptions.unshift(["I would like to buy protective jungle armour to protect me on this venture. (costs 500 coins)", false, "h"]);
+                                    }
+                                }
+                                else
                                 {
-                                    player.dialogueOptions.unshift(["I passed through a pyromoth silking village when I was in the jungle a little bit ago. It was completely overrun by venandi.", false, "i"]);
-                                }
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["...", false, "b"], ["Tell me about the house of Omeqor.", false, "c"], ["Why do you hate the Mazareens?", false, "d"]];
 
-                                if (quests.theMazareensDidItInterview == true && quests.theMazareensDidItQuest == true)
-                                {
-                                    player.dialogueOptions.unshift(["Yaduni Mazareen said that he did not have anything to do with sabotaging your silk operation.", false, "f"]);
-                                }
+                                    if (quests.theMazareensDidItTalk == true && quests.theMazareensDidItQuest == false )
+                                    {
+                                        player.dialogueOptions.unshift(["You mentioned a pyromoth silk operation that was sabotaged?", false, "e"]);
+                                    }
 
-                                if (quests.theMazareensDidItFungus == true && quests.theMazareensDidItQuest == true)
-                                {
-                                    player.dialogueOptions.unshift(["I went to your pyromoth silking village and the entire place was infected by cerebrus mushrooms and mycelium, even the workers!", false, "g"]);
-                                }
+                                    if (quests.theMazareensDidItTalk == true && quests.theMazareensDidItQuest == false && quests.theMazareensDidItFungus == true)
+                                    {
+                                        player.dialogueOptions.unshift(["I passed through a pyromoth silking village when I was in the jungle a little bit ago. It was completely overrun by venandi.", false, "i"]);
+                                    }
 
-                                if (quests.theMazareensDidItSaraQuestioned == true)
-                                {
-                                    player.dialogueOptions.unshift(["I overheard you asking my wife some disturbing questions pertaining to our marriage. This can only be the work of the Mazareens speaking ill of us to you. I assure you that this slanderous rumor lacks credibility, and I urge you to keep your distance from that wicked Yaduni Mazareen, his lying tongue spreads the most foul gossip... those that lend him their ear only subject themselves to the mad ravings of his depraved and twisted mind.", false, "j"]);
-                                }
+                                    if (quests.theMazareensDidItInterview == true && quests.theMazareensDidItQuest == true)
+                                    {
+                                        player.dialogueOptions.unshift(["Yaduni Mazareen said that he did not have anything to do with sabotaging your silk operation.", false, "f"]);
+                                    }
 
-                                if (quests.theMazareensDidItQuest == true)
-                                {
-                                    player.dialogueOptions.unshift(["I would like to buy protective jungle armour to protect me on this venture. (costs 500 coins)", false, "h"]);
-                                }
+                                    if (quests.theMazareensDidItFungus == true && quests.theMazareensDidItQuest == true)
+                                    {
+                                        player.dialogueOptions.unshift(["I went to your pyromoth silking village and the entire place was infected by cerebrus mushrooms and mycelium, even the workers!", false, "g"]);
+                                    }
 
+                                    if (quests.theMazareensDidItSaraQuestioned == true)
+                                    {
+                                        player.dialogueOptions.unshift(["I overheard you asking my wife some disturbing questions pertaining to our marriage. This can only be the work of the Mazareens speaking ill of us to you. I assure you that this slanderous rumor lacks credibility, and I urge you to keep your distance from that wicked Yaduni Mazareen, his lying tongue spreads the most foul gossip... those that lend him their ear only subject themselves to the mad ravings of his depraved and twisted mind.", false, "j"]);
+                                    }
+
+                                    if (quests.theMazareensDidItQuest == true)
+                                    {
+                                        player.dialogueOptions.unshift(["I would like to buy protective jungle armour to protect me on this venture. (costs 500 coins)", false, "h"]);
+                                    }
+                                }
                             }
                             else if (player.dialogueChoiceMade == true)
                             {
@@ -9368,6 +9746,12 @@ function interaction(me)
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0j";
                                         }
+                                        else if (player.dialogueOptions[i][2] == "k")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0k";
+                                        }
                                     }
                                 }
                             }
@@ -9375,7 +9759,18 @@ function interaction(me)
                         else if (conversationID[1] == "0a")
                         {
                             //text dialogue
-                            setMsg("Good day. Welcome to my home!");
+                            if (quests.aDuelForLoveCompletionStyle == "happy")
+                            {
+                                setMsg("Wicked, wicked are the mazareens who slay my son through trickery and deceit and steal away my daughter and corrupt her against her own house!!! There will be no good day to be had until the Mazareens are brought to justice!");
+                            }
+                            else if (uniqueChars.natsataraLDS != true)
+                            {
+                                setMsg("My daughter is dead! No day will be good until the Mazareens are brought to justice for their wicked heir's defilement of my sweet daughter!");
+                            }
+                            else
+                            {
+                                setMsg("Good day. Welcome to my home!");
+                            }
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -9611,6 +10006,26 @@ function interaction(me)
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
                                 quests.theMazareensDidItSaraQuestioned = "over";
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0k")
+                        {
+                            //text dialogue
+                            setMsg("I never thought I would see the day! My own son has backed down from his challenge to the Mazareen boy and she has united with the boy in union... If I was a younger man I would slay that mazareen dog. All I can hope for now is that my daughters sensibilities will positively influence her children and the next generation of Mazareen's will be purged of their inherent wickedness through her... My sweet Natsatara, what a great sacrifice my poor girl has undertaken...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
                                 self.SC();
                             }
                             else
@@ -10699,7 +11114,7 @@ function interaction(me)
 
                                     quests.completeQuests.push({name: "The Cult of the Radiant Spirit", description: "You have rooted out the heretic who would defy the Radiant Spirit and have married the high priest of the cult."});
 
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 100;
                                     }
@@ -10722,7 +11137,7 @@ function interaction(me)
 
                                     quests.completeQuests.push({name: "The Cult of the Radiant Spirit", description: "You have rooted out the heretic who would defy the Radiant Spirit and have proven yourself as a loyal member of the cult."});
 
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 100;
                                     }
@@ -10807,7 +11222,7 @@ function interaction(me)
                                         quests.completeQuests.push({name: "The Cult of the Radiant Spirit", description: "You have killed the heretic who defied the Radiant Spirit, but then atoned for your rash decision. You returned to the high priest who inducted you into the cult."});
                                     }
 
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 70;
                                     }
@@ -13627,7 +14042,7 @@ function interaction(me)
                                     player.fame += 2;
                                 }
                                 player.thengarFaction += 50;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 210;
                                 }
@@ -14852,7 +15267,7 @@ function interaction(me)
 
                                 quests.completeQuests.push({name: "Magical Dissertation", description: "You have slain the arcane monstrosities that were escaping the cosmic aether, allowing the cosmos to regenerate itself."});
                                 player.cephriteFaction += 35;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 250;
                                 }
@@ -15004,7 +15419,7 @@ function interaction(me)
 
                                 quests.completeQuests.push({name: "Magical Dissertation", description: "As Cephrian of high political station, you pardoned Niljada for tearing a hole in reality."});
                                 player.cephriteFaction += 2;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 10;
                                 }
@@ -15042,7 +15457,7 @@ function interaction(me)
                                 quests.magicalDissertationQuest = "complete";
                                 quests.completeQuests.push({name: "Magical Dissertation", description: "As Cephrian of high political station, you sentenced Niljada the Sorceress to die for tearing a rift in the fabric of reality."});
                                 player.cephriteFaction += 25;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 50;
                                 }
@@ -18906,7 +19321,7 @@ function interaction(me)
                                         quests.theScourgeOfGenocaQuest = "complete";
                                         quests.completeQuests.push({name: "The Scourge of Genoca", description: "You have slain the griffin that had made its nest in the hamlet Genoca, the alderman payed you 300 coins for your services."});
                                         player.nirwadenFaction += 45;
-                                        if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                        if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                         {
                                             player.magicalExperience += 250;
                                         }
@@ -18942,7 +19357,7 @@ function interaction(me)
                                         quests.theScourgeOfGenocaQuest = "complete";
                                         quests.completeQuests.push({name: "The Scourge of Genoca", description: "You have slain the griffin that had made its nest in the hamlet Genoca. You are now regarded as the patron Saint of Genoca."});
                                         player.nirwadenFaction += 75;
-                                        if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                        if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                         {
                                             player.magicalExperience += 300;
                                         }
@@ -19256,7 +19671,7 @@ function interaction(me)
                                     quests.theScourgeOfGenocaQuest = "complete";
                                     quests.completeQuests.push({name: "The Scourge of Genoca", description: "By your orders the Royal Guild of the Inquisition has prioritized slaying a griffin that had built its nest in the hamlet Genoca."});
                                     player.nirwadenFaction += 25;
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 75;
                                     }
@@ -19472,7 +19887,7 @@ function interaction(me)
                                     quests.theScourgeOfGenocaQuest = "complete";
                                     quests.completeQuests.push({name: "The Scourge of Genoca", description: "You have decreed that the hamlet of Genoca is now to be a royal Griffin Sanctuary to host your new pet griffin."});
                                     player.nirwadenFaction -= 50;
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 50;
                                     }
@@ -23702,7 +24117,7 @@ function interaction(me)
                                     quests.spouseTrackerCompletionStyle = "bienEscort";
                                     quests.spouseTrackerQuest = "complete";
                                     quests.completeQuests.push({name: "Spouse Tracker", description: "You helped Madam Bella and her lover escape Thengaria."});
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 20;
                                     }
@@ -23757,7 +24172,7 @@ function interaction(me)
                                     quests.spouseTrackerCompletionStyle = "malEscort";
                                     quests.spouseTrackerQuest = "complete";
                                     quests.completeQuests.push({name: "Spouse Tracker", description: "You helped Madam Bella escape Thengaria, but her lover didn't make it."});
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 15;
                                     }
@@ -24155,7 +24570,7 @@ function interaction(me)
 
                                     quests.spouseTrackerQuest = "complete";
                                     quests.completeQuests.push({name: "Spouse Tracker", description: "You informed Master Hanz that his wife and slave were camping out in the crags."});
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 8;
                                     }
@@ -24201,7 +24616,7 @@ function interaction(me)
 
                                     quests.spouseTrackerQuest = "complete";
                                     quests.completeQuests.push({name: "Spouse Tracker", description: "You informed Master Hanz that his wife was trying to cross the crags."});
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 8;
                                     }
@@ -24248,7 +24663,7 @@ function interaction(me)
 
                                     quests.spouseTrackerQuest = "complete";
                                     quests.completeQuests.push({name: "Spouse Tracker", description: "You arrested Madam Bella and brought her back to Lethik to be executed."});
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 10;
                                     }
@@ -26588,7 +27003,7 @@ function interaction(me)
                                     quests.thePlightOfLethikQuest = "complete";
                                     quests.completeQuests.push({name: "The Plight of Lethik", description: "You slayed the warlock that was responsible for cursing Axel's farm."});
                                     player.thengarFaction += 30;
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 100;
                                     }
@@ -26626,7 +27041,7 @@ function interaction(me)
                                     quests.thePlightOfLethikQuest = "complete";
                                     quests.completeQuests.push({name: "The Plight of Lethik", description: "You slayed the witch accused of cursing Axel's farm."});
                                     player.thengarFaction += 30;
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 20;
                                     }
@@ -28032,7 +28447,7 @@ function interaction(me)
                                 quests.atalinWitchHuntQuest = "complete";
                                 quests.completeQuests.push({name: "Atalin Witch Hunt", description: "You hunted down and killed the witch known as Old Lady Matilda."});
                                 player.nirwadenFaction += 20;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 130;
                                 }
@@ -28079,7 +28494,7 @@ function interaction(me)
                                     quests.completeQuests.push({name: "Grey Dust", description: "You banished the ghost that was haunting the Atalin Graveyard."});
                                 }
                                 player.nirwadenFaction += 35;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 100;
                                 }
@@ -28838,7 +29253,7 @@ function interaction(me)
                                 quests.teshirConverted = true;
                                 quests.completeQuests.push({name: "Neighborly Conversion", description: "You convinced the Jarl of Teshir to permit the construction of a church to the Spirit Everlasting in his city."});
                                 player.nirwadenFaction += 60;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 100;
                                 }
@@ -29405,7 +29820,7 @@ function interaction(me)
                                 {
 
                                     quests.completeQuests.push({name: "Man of the People", description: "You joined the very bandit chieftain whom you set out to kill."});
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 20;
                                     }
@@ -29621,7 +30036,7 @@ function interaction(me)
                                 quests.breakawaysCompletionStyle = true;
                                 quests.breakawaysQuest = "complete";
                                 quests.completeQuests.push({name: "Breakaways", description: "You disbanded the breakaway band of outlaws who were sullying the name of Ser Barraco Kein's cause with their vile actions."});
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 40;
                                 }
@@ -30016,7 +30431,7 @@ function interaction(me)
                                 quests.manOfThePeopleQuest = "complete";
                                 quests.completeQuests.push({name: "Man of the People", description: "You slayed Ser Barraco Kein, the knightly leader of a band of outlaws that stole from the rich and gave to the poor... more or less."});
                                 player.nirwadenFaction += 40;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 150;
                                 }
@@ -30890,7 +31305,7 @@ function interaction(me)
                                     quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You killed the changeling... for a fee, of course."});
                                 }
                                 player.nirwadenFaction += 18;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 9;
                                 }
@@ -30944,7 +31359,7 @@ function interaction(me)
                                     quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You killed the changeling."});
                                 }
                                 player.nirwadenFaction += 22;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 20;
                                 }
@@ -31024,7 +31439,7 @@ function interaction(me)
                                 quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You killed the boy, despite learning that the boy's behavior was caused by a head injury, and not supernatural forces."});
 
                                 player.nirwadenFaction -= 5;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 8;
                                 }
@@ -31060,7 +31475,7 @@ function interaction(me)
                                 quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You killed the boy, despite learning that the boy's behavior was caused by a head injury, and not supernatural forces."});
 
                                 player.nirwadenFaction -= 8;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 10;
                                 }
@@ -31703,7 +32118,7 @@ function interaction(me)
                                 quests.aFairyInBoysClothingCompletionStyle = "subGrace";
                                 quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You discovered that the boy's strange behavior was due to a head injury and convinced his mother that that was the case."});
                                 player.nirwadenFaction += 26;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 45;
                                 }
@@ -31738,7 +32153,7 @@ function interaction(me)
                                 quests.aFairyInBoysClothingCompletionStyle = "grace";
                                 quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You discovered that the boy's strange behavior was due to a head injury and convinced his mother that that was the case."});
                                 player.nirwadenFaction += 29;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 50;
                                 }
@@ -32420,7 +32835,7 @@ function interaction(me)
                                 quests.imaginaryFriendQuest = "complete";
                                 quests.completeQuests.push({name: "Imaginary Friend", description: "You slayed the Boggart and cleansed the little girl who befriended it."});
                                 player.nirwadenFaction += 15;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 85;
                                 }
@@ -32463,7 +32878,7 @@ function interaction(me)
                                 quests.imaginaryFriendQuest = "complete";
                                 quests.completeQuests.push({name: "Imaginary Friend", description: "You slayed the bakery Boggart and in doing so saved a little girl from its corrupting influence."});
                                 player.nirwadenFaction += 25;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 75;
                                 }
@@ -32794,7 +33209,7 @@ function interaction(me)
                                     quests.completeQuests.push({name: "Duende Infestation", description: "You killed the duendes that were infesting the hidalgo's home out of the sheer goodness of your heart."});
                                 }
                                 player.nirwadenFaction += 30;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 120;
                                 }
@@ -33127,7 +33542,7 @@ function interaction(me)
                                 quests.completeQuests.push({name: "Duende Infestation", description: "You ordered some soldiers to deal with a duende infestation in the home of a local Hidalgo."});
 
                                 player.nirwadenFaction += 20;
-                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                 {
                                     player.magicalExperience += 10;
                                     player.experience += 25;
@@ -33676,7 +34091,7 @@ function interaction(me)
                                     quests.completeQuests.push({name: "Duende Infestation", description: "You purchased the duende infested house at a discount price. Now it's your problem."});
 
                                     player.nirwadenFaction += 10;
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 20;
                                     }
@@ -33731,7 +34146,7 @@ function interaction(me)
                                     quests.completeQuests.push({name: "Duende Infestation", description: "You purchased the duende infested house at a discount price. Now it's your problem."});
 
                                     player.nirwadenFaction += 10;
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 20;
                                     }
@@ -33806,7 +34221,7 @@ function interaction(me)
                                     quests.completeQuests.push({name: "Duende Infestation", description: "You purchased the duende infested house at a discount price. Now it's your problem."});
 
                                     player.nirwadenFaction += 10;
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 20;
                                     }
@@ -35802,7 +36217,7 @@ function interaction(me)
                                     quests.aFeastForFewerQuest = "complete";
                                     quests.completeQuests.push({name: "A Feast for Fewer", description: "You convinced those remaining in power that the Knight and Master of Arms Ser Belgos was ultimately behind the assassination of the High Lord of Atalin."});
                                     player.nirwadenFaction += 60;
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 65;
                                     }
@@ -36583,7 +36998,7 @@ function interaction(me)
                                         quests.completeQuests.push({name: "A Feast for Fewer", description: "You reported a rogue soldier to the proper authorities who executed him for poisoning the high lord."});
                                     }
                                     player.nirwadenFaction += 55;
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 60;
                                     }
@@ -37441,7 +37856,7 @@ function interaction(me)
                                         quests.completeQuests.push({name: "A Feast for Fewer", description: "You reported the cook to the proper authorities who executed her for poisoning the high lord."});
                                         player.nirwadenFaction += 15;
                                     }
-                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 20;
                                     }
@@ -46936,7 +47351,7 @@ function interaction(me)
                                 player.dialogueOptions = [["What is the nature call?", false, "b"], ["Would you like me to help you find the nature call?", false, "c"]];
                                 if (player.getStrength() >= 3)
                                 {
-                                    if (player.class == "mage")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.dialogueOptions.push(["(Carry her back to the tribe)", false, "a"]);
                                     }
@@ -47530,7 +47945,7 @@ function interaction(me)
                                 {
                                     quests.completeQuests.push({name: "Lost Girl", description: "Fenwik's daughter was resistant to return home at first so you played along in what turned out to be a magical phenomenon."});
                                     player.magicalExperience += 35;
-                                    if (player.class == "Mage")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 65;
                                     }
@@ -49795,7 +50210,7 @@ function interaction(me)
                                     worldItems.push([new Item("coins", X, Y), 65]);
                                     player.freynorFaction += 25;
                                     player.fame += 1;
-                                    if (player.class == "Mage")
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
                                     {
                                         player.magicalExperience += 75;
                                     }

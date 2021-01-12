@@ -12534,6 +12534,27 @@ function cheats()
         {
             console.log(quests);
         }
+        else if (cheatcode == "saltblood'sLocker")
+        {
+            if (quests.aNobleConspiracyQuest == true)
+            {
+                quests.aNobleConspiracyCompletionStyle = "saltblood";
+                quests.aNobleConspiracyQuest = "complete";
+
+                quests.completeQuests.push({name: "A Noble Conspiracy", description: "The jarl of Venning was in league with a powerful band of pirates that terrorized the north sea. You slayed the pirate captain, Jalmari Saltblood and put an end to the madness."});
+
+                player.freynorFaction += 60;
+                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman" || player.class == "Sage")
+                {
+                    player.magicalExperience += 600;
+                }
+                else
+                {
+                    player.experience += 1100;
+                }
+                player.fame += 2;
+            }
+        }
         else if (cheatcode == "googleIsMyHusbandCheatingOnMeWithPirates?")
         {
             if (quests.aNobleConspiracyQuest == false && quests.matrimonyTorStambjordCompletionStyle == "marriage")

@@ -2904,6 +2904,18 @@ function carbuPack()
 
     carbu.onload = function()
     {
+        harthPack();
+    };
+}
+
+function harthPack()
+{
+    var harth = new Image();
+    harth.src = ("images/harth.png");
+    window.harth = harth;
+
+    harth.onload = function()
+    {
         lespPack();
     };
 }

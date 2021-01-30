@@ -6607,13 +6607,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 7)
+                if (buildClase > 8)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 7;
+                    buildClase = 8;
                 }
             }
 
@@ -6660,6 +6660,12 @@ function cheats()
             }
             else if (buildClase == 7)
             {
+                buildPrompt = "HearthMimic";
+                buildPrompt2 = "vardanianHearth";
+                buildSize = 1.6;
+            }
+            else if (buildClase == 8)
+            {
                 buildPrompt = "RugMimic";
                 buildPrompt2 = "floorDeco";
                 buildSize = 1;
@@ -6683,6 +6689,10 @@ function cheats()
                     }
                     else if (buildClase == 7)
                     {
+                        scenicList.push(new Scenery(buildPrompt2, X, Y, buildRot - 1/2 * Math.PI, buildSize, 1));
+                    }
+                    else if (buildClase == 8)
+                    {
                         scenicList.push(new Scenery(buildPrompt2, X, Y, buildRot, buildSize, 1.5));
                     }
                     else
@@ -6698,6 +6708,11 @@ function cheats()
                 islonDDDD.operations();
             }
             else if (buildClase == 7)
+            {
+                var islonDDDD = new Scenery(buildPrompt2, X, Y, buildRot - 1/2 * Math.PI, buildSize, 1);
+                islonDDDD.operations();
+            }
+            else if (buildClase == 8)
             {
                 var islonDDDD = new Scenery(buildPrompt2, X, Y, buildRot, buildSize, 1.5);
                 islonDDDD.operations();

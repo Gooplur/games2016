@@ -1622,6 +1622,31 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 this.rotation = 1/2 * Math.PI + this.playerRotation - 1/8 * Math.PI + (1/16 * Math.PI - 1/8 * Math.PI * Math.random());
             }
         }
+        //FIRE BREATH
+        if (this.spellType == "fireBreath")
+        {
+            this.spin = 2*Math.random()*Math.PI;
+            if (this.orders == 1)
+            {
+                this.orientToCaster(38, Math.PI);
+                this.rotation = Math.PI + unitSelf.rotation + (1/16 * Math.PI - 1/8 * Math.PI * Math.random());
+            }
+            else if (this.orders == 2)
+            {
+                this.orientToCaster(38, Math.PI);
+                this.rotation = Math.PI + unitSelf.rotation + 1/8 * Math.PI + (1/16 * Math.PI - 1/8 * Math.PI * Math.random());
+            }
+            else if (this.orders == 3)
+            {
+                this.orientToCaster(38, Math.PI);
+                this.rotation = Math.PI + unitSelf.rotation - 1/8 * Math.PI + (1/16 * Math.PI - 1/8 * Math.PI * Math.random());
+            }
+            else if (this.orders == 4)
+            {
+                this.orientToCaster(38, Math.PI);
+                this.rotation = Math.PI + unitSelf.rotation - (1/16 * Math.PI - 1/8 * Math.PI * Math.random());
+            }
+        }
 
         //SHADOWPORT
         if (this.spellType == "shadowport")
@@ -4718,6 +4743,163 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                     }
                     this.contactDamage(false, 18, ((8 + 0.1 * this.cnx) / 9), 3, "fire");
                     this.project(this.rotation, 85, 2, true);
+                }
+            }
+
+            if (this.spellType == "fireBreath")
+            {
+                if (this.alert != true)
+                {
+                    this.fire = true;
+                    this.size = 1.2;
+                    this.goTic += 9;
+                    this.fade = 1;
+                    this.gooTic = 1;
+                    this.siz = 1;
+
+                    if (this.goTic < 10)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.spin);
+                        XXX.drawImage(humpa, 10, 968, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                        XXX.restore();
+                    }
+                    else if (this.goTic < 20)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.spin);
+                        XXX.drawImage(humpa, 10, 1009, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                        XXX.restore();
+                    }
+                    else if (this.goTic < 30)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.spin);
+                        XXX.drawImage(humpa, 10, 1057, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                        XXX.restore();
+                    }
+                    else if (this.goTic < 40)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.spin);
+                        XXX.drawImage(humpa, 11, 1106, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                        XXX.restore();
+                    }
+                    else if (this.goTic <= 50 || this.goTic > 50)
+                    {
+                        if (Math.random())
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.spin);
+                            XXX.drawImage(humpa, 10, 1057, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.spin);
+                            XXX.drawImage(humpa, 10, 1009, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                            XXX.restore();
+                        }
+
+                        if (this.goTic > 50)
+                        {
+                            this.goTic = 0;
+                        }
+                    }
+                    if (timeOfDay != "Day" || player.underground)
+                    {
+                        lights.push({X: this.X, Y: this.Y, size: 28, extraStops: true, GRD: 0, Alpha: 0.9, showMe: false});
+                    }
+                    this.contactDamage(true, 21, ((8 + 0.1 * this.cnx) / 9), 3, "fire");
+                    this.project(this.rotation, 175, 2.3, "alert");
+                }
+                else
+                {
+                    if (this.gooTic >= 0)
+                    {
+                        this.gooTic = -1;
+                        this.distanceCovered = 0;
+                    }
+
+                    if (this.fade > 0.4)
+                    {
+                        this.goTic += 9;
+                        if (this.goTic < 10)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.spin);
+                            XXX.drawImage(humpa, 10, 968, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                            XXX.restore();
+                        }
+                        else if (this.goTic < 20)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.spin);
+                            XXX.drawImage(humpa, 10, 1009, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                            XXX.restore();
+                        }
+                        else if (this.goTic < 30)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.spin);
+                            XXX.drawImage(humpa, 10, 1057, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                            XXX.restore();
+                        }
+                        else if (this.goTic < 40)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.spin);
+                            XXX.drawImage(humpa, 11, 1106, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                            XXX.restore();
+                        }
+                        else if (this.goTic <= 50 || this.goTic > 50)
+                        {
+                            if (Math.random())
+                            {
+                                XXX.save();
+                                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                                XXX.rotate(this.spin);
+                                XXX.drawImage(humpa, 10, 1057, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                                XXX.restore();
+                            }
+                            else
+                            {
+                                XXX.save();
+                                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                                XXX.rotate(this.spin);
+                                XXX.drawImage(humpa, 10, 1009, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                                XXX.restore();
+                            }
+
+                            if (this.goTic > 50)
+                            {
+                                this.goTic = 0;
+                            }
+                        }
+                    }
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.spin);
+                    XXX.globalAlpha = this.fade;
+                    XXX.drawImage(atal, 436, 576, 81, 77, - (1/2 * 81 * this.siz * 1/2), - (1/2 * 77 * this.siz * 1/2), 81 * this.siz * 1/2, 77 * this.siz * 1/2);
+                    XXX.restore();
+                    this.size -= 0.032
+                    this.siz += 0.01;
+                    this.fade -= 0.01;
+
+                    this.project(this.rotation, 75, 1.9, true);
                 }
             }
 

@@ -1836,6 +1836,30 @@ function enwiPack()
 
     enwi.onload = function()
     {
+        ggatPack();
+    };
+}
+
+function ggatPack()
+{
+    var ggat = new Image();
+    ggat.src = ("images/ggat.png");
+    window.ggat = ggat;
+
+    ggat.onload = function()
+    {
+        bidrPack();
+    };
+}
+
+function bidrPack()
+{
+    var bidr = new Image();
+    bidr.src = ("images/bidr.png");
+    window.bidr = bidr;
+
+    bidr.onload = function()
+    {
         olgPack();
     };
 }

@@ -1035,7 +1035,7 @@ function Adventurer()
                     this.dragonFire = true;
                     this.frozenTime = 0;
                     this.dragonFireKeepTime2 = new Date().getTime();
-                    this.health -= Math.max(0, (10 * this.dragonFireMult) - (this.heatResistance / 1000));
+                    this.health -= Math.max(0, (2.5 * this.dragonFireMult) - (this.heatResistance / 1000));
                     this.warmth += 100;
                     this.thirst = Math.max(0, this.thirst - (1 * this.dragonFireMult));
                 }
@@ -1649,7 +1649,7 @@ function Adventurer()
                             {
                                 if (ArtificialIntelligenceAccess[i].disturbed != true)
                                 {
-                                    ArtificialIntelligenceAccess[i].moveInRelationToPlayer();
+                                    ArtificialIntelligenceAccess[i].moveInRelationToPlayer(true);
                                 }
                             }
                         }
@@ -1667,7 +1667,7 @@ function Adventurer()
                             {
                                 if (ArtificialIntelligenceAccess[i].disturbed != true)
                                 {
-                                    ArtificialIntelligenceAccess[i].moveInRelationToPlayer();
+                                    ArtificialIntelligenceAccess[i].moveInRelationToPlayer(true);
                                 }
                             }
                         }
@@ -1685,7 +1685,7 @@ function Adventurer()
                             {
                                 if (ArtificialIntelligenceAccess[i].disturbed != true)
                                 {
-                                    ArtificialIntelligenceAccess[i].moveInRelationToPlayer();
+                                    ArtificialIntelligenceAccess[i].moveInRelationToPlayer(true);
                                 }
                             }
                         }
@@ -43217,6 +43217,12 @@ function Adventurer()
                             {
                                 this.stunnedXV = true;
                                 this.stunnedTime = Math.max(1000000000, this.stunnedTime);
+                            }
+                            else if (Inventory[i][0].ability == "ologaiFruit") //stuns the player for 8 seconds of stunII
+                            {
+                                this.stunnedXV = true;
+                                this.stunnedTime = Math.max(600, this.stunnedTime);
+                                this.poisonIII = true;
                             }
                             else if (Inventory[i][0].ability == "krogiNumb") //stuns the player for 8 seconds of stunII
                             {

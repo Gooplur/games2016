@@ -8774,6 +8774,106 @@ function Item(type, x, y)
             this.buyValue = 16; // at max, buy for 16.
             this.sellValue = 6 + Math.floor(player.getCharisma() / 5); // at max, sell for 16.
         }
+        else if (this.type == "fezaFlower")
+        {
+            //For All Items
+            this.identity = "Feza Flower";
+            this.weight = 0.18;
+            this.size = 11;
+            this.description = "A feather-like yellow and red flower.";
+            this.intForDes = 23;
+            this.intDescription = "This is used as a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
+        else if (this.type == "fezaLeaves")
+        {
+            //For All Items
+            this.identity = "Feza Leaves";
+            this.weight = 0.13;
+            this.size = 11;
+            this.description = "The leaves of a feza plant.";
+            this.intForDes = 15;
+            this.intDescription = "Feza leaves are used in orgish herbal remedies for curing minor illnesses or alleviating symptoms of illnesses.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "zhongyeLeaves")
+        {
+            //For All Items
+            this.identity = "Zhongye Leaves";
+            this.weight = 0.76;
+            this.size = 11;
+            this.description = "The red, pink, and orange, pointed, ball-tipped leaves of a zhongye plant.";
+            this.intForDes = 20;
+            this.intDescription = "Zhongye leaves are used as a changer in alchemy as well as an amplifier.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "orgishGiantLily")
+        {
+            //For All Items
+            this.identity = "Orgish Giant Lilypad";
+            this.weight = 4.1;
+            this.size = 18;
+            this.description = "Sections of lilypad from an Orgish giant lily plant.";
+            this.intForDes = 13;
+            this.intDescription = "Orgish giant lily is used in alchemy, and in medicines: it serves as a moderate amplifier.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "orgishGiantLotus")
+        {
+            //For All Items
+            this.identity = "Orgish Giant Lotus";
+            this.weight = 13;
+            this.size = 25;
+            this.description = "A giant star-like lotus flower with sixteen golden petals and a pink stamen and stigma.";
+            this.intForDes = 13;
+            this.intDescription = "Orgish giant lotus flowers are esteemed as a pinnacle of natural beauty. They are also valued for their use in alchemy as a former.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 55 - Math.floor(player.getCharisma() / 5); // at max, buy for 45.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 3.4); // at max, sell for 45.
+        }
         else if (this.type == "muon")
         {
             //For All Items
@@ -14293,6 +14393,55 @@ function Item(type, x, y)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 2; // at max, sell for 2.
         }
+        else if (this.type == "ashigaBerries")
+        {
+            //For All Items
+            this.identity = "Ashiga Berries";
+            this.weight = 0.25;
+            this.size = 5;
+            this.description = "A cluster of tiny translucent burgundy colored berries.";
+            this.intForDes = 0;
+            this.intDescription = "They are primarily sour, but they have a pleasant sweetness that balances their flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.6; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "mikadzukiArc")
+        {
+            //For All Items
+            this.identity = "Mikadzuki Arc";
+            this.weight = 3.9;
+            this.size = 14;
+            this.description = "A thick pink leaf lined with more than a dozen tiny flowers with long stamens.";
+            this.intForDes = 19;
+            this.intDescription = "This is a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 25); // at max, sell for 8.
+        }
         else if (this.type == "palggaFlowers")
         {
             //For All Items
@@ -19680,6 +19829,202 @@ function Item(type, x, y)
                 this.sellValue = 3; // at max, sell for 3.
             }
         }
+        else if (this.type == "rawRice")
+        {
+            //For All Items
+            this.identity = "Raw Rice";
+            this.weight = 0.3;
+            this.size = 6;
+            this.description = "A pile of brown shelled rice collected from a rice plant.";
+            this.intForDes = 1;
+            this.intDescription = "It is traditional to de-shell the rice before cooking it.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["splitRice", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 0; //cools player.
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "splitRice")
+        {
+            //For All Items
+            this.identity = "Split Rice";
+            this.weight = 0.25;
+            this.size = 6;
+            this.description = "A pile of de-shelled rice.";
+            this.intForDes = 1;
+            this.intDescription = "It is traditional to de-shell the rice before cooking it.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rice")
+        {
+            //For All Items
+            this.identity = "Rice";
+            this.weight = 0.25;
+            this.size = 7;
+            this.description = "Steamed rice.";
+            this.intForDes = 2;
+            this.intDescription = "Rice is a staple food in Orgell, it is paired with almost every meal.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5.5; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 3.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+            this.cooling = 0; //cools player.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 6;
+            this.intForCraft = 10;
+            this.ingredients = [["Split Rice", 6], ["Bucket of Water", 1]];
+            this.biproducts = [[new Item("bucket", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "ologaiFruit")
+        {
+            //For All Items
+            this.identity = "Ologai Fruit";
+            this.weight = 0.7;
+            this.size = 9;
+            this.description = "A bright red fruit with a thin, pale, white skin encasing it.";
+            this.intForDes = 7;
+            this.intDescription = "Eating the sweet red fruit will cause paralysis and will poison you.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4.5; //satisfies hunger.
+            this.thirst = 0.75; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 1; //cools player.
+
+            //ability
+            this.ability = "ologaiFruit";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "laguFruit")
+        {
+            //For All Items
+            this.identity = "Lagu Fruit";
+            this.weight = 1.1;
+            this.size = 8;
+            this.description = "A light custard-yellow colored fruit inside a thin, peach-colored, porus skin with little spiny white hairs all over it.";
+            this.intForDes = 0;
+            this.intDescription = "The fruit has a creamy tropical taste initially, but then the aftertaste tastes like a mixture of rotten eggs and foot sweat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            if (player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.hunger = 5; //satisfies hunger.
+                this.generation = -2; //recoops lost energy.
+                //ability
+                this.ability = "none";
+            }
+            else
+            {
+                this.hunger = 4; //satisfies hunger.
+                this.generation = -8; //recoops lost energy.
+                //ability
+                this.ability = "foodPoisoning";
+            }
+            this.replenish = -10; //restores will.
+            this.cooling = 1; //cools player.
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "laguFlower")
+        {
+            //For All Items
+            this.identity = "Lagu Flower";
+            this.weight = 4;
+            this.size = 5;
+            this.description = "Lagu flowers have a confusing aroma. There is a hint of sweet and tropical combined with the smell of something rotten and foul.";
+            this.intForDes = 4;
+            this.intDescription = "Lagu flowers are said to mimic certain human pheromones, and thusly they are used as aphrodisiacs.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 6; // at max, sell for 6.
+        }
+        else if (this.type == "gladeGrass")
+        {
+            //For All Items
+            this.identity = "Glade Grass";
+            this.weight = 4;
+            this.size = 5;
+            this.description = "Water grass that grows natively in the Orgish glades.";
+            this.intForDes = 5;
+            this.intDescription = "There is no noteworthy use for this material.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "naibArm")
         {
             //For All Items
@@ -20164,6 +20509,167 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 29 - Math.floor(player.getCharisma() / 10); // at max, buy for 24.
             this.sellValue = 19 + Math.floor(player.getCharisma() / 10); // at max, sell for 24.
+        }
+        else if (this.type == "masmaoFungus")
+        {
+            //For All Items
+            this.identity = "Masmao Fungus";
+            this.weight = 0.6;
+            this.size = 9;
+            this.description = "A moist yet flakey green and pink fungal outgrowth.";
+            this.intForDes = 9;
+            this.intDescription = "Masmao fungus is poisonous to ingest";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.9; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 0; //cools player.
+
+            //ability
+            this.ability = "poisonI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "roastedMasmaoFungus")
+        {
+            //For All Items
+            this.identity = "Roasted Masmao Fungus";
+            this.weight = 0.55;
+            this.size = 9;
+            this.description = "A thick discoloured piece of cooked masmao fungus.";
+            this.intForDes = 11;
+            this.intDescription = "Cooking masmao fungus does not deteriorate its toxic compounds that make make it poisonous to consume.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 0; //cools player.
+
+            //ability
+            this.ability = "poisonI";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Masmao Fungus", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "nasobaFungus")
+        {
+            //For All Items
+            this.identity = "Nasoba Fungus";
+            this.weight = 0.9;
+            this.size = 10;
+            this.description = "A spongey, dry, pink and white fungus.";
+            this.intForDes = 9;
+            this.intDescription = "Nasoba fungus absorbs a lot of water very quickly so it is dangerous to ingest it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.2; //satisfies hunger.
+            this.thirst = -10; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 0; //cools player.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "boiledNasobaFungus")
+        {
+            //For All Items
+            this.identity = "Boiled Nasoba Fungus";
+            this.weight = 1.4;
+            this.size = 10;
+            this.description = "Swolen, slick, pink and white boiled nasoba fungus.";
+            this.intForDes = 0;
+            this.intDescription = "Nasoba fungus is very watery. It has a savoury flavour and a slimy texture.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 5;
+            this.ingredients = [["Nasoba Fungus", 1], ["Bucket of Water", 1]];
+            this.biproducts = [[new Item("bucket", false), 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 4; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 0; //cools player.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
+        }
+        else if (this.type == "multomFungus")
+        {
+            //For All Items
+            this.identity = "Multom Fungus";
+            this.weight = 0.4;
+            this.size = 9;
+            this.description = "A grey and bright blue fungus that smells thick and musky.";
+            this.intForDes = 10;
+            this.intDescription = "Multom fungus is poisonous to touch with bear skin.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = -10; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 1; //cools player.
+
+            //ability
+            this.ability = "poisonII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 25); // at max, sell for 2.
         }
         else if (this.type == "kofkeLeaves")
         {
@@ -37955,6 +38461,55 @@ function Item(type, x, y)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "tsutoriStalk")
+        {
+            //For All Items
+            this.identity = "Tsutori Stalk";
+            this.weight = 5.5;
+            this.size = 19;
+            this.description = "A thick red stalk with an infrared-bioluminescent orb at the tip.";
+            this.intForDes = 15;
+            this.intDescription = "This can be used as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "cuplumiFlower")
+        {
+            //For All Items
+            this.identity = "Culumi Flower";
+            this.weight = 4;
+            this.size = 14;
+            this.description = "A thick and heavy tube-like purple flower filled with a clear, thin, liquid sap.";
+            this.intForDes = 16;
+            this.intDescription = "Culumi flowers are a former in alchemy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.75; //satisfies hunger.
+            this.thirst = 9; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 4; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 50); // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
         else if (this.type == "cirmusidicCompound")
         {
             //For All Items
@@ -38154,6 +38709,66 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 57 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 53.
             this.sellValue = 50 + Math.floor(player.getCharisma() / 15); // at max, sell for 53.
+        }
+        else if (this.type == "kabutoSilk")
+        {
+            //For All Items
+            this.identity = "Kabuto Silk";
+            this.weight = 5.5;
+            this.size = 26;
+            this.description = "A strong, smooth, slick, silk-like material.";
+            this.intForDes = 2;
+            this.intDescription = "Kabuto silk is the inner membrain of the kabuto beetle's shell.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40 - Math.floor(player.getCharisma() / 10); // at max, buy for 35.
+            this.sellValue = 25 + Math.floor(player.getCharisma() / 5); // at max, sell for 35.
+        }
+        else if (this.type == "agaruTongueLrg")
+        {
+            //For All Items
+            this.identity = "Agaru Tongue";
+            this.weight = 8.2;
+            this.size = 26;
+            this.description = "A sticky, toothed tongue from an agaru.";
+            this.intForDes = 13;
+            this.intDescription = "This can be used as a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 22 - Math.floor(player.getCharisma() / 50); // at max, buy for 21.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 25); // at max, sell for 21.
+        }
+        else if (this.type == "agaruTongueSml")
+        {
+            //For All Items
+            this.identity = "Agaru Tongue";
+            this.weight = 6;
+            this.size = 26;
+            this.description = "A sticky, toothed tongue from an agaru.";
+            this.intForDes = 13;
+            this.intDescription = "This can be used as a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 17 - Math.floor(player.getCharisma() / 25); // at max, buy for 21.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 15); // at max, sell for 15.
         }
         else if (this.type == "udnalTail")
         {
@@ -38764,6 +39379,98 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 6.
+        }
+        else if (this.type == "ikastoMushroom")
+        {
+            //For All Items
+            this.identity = "Ikasto Mushroom";
+            this.weight = 54;
+            this.size = 29;
+            this.description = "A giant, red, bioluminescent mushroom with a colorful, wrinkled, and slimy cap.";
+            this.intForDes = 10;
+            this.intDescription = "This is extremely poisonous to ingest.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 43; //satisfies hunger.
+            this.thirst = 9; //quenches thirst.
+            this.warmth = 5; //warms player.
+            this.heal = -19; //heals health.
+            this.generation = 5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonIV";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 32 - Math.floor(player.getCharisma() / 25); // at max, buy for 30.
+            this.sellValue = 28 + Math.floor(player.getCharisma() / 25); // at max, sell for 30.
+        }
+        else if (this.type == "rawKabutoFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Kabuto Flesh";
+            this.weight = 4;
+            this.size = 29;
+            this.description = "The wet, rubbery, pinkish flesh of a kabuto.";
+            this.intForDes = 0;
+            this.intDescription = "This meat is rubbery and while technically edible has an extreme pungeance to both its odor and flavor.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 15; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -7; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11 - Math.floor(player.getCharisma() / 25); // at max, buy for 9.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 15); // at max, sell for 9.
+        }
+        else if (this.type == "kabutoMeat")
+        {
+            //For All Items
+            this.identity = "Kabuto Meat";
+            this.weight = 4;
+            this.size = 29;
+            this.description = "The cooked, rubbery, pink meat of a kabuto.";
+            this.intForDes = 0;
+            this.intDescription = "The meat has a very odd flavor and a moderately challenging rubbery texture...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 20; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 9;
+            this.ingredients = [["Raw Kabuto Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 17 - Math.floor(player.getCharisma() / 25); // at max, buy for 15.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 50); // at max, sell for 15.
         }
         else if (this.type == "halgomMushrooms")
         {
@@ -46095,7 +46802,7 @@ function Item(type, x, y)
             this.negateArmour = 14 + ((6/50) * player.getStrength());
 
             //ability
-            this.ability = "none";
+            this.ability = "silvered";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 35000 - Math.floor(player.getCharisma() / 0.1); // at max, buy for 34500.
@@ -64373,7 +65080,7 @@ function Item(type, x, y)
             this.negateArmour = 4 + this.superStealthNum(8);
 
             //ability
-            this.ability = "none";
+            this.ability = "silvered";
 
             this.yield = 2;
             this.intForCraft = 22;
@@ -65046,6 +65753,141 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "agaruTongueLrg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 731, 257, 63, 52, X - this.X + (1/2 * CCC.width) - (1/2 * 63 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 52 * 1), 63 * 1, 52 * 1);
+        }
+        else if (this.type == "agaruTongueSml")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 731, 257, 63, 52, X - this.X + (1/2 * CCC.width) - (1/2 * 63 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 52 * 0.7), 63 * 0.7, 52 * 0.7);
+        }
+        else if (this.type == "rawKabutoFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 503, 163, 44, 46, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 46 * 0.7), 44 * 0.7, 46 * 0.7);
+        }
+        else if (this.type == "kabutoMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 451, 165, 44, 46, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 46 * 0.7), 44 * 0.7, 46 * 0.7);
+        }
+        else if (this.type == "kabutoSilk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 529, 15, 127, 84, X - this.X + (1/2 * CCC.width) - (1/2 * 127 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 84 * 0.7), 127 * 0.7, 84 * 0.7);
+        }
+        else if (this.type == "ikastoMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 1118, 1925, 58, 63, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 63 * 1), 58 * 1, 63 * 1);
+        }
+        else if (this.type == "cuplumiFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 288, 1316, 58, 63, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 63 * 1), 58 * 1, 63 * 1);
+        }
+        else if (this.type == "tsutoriStalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 65, 376, 115, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 115 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 1), 115 * 1, 44 * 1);
+        }
+        else if (this.type == "fezaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 319, 164, 45, 46, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 46 * 1), 45 * 1, 46 * 1);
+        }
+        else if (this.type == "fezaLeaves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 363, 164, 45, 46, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 46 * 1), 45 * 1, 46 * 1);
+        }
+        else if (this.type == "orgishGiantLotus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 610, 512, 108, 93, X - this.X + (1/2 * CCC.width) - (1/2 * 108 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 93 * 1), 108 * 1, 93 * 1);
+        }
+        else if (this.type == "orgishGiantLily")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 458, 408, 108, 93, X - this.X + (1/2 * CCC.width) - (1/2 * 108 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 93 * 1), 108 * 1, 93 * 1);
+        }
+        else if (this.type == "zhongyeLeaves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 189, 526, 108, 93, X - this.X + (1/2 * CCC.width) - (1/2 * 108 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 93 * 1), 108 * 1, 93 * 1);
+        }
+        else if (this.type == "mikadzukiArc")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 648, 289, 48, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1), 48 * 1, 80 * 1);
+        }
+        else if (this.type == "ashigaBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 147, 28, 47, 56, X - this.X + (1/2 * CCC.width) - (1/2 * 47 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 56 * 1), 47 * 1, 56 * 1);
+        }
+        else if (this.type == "nasobaFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 202, 42, 20, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "boiledNasobaFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 203, 60, 20, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "rawRice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 120, 0, 20, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "splitRice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 120, 23, 20, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "rice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 168, 0, 20, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "ologaiFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 465, 105, 20, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "gladeGrass")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 425, 68, 29, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 29 * 1, 28 * 1);
+        }
+        else if (this.type == "laguFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 510, 100, 29, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 29 * 1, 28 * 1);
+        }
+        else if (this.type == "laguFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 82, 258, 33, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1), 33 * 1, 33 * 1);
+        }
+        else if (this.type == "masmaoFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 296, 107, 42, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1), 42 * 1, 41 * 1);
+        }
+        else if (this.type == "roastedMasmaoFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 301, 74, 42, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1), 42 * 1, 41 * 1);
+        }
+        else if (this.type == "multomFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 304, 170, 42, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1), 42 * 1, 41 * 1);
         }
         else if (this.type == "naume")
         {
@@ -73790,6 +74632,141 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "agaruTongueLrg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(joso, 731, 257, 63, 52, this.invX - (1/2 * 63 * 1), this.invY - (1/2 * 52 * 1), 63 * 1, 52 * 1);
+        }
+        else if (this.type == "agaruTongueSml")
+        {
+            LXX.beginPath();
+            LXX.drawImage(joso, 731, 257, 63, 52, this.invX - (1/2 * 63 * 0.7), this.invY - (1/2 * 52 * 0.7), 63 * 0.7, 52 * 0.7);
+        }
+        else if (this.type == "rawKabutoFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 503, 163, 44, 46, this.invX - (1/2 * 44 * 0.7), this.invY - (1/2 * 46 * 0.7), 44 * 0.7, 46 * 0.7);
+        }
+        else if (this.type == "kabutoMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 451, 165, 44, 46, this.invX - (1/2 * 44 * 0.7), this.invY - (1/2 * 46 * 0.7), 44 * 0.7, 46 * 0.7);
+        }
+        else if (this.type == "kabutoSilk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 529, 15, 127, 84, this.invX - (1/2 * 127 * 0.37), this.invY - (1/2 * 84 * 0.37), 127 * 0.37, 84 * 0.37);
+        }
+        else if (this.type == "ikastoMushroom")
+        {
+            LXX.beginPath();
+            LXX.drawImage(joso, 1118, 1925, 58, 63, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 63 * 1), 58 * 1, 63 * 1);
+        }
+        else if (this.type == "cuplumiFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(joso, 288, 1316, 58, 63, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 63 * 1), 58 * 1, 63 * 1);
+        }
+        else if (this.type == "tsutoriStalk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(joso, 65, 376, 115, 44, this.invX - (1/2 * 115 * 1), this.invY - (1/2 * 44 * 1), 115 * 1, 44 * 1);
+        }
+        else if (this.type == "fezaFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 319, 164, 45, 46, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 46 * 1), 45 * 1, 46 * 1);
+        }
+        else if (this.type == "fezaLeaves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 363, 164, 45, 46, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 46 * 1), 45 * 1, 46 * 1);
+        }
+        else if (this.type == "orgishGiantLotus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 610, 512, 108, 93, this.invX - (1/2 * 108 * 1), this.invY - (1/2 * 93 * 1), 108 * 1, 93 * 1);
+        }
+        else if (this.type == "orgishGiantLily")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 458, 408, 108, 93, this.invX - (1/2 * 108 * 1), this.invY - (1/2 * 93 * 1), 108 * 1, 93 * 1);
+        }
+        else if (this.type == "zhongyeLeaves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 189, 526, 108, 93, this.invX - (1/2 * 108 * 1), this.invY - (1/2 * 93 * 1), 108 * 1, 93 * 1);
+        }
+        else if (this.type == "mikadzukiArc")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 648, 289, 48, 80, this.invX - (1/2 * 48 * 1), this.invY - (1/2 * 80 * 1), 48 * 1, 80 * 1);
+        }
+        else if (this.type == "ashigaBerries")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 147, 28, 47, 56, this.invX - (1/2 * 47 * 1), this.invY - (1/2 * 56 * 1), 47 * 1, 56 * 1);
+        }
+        else if (this.type == "nasobaFungus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 202, 42, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "boiledNasobaFungus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 203, 60, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "rawRice")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 120, 0, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "splitRice")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 120, 23, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "rice")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 168, 0, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "ologaiFruit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 465, 105, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "gladeGrass")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 425, 68, 29, 28, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 28 * 1), 29 * 1, 28 * 1);
+        }
+        else if (this.type == "laguFruit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 510, 100, 29, 28, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 28 * 1), 29 * 1, 28 * 1);
+        }
+        else if (this.type == "laguFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 82, 258, 33, 33, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 33 * 1), 33 * 1, 33 * 1);
+        }
+        else if (this.type == "masmaoFungus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(site, 296, 107, 42, 41, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 41 * 1), 42 * 1, 41 * 1);
+        }
+        else if (this.type == "roastedMasmaoFungus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(site, 301, 74, 42, 41, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 41 * 1), 42 * 1, 41 * 1);
+        }
+        else if (this.type == "multomFungus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(site, 304, 170, 42, 41, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 41 * 1), 42 * 1, 41 * 1);
+        }
         else if (this.type == "naume")
         {
             LXX.beginPath();
@@ -82488,6 +83465,141 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "agaruTongueLrg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 731, 257, 63, 52, this.invX - (1/2 * 63 * 1), this.invY - (1/2 * 52 * 1), 63 * 1, 52 * 1);
+        }
+        else if (this.type == "agaruTongueSml")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 731, 257, 63, 52, this.invX - (1/2 * 63 * 0.7), this.invY - (1/2 * 52 * 0.7), 63 * 0.7, 52 * 0.7);
+        }
+        else if (this.type == "rawKabutoFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 503, 163, 44, 46, this.invX - (1/2 * 44 * 0.7), this.invY - (1/2 * 46 * 0.7), 44 * 0.7, 46 * 0.7);
+        }
+        else if (this.type == "kabutoMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 451, 165, 44, 46, this.invX - (1/2 * 44 * 0.7), this.invY - (1/2 * 46 * 0.7), 44 * 0.7, 46 * 0.7);
+        }
+        else if (this.type == "kabutoSilk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 529, 15, 127, 84, this.invX - (1/2 * 127 * 0.37), this.invY - (1/2 * 84 * 0.37), 127 * 0.37, 84 * 0.37);
+        }
+        else if (this.type == "ikastoMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 1118, 1925, 58, 63, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 63 * 1), 58 * 1, 63 * 1);
+        }
+        else if (this.type == "cuplumiFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 288, 1316, 58, 63, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 63 * 1), 58 * 1, 63 * 1);
+        }
+        else if (this.type == "tsutoriStalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(joso, 65, 376, 115, 44, this.invX - (1/2 * 115 * 1), this.invY - (1/2 * 44 * 1), 115 * 1, 44 * 1);
+        }
+        else if (this.type == "fezaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 319, 164, 45, 46, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 46 * 1), 45 * 1, 46 * 1);
+        }
+        else if (this.type == "fezaLeaves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 363, 164, 45, 46, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 46 * 1), 45 * 1, 46 * 1);
+        }
+        else if (this.type == "orgishGiantLotus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 610, 512, 108, 93, this.invX - (1/2 * 108 * 1), this.invY - (1/2 * 93 * 1), 108 * 1, 93 * 1);
+        }
+        else if (this.type == "orgishGiantLily")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 458, 408, 108, 93, this.invX - (1/2 * 108 * 1), this.invY - (1/2 * 93 * 1), 108 * 1, 93 * 1);
+        }
+        else if (this.type == "zhongyeLeaves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 189, 526, 108, 93, this.invX - (1/2 * 108 * 1), this.invY - (1/2 * 93 * 1), 108 * 1, 93 * 1);
+        }
+        else if (this.type == "mikadzukiArc")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 648, 289, 48, 80, this.invX - (1/2 * 48 * 1), this.invY - (1/2 * 80 * 1), 48 * 1, 80 * 1);
+        }
+        else if (this.type == "ashigaBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 147, 28, 47, 56, this.invX - (1/2 * 47 * 1), this.invY - (1/2 * 56 * 1), 47 * 1, 56 * 1);
+        }
+        else if (this.type == "nasobaFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 202, 42, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "boiledNasobaFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 203, 60, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "rawRice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 120, 0, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "splitRice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 120, 23, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "rice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 168, 0, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "ologaiFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 465, 105, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "gladeGrass")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 425, 68, 29, 28, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 28 * 1), 29 * 1, 28 * 1);
+        }
+        else if (this.type == "laguFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 510, 100, 29, 28, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 28 * 1), 29 * 1, 28 * 1);
+        }
+        else if (this.type == "laguFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 82, 258, 33, 33, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 33 * 1), 33 * 1, 33 * 1);
+        }
+        else if (this.type == "masmaoFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 296, 107, 42, 41, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 41 * 1), 42 * 1, 41 * 1);
+        }
+        else if (this.type == "roastedMasmaoFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 301, 74, 42, 41, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 41 * 1), 42 * 1, 41 * 1);
+        }
+        else if (this.type == "multomFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 304, 170, 42, 41, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 41 * 1), 42 * 1, 41 * 1);
         }
         else if (this.type == "naume")
         {

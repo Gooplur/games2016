@@ -22952,6 +22952,52 @@ function Item(type, x, y)
             this.buyValue = 220; // at max, buy for 220.
             this.sellValue = 220; // at max, sell for 220.
         }
+        else if (this.type == "shoko")
+        {
+            //For All Items
+            this.identity = "Shoko";
+            this.weight = 0;
+            this.size = 8;
+
+            this.description = "The weightless skull of a shoko spirit.";
+            this.intForDes = 10;
+            this.intDescription = "This skull contains a dormant shoko spirit resting off its physical death in an inanimate form.";
+
+            //Define Utility
+            this.utility = "material";
+
+            this.decayable = true;
+            this.decayLimit = 4;
+            this.decayObjective = "shokoHusk";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 99; // at max, buy for 99.
+            this.sellValue = 99; // at max, sell for 99.
+        }
+        else if (this.type == "shokoHusk")
+        {
+            //For All Items
+            this.identity = "Shoko Husk";
+            this.weight = 0;
+            this.size = 8;
+
+            this.description = "The weightless crumbled remains of a shoko skull.";
+            this.intForDes = 10;
+            this.intDescription = "The dormant shoko has awoken and left its old form behind to start life again in a renewed state.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "ulgoyLeaf")
         {
             //For All Items
@@ -65754,6 +65800,32 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "shoko")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 446, 19, 13, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 13 * 1, 15 * 1);
+        }
+        else if (this.type == "shokoHusk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 482, 22, 12, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1), 12 * 1, 10 * 1);
+            var shokokosss = -1;
+            var shokokossss = 1;
+            for (var shokokoss = 0; shokokoss < worldItems.length; shokokoss++)
+            {
+                if (worldItems[shokokoss][0] == this)
+                {
+                    shokokosss = shokokoss;
+                    shokokossss = worldItems[shokokoss][1];
+                    break;
+                }
+            }
+            for (var shokoshoko = 0; shokoshoko < shokokossss; shokoshoko++)
+            {
+                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Shoko", true, "Crawli"));
+            }
+            worldItems.splice(shokokosss, 1);
+        }
         else if (this.type == "agaruTongueLrg")
         {
             XXX.beginPath();
@@ -74632,6 +74704,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "shoko")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 446, 19, 13, 15, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 15 * 1), 13 * 1, 15 * 1);
+        }
+        else if (this.type == "shokoHusk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(julio, 482, 22, 12, 10, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 10 * 1), 12 * 1, 10 * 1);
+        }
         else if (this.type == "agaruTongueLrg")
         {
             LXX.beginPath();
@@ -83465,6 +83547,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "shoko")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 446, 19, 13, 15, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 15 * 1), 13 * 1, 15 * 1);
+        }
+        else if (this.type == "shokoHusk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(julio, 482, 22, 12, 10, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 10 * 1), 12 * 1, 10 * 1);
         }
         else if (this.type == "agaruTongueLrg")
         {

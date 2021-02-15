@@ -187,6 +187,10 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         {
             this.massive = true;
         }
+        else if (this.type == "shokoFade")
+        {
+            this.massive = true;
+        }
         else if (this.type == "firework")
         {
             this.massive = true;
@@ -39339,6 +39343,111 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             XXX.rotate(this.rotation);
             XXX.drawImage(furr, 268, 236, 76, 46, -1/2 * 76 * this.size, -1/2 * 46 * this.size, 76 * this.size, 46 * this.size);
             XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "shokoFade")
+        {
+            //TRAITS
+            this.interactionRange = 1;
+            this.size = this.temporary;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.runAng = 2*Math.PI*Math.random();
+                this.tic = 0;
+
+                this.fade = 1;
+            }
+
+            //DRAWSELF
+            if (this.information == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.fade;
+                XXX.drawImage(julio, 468, 9, 41, 34, -1/2 * 41 * this.size, -1/2 * 34 * this.size, 41 * this.size, 34 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.fade;
+                XXX.drawImage(julio, 422, 50, 41, 34, -1/2 * 41 * this.size, -1/2 * 34 * this.size, 41 * this.size, 34 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.fade;
+                XXX.drawImage(julio, 422, 89, 41, 34, -1/2 * 41 * this.size, -1/2 * 34 * this.size, 41 * this.size, 34 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.fade;
+                XXX.drawImage(julio, 420, 9, 41, 34, -1/2 * 41 * this.size, -1/2 * 34 * this.size, 41 * this.size, 34 * this.size);
+                XXX.restore();
+            }
+            this.fade -= 0.004;
+            if (this.fade < 0.94)
+            {
+                if (this.fade < 0.6)
+                {
+                    this.solid = false;
+                }
+                else
+                {
+                    this.solid = true;
+                }
+
+                if (this.information != 0)
+                {
+                    this.rotation = this.runAng;
+                    this.X += 4 * Math.cos(this.rotation + Math.PI);
+                    this.Y += 4 * Math.sin(this.rotation + Math.PI);
+
+                    if (this.tic > 2)
+                    {
+                        this.tic = 0;
+                        this.information += 1
+                    }
+                    this.tic += 1;
+                    if (this.information > 3)
+                    {
+                        this.information = 1;
+                    }
+                }
+                else
+                {
+                    this.fade -= 0.006;
+                }
+
+                if (this.fade < 0.02)
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+            }
+            else
+            {
+                this.solid = true;
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;

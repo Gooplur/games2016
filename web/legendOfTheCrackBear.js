@@ -1860,6 +1860,18 @@ function bidrPack()
 
     bidr.onload = function()
     {
+        poonPack();
+    };
+}
+
+function poonPack()
+{
+    var poon = new Image();
+    poon.src = ("images/poon.png");
+    window.poon = poon;
+
+    poon.onload = function()
+    {
         olgPack();
     };
 }

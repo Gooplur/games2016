@@ -44548,6 +44548,26 @@ function Item(type, x, y)
             this.buyValue = 55 - Math.floor(player.getCharisma() / 10); // at max, buy for 50.
             this.sellValue = 40 + Math.floor(player.getCharisma() / 5); // at max, sell for 50.
         }
+        else if (this.type == "carnidOoze")
+        {
+            //For All Items
+            this.identity = "Carnid Ooze";
+            this.weight = 14;
+            this.size = 16;
+            this.description = "The thick fleshy pinkish-red ooze of a carnid.";
+            this.intForDes = 0;
+            this.intDescription = "Carnid ooze is full of blood and partially converted carrion...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "pelcridOozeRemains")
         {
             //For All Items
@@ -65800,6 +65820,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "carnidOoze")
+        {
+            XXX.beginPath();
+            XXX.drawImage(carn, 954, 6, 33, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 33 * 1, 27 * 1);
+        }
         else if (this.type == "shoko")
         {
             XXX.beginPath();
@@ -74704,6 +74729,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "carnidOoze")
+        {
+            LXX.beginPath();
+            LXX.drawImage(carn, 954, 6, 33, 27, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 27 * 1), 33 * 1, 27 * 1);
+        }
         else if (this.type == "shoko")
         {
             LXX.beginPath();
@@ -83547,6 +83577,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "carnidOoze")
+        {
+            XXX.beginPath();
+            XXX.drawImage(carn, 954, 6, 33, 27, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 27 * 1), 33 * 1, 27 * 1);
         }
         else if (this.type == "shoko")
         {

@@ -1872,6 +1872,18 @@ function poonPack()
 
     poon.onload = function()
     {
+        arpooPack();
+    };
+}
+
+function arpooPack()
+{
+    var arpoo = new Image();
+    arpoo.src = ("images/arpoo.png");
+    window.arpoo = arpoo;
+
+    arpoo.onload = function()
+    {
         olgPack();
     };
 }

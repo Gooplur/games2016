@@ -30249,6 +30249,97 @@ function Item(type, x, y)
             this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
         }
+        else if (this.type == "taoPelt")
+        {
+            //For All Items
+            this.identity = "Tao Pelt";
+            this.weight = 7.5;
+            this.size = 14;
+            this.description = "The intricately patterned pelt of a tao.";
+            if (player.raceName == "Orgell")
+            {
+                this.intForDes = 0;
+                this.intDescription = "Taos are the wisest of all animals, they are so wise to the ways of the universe that they can pass between the mortal and spirit realms at will.";
+            }
+            else
+            {
+                this.intForDes = 7;
+                this.intDescription = "Taos are regarded as a very spiritually attuned animal by the Orgish, they are thought to be able to cross between the mortal and spiritual realms at will.";
+            }
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 70 - Math.floor(player.getCharisma() / 10); // at max, buy for 65.
+            this.sellValue = 49 + Math.floor(player.getCharisma() / 3.2); // at max, sell for 64.
+        }
+        else if (this.type == "rawTaoFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Tao Flesh";
+            this.weight = 6.5;
+            this.size = 12;
+            this.description = "The raw flesh of a tao.";
+            this.intForDes = 1;
+            this.intDescription = "Eating this raw will give you food poisoning.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -15; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
+        }
+        else if (this.type == "taoMeat")
+        {
+            //For All Items
+            this.identity = "Slow-Roasted Tao Meat";
+            this.weight = 6;
+            this.size = 12;
+            this.description = "The slow-cooked meat of a tao.";
+            this.intForDes = 1;
+            this.intDescription = "Even after being slow cooked, tao meat is extremely tough and difficult to chew through. However its flavour is good and it is healthy and filling.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 43; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -8; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 25;
+            this.ingredients = [["Raw Tao Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 35 - Math.floor(player.getCharisma() / 15); // at max, buy for 32.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 25); // at max, sell for 32.
+        }
         else if (this.type == "anemoneTentacle")
         {
             //For All Items
@@ -66172,6 +66263,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "taoPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sluth, 1814, 781, 204, 123, X - this.X + (1/2 * CCC.width) - (1/2 * 204 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 123 * 0.7), 204 * 0.7, 123 * 0.7);
+        }
+        else if (this.type == "rawTaoFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sluth, 1855, 690, 50, 51, X - this.X + (1/2 * CCC.width) - (1/2 * 50 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51 * 0.7), 50 * 0.7, 51 * 0.7);
+        }
+        else if (this.type == "taoMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sluth, 1917, 690, 50, 51, X - this.X + (1/2 * CCC.width) - (1/2 * 50 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51 * 0.7), 50 * 0.7, 51 * 0.7);
+        }
         else if (this.type == "sasoriStinger")
         {
             XXX.beginPath();
@@ -75146,6 +75252,21 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "taoPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sluth, 1814, 781, 204, 123, this.invX - (1/2 * 204 * 0.35), this.invY - (1/2 * 123 * 0.35), 204 * 0.35, 123 * 0.35);
+        }
+        else if (this.type == "rawTaoFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sluth, 1855, 690, 50, 51, this.invX - (1/2 * 50 * 0.7), this.invY - (1/2 * 51 * 0.7), 50 * 0.7, 51 * 0.7);
+        }
+        else if (this.type == "taoMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sluth, 1917, 690, 50, 51, this.invX - (1/2 * 50 * 0.7), this.invY - (1/2 * 51 * 0.7), 50 * 0.7, 51 * 0.7);
+        }
         else if (this.type == "sasoriStinger")
         {
             LXX.beginPath();
@@ -75209,7 +75330,7 @@ function Item(type, x, y)
         else if (this.type == "turaturaHide")
         {
             LXX.beginPath();
-            LXX.drawImage(bootrex, 1777, 47, 165, 91, this.invX - (1/2 * 165 * 0.8), this.invY - (1/2 * 91 * 0.8), 165 * 0.8, 91 * 0.8);
+            LXX.drawImage(bootrex, 1777, 47, 165, 91, this.invX - (1/2 * 165 * 0.45), this.invY - (1/2 * 91 * 0.45), 165 * 0.45, 91 * 0.45);
         }
         else if (this.type == "carnidOoze")
         {
@@ -84060,6 +84181,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "taoPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sluth, 1814, 781, 204, 123, this.invX - (1/2 * 204 * 0.35), this.invY - (1/2 * 123 * 0.35), 204 * 0.35, 123 * 0.35);
+        }
+        else if (this.type == "rawTaoFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sluth, 1855, 690, 50, 51, this.invX - (1/2 * 50 * 0.7), this.invY - (1/2 * 51 * 0.7), 50 * 0.7, 51 * 0.7);
+        }
+        else if (this.type == "taoMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sluth, 1917, 690, 50, 51, this.invX - (1/2 * 50 * 0.7), this.invY - (1/2 * 51 * 0.7), 50 * 0.7, 51 * 0.7);
+        }
         else if (this.type == "sasoriStinger")
         {
             XXX.beginPath();
@@ -84123,7 +84259,7 @@ function Item(type, x, y)
         else if (this.type == "turaturaHide")
         {
             XXX.beginPath();
-            XXX.drawImage(bootrex, 1777, 47, 165, 91, this.invX - (1/2 * 165 * 0.8), this.invY - (1/2 * 91 * 0.8), 165 * 0.8, 91 * 0.8);
+            XXX.drawImage(bootrex, 1777, 47, 165, 91, this.invX - (1/2 * 165 * 0.45), this.invY - (1/2 * 91 * 0.45), 165 * 0.45, 91 * 0.45);
         }
         else if (this.type == "carnidOoze")
         {

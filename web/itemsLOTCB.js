@@ -21067,6 +21067,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "mehibBlade")
+        {
+            //For All Items
+            this.identity = "Mehib Blade";
+            this.weight = 2.4;
+            this.size = 14;
+            this.description = "The blade-arm of a mehib.";
+            this.intForDes = 4;
+            this.intDescription = "Mehibs use their arms to cripple and disect their prey before they begin to eat it.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 25); // at max, buy for 11.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 25); // at max, sell for 11.
+        }
         else if (this.type == "wheat")
         {
             //For All Items
@@ -30105,6 +30125,129 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 14 - Math.floor(player.getCharisma() / 8); // at max, buy for 8.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
+        }
+        else if (this.type == "rawSasoriFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Sasori Flesh";
+            this.weight = 4.9;
+            this.size = 14;
+            this.description = "The raw flesh of a sasori.";
+            this.intForDes = 2;
+            this.intDescription = "This is not safe to eat raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3.5; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+        }
+        else if (this.type == "sasoriMeat")
+        {
+            //For All Items
+            this.identity = "Sasori Meat";
+            this.weight = 4.8;
+            this.size = 14;
+            this.description = "The cooked meat of a sasori.";
+            this.intForDes = 0;
+            this.intDescription = "This meat is fatty and chewy with a hearty meaty flavour that is very tasty.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 20; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Raw Sasori Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 25); // at max, buy for 18.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 18.
+        }
+        else if (this.type == "sasoriPelt")
+        {
+            //For All Items
+            this.identity = "Sasori Pelt";
+            this.weight = 2.25;
+            this.size = 14;
+            this.description = "The short, brown-furred pelt of a sasori.";
+            this.intForDes = 1;
+            this.intDescription = "Sasori pelts can be used to make apparel, bedding, rugs, etc.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 15); // at max, buy for 7.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 10); // at max, sell for 7.
+        }
+        else if (this.type == "sasoriTusk")
+        {
+            //For All Items
+            this.identity = "Sasori Tusk";
+            this.weight = 0.8;
+            this.size = 6;
+            this.description = "The mandible-like tusk-tooth of a sasori.";
+            this.intForDes = 1;
+            this.intDescription = "Sasori tusks are kept as trophies, but they are also sometimes fashioned into weapons and armour.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "sasoriStinger")
+        {
+            //For All Items
+            this.identity = "Sasori Stinger";
+            this.weight = 2.9;
+            this.size = 11;
+            this.description = "A sharp two pronged stinger from a sasori.";
+            this.intForDes = 4;
+            this.intDescription = "All a sasori has to do to inject venom with its stinger is to scratch you with it.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
         }
         else if (this.type == "anemoneTentacle")
         {
@@ -43157,6 +43300,215 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "rawMehibTail")
+        {
+            //For All Items
+            this.identity = "Raw Mehib Tail";
+            this.weight = 1.5;
+            this.size = 13;
+            this.description = "The raw severed tail of a mehib.";
+            this.intForDes = 3;
+            this.intDescription = "Mehib tails are safe to eat raw but also taste good cooked. It is customary in orgell to eat them over a bed of rice.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 25); // at max, buy for 13.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 50); // at max, sell for 13.
+        }
+        else if (this.type == "rawPounFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Poun Flesh";
+            this.weight = 0.8;
+            this.size = 15;
+            this.description = "The raw flesh of a poun spider.";
+            this.intForDes = 6;
+            this.intDescription = "Poun flesh is poisonous to eat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+            //ability
+            this.ability = "poisonII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "pounMeat")
+        {
+            //For All Items
+            this.identity = "Poun Meat";
+            this.weight = 0.75;
+            this.size = 15;
+            this.description = "The cooked meat of a poun spider.";
+            this.intForDes = 6;
+            this.intDescription = "The flesh of a poun spider is tender and sweet with a spongey fleshy texture.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 13; //satisfies hunger.
+            this.thirst = 1.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 15;
+            this.ingredients = [["Raw Poun Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 50); // at max, buy for 14.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 25); // at max, sell for 14.
+        }
+        else if (this.type == "mehibTail")
+        {
+            //For All Items
+            this.identity = "Roasted Mehib Tail";
+            this.weight = 1.3;
+            this.size = 13;
+            this.description = "The roasted tail of a mehib.";
+            this.intForDes = 3;
+            this.intDescription = "The roasted tail has a more mild flavour than the raw version but it is also hearty and warming.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 14.5; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 4.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Raw Mehib Tail", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 50); // at max, buy for 12.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 25); // at max, sell for 12.
+        }
+        else if (this.type == "rawTuraturaTail")
+        {
+            //For All Items
+            this.identity = "Turatura Tail";
+            this.weight = 9;
+            this.size = 14;
+            this.description = "The severed tail of a small turatura.";
+            this.intForDes = 1;
+            this.intDescription = "Turaturas are the apex predator of the northern Orgish jungle. Eating this raw is not advisable.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -3; //heals health.
+            this.generation = -6; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshmites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+        }
+        else if (this.type == "turaturaTail")
+        {
+            //For All Items
+            this.identity = "Roasted Turatura Tail";
+            this.weight = 8.5;
+            this.size = 14;
+            this.description = "The descaled and roasted tail of a small turatura.";
+            this.intForDes = 1;
+            this.intDescription = "The meat is tough and chewy with a generic bland flavour. Turaturas are distant relatives of ancient dragons, so basically if you eat this you are eating dragon tail.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 24; //satisfies hunger.
+            this.thirst = 1.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Turatura Tail", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 25); // at max, buy for 13.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 50); // at max, sell for 13.
+        }
+        else if (this.type == "turaturaHide")
+        {
+            //For All Items
+            this.identity = "Turatura Hide";
+            this.weight = 20;
+            this.size = 30;
+            this.description = "The sharp scaly hide of a turatura.";
+            this.intForDes = 1;
+            this.intDescription = "Turaturas have two types of scales, a base coat of thick, hard scales, and a secondary layer of leafy, thin scales that are for camoflauge.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 56 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 52.
+            this.sellValue = 49 + Math.floor(player.getCharisma() / 15); // at max, sell for 52.
         }
         else if (this.type == "crabFlesh")
         {
@@ -65820,6 +66172,71 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "sasoriStinger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 1031, 164, 28, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 28 * 1, 36 * 1);
+        }
+        else if (this.type == "sasoriTusk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 891, 168, 28, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 28 * 1, 36 * 1);
+        }
+        else if (this.type == "sasoriMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 976, 166, 28, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 28 * 1, 36 * 1);
+        }
+        else if (this.type == "rawSasoriFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 937, 166, 28, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 28 * 1, 36 * 1);
+        }
+        else if (this.type == "sasoriPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 805, 163, 76, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 76 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 1), 76 * 1, 45 * 1);
+        }
+        else if (this.type == "pounMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 639, 1686, 35, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 0.8), 35 * 0.8, 38 * 0.8);
+        }
+        else if (this.type == "rawPounFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 640, 1730, 35, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 0.8), 35 * 0.8, 38 * 0.8);
+        }
+        else if (this.type == "mehibTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bant, 233, 235, 58, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 1.2), 58 * 1.2, 45 * 1.2);
+        }
+        else if (this.type == "rawMehibTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bant, 141, 234, 58, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 1.2), 58 * 1.2, 45 * 1.2);
+        }
+        else if (this.type == "mehibBlade")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bant, 31, 19, 58, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 1), 58 * 1, 45 * 1);
+        }
+        else if (this.type == "rawTuraturaTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 1472, 52, 120, 73, X - this.X + (1/2 * CCC.width) - (1/2 * 120 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 73 * 0.8), 120 * 0.8, 73 * 0.8);
+        }
+        else if (this.type == "turaturaTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 1612, 57, 120, 73, X - this.X + (1/2 * CCC.width) - (1/2 * 120 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 73 * 0.8), 120 * 0.8, 73 * 0.8);
+        }
+        else if (this.type == "turaturaHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 1777, 47, 165, 91, X - this.X + (1/2 * CCC.width) - (1/2 * 165 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 91 * 0.8), 165 * 0.8, 91 * 0.8);
+        }
         else if (this.type == "carnidOoze")
         {
             XXX.beginPath();
@@ -74729,6 +75146,71 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "sasoriStinger")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 1031, 164, 28, 36, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 36 * 1), 28 * 1, 36 * 1);
+        }
+        else if (this.type == "sasoriTusk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 891, 168, 28, 36, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 36 * 1), 28 * 1, 36 * 1);
+        }
+        else if (this.type == "sasoriMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 976, 166, 28, 36, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 36 * 1), 28 * 1, 36 * 1);
+        }
+        else if (this.type == "rawSasoriFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 937, 166, 28, 36, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 36 * 1), 28 * 1, 36 * 1);
+        }
+        else if (this.type == "sasoriPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 805, 163, 76, 45, this.invX - (1/2 * 76 * 1), this.invY - (1/2 * 45 * 1), 76 * 1, 45 * 1);
+        }
+        else if (this.type == "pounMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 639, 1686, 35, 38, this.invX - (1/2 * 35 * 0.8), this.invY - (1/2 * 38 * 0.8), 35 * 0.8, 38 * 0.8);
+        }
+        else if (this.type == "rawPounFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 640, 1730, 35, 38, this.invX - (1/2 * 35 * 0.8), this.invY - (1/2 * 38 * 0.8), 35 * 0.8, 38 * 0.8);
+        }
+        else if (this.type == "mehibTail")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bant, 233, 235, 58, 45, this.invX - (1/2 * 58 * 1.2), this.invY - (1/2 * 45 * 1.2), 58 * 1.2, 45 * 1.2);
+        }
+        else if (this.type == "rawMehibTail")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bant, 141, 234, 58, 45, this.invX - (1/2 * 58 * 1.2), this.invY - (1/2 * 45 * 1.2), 58 * 1.2, 45 * 1.2);
+        }
+        else if (this.type == "mehibBlade")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bant, 31, 19, 58, 45, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 45 * 1), 58 * 1, 45 * 1);
+        }
+        else if (this.type == "rawTuraturaTail")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 1472, 52, 120, 73, this.invX - (1/2 * 120 * 0.8), this.invY - (1/2 * 73 * 0.8), 120 * 0.8, 73 * 0.8);
+        }
+        else if (this.type == "turaturaTail")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 1612, 57, 120, 73, this.invX - (1/2 * 120 * 0.8), this.invY - (1/2 * 73 * 0.8), 120 * 0.8, 73 * 0.8);
+        }
+        else if (this.type == "turaturaHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bootrex, 1777, 47, 165, 91, this.invX - (1/2 * 165 * 0.8), this.invY - (1/2 * 91 * 0.8), 165 * 0.8, 91 * 0.8);
+        }
         else if (this.type == "carnidOoze")
         {
             LXX.beginPath();
@@ -83577,6 +84059,71 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "sasoriStinger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 1031, 164, 28, 36, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 36 * 1), 28 * 1, 36 * 1);
+        }
+        else if (this.type == "sasoriTusk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 891, 168, 28, 36, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 36 * 1), 28 * 1, 36 * 1);
+        }
+        else if (this.type == "sasoriMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 976, 166, 28, 36, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 36 * 1), 28 * 1, 36 * 1);
+        }
+        else if (this.type == "rawSasoriFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 937, 166, 28, 36, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 36 * 1), 28 * 1, 36 * 1);
+        }
+        else if (this.type == "sasoriPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 805, 163, 76, 45, this.invX - (1/2 * 76 * 1), this.invY - (1/2 * 45 * 1), 76 * 1, 45 * 1);
+        }
+        else if (this.type == "pounMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 639, 1686, 35, 38, this.invX - (1/2 * 35 * 0.8), this.invY - (1/2 * 38 * 0.8), 35 * 0.8, 38 * 0.8);
+        }
+        else if (this.type == "rawPounFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 640, 1730, 35, 38, this.invX - (1/2 * 35 * 0.8), this.invY - (1/2 * 38 * 0.8), 35 * 0.8, 38 * 0.8);
+        }
+        else if (this.type == "mehibTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bant, 233, 235, 58, 45, this.invX - (1/2 * 58 * 1.2), this.invY - (1/2 * 45 * 1.2), 58 * 1.2, 45 * 1.2);
+        }
+        else if (this.type == "rawMehibTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bant, 141, 234, 58, 45, this.invX - (1/2 * 58 * 1.2), this.invY - (1/2 * 45 * 1.2), 58 * 1.2, 45 * 1.2);
+        }
+        else if (this.type == "mehibBlade")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bant, 31, 19, 58, 45, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 45 * 1), 58 * 1, 45 * 1);
+        }
+        else if (this.type == "rawTuraturaTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 1472, 52, 120, 73, this.invX - (1/2 * 120 * 0.8), this.invY - (1/2 * 73 * 0.8), 120 * 0.8, 73 * 0.8);
+        }
+        else if (this.type == "turaturaTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 1612, 57, 120, 73, this.invX - (1/2 * 120 * 0.8), this.invY - (1/2 * 73 * 0.8), 120 * 0.8, 73 * 0.8);
+        }
+        else if (this.type == "turaturaHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bootrex, 1777, 47, 165, 91, this.invX - (1/2 * 165 * 0.8), this.invY - (1/2 * 91 * 0.8), 165 * 0.8, 91 * 0.8);
         }
         else if (this.type == "carnidOoze")
         {

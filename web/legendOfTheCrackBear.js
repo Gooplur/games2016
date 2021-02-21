@@ -6459,6 +6459,10 @@ function theLegend()
     foods.push(new Item("boiledNasobaFungus", false));
     foods.push(new Item("rice", false));
     foods.push(new Item("kabutoMeat", false));
+    foods.push(new Item("turaturaTail", false));
+    foods.push(new Item("mehibTail", false));
+    foods.push(new Item("pounMeat", false));
+    foods.push(new Item("sasoriMeat", false));
 
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)

@@ -1478,6 +1478,10 @@ function envPack()
     redCaveWater.src = ("images/redCaveWater.jpg");
     window.redCaveWater = redCaveWater;
 
+    var redMoss = new Image();
+    redMoss.src = ("images/redMossy.jpg");
+    window.redMoss = redMoss;
+
     var blueVardanWoods = new Image();
     blueVardanWoods.src = ("images/blueVardanWoods.jpg");
     window.blueVardanWoods = blueVardanWoods;
@@ -1883,6 +1887,18 @@ function arpooPack()
     window.arpoo = arpoo;
 
     arpoo.onload = function()
+    {
+        rowalPack();
+    };
+}
+
+function rowalPack()
+{
+    var rowal = new Image();
+    rowal.src = ("images/rowal.png");
+    window.rowal = rowal;
+
+    rowal.onload = function()
     {
         olgPack();
     };
@@ -6952,6 +6968,7 @@ function theLegend()
     handcrafted.push(new Item("banta", false));
     handcrafted.push(new Item("slicedSquash", false));
     handcrafted.push(new Item("rawShelisherFlesh", false));
+    handcrafted.push(new Item("slicedSyanj", false));
 
 
     //Activate Important Game Functions Here:

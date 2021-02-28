@@ -35271,6 +35271,30 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.activate = false;
             }
         }
+        else if (this.type == "vardanianRoad")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.zIndex = 1;
+            this.size = this.temporary;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(vardanianStone, 0, 0, 300, 300, -(1/2 * 300 * this.size), -(1/2 * 300 * this.size), 300 * this.size, 300 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "olmidShell")
         {
             //TRAITS
@@ -42237,6 +42261,215 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 {
                     Inventory.push([new Item("neprilneBerries", false, false), 1]);
                 }
+            }
+        }
+        else if (this.type == "syanjPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(10);
+
+            this.interactionRange = 95;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+
+                this.wormTongue = 10 * Math.random();
+                this.health = 22;
+            }
+
+            if (this.phase == 0)
+            {
+                this.radius = 14;
+                this.zIndex = 4;
+                this.solid = true;
+                this.wormTongue += 0.5 * (TTD/16.75);
+            }
+            else
+            {
+                this.radius = 10;
+                this.solid = true;
+                this.zIndex = 1;
+                this.wormTongue += 0.125 * (TTD/16.75);
+            }
+
+            //DRAWSELF
+            if (this.wormTongue < 4)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 949, 435, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 946, 520, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+            }
+            else if (this.wormTongue < 8)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 541, 438, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 810, 521, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+            }
+            else if (this.wormTongue < 12)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 813, 437, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 666, 525, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+            }
+            else if (this.wormTongue < 16)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 658, 440, 148, 93, -(1/2 * 148), -(1/2 * 93), 148, 93);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 538, 523, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+            }
+            else if (this.wormTongue < 18)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 813, 437, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 666, 525, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+            }
+            else if (this.wormTongue < 20)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 541, 438, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 810, 521, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+            }
+            else if (this.wormTongue < 60)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 949, 435, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 946, 520, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                this.wormTongue = 0;
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 949, 435, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poon, 946, 520, 129, 94, -(1/2 * 129), -(1/2 * 94), 129, 94);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+
+            if (player.cutcut == true && this.playerer <= 320 && this.phase != "picked")
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                if (distFromCutCut <= player.weapon.range * 7 + this.radius)
+                {
+                    this.health -= player.weapon.damage;
+                }
+                if (this.health <= 0)
+                {
+                    worldItems.push([new Item("syanj", this.X + Math.cos(this.rotation + 1/2 * Math.PI + 1/2 * Math.PI) * 34, this.Y + Math.sin(this.rotation + 1/2 * Math.PI + 1/2 * Math.PI) * 34), 1]);
+                    worldItems.push([new Item("syanj", this.X + Math.cos(this.rotation + 1/2 * Math.PI + 1/2 * Math.PI + 0.84) * 26, this.Y + Math.sin(this.rotation + 1/2 * Math.PI + 1/2 * Math.PI + 0.84) * 26), 1]);
+                    this.phase = "picked";
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
             }
         }
         else if (this.type == "orgishGiantLilyPlant")

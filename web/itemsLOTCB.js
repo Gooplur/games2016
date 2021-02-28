@@ -48515,6 +48515,51 @@ function Item(type, x, y)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 50); // at max, buy for 8.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
         }
+        else if (this.type == "syanj")
+        {
+            //For All Items
+            this.identity = "Syanj Segment";
+            this.weight = 15.5;
+            this.size = 8;
+            this.description = "A sliced segment of a carnivorous syanj plant.";
+            this.intForDes = 20;
+            this.intDescription = "Slicing the tube portion of the plant off does not kill it, since the bulk of the plant is actually beneath the surface.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 50); // at max, buy for 19.
+            this.sellValue = 18 + Math.floor(player.getCharisma() / 50); // at max, sell for 19.
+        }
+        else if (this.type == "slicedSyanj")
+        {
+            //For All Items
+            this.identity = "Sliced Syanj";
+            this.weight = 1.5;
+            this.size = 8;
+            this.description = "A segment of a carnivorous syanj plant that has been cut into strips.";
+            this.intForDes = 15;
+            this.intDescription = "This is a useful ingredient in forming a compound that acts as a powerful antidote to poison.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 10;
+            this.intForCraft = 6;
+            this.ingredients = [["Syanj Segment", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
         else if (this.type == "yongFeather")
         {
             //For All Items
@@ -66263,6 +66308,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "syanj")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 394, 492, 61, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 61 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1), 61 * 1, 41 * 1);
+        }
+        else if (this.type == "slicedSyanj")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 388, 530, 61, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 61 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1), 61 * 1, 41 * 1);
+        }
         else if (this.type == "taoPelt")
         {
             XXX.beginPath();
@@ -75252,6 +75307,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "syanj")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 394, 492, 61, 41, this.invX - (1/2 * 61 * 1), this.invY - (1/2 * 41 * 1), 61 * 1, 41 * 1);
+        }
+        else if (this.type == "slicedSyanj")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 388, 530, 61, 41, this.invX - (1/2 * 61 * 1), this.invY - (1/2 * 41 * 1), 61 * 1, 41 * 1);
+        }
         else if (this.type == "taoPelt")
         {
             LXX.beginPath();
@@ -84180,6 +84245,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "syanj")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 394, 492, 61, 41, this.invX - (1/2 * 61 * 1), this.invY - (1/2 * 41 * 1), 61 * 1, 41 * 1);
+        }
+        else if (this.type == "slicedSyanj")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 388, 530, 61, 41, this.invX - (1/2 * 61 * 1), this.invY - (1/2 * 41 * 1), 61 * 1, 41 * 1);
         }
         else if (this.type == "taoPelt")
         {

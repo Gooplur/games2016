@@ -15,7 +15,9 @@ Krogi - A black ringdome-capped mushroom that grows in the Vardanian Hollows and
 UkuvaTree - A tree that grows in the hollows, it is not used for anything as its wood is too soft to make structures and too brittle to use for artisanry. (use longevity to adjust its size: 0.8min - 1.7max)
 Thruum - A fungus that grows in the hollows that extends out fungal branches to soak in nutrients from the air. When it has soaked in enough, it closes its fungal branches together and forms a pasty substance that it uses to grow its mycelium underground.
 Multom - A grey and blue fungus native to the blue woods of northern Vardania
+Bamboo - Tall orgish bamboo (information: 1 = packed, 0 = spread) (extra: 1 = webbed, 2 = burnt chopped, else = normal)
 AtsuiBamboo - A variety of bamboo that grows in the Orgish Jungles. This type of bamboo is a favorite food for Panda bears, and it can be a home to Ha bugs. (longevity: 2 = webbed, 1 = Ha bugs, else = normal)
+
 PinkScretil - The largest form of scretil, this grows in the Orgish bamboo jungles. This is also the only form of scretil that bears an edible fruit.
 Scretil - A faded green variety of scretil that grows in the Orgish bamboo jungles.
 Olmhaka - A green and blue water plant native to the Orgish Glades, it is known for its distinctive orb-like, protrusiony flower.
@@ -23,24 +25,24 @@ Unlin - A bright blue and green water plant native to the Orgish Glades that is 
 Ketsueki - A white fungus with red liquid filled bubbles all over it. If eaten it will cause its consumer to overproduce blood and die. (longevity: true = small version, false = larger version)
 Eneoji - A pink bush covered in delicate petal-like golden-pink leaves that contain a compound that is extremely addictive that enhances its consumer's speed and energy, but causes them to burn through their body's fat stores at a dangerous rate.
 Milsan - An orange flower that grows in the Orgish jungle and that has poisonous green filtration pods
-Hikari - A slime-like fungus that grows on the walls of tropical caves (almost exclusively in the Orgish glades) it eats a bug called the purpura bug which it uses as an energy source to create purple light which it uses to attract more purpura bugs in order to get more food, and so the cycle continues...
 Spali - A red bush with wide, thin, pointed, red leaves. Bushmaster snakes, one of the most venemous types of snakes in the world, love the scent of the leaves, and the bush's potential for providing it natural camoflauge, and so they may be found resting inside of this type of bush.
-Bamboo - Tall orgish bamboo (information: 1 = packed, 0 = spread) (extra: 1 = webbed, 2 = burnt chopped, else = normal)
 Banticul - A large, colorful, pointed, flat-leaved plant with a giant, bulbous, orange, ooze sac in the center. It is a carnivorous plant that lures herbivores to a terrible acidy death by extending its nutritious, and hairy leaf stalks as a food offering — when the unsuspecting prey pounces on one of the stalks, the plant pulls the rest of its stalks into its bulbous mass and releases acidic orange ooze that spills over the top and melts the prey into the soil around its base for its subterranean structures to absorb. The really old Banticul plants can no longer regenerate or produce enough acid to eat, so those are the ones that most Orgish people get their banta from. (Banta is the tuberous stalk that connects the leaf to the body of the plant; it is a nutritious vegetable.)
 Masmao -  A pink and green fungus that is native to the Orgish bamboo jungles
 Memem - A large bushy green plant that is native to the Orgish bamboo jungles
-GladeLily - A brown stemmed pink flowered portion at the top an Orgish glade lily
-GladeLilypads - A patch of Orgish glade lilypads
 Jun - An Orgish jungle fungus that explodes into a cloud of spores when it is picked.
-Nasoba - An edible pink and white fungus that grows low along the jungle floor of the Orgish bamboo jungles.
 Ologai - A white plant with three fruit bearing limbs. The plant has a thin eyelid-like shell that it opens and closes in order to switch between soaking in sunlight, and hiding its fruit from predators.
 GladeGrass - A watergrass that grows both in the water and along the shoreline. This grass is native to Orgell.
 Lagu - A sweet and tropical, yet foul smelling plant that smells a bit like rotten eggs and foot sweat. The plant grows natively in the Orgish bamboo jungles, and it bears four fruits that taste similar to the way the plant smells.
 Ashiga - A redish purple leaved bush with small clusters of berries. It grows natively in the Orgish jungles.
 Mikadzuki - A pink Orgish plant that has various crescent shaped leaf formations, each one with several tiny flowers with long stamens.
-Feza - An Orgish jungle plant that has feather-like read and yellow flowers.
+Feza - An Orgish jungle plant that has feather-like red and yellow flowers.
+GladeLily - A brown stemmed pink flowered portion at the top an Orgish glade lily
+GladeLilypads - A patch of Orgish glade lilypads
 OrgishGiantLily - An Orgish water plant that has giant lotuses.
 Zhongye - A red Orgish jungle plant that has pointed leaves with a small ball-like structure at the end that look sort of like bells.
+Syanj - An carnivorous tube plant that has a worm-like inner mucus tendril that it sticks out to feed on small insects and particulates in the air. They grow natively in the red caves beneath the Orgish northern jungles.
+Nasoba - An edible pink and white fungus that grows low along the jungle floor of the Orgish bamboo jungles. They also grow commonly in the red cave systems underground.
+Hikari - A slime-like fungus that grows on the walls of tropical caves (almost exclusively in the Orgish glades) it eats a bug called the purpura bug which it uses as an energy source to create purple light which it uses to attract more purpura bugs in order to get more food, and so the cycle continues...
 Yuna - A pinkish stalky plant that has glowing red orb-like flowers that illuminate the dark caves where it grows with an eerie red light. They grow natively in the cave systems of the Orgish Bamboo Jungle.
 Tsutori - An underground growing reddish-pink water plant that thrives in the Orgish cave systems beneath the Orgish bamboo jungle.
 Culumi - A purple, bell-like, tubular flower that grows on vines in the deep dark of the Orgish jungle cave systems.

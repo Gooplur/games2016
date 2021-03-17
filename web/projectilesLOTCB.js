@@ -351,6 +351,15 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                                             }
                                         }
                                     }
+                                    else if (this.ability == "arantanid")
+                                    {
+                                        if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                        {
+                                            ArtificialIntelligenceAccess[i].stunXV = true;
+                                            ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 1440);
+                                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                        }
+                                    }
                                     else if (this.ability == "sowt")
                                     {
                                         if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
@@ -538,6 +547,15 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                                     if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                                     {
                                         player.frozenTime = new Date().getTime();
+                                    }
+                                }
+                                else if (this.ability == "arantanid")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                                    {
+                                        player.stunnedXV = true;
+                                        player.stunnedTime = Math.max(player.stunnedTime, 1440);
+                                        player.paralysis = true;
                                     }
                                 }
                                 else if (this.ability == "sowt")
@@ -1145,7 +1163,6 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 this.shoot();
                 this.impact();
 
-                this.ability = "none";
                 //HOW IT WILL DRAW...
                 XXX.save();
                 XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
@@ -1159,7 +1176,6 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 player.projYAd = 0;
                 player.projXAd = 0;
                 this.setStats();
-                this.ability = "none";
                 this.shoot();
                 this.impact();
 
@@ -1208,7 +1224,6 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 this.shoot();
                 this.impact();
 
-                this.ability = "none";
                 //HOW IT WILL DRAW...
                 XXX.save();
                 XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
@@ -1222,7 +1237,6 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 player.projYAd = 0;
                 player.projXAd = 0;
                 this.setStats();
-                this.ability = "none";
                 this.shoot();
                 this.impact();
 
@@ -1271,7 +1285,6 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 this.shoot();
                 this.impact();
 
-                this.ability = "none";
                 //HOW IT WILL DRAW...
                 XXX.save();
                 XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
@@ -1285,7 +1298,6 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 player.projYAd = 0;
                 player.projXAd = 0;
                 this.setStats();
-                this.ability = "none";
                 this.shoot();
                 this.impact();
 
@@ -1295,6 +1307,171 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.rotate(this.rotation + (1 / 2 * Math.PI));
                 XXX.drawImage(grem, 1012, 8, 51, 10, -1/2 * 51 * 1.2, -1/2 * 10 * 1.2, 51 * 1.2, 10 * 1.2);
                 XXX.restore();
+            }
+        }
+        else if (type == "arantanidHarpoonLrgL" || type == "arantanidHarpoonLrgR")
+        {
+            this.radius = 8;
+            this.destructOnImpact = false;
+            this.sticky = true;
+            if (this.once)
+            {
+                this.once = false;
+                this.stickiness = true;
+            }
+            var isDet = false;
+            if (gameLoopNumber % 26 && this.stuck == true && list == playerProjectiles)
+            {
+                isDet = true;
+                for (var sticdet = 0; sticdet < ArtificialIntelligenceAccess.length; sticdet++)
+                {
+                    if (ArtificialIntelligenceAccess[sticdet].barcode == this.stickyID)
+                    {
+                        isDet = false;
+                        break;
+                    }
+                }
+            }
+            if (this.stickon > 340 || isDet == true)
+            {
+                this.trash = true;
+            }
+
+            if (list == playerProjectiles && this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.shoot();
+                this.impact();
+                //HOW IT WILL DRAW...
+                if (type == "arantanidHarpoonLrgL")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    XXX.drawImage(arpoo, 340, 2, 118, 40, -1/2 * 118 * 1, -1/2 * 40 * 1, 118 * 1, 40 * 1);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    XXX.drawImage(arpoo, 191, 4, 118, 40, -1/2 * 118 * 1, -1/2 * 40 * 1, 118 * 1, 40 * 1);
+                    XXX.restore();
+                }
+            }
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                if (type == "arantanidHarpoonLrgL")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    XXX.drawImage(arpoo, 340, 2, 118, 40, -1/2 * 118 * 1, -1/2 * 40 * 1, 118 * 1, 40 * 1);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    XXX.drawImage(arpoo, 191, 4, 118, 40, -1/2 * 118 * 1, -1/2 * 40 * 1, 118 * 1, 40 * 1);
+                    XXX.restore();
+                }
+            }
+        }
+        else if (type == "arantanidHarpoonSmlL" || type == "arantanidHarpoonSmlR")
+        {
+            this.radius = 4;
+            this.destructOnImpact = false;
+            this.sticky = true;
+            if (this.once)
+            {
+                this.once = false;
+                this.stickiness = true;
+            }
+            var isDet = false;
+            if (gameLoopNumber % 26 && this.stuck == true && list == playerProjectiles)
+            {
+                isDet = true;
+                for (var sticdet = 0; sticdet < ArtificialIntelligenceAccess.length; sticdet++)
+                {
+                    if (ArtificialIntelligenceAccess[sticdet].barcode == this.stickyID)
+                    {
+                        isDet = false;
+                        break;
+                    }
+                }
+            }
+            if (this.stickon > 340 || isDet == true)
+            {
+                this.trash = true;
+            }
+
+            if (list == playerProjectiles && this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                if (type == "arantanidHarpoonSmlL")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    XXX.drawImage(arpoo, 340, 2, 118, 40, -1/2 * 118 * 0.67, -1/2 * 40 * 0.67, 118 * 0.67, 40 * 0.67);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    XXX.drawImage(arpoo, 191, 4, 118, 40, -1/2 * 118 * 0.67, -1/2 * 40 * 0.67, 118 * 0.67, 40 * 0.67);
+                    XXX.restore();
+                }
+            }
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                if (type == "arantanidHarpoonSmlL")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    XXX.drawImage(arpoo, 340, 2, 118, 40, -1/2 * 118 * 0.67, -1/2 * 40 * 0.67, 118 * 0.67, 40 * 0.67);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    XXX.drawImage(arpoo, 191, 4, 118, 40, -1/2 * 118 * 0.67, -1/2 * 40 * 0.67, 118 * 0.67, 40 * 0.67);
+                    XXX.restore();
+                }
             }
         }
         else if (type == "steelBolt")

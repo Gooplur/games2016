@@ -966,6 +966,67 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
+        else if (this.type == "tunnelWeb")
+        {
+            //TRAITS
+            this.solid = false;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            //XXX.rotate(this.rotation);
+            XXX.drawImage(arpoo, 941, 1205, 311, 327, -(1/2 * 311 * this.temporary), -(1/2 * 327 * this.temporary), 311 * this.temporary, 327 * this.temporary);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //stick player and units in the web then store the data for spiders to access.
+            if (X <= this.X + 150 * this.temporary && X >= this.X - 150 * this.temporary && Y <= this.Y + 150 * this.temporary && Y >= this.Y - 150 * this.temporary)
+            {
+                player.caveWebbedNum = 3;
+                player.caveWebbedTime = new Date().getTime();
+            }
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].X <= this.X + 150 * this.temporary && ArtificialIntelligenceAccess[i].X >= this.X - 150 * this.temporary && ArtificialIntelligenceAccess[i].Y <= this.Y + 150 * this.temporary && ArtificialIntelligenceAccess[i].Y >= this.Y - 150 * this.temporary)
+                {
+                    ArtificialIntelligenceAccess[i].caveWebbedNum = 3;
+                    ArtificialIntelligenceAccess[i].caveWebbedTime = new Date().getTime();
+                }
+            }
+        }
+        else if (this.type == "caveWeb")
+        {
+            //TRAITS
+            this.solid = false;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(arpoo, 1312, 1200, 311, 327, -(1/2 * 311 * this.temporary), -(1/2 * 327 * this.temporary), 311 * this.temporary, 327 * this.temporary);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 150 * this.temporary;
+
+            //stick player and units in the web then store the data for spiders to access.
+            if (this.playerer <= this.radius)
+            {
+                player.caveWebbedNum = 3;
+                player.caveWebbedTime = new Date().getTime();
+            }
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                var unitDist = (ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y);
+                if (unitDist <= this.radius*this.radius)
+                {
+                    ArtificialIntelligenceAccess[i].caveWebbedNum = 3;
+                    ArtificialIntelligenceAccess[i].caveWebbedTime = new Date().getTime();
+                }
+            }
+        }
         else if (this.type == "web")
         {
             //TRAITS
@@ -3882,6 +3943,35 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             //INTERACTION
             if (this.activate == true)
             {
+                if (this.temporary == true)
+                {
+                    sleep();
+                }
+                this.activate = false;
+            }
+        }
+        else if (this.type == "naapridSleepingMat")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 80;
+            this.size = this.information || 1.75;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation)
+            XXX.drawImage(verse, 2924, 1, 26, 16, -(1/2 * 65 * this.size),  -(1/2 * 40 * this.size), 65 * this.size, 40 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 13 * this.size;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                console.log("longevity: " + longevity);
+                console.log(this.temporary);
                 if (this.temporary == true)
                 {
                     sleep();
@@ -11847,6 +11937,16 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     XXX.drawImage(carillo, 249, 622, 57, 66, -(1/2 * 57 * this.information[0]), -(1/2 * 66 * this.information[0] + 5), 57 * this.information[0], 66 * this.information[0]);
                     XXX.restore();
                 }
+            }
+            else if (this.temporary == -5 || this.temporary == 10) //kellish storage pot
+            {
+                this.radius = 9 * this.information[0];
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 3036, 1, 22, 19, -(1/2 * 22 * 1.7 * this.information[0]), -(1/2 * 19 * 1.7 * this.information[0]), 22 * 1.7 * this.information[0], 19 * 1.7 * this.information[0]);
+                XXX.restore();
             }
 
             //INTERACTION

@@ -4802,7 +4802,10 @@ function theLegend()
         nadine: ["Nadine", 0],
         grisha: ["Grisha", 0],
         krelov: ["Krelov", 0],
-        deserterOfficer: ["DeserterOfficer", 0]
+        deserterOfficer: ["DeserterOfficer", 0],
+        chansley: ["Chansly", 0],
+        torsk: ["Torsk", 0],
+        evee: ["Evee", 0]
     };
 
 //time Tracker Variables
@@ -5151,7 +5154,10 @@ function theLegend()
         nadineLDS: true,
         grishaLDS: true,
         krelovLDS: true,
-        deserterOfficerLDS: true
+        deserterOfficerLDS: true,
+        chanslyLDS: true,
+        torskLDS: true,
+        eveeLDS: true
     };
 //QUESTS
     quests =
@@ -5181,6 +5187,7 @@ function theLegend()
         sairchArachnisPaid: false,
         zetianUncleMood: 0,
         rybolov: 0,
+        calcuttClayPot: 0,
 
         //TAXES
         taxTime: new Date().getTime(),

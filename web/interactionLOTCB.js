@@ -3154,6 +3154,181 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Chansly the Potter" || conversationID[0] == "Chansly")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Chansly";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName == "Kel" && player.title == "Highfolk" && player.gender == "Male" || player.raceName == "Kel" && player.title == "Nobility" || player.raceName == "Kel" && player.title == "Royalty")
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["Your pots are finely made, you should be proud!", false, "b"], ["How's your pot-making coming along?", false, "c"]];
+                                }
+                                else if (player.raceName == "Kel" && player.title != "Vagabond" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["I need a clay pot for my home.", false, "b"], ["How's your pot-making coming along?", false, "c"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["Can I buy one of your pots?", false, "b"], ["Where do you get the clay for your pots?", false, "c"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Good day!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Kel" && player.title == "Highfolk" && player.gender == "Male" || player.raceName == "Kel" && player.title == "Nobility" || player.raceName == "Kel" && player.title == "Royalty")
+                            {
+                                setMsg("Thank you! I put a great effort into my craft. Nothing but the best for us Echlin Kells!");
+                            }
+                            else if (player.raceName == "Kel" && player.title != "Vagabond" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
+                            {
+                                if (quests.calcuttClayPot == 0 && have("clay", 30))
+                                {
+                                    setMsg("Of course, I will make you a pot and leave it in your home when I finish it. As for that clay... Thank you for your contribution to our tribe!");
+                                    quests.calcuttClayPot = 1;
+                                    take("clay", 30);
+                                }
+                                else if (quests.calcuttClayPot == 0)
+                                {
+                                    setMsg("If you want me to make you a pot for your home, do your part for the tribe and fetch some more clay from the mudbog. The mudbog is just east of here.");
+                                }
+                                else if (quests.calcuttClayPot == 1 && have("clay", 10))
+                                {
+                                    setMsg("Of course, I will make you another pot and leave it in your home when I finish it. As for that clay... Thank you for your contribution to our tribe!");
+                                    quests.calcuttClayPot = 2;
+                                    take("clay", 10);
+                                }
+                                else if (quests.calcuttClayPot == 1)
+                                {
+                                    setMsg("If you want me to make you another pot for your home, go ahead and fetch some more clay from the mudbog.");
+                                }
+                                else
+                                {
+                                    setMsg("You have plenty of pots, and I have plenty of clay. You do not need another pot, two is enough. Thank you for the clay though, you have done a great service to our tribe!");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("No, if you want a pot talk to Chieftain Schuyler, all of these pots are reserved for the Echlin tribe.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Kel" && player.title == "Highfolk" && player.gender == "Male" || player.raceName == "Kel" && player.title == "Nobility" || player.raceName == "Kel" && player.title == "Royalty")
+                            {
+                                setMsg("Very well! They are turning out nicely!");
+                            }
+                            else if (player.raceName == "Kel" && player.title != "Vagabond" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
+                            {
+                                setMsg("The pots are turning out nicely, every once in a while a pot breaks in the kiln, but overall the pot-making is going well.");
+                            }
+                            else
+                            {
+                                if (player.kelFaction >= 110)
+                                {
+                                    setMsg("We get the clay from the mudbogs to the east of here.");
+                                }
+                                else if (player.kelFaction >= 55)
+                                {
+                                    setMsg("You seem like a good person, but we do not know you well enough to tell you such secrets.");
+                                }
+                                else
+                                {
+                                    setMsg("We Echlin Kells do not share such secrets with outsiders.");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Dasab Omeqor" || conversationID[0] == "Dasab")
                     {
                         lowBar = "dialogue";

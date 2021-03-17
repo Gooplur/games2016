@@ -515,6 +515,9 @@ function Adventurer()
     this.strongWebbedNum = 0;
     this.strongWebbedTime = 0;
     this.strongWebbed = true;
+    this.caveWebbedNum = 0;
+    this.caveWebbedTime = 0;
+    this.caveWebbed = true;
     this.etnaVenom = false;
     this.etnaVenTime = 0;
     this.extraDraining = false;
@@ -662,6 +665,7 @@ function Adventurer()
     this.huskCall = false;
     this.frgfrm = 0;
     this.frogaform = false;
+    this.paralysis = false;
 
     //faction variables
     this.factionToggle = false;
@@ -937,6 +941,14 @@ function Adventurer()
                 {
                     this.strongWebbedNum -= 5 * (this.getStrength() / 50);
                 }
+            }
+            if (this.caveWebbed)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                //XXX.globalAlpha = 0.9;
+                XXX.drawImage(arpoo, 781, 1291, 63, 60, - 1/2 * ((63 * 1.7) / 23 * this.mySize), - 1/2 * ((60 * 1.7) / 23 * this.mySize), (63 * 1.7) / 23 * this.mySize, (60 * 1.7) / 23 * this.mySize);
+                XXX.restore();
             }
         };
         this.onWeb();
@@ -3733,16 +3745,17 @@ function Adventurer()
             else
             {
                 this.stunned = false;
+                this.paralysis = false;
             }
 
-            if (this.hinderance == true || this.stunned == true || this.webbed || this.unconscious) //If the player is carrying too much then they are slowed down depending on how much above the maximum they are carrying.
+            if (this.hinderance == true || this.stunned == true || this.webbed || this.caveWebbed || this.unconscious) //If the player is carrying too much then they are slowed down depending on how much above the maximum they are carrying.
             {
                 //slowness for using armour that is beyond your toughness level.
                 if (this.unconscious == true || this.stunnedX == true || this.stunnedXV == true)
                 {
                     this.freeze = Math.max(this.freeze, 100);
                 }
-                else if (this.unskilledUse == true)
+                else if (this.unskilledUse == true || this.caveWebbed)
                 {
                     this.freeze = Math.max(this.freeze, 22);
                 }
@@ -4069,6 +4082,22 @@ function Adventurer()
             {
                 this.strongWebbedNum = 0;
                 this.strongWebbed = false;
+            }
+
+            //Cave Web Effect
+            if (this.caveWebbedNum > 0)
+            {
+                if (new Date().getTime() - this.caveWebbedTime > 1000)
+                {
+                    this.caveWebbedTime = new Date().getTime();
+                    this.caveWebbedNum -= 1;
+                }
+                this.caveWebbed = true;
+            }
+            else
+            {
+                this.caveWebbedNum = 0;
+                this.caveWebbed = false;
             }
         };
 
@@ -5769,7 +5798,7 @@ function Adventurer()
                         ArtificialIntelligenceAccess.push(new Unit(X, Y, "BullFrog", true, "playerfrog"));
                         ArtificialIntelligenceAccess[ArtificialIntelligenceAccess.length - 1].baseTeam = "herdia";
                     }
-                    this.stunnedVX = true;
+                    this.stunnedXV = true;
                     this.stunnedTime = 20;
                     this.flying = true;
                     this.urgeless = true;
@@ -6447,7 +6476,7 @@ function Adventurer()
 
     this.getCanAttack = function()
     {
-        if (this.strongWebbed == true)
+        if (this.strongWebbed == true || this.caveWebbed == true)
         {
             return false;
         }
@@ -7519,7 +7548,7 @@ function Adventurer()
     //Stunned Notice Function
     this.webbedChecker = function()
     {
-        if (this.webbed == true || this.strongWebbed == true)
+        if (this.webbed == true || this.strongWebbed == true || this.caveWebbed == true)
         {
             // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
 
@@ -8641,7 +8670,7 @@ function Adventurer()
     this.drawLegs = function ()
     {
         var legRotation = 0;
-        if (!this.petrified)
+        if (!this.petrified && !this.paralysis)
         {
             if (wKey && dKey && !aKey && this.movingType == 1 || sKey && aKey && !dKey && this.movingType == 4)
             {
@@ -33277,7 +33306,7 @@ function Adventurer()
     //This makes the character always face the mouse pointer.
     this.pointAtMouse = function()
     {
-        if (!this.jumpingBack && this.fishing != true && !this.petrified && this.fear != true)
+        if (!this.jumpingBack && this.fishing != true && !this.petrified && this.fear != true && this.paralysis != true)
         {
             if (this.form != "vampire" || this.vampDead == false)
             {
@@ -33375,7 +33404,7 @@ function Adventurer()
     // CHARACTER MOVEMENT
     this.motion = function()
     {
-        if (!this.petrified && this.form != "vampire" || !this.petrified && !this.vampDead)
+        if (!this.petrified && this.form != "vampire" && !this.paralysis || !this.petrified && !this.vampDead && !this.paralysis)
         {
             if (this.water == true && this.land == false && !this.waterwalking || this.water == true && this.land == false && this.weaponEquipped == "boat") //if waterwalking is true swimming doesn't happen, but boating still can.
             {

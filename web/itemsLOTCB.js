@@ -51534,6 +51534,136 @@ function Item(type, x, y)
             this.buyValue = 1000 - Math.floor(player.getCharisma() / 0.1); // at max, buy for 500.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "sagroLeatherArmourF")
+        {
+            //For All Items
+            this.identity = "Sagro Hide Armour";
+            this.weight = 8;
+            this.size = 26;
+            this.description = "Leather armour made from the hide of a sagro.";
+            this.intForDes = 3;
+            this.intDescription = "This armour is made for Noth females who need a tough armour with good vision to shoot a bow in...";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 2.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 3;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.5;
+            this.thirstRetention = 0.05;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 1;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.charismaBonus = 2;
+            }
+            else
+            {
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 1;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 4;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 32;
+            this.ingredients = [["Sagro Hide", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 64 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 45.
+            this.sellValue = 55 + Math.floor(player.getCharisma() / 10); // at max, sell for 45.
+        }
+        else if (this.type == "sagroLeatherArmourM")
+        {
+            //For All Items
+            this.identity = "Sagro Leather Armour";
+            this.weight = 10;
+            this.size = 26;
+            this.description = "Leather armour made from the hide of a sagro.";
+            this.intForDes = 3;
+            this.intDescription = "This armour is made for Noth males who need a tough armour to trudge through mud in...";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 3.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 4;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.5;
+            this.thirstRetention = 0.05;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 2;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = 1;
+            }
+            else
+            {
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -5;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 32;
+            this.ingredients = [["Sagro Hide", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 69 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 55.
+            this.sellValue = 60 + Math.floor(player.getCharisma() / 10); // at max, sell for 55.
+        }
         else if (this.type == "blackBearMediumArmour")
         {
             //For All Items
@@ -66308,6 +66438,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "sagroLeatherArmourM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 470, 1070, 77, 132, X - this.X + (1/2 * CCC.width) - (1/2 * 77 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 132 * 0.8), 77 * 0.8, 132 * 0.8);
+        }
+        else if (this.type == "sagroLeatherArmourF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 280, 1059, 85, 172, X - this.X + (1/2 * CCC.width) - (1/2 * 85 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 172 * 0.6), 85 * 0.6, 172 * 0.6);
+        }
         else if (this.type == "syanj")
         {
             XXX.beginPath();
@@ -75307,6 +75447,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "sagroLeatherArmourM")
+        {
+            LXX.beginPath();
+            LXX.drawImage(scrag, 470, 1070, 77, 132, this.invX - (1/2 * 77 * 0.8 * (2/3)), this.invY - (1/2 * 132 * 0.8 * (2/3)), 77 * 0.8 * (2/3), 132 * 0.8 * (2/3));
+        }
+        else if (this.type == "sagroLeatherArmourF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(scrag, 280, 1059, 85, 172, this.invX - (1/2 * 85 * 0.6 * (2/3)), this.invY - (1/2 * 172 * 0.6 * (2/3)), 85 * 0.6 * (2/3), 172 * 0.6 * (2/3));
+        }
         else if (this.type == "syanj")
         {
             LXX.beginPath();
@@ -84245,6 +84395,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "sagroLeatherArmourM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 470, 1070, 77, 132, this.invX - (1/2 * 77 * 0.8 * (2/3)), this.invY - (1/2 * 132 * 0.8 * (2/3)), 77 * 0.8 * (2/3), 132 * 0.8 * (2/3));
+        }
+        else if (this.type == "sagroLeatherArmourF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 280, 1059, 85, 172, this.invX - (1/2 * 85 * 0.6 * (2/3)), this.invY - (1/2 * 172 * 0.6 * (2/3)), 85 * 0.6 * (2/3), 172 * 0.6 * (2/3));
         }
         else if (this.type == "syanj")
         {

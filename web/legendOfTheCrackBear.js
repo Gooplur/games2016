@@ -1900,6 +1900,18 @@ function rowalPack()
 
     rowal.onload = function()
     {
+        calderaPack();
+    };
+}
+
+function calderaPack()
+{
+    var caldera = new Image();
+    caldera.src = ("images/caldera.png");
+    window.caldera = caldera;
+
+    caldera.onload = function()
+    {
         olgPack();
     };
 }
@@ -6032,6 +6044,8 @@ function theLegend()
     allWorn.push(new Item("cephrianClothingF", false)); //223
     allWorn.push(new Item("quillwolfOutfit", false)); //224
     allWorn.push(new Item("greenerOutfit", false)); //225
+    allWorn.push(new Item("sagroLeatherArmourM", false)); //226
+    allWorn.push(new Item("sagroLeatherArmourF", false)); //227
 
 
 

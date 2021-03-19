@@ -9714,6 +9714,14 @@ function Adventurer()
         {
             outfit = allWorn[225];
         }
+        else if (this.outfitEquipped == "sagroLeatherArmourM")
+        {
+            outfit = allWorn[226];
+        }
+        else if (this.outfitEquipped == "sagroLeatherArmourF")
+        {
+            outfit = allWorn[227];
+        }
         else
         {
             outfit = allWorn[0];
@@ -11609,6 +11617,32 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(polypol, 622, 3, 23, 22, -(1 / 2 * 23 * 1.4) - 0, -(1 / 2 * 22 * 1.4) + 0, 23 * 1.4, 22 * 1.4);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "sagroLeatherArmourM")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(scrag, 392, 1162, 62, 57, -(1 / 2 * 62 * 0.7) - 0, -(1 / 2 * 57 * 0.7) + 0, 62 * 0.7, 57 * 0.7);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "sagroLeatherArmourF")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(scrag, 398, 1079, 62, 57, -(1 / 2 * 62 * 0.6) - 0, -(1 / 2 * 57 * 0.6) + 0, 62 * 0.6, 57 * 0.6);
             XXX.restore();
         }
         else if (this.outfitEquipped == "nothianSageOutfit")

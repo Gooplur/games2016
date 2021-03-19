@@ -982,14 +982,14 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 1;
 
             //stick player and units in the web then store the data for spiders to access.
-            if (X <= this.X + 150 * this.temporary && X >= this.X - 150 * this.temporary && Y <= this.Y + 150 * this.temporary && Y >= this.Y - 150 * this.temporary)
+            if (X <= this.X + 150 * this.temporary && X >= this.X - 150 * this.temporary && Y <= this.Y + 150 * this.temporary && Y >= this.Y - 150 * this.temporary && player.flying != true)
             {
                 player.caveWebbedNum = 3;
                 player.caveWebbedTime = new Date().getTime();
             }
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
-                if (ArtificialIntelligenceAccess[i].X <= this.X + 150 * this.temporary && ArtificialIntelligenceAccess[i].X >= this.X - 150 * this.temporary && ArtificialIntelligenceAccess[i].Y <= this.Y + 150 * this.temporary && ArtificialIntelligenceAccess[i].Y >= this.Y - 150 * this.temporary)
+                if (ArtificialIntelligenceAccess[i].X <= this.X + 150 * this.temporary && ArtificialIntelligenceAccess[i].X >= this.X - 150 * this.temporary && ArtificialIntelligenceAccess[i].Y <= this.Y + 150 * this.temporary && ArtificialIntelligenceAccess[i].Y >= this.Y - 150 * this.temporary && ArtificialIntelligenceAccess[i].flying != true)
                 {
                     ArtificialIntelligenceAccess[i].caveWebbedNum = 3;
                     ArtificialIntelligenceAccess[i].caveWebbedTime = new Date().getTime();
@@ -1012,7 +1012,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 150 * this.temporary;
 
             //stick player and units in the web then store the data for spiders to access.
-            if (this.playerer <= this.radius)
+            if (this.playerer <= this.radius && player.flying != true)
             {
                 player.caveWebbedNum = 3;
                 player.caveWebbedTime = new Date().getTime();
@@ -1020,7 +1020,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
                 var unitDist = (ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y);
-                if (unitDist <= this.radius*this.radius)
+                if (unitDist <= this.radius*this.radius && ArtificialIntelligenceAccess[i].flying != true)
                 {
                     ArtificialIntelligenceAccess[i].caveWebbedNum = 3;
                     ArtificialIntelligenceAccess[i].caveWebbedTime = new Date().getTime();

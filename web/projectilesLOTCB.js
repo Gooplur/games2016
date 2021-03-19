@@ -355,9 +355,21 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                                     {
                                         if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
                                         {
-                                            ArtificialIntelligenceAccess[i].stunXV = true;
-                                            ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 1440);
-                                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                            if (ArtificialIntelligenceAccess[i].type == "Kuzan" || ArtificialIntelligenceAccess[i].type == "Turatura" || ArtificialIntelligenceAccess[i].type == "Tao" || ArtificialIntelligenceAccess[i].healthMAX > 159 && ArtificialIntelligenceAccess[i].type != "Carnid" && ArtificialIntelligenceAccess[i].type != "Reshid")
+                                            {
+                                                ArtificialIntelligenceAccess[i].stunI = true;
+                                                ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 60);
+                                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                            }
+                                            else
+                                            {
+                                                if (ArtificialIntelligenceAccess[i].type != "Carnid" && ArtificialIntelligenceAccess[i].type != "Reshid")
+                                                {
+                                                    ArtificialIntelligenceAccess[i].stunXV = true;
+                                                    ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 1440);
+                                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                                }
+                                            }
                                         }
                                     }
                                     else if (this.ability == "sowt")

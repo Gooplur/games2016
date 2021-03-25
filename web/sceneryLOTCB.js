@@ -19695,6 +19695,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.solid = false;
             this.interactionRange = 1;
             this.size = this.information;
+            this.radius = 1;
 
             //DRAWSELF
             if (this.temporary == 1) //burnt house underlayer
@@ -20061,6 +20062,548 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mudm, 614, 608, 69, 65, -(1/2 * 69 * this.size), -(1/2 * 65 * this.size), 69 * this.size, 65 * this.size);
                 XXX.restore();
             }
+            else if (this.temporary == 46) //basic canvas hammock
+            {
+                this.interactionRange = 70 + (20 * this.size);
+                this.radius = 19 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shrum, 8, 99, 147, 59, -(1/2 * 147 * this.size), -(1/2 * 59 * this.size), 147 * this.size, 59 * this.size);
+                XXX.restore();
+
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    if (this.temporary == true)
+                    {
+                        sleep();
+                    }
+                }
+            }
+            else if (this.temporary == 47) //fine canvas hammock
+            {
+                this.interactionRange = 70 + (20 * this.size);
+                this.radius = 19 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shrum, 178, 100, 147, 59, -(1/2 * 147 * this.size), -(1/2 * 59 * this.size), 147 * this.size, 59 * this.size);
+                XXX.restore();
+
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    if (this.temporary == true)
+                    {
+                        sleep();
+                    }
+                }
+            }
+            else if (this.temporary == 48) //royal canvas hammock
+            {
+                this.interactionRange = 70 + (20 * this.size);
+                this.radius = 19 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shrum, 353, 101, 147, 59, -(1/2 * 147 * this.size), -(1/2 * 59 * this.size), 147 * this.size, 59 * this.size);
+                XXX.restore();
+
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    if (this.temporary == true)
+                    {
+                        sleep();
+                    }
+                }
+            }
+            else if (this.temporary == 49) //canvas seat
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shrum, 29, 6, 113, 70, -(1/2 * 113 * this.size), -(1/2 * 70 * this.size), 113 * this.size, 70 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 50) //fine canvas seat
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shrum, 196, 9, 113, 70, -(1/2 * 113 * this.size), -(1/2 * 70 * this.size), 113 * this.size, 70 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 51) //royal canvas seat
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shrum, 369, 10, 113, 70, -(1/2 * 113 * this.size), -(1/2 * 70 * this.size), 113 * this.size, 70 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 52) //royal rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nulg, 334, 509, 163, 101, -(1/2 * 163 * this.size), -(1/2 * 101 * this.size), 163 * this.size, 101 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 53) //rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 685, 295, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.drawImage(nobo, 685, 295, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 54) //rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 686, 477, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.drawImage(nobo, 686, 477, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 55) //rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 685, 614, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.drawImage(nobo, 685, 614, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 56) //rug lrg
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 514, 297, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.drawImage(nobo, 514, 297, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 57) //rug lrg
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 516, 479, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.drawImage(nobo, 516, 479, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 58) //rug lrg
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 515, 615, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.drawImage(nobo, 515, 615, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 59) //circle rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 379, 300, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.drawImage(nobo, 379, 300, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 60) //circle rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 380, 480, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.drawImage(nobo, 380, 480, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 61) //circle rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 378, 618, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.drawImage(nobo, 378, 618, 128, 133, -(1/2 * 128 * this.size), -(1/2 * 133 * this.size), 128 * this.size, 133 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 62) //long plus rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 69, 308, 106, 93, -(1/2 * 106 * this.size), -(1/2 * 93 * this.size), 106 * this.size, 93 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 63) //long plus rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 71, 489, 106, 93, -(1/2 * 106 * this.size), -(1/2 * 93 * this.size), 106 * this.size, 93 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 64) //long plus rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 70, 627, 106, 93, -(1/2 * 106 * this.size), -(1/2 * 93 * this.size), 106 * this.size, 93 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 65) //plus rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 177, 307, 106, 93, -(1/2 * 106 * this.size), -(1/2 * 93 * this.size), 106 * this.size, 93 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 66) //plus rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 178, 489, 106, 93, -(1/2 * 106 * this.size), -(1/2 * 93 * this.size), 106 * this.size, 93 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 67) //plus rug
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 177, 625, 106, 93, -(1/2 * 106 * this.size), -(1/2 * 93 * this.size), 106 * this.size, 93 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 68) //table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 65, 399, 106, 93, -(1/2 * 106 * this.size), -(1/2 * 93 * this.size), 106 * this.size, 93 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 69) //bowl table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 565, 8, 106, 93, -(1/2 * 106 * this.size), -(1/2 * 93 * this.size), 106 * this.size, 93 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 70) //crafting stone
+            {
+                this.interactionRange = 65 + (14 * this.size);
+                this.radius = 10 * this.size;
+                this.solid = true;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 181, 401, 106, 93, -(1/2 * 106 * this.size), -(1/2 * 93 * this.size), 106 * this.size, 93 * this.size);
+                XXX.restore();
+
+                if (this.activate == true && player.weaponEquipped == "hammer" || this.activate == true && player.raceName == "Noth")
+                {
+                    this.activate = false;
+                    player.craftPosition = 0;
+                    craftScroll = 0;
+                    crafting = "smithing";
+                    lowBar = "crafting";
+                    gameState = "paused";
+                }
+            }
+            else if (this.temporary == 71) //loom
+            {
+                this.interactionRange = 73 + (22 * this.size);
+                this.radius = 21 * this.size;
+                this.solid = true;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 431, 1, 106, 102, -(1/2 * 106 * this.size), -(1/2 * 102 * this.size), 106 * this.size, 102 * this.size);
+                XXX.restore();
+
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    player.craftPosition = 0;
+                    craftScroll = 0;
+                    crafting = "tailoring";
+                    lowBar = "crafting";
+                    gameState = "paused";
+                }
+            }
+            else if (this.temporary == 72) //basin
+            {
+                if (this.phase == 0) //with water
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(nobo, 0, 56, 74, 53, -(1/2 * 74 * this.size), -(1/2 * 53 * this.size), 74 * this.size, 53 * this.size);
+                    XXX.restore();
+                }
+                else //empty
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(nobo, 0, 3, 74, 53, -(1/2 * 74 * this.size), -(1/2 * 53 * this.size), 74 * this.size, 53 * this.size);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.interactionRange = 60 + (20 * this.size);
+                this.radius = 15 * this.size;
+                this.solid = true;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    this.doBreak = false;
+                    this.yaTiene = false;
+
+                    if (this.phase == 0)
+                    {
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            for (var j = 0; j < wellConversionList.length; j++)
+                            {
+                                //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                                if (Inventory[i][0].type == wellConversionList[j][0])
+                                {
+                                    if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket")
+                                    {
+                                        this.phase = 1;
+                                    }
+
+                                    for (var k = 0; k < Inventory.length; k++)
+                                    {
+                                        if (Inventory[k][0].type == wellConversionList[j][1])
+                                        {
+                                            this.yaTiene = k;
+                                        }
+                                    }
+
+                                    if (Inventory[i][1] > 1)
+                                    {
+                                        Inventory[i][1] -= 1;
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                            Inventory.splice(i, 1);
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (this.doBreak == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            for (var j = 0; j < wellConversionList.length; j++)
+                            {
+                                //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                                if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater")
+                                {
+                                    this.phase = 0;
+                                    for (var k = 0; k < Inventory.length; k++)
+                                    {
+                                        if (Inventory[k][0].type == wellConversionList[j][0])
+                                        {
+                                            this.yaTiene = k;
+                                        }
+                                    }
+
+                                    if (Inventory[i][1] > 1)
+                                    {
+                                        Inventory[i][1] -= 1;
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.push([new Item(wellConversionList[j][0], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            Inventory.push([new Item(wellConversionList[j][0], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                            Inventory.splice(i, 1);
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (this.doBreak == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else if (this.temporary == 73) //rolled up lrg rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 811, 712, 34, 113, -(1/2 * 34 * this.size), -(1/2 * 113 * this.size), 34 * this.size, 113 * this.size);
+                XXX.drawImage(nobo, 811, 712, 34, 113, -(1/2 * 34 * this.size), -(1/2 * 113 * this.size), 34 * this.size, 113 * this.size);
+                XXX.drawImage(nobo, 811, 712, 34, 113, -(1/2 * 34 * this.size), -(1/2 * 113 * this.size), 34 * this.size, 113 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 74) //rolled up lrg rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 856, 715, 34, 113, -(1/2 * 34 * this.size), -(1/2 * 113 * this.size), 34 * this.size, 113 * this.size);
+                XXX.drawImage(nobo, 856, 715, 34, 113, -(1/2 * 34 * this.size), -(1/2 * 113 * this.size), 34 * this.size, 113 * this.size);
+                XXX.drawImage(nobo, 856, 715, 34, 113, -(1/2 * 34 * this.size), -(1/2 * 113 * this.size), 34 * this.size, 113 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 75) //rolled up lrg rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 897, 716, 34, 113, -(1/2 * 34 * this.size), -(1/2 * 113 * this.size), 34 * this.size, 113 * this.size);
+                XXX.drawImage(nobo, 897, 716, 34, 113, -(1/2 * 34 * this.size), -(1/2 * 113 * this.size), 34 * this.size, 113 * this.size);
+                XXX.drawImage(nobo, 897, 716, 34, 113, -(1/2 * 34 * this.size), -(1/2 * 113 * this.size), 34 * this.size, 113 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 76) //rolled up plus rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 940, 702, 34, 113, -(1/2 * 34 * this.size), -(1/2 * 113 * this.size), 34 * this.size, 113 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 77) //rolled up plus rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 968, 704, 34, 113, -(1/2 * 34 * this.size), -(1/2 * 113 * this.size), 34 * this.size, 113 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 78) //rolled up plus rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 760, 61, 80, 39, -(1/2 * 80 * this.size), -(1/2 * 39 * this.size), 80 * this.size, 39 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 79) //rolled up rugs
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 683, 49, 80, 39, -(1/2 * 80 * this.size), -(1/2 * 39 * this.size), 80 * this.size, 39 * this.size);
+                XXX.drawImage(nobo, 683, 49, 80, 39, -(1/2 * 80 * this.size), -(1/2 * 39 * this.size), 80 * this.size, 39 * this.size);
+                XXX.drawImage(nobo, 683, 49, 80, 39, -(1/2 * 80 * this.size), -(1/2 * 39 * this.size), 80 * this.size, 39 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 80) //rolled up rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 702, 7, 66, 39, -(1/2 * 66 * this.size), -(1/2 * 39 * this.size), 66 * this.size, 39 * this.size);
+                XXX.drawImage(nobo, 702, 7, 66, 39, -(1/2 * 66 * this.size), -(1/2 * 39 * this.size), 66 * this.size, 39 * this.size);
+                XXX.drawImage(nobo, 702, 7, 66, 39, -(1/2 * 66 * this.size), -(1/2 * 39 * this.size), 66 * this.size, 39 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 81) //partially woven rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nobo, 764, 16, 66, 39, -(1/2 * 66 * this.size), -(1/2 * 39 * this.size), 66 * this.size, 39 * this.size);
+                XXX.restore();
+            }
             else //dirt house underlayer
             {
                 this.zIndex = 1;
@@ -20072,7 +20615,6 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 1;
 
             //INTERACTION
             if (this.activate == true)

@@ -111,6 +111,9 @@ function legendaryPrerequisites()
     var nightTheme = new Audio("sounds/polyLandNightTheme.mp3");
     window.nightTheme = nightTheme;
 
+    var nothTheme = new Audio("sounds/nothTheme.wav");
+    window.nothTheme = nothTheme;
+
     //action sounds
     var carbineShot = new Audio("sounds/polySounds/carbineShot.wav");
     window.carbineShot = carbineShot;
@@ -1827,6 +1830,18 @@ function noboPack()
     window.nobo = nobo;
 
     nobo.onload = function()
+    {
+        spreaPack();
+    };
+}
+
+function spreaPack()
+{
+    var sprea = new Image();
+    sprea.src = ("images/sprea.png");
+    window.sprea = sprea;
+
+    sprea.onload = function()
     {
         enwiPack();
     };
@@ -4817,7 +4832,8 @@ function theLegend()
         deserterOfficer: ["DeserterOfficer", 0],
         chansley: ["Chansly", 0],
         torsk: ["Torsk", 0],
-        evee: ["Evee", 0]
+        evee: ["Evee", 0],
+        dunglas: ["Dunglas", 0]
     };
 
 //time Tracker Variables
@@ -5169,7 +5185,8 @@ function theLegend()
         deserterOfficerLDS: true,
         chanslyLDS: true,
         torskLDS: true,
-        eveeLDS: true
+        eveeLDS: true,
+        dunglasLDS: true
     };
 //QUESTS
     quests =
@@ -6046,6 +6063,14 @@ function theLegend()
     allWorn.push(new Item("greenerOutfit", false)); //225
     allWorn.push(new Item("sagroLeatherArmourM", false)); //226
     allWorn.push(new Item("sagroLeatherArmourF", false)); //227
+    allWorn.push(new Item("nothLadyOutfit", false)); //228
+    allWorn.push(new Item("kundyaGown", false)); //229
+    allWorn.push(new Item("kundArmour", false)); //230
+    allWorn.push(new Item("nothUdnalOutfit", false)); //231
+    allWorn.push(new Item("nothRangerOutfit", false)); //232
+    allWorn.push(new Item("nothOutfitM", false)); //233
+    allWorn.push(new Item("nothOutfitF", false)); //234
+    allWorn.push(new Item("vodmenaBoneArmour", false)); //235
 
 
 
@@ -6224,6 +6249,7 @@ function theLegend()
     smithing.push(new Item("nothSpear", false));
     smithing.push(new Item("thenganWarCleaver", false));
     smithing.push(new Item("thenganFangCleaver", false));
+    smithing.push(new Item("vodmenaBoneArmour", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -6667,6 +6693,12 @@ function theLegend()
     tailoring.push(new Item("harpyHideArmour", false));
     tailoring.push(new Item("quillwolfOutfit", false));
     tailoring.push(new Item("greenerOutfit", false));
+    tailoring.push(new Item("sagroLeatherArmourF", false));
+    tailoring.push(new Item("sagroLeatherArmourM", false));
+    tailoring.push(new Item("nothUdnalOutfit", false));
+    tailoring.push(new Item("nothRangerOutfit", false));
+    tailoring.push(new Item("nothOutfitM", false));
+    tailoring.push(new Item("nothOutfitF", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

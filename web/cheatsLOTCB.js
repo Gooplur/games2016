@@ -9976,13 +9976,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 45)
+                if (buildClase > 81)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 45;
+                    buildClase = 81;
                 }
             }
 

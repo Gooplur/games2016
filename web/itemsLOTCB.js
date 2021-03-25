@@ -48661,6 +48661,72 @@ function Item(type, x, y)
             this.buyValue = 0; // at max, buy for 0.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "facepaintGeishaI")
+        {
+            //For All Items
+            this.identity = "Geisha Facepaint";
+            this.weight = 1.65;
+            this.size = 9;
+            this.description = "Black, white, and magenta paint with a fine brush.";
+            this.intForDes = 0;
+            this.intDescription = "With this facepaint one can paint their face to be pale with sleek emphasis around the eyes.";
+
+
+            //Define Utility
+            this.utility = "facepaint";
+            this.subUtility = "geisha1";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 90; // at max, buy for 90
+            this.sellValue = 90; // at max, sell for 90.
+        }
+        else if (this.type == "facepaintGeishaII")
+        {
+            //For All Items
+            this.identity = "Geisha Facepaint";
+            this.weight = 1.65;
+            this.size = 9;
+            this.description = "Black, white, and magenta paint with a fine brush.";
+            this.intForDes = 0;
+            this.intDescription = "With this facepaint one can paint their face to be pale with dramatic fieriness around the eyes.";
+
+
+            //Define Utility
+            this.utility = "facepaint";
+            this.subUtility = "geisha2";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 75; // at max, buy for 75.
+            this.sellValue = 75; // at max, sell for 75.
+        }
+        else if (this.type == "facepaintGeishaIII")
+        {
+            //For All Items
+            this.identity = "Geisha Facepaint";
+            this.weight = 1.65;
+            this.size = 9;
+            this.description = "Black, white, and magenta paint with a fine brush.";
+            this.intForDes = 0;
+            this.intDescription = "With this facepaint one can paint their face to be pale with dramatic streaks across the eyes.";
+
+
+            //Define Utility
+            this.utility = "facepaint";
+            this.subUtility = "geisha3";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 75; // at max, buy for 75.
+            this.sellValue = 75; // at max, sell for 75.
+        }
         else if (this.type == "mudmanHand")
         {
             //For All Items
@@ -51534,6 +51600,454 @@ function Item(type, x, y)
             this.buyValue = 1000 - Math.floor(player.getCharisma() / 0.1); // at max, buy for 500.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "nothLadyOutfit")
+        {
+            //For All Items
+            this.identity = "Fine Noth Lady Outfit";
+            this.weight = 1.75;
+            this.size = 26;
+            this.description = "A fine outfit made of a variety of dyed fabrics and materials.";
+            this.intForDes = 2;
+            this.intDescription = "This outfit is worn by Noth highfolk and nobility.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.1;
+            this.thirstRetention = 0.11;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.charismaBonus = 29;
+            }
+            else
+            {
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            // //Crafting
+            // this.yield = 1;
+            // this.intForCraft = 32;
+            // this.ingredients = [["", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 689 - Math.floor(player.getCharisma() / 5); // at max, buy for 679.
+            this.sellValue = 625 + Math.floor(player.getCharisma() / 1); // at max, sell for 675.
+        }
+        else if (this.type == "kundyaGown")
+        {
+            //For All Items
+            this.identity = "Kundya Gown";
+            this.weight = 1.75;
+            this.size = 26;
+            this.description = "An exquisite Nothian gown made for the illustrious kundya of Noth.";
+            this.intForDes = 4;
+            this.intDescription = "The kundya is expected to be the example of a perfect Nothian woman. She is a pinnacle of beauty and is unscathed by manual labor or 'excessive' physical exertion.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.75;
+            this.thirstRetention = 0.19;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.charismaBonus = 40;
+            }
+            else
+            {
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = -25;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -25;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            // //Crafting
+            // this.yield = 1;
+            // this.intForCraft = 32;
+            // this.ingredients = [["", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2350 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 2250.
+            this.sellValue = 2200 + Math.floor(player.getCharisma() / 1); // at max, sell for 2250.
+        }
+        else if (this.type == "nothRangerOutfit")
+        {
+            //For All Items
+            this.identity = "Noth Ranger Outfit";
+            this.weight = 3;
+            this.size = 26;
+            this.description = "Strong leather armour made from the pelt of an udnal and lined with nulga fur.";
+            this.intForDes = 3;
+            this.intDescription = "The outfit is worn by the most proven and elite Nothian rangers and warriors.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 4 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 4;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.85;
+            this.thirstRetention = 0.15;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 1;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = 7;
+            }
+            else
+            {
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 4;
+            this.constitutionBonus = 1;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 5;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 33;
+            this.ingredients = [["Udnal Pelt", 2], ["Nulga Pelt", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 130 - Math.floor(player.getCharisma() / 10); // at max, buy for 125.
+            this.sellValue = 115 + Math.floor(player.getCharisma() / 5); // at max, sell for 125.
+        }
+        else if (this.type == "nothUdnalOutfit")
+        {
+            //For All Items
+            this.identity = "Udnal Outfit";
+            this.weight = 2.5;
+            this.size = 26;
+            this.description = "A tough and durable outfit made from udnal pelt.";
+            this.intForDes = 1;
+            this.intDescription = "This is a common outfit worn by citizens of the Vardanian County of Noth.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0.75 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.5;
+            this.thirstRetention = -0.1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 10;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 15;
+            this.ingredients = [["Udnal Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 36 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 32.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 25); // at max, sell for 32.
+        }
+        else if (this.type == "nothOutfitF")
+        {
+            //For All Items
+            this.identity = "Nulga Ranger Outfit";
+            this.weight = 2;
+            this.size = 25;
+            this.description = "An outfit made from nulga pelt and some sagro hide.";
+            this.intForDes = 1;
+            this.intDescription = "This type of outfit is worn commonly by female citizens of Noth.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 1 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.25;
+            this.thirstRetention = 0.05;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.charismaBonus = 2;
+            }
+            else
+            {
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 2;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 20;
+            this.ingredients = [["Nulga Pelt", 6], ["Nulga Tail", 2], ["Sagro Hide", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 48 - Math.floor(player.getCharisma() / 15); // at max, buy for 45.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 10); // at max, sell for 45.
+        }
+        else if (this.type == "nothOutfitM")
+        {
+            //For All Items
+            this.identity = "Nulga Fur Clothing";
+            this.weight = 1.5;
+            this.size = 25;
+            this.description = "An outfit made of nulga fur.";
+            this.intForDes = 1;
+            this.intDescription = "This type of outfit is worn commonly by male citizens of Noth.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0.1 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.25;
+            this.thirstRetention = 0.05;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 1;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = 3;
+            }
+            else
+            {
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 12;
+            this.ingredients = [["Nulga Pelt", 5], ["Nulga Tail", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 15); // at max, buy for 17.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 10); // at max, sell for 17.
+        }
+        else if (this.type == "kundArmour")
+        {
+            //For All Items
+            this.identity = "Kund Armour";
+            this.weight = 15;
+            this.size = 29;
+            this.description = "The magnificent and awe-inspiring armour worn by the Kund of Noth.";
+            this.intForDes = 3;
+            this.intDescription = "The armour is made from the thick hide of a terrible and fearsome Nothian mudtroll.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 7 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 5;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.5;
+            this.thirstRetention = 0.05;
+            this.shockResist = 2.5;
+            //Main Stat Bonuses
+            this.strengthBonus = 6;
+            this.enduranceBonus = 2;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = 38;
+            }
+            else
+            {
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 5;
+            this.staminaBonus = 3;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 5;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 6;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            // //Crafting
+            // this.yield = 1;
+            // this.intForCraft = 32;
+            // this.ingredients = [["Sagro Hide", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3900 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 3800.
+            this.sellValue = 3600 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 3800.
+        }
         else if (this.type == "sagroLeatherArmourF")
         {
             //For All Items
@@ -51638,7 +52152,7 @@ function Item(type, x, y)
             this.rangedBonus = 0;
             this.constitutionBonus = 0;
             this.staminaBonus = 0;
-            this.dexterityBonus = -5;
+            this.dexterityBonus = -4;
             this.survivalismBonus = 2;
             //Extra Stat Bonuses
             this.sleepBonus = 0;
@@ -51663,6 +52177,71 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 69 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 55.
             this.sellValue = 60 + Math.floor(player.getCharisma() / 10); // at max, sell for 55.
+        }
+        else if (this.type == "vodmenaBoneArmour")
+        {
+            //For All Items
+            this.identity = "Vodmena Bone Armour";
+            this.weight = 30;
+            this.size = 26;
+            this.description = "Hard vodmena bone armour with a aketon of sagro leather.";
+            this.intForDes = 1;
+            this.intDescription = "This armour is worn by the battle harden warriors of Noth.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 11.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 10;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.5;
+            this.thirstRetention = 0.15;
+            this.shockResist = 0.5;
+            //Main Stat Bonuses
+            this.strengthBonus = 2;
+            this.enduranceBonus = 3;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = 9;
+            }
+            else
+            {
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 1;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 44;
+            this.ingredients = [["Vodmena Bones", 14], ["Sagro Hide", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 300 - Math.floor(player.getCharisma() / 2); // at max, buy for 275.
+            this.sellValue = 250 + Math.floor(player.getCharisma() / 2); // at max, sell for 275.
         }
         else if (this.type == "blackBearMediumArmour")
         {
@@ -63981,12 +64560,12 @@ function Item(type, x, y)
             this.ability = "none";
 
             this.yield = 1;
-            this.intForCraft = 37;
-            this.ingredients = [["Vodmena Bones", 4], ["strilt", 1]];
+            this.intForCraft = 44;
+            this.ingredients = [["Vodmena Bones", 4], ["Strilt", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 60 - Math.floor(player.getCharisma() / 2); // at max, buy for 35.
-            this.sellValue = 30 + Math.floor(player.getCharisma() / 10); // at max, sell for 35.
+            this.buyValue = 120 - Math.floor(player.getCharisma() / 2); // at max, buy for 35.
+            this.sellValue = 90 + Math.floor(player.getCharisma() / 10); // at max, sell for 35.
         }
         else if (this.type == "nothSpear")
         {
@@ -66437,6 +67016,51 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "facepaintGeishaI" || this.type == "facepaintGeishaII" || this.type == "facepaintGeishaIII")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 1584, 94, 27, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 27 * 1, 28 * 1);
+        }
+        else if (this.type == "vodmenaBoneArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mrol, 92, 810, 68, 118, X - this.X + (1/2 * CCC.width) - (1/2 * 68 * 0.96), Y - this.Y + (1/2 * CCC.height) - (1/2 * 118 * 0.96), 68 * 0.96, 118 * 0.96);
+        }
+        else if (this.type == "nothOutfitM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 419, -7, 81, 141, X - this.X + (1/2 * CCC.width) - (1/2 * 81 * 0.92), Y - this.Y + (1/2 * CCC.height) - (1/2 * 141 * 0.92), 81 * 0.92, 141 * 0.92);
+        }
+        else if (this.type == "nothOutfitF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 420, 135, 81, 141, X - this.X + (1/2 * CCC.width) - (1/2 * 81 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 141 * 0.8), 81 * 0.8, 141 * 0.8);
+        }
+        else if (this.type == "kundArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mrol, 680, 650, 66, 109, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 109 * 1.1), 66 * 1.1, 109 * 1.1);
+        }
+        else if (this.type == "nothUdnalOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 289, 773, 73, 116, X - this.X + (1/2 * CCC.width) - (1/2 * 73 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 116 * 1), 73 * 1, 116 * 1);
+        }
+        else if (this.type == "nothRangerOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 320, 304, 79, 149, X - this.X + (1/2 * CCC.width) - (1/2 * 79 * 0.85), Y - this.Y + (1/2 * CCC.height) - (1/2 * 149 * 0.85), 79 * 0.85, 149 * 0.85);
+        }
+        else if (this.type == "kundyaGown")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 427, 303, 63, 132, X - this.X + (1/2 * CCC.width) - (1/2 * 63 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 132 * 1), 63 * 1, 132 * 1);
+        }
+        else if (this.type == "nothLadyOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 30, 191, 67, 128, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 128 * 0.9), 67 * 0.9, 128 * 0.9);
         }
         else if (this.type == "sagroLeatherArmourM")
         {
@@ -75447,6 +76071,51 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "facepaintGeishaI" || this.type == "facepaintGeishaII" || this.type == "facepaintGeishaIII")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 1584, 94, 27, 28, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 28 * 1), 27 * 1, 28 * 1);
+        }
+        else if (this.type == "vodmenaBoneArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mrol, 92, 810, 68, 118, this.invX - (1/2 * 68 * 0.96 * (2/3)), this.invY - (1/2 * 118 * 0.96 * (2/3)), 68 * 0.96 * (2/3), 118 * 0.96 * (2/3));
+        }
+        else if (this.type == "nothOutfitM")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nulg, 419, -7, 81, 141, this.invX - (1/2 * 81 * 0.92 * (2/3)), this.invY - (1/2 * 141 * 0.92 * (2/3)), 81 * 0.92 * (2/3), 141 * 0.92 * (2/3));
+        }
+        else if (this.type == "nothOutfitF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nulg, 420, 135, 81, 141, this.invX - (1/2 * 81 * 0.8 * (2/3)), this.invY - (1/2 * 141 * 0.8 * (2/3)), 81 * 0.8 * (2/3), 141 * 0.8 * (2/3));
+        }
+        else if (this.type == "kundArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mrol, 680, 650, 66, 109, this.invX - (1/2 * 66 * 1.1 * (2/3)), this.invY - (1/2 * 109 * 1.1 * (2/3)), 66 * 1.1 * (2/3), 109 * 1.1 * (2/3));
+        }
+        else if (this.type == "nothUdnalOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nal, 289, 773, 73, 116, this.invX - (1/2 * 73 * 1 * (2/3)), this.invY - (1/2 * 116 * 1 * (2/3)), 73 * 1 * (2/3), 116 * 1 * (2/3));
+        }
+        else if (this.type == "nothRangerOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nulg, 320, 304, 79, 149, this.invX - (1/2 * 79 * 0.8 * (2/3)), this.invY - (1/2 * 149 * 0.8 * (2/3)), 79 * 0.8 * (2/3), 149 * 0.8 * (2/3));
+        }
+        else if (this.type == "kundyaGown")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nulg, 427, 303, 63, 132, this.invX - (1/2 * 63 * 0.85 * (2/3)), this.invY - (1/2 * 132 * 0.85 * (2/3)), 63 * 0.85 * (2/3), 132 * 0.85 * (2/3));
+        }
+        else if (this.type == "nothLadyOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(harv, 30, 191, 67, 128, this.invX - (1/2 * 67 * 0.9 * (2/3)), this.invY - (1/2 * 128 * 0.9 * (2/3)), 67 * 0.9 * (2/3), 128 * 0.9 * (2/3));
+        }
         else if (this.type == "sagroLeatherArmourM")
         {
             LXX.beginPath();
@@ -84395,6 +85064,51 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "facepaintGeishaI" || this.type == "facepaintGeishaII" || this.type == "facepaintGeishaIII")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 1584, 94, 27, 28, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 28 * 1), 27 * 1, 28 * 1);
+        }
+        else if (this.type == "vodmenaBoneArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mrol, 92, 810, 68, 118, this.invX - (1/2 * 68 * 0.96 * (2/3)), this.invY - (1/2 * 118 * 0.96 * (2/3)), 68 * 0.96 * (2/3), 118 * 0.96 * (2/3));
+        }
+        else if (this.type == "nothOutfitM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 419, -7, 81, 141, this.invX - (1/2 * 81 * 0.92 * (2/3)), this.invY - (1/2 * 141 * 0.92 * (2/3)), 81 * 0.92 * (2/3), 141 * 0.92 * (2/3));
+        }
+        else if (this.type == "nothOutfitF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 420, 135, 81, 141, this.invX - (1/2 * 81 * 0.8 * (2/3)), this.invY - (1/2 * 141 * 0.8 * (2/3)), 81 * 0.8 * (2/3), 141 * 0.8 * (2/3));
+        }
+        else if (this.type == "kundArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mrol, 680, 650, 66, 109, this.invX - (1/2 * 66 * 1.1 * (2/3)), this.invY - (1/2 * 109 * 1.1 * (2/3)), 66 * 1.1 * (2/3), 109 * 1.1 * (2/3));
+        }
+        else if (this.type == "nothUdnalOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 289, 773, 73, 116, this.invX - (1/2 * 73 * 1 * (2/3)), this.invY - (1/2 * 116 * 1 * (2/3)), 73 * 1 * (2/3), 116 * 1 * (2/3));
+        }
+        else if (this.type == "nothRangerOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 320, 304, 79, 149, this.invX - (1/2 * 79 * 0.8 * (2/3)), this.invY - (1/2 * 149 * 0.8 * (2/3)), 79 * 0.8 * (2/3), 149 * 0.8 * (2/3));
+        }
+        else if (this.type == "kundyaGown")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 427, 303, 63, 132, this.invX - (1/2 * 63 * 0.85 * (2/3)), this.invY - (1/2 * 132 * 0.85 * (2/3)), 63 * 0.85 * (2/3), 132 * 0.85 * (2/3));
+        }
+        else if (this.type == "nothLadyOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(harv, 30, 191, 67, 128, this.invX - (1/2 * 67 * 0.9 * (2/3)), this.invY - (1/2 * 128 * 0.9 * (2/3)), 67 * 0.9 * (2/3), 128 * 0.9 * (2/3));
         }
         else if (this.type == "sagroLeatherArmourM")
         {

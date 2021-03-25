@@ -666,6 +666,10 @@ function Adventurer()
     this.frgfrm = 0;
     this.frogaform = false;
     this.paralysis = false;
+    this.facepaint = "none";
+    this.facepaintCharm = 0;
+    this.facepaintKeep = new Date().getTime();
+    this.facepaintTime = 0;
 
     //faction variables
     this.factionToggle = false;
@@ -6769,7 +6773,7 @@ function Adventurer()
         }
         else
         {
-            return (Math.max(0, Math.min(50, this.charisma + this.AdCharisma + this.gassyCha + this.perfumeCHA)));
+            return (Math.max(0, Math.min(50, this.charisma + this.AdCharisma + this.gassyCha + this.perfumeCHA + this.facepaintCharm)));
         }
     };
 
@@ -8788,6 +8792,127 @@ function Adventurer()
             XXX.fill();
             XXX.restore();
 
+            //draw facepaint
+            if (this.facepaint != "none")
+            {
+                if (this.facepaintTime > 0)
+                {
+                    if (new Date().getTime() - this.facepaintKeep > 1000)
+                    {
+                        this.facepaintKeep = new Date().getTime();
+                        this.facepaintTime -= 1;
+                    }
+
+                    if (this.facepaint == "geisha1")
+                    {
+                        if (player.gender == "Female")
+                        {
+                            this.facepaintCharm = 5;
+                        }
+                        else
+                        {
+                            this.facepaintCharm = -50
+                        }
+
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                        XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.025;
+                        }
+                        if (this.facepaintTime < 10)
+                        {
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime * 0.025;
+                            }
+                            else
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime;
+                            }
+                        }
+                        XXX.drawImage(moonberry, 1513, 21, 25, 25, -1/2 * 25 * 1.075, -1/2 * 25 * 1.075 + 0.9, 25 * 1.075, 25 * 1.075);
+                        XXX.restore();
+                    }
+                    else if (this.facepaint == "geisha2")
+                    {
+                        if (player.gender == "Female")
+                        {
+                            this.facepaintCharm = 4;
+                        }
+                        else
+                        {
+                            this.facepaintCharm = -50
+                        }
+
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                        XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.025;
+                        }
+                        if (this.facepaintTime < 10)
+                        {
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime * 0.025;
+                            }
+                            else
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime;
+                            }
+                        }
+                        XXX.drawImage(moonberry, 1507, 100, 25, 25, -1/2 * 25 * 1.075, -1/2 * 25 * 1.075, 25 * 1.075, 25 * 1.075);
+                        XXX.restore();
+                    }
+                    else if (this.facepaint == "geisha3")
+                    {
+                        if (player.gender == "Female")
+                        {
+                            this.facepaintCharm = 3;
+                        }
+                        else
+                        {
+                            this.facepaintCharm = 2;
+                        }
+
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                        XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.025;
+                        }
+                        if (this.facepaintTime < 10)
+                        {
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime * 0.025;
+                            }
+                            else
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime;
+                            }
+                        }
+                        XXX.drawImage(moonberry, 1540, 100, 25, 25, -1/2 * 25 * 1.075, -1/2 * 25 * 1.075, 25 * 1.075, 25 * 1.075);
+                        XXX.restore();
+                    }
+                }
+                else
+                {
+                    this.facepaintTime = 0;
+                    this.facepaint = "none";
+                }
+            }
+            else
+            {
+                this.facepaintCharm = 0;
+                this.facepaint = "none";
+                this.facepaintKeep = new Date().getTime();
+            }
+
             //draw affliction: from disease or other source
 
             //internal warts
@@ -9721,6 +9846,38 @@ function Adventurer()
         else if (this.outfitEquipped == "sagroLeatherArmourF")
         {
             outfit = allWorn[227];
+        }
+        else if (this.outfitEquipped == "nothLadyOutfit")
+        {
+            outfit = allWorn[228];
+        }
+        else if (this.outfitEquipped == "kundyaGown")
+        {
+            outfit = allWorn[229];
+        }
+        else if (this.outfitEquipped == "kundArmour")
+        {
+            outfit = allWorn[230];
+        }
+        else if (this.outfitEquipped == "nothUdnalOutfit")
+        {
+            outfit = allWorn[231];
+        }
+        else if (this.outfitEquipped == "nothRangerOutfit")
+        {
+            outfit = allWorn[232];
+        }
+        else if (this.outfitEquipped == "nothOutfitM")
+        {
+            outfit = allWorn[233];
+        }
+        else if (this.outfitEquipped == "nothOutfitF")
+        {
+            outfit = allWorn[234];
+        }
+        else if (this.outfitEquipped == "vodmenaBoneArmour")
+        {
+            outfit = allWorn[235];
         }
         else
         {
@@ -11617,6 +11774,110 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(polypol, 622, 3, 23, 22, -(1 / 2 * 23 * 1.4) - 0, -(1 / 2 * 22 * 1.4) + 0, 23 * 1.4, 22 * 1.4);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nothLadyOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation + Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(harv, 111, 235, 57, 48, -(1 / 2 * 57 * 1) - 0, -(1 / 2 * 48) + 0, 57, 48);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "kundyaGown")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(nulg, 330, 149, 52, 44, -(1 / 2 * 52 * 1) - 0, -(1 / 2 * 44) + 0, 52, 44);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "kundArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(mrol, 577, 633, 86, 94, -(1 / 2 * 86 * 1.15) - 0, -(1 / 2 * 94 * 1.15) + 0, 86 * 1.15, 94 * 1.15);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nothUdnalOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(nal, 387, 777, 39, 34, -(1 / 2 * 39 * 1.15) - 0, -(1 / 2 * 34 * 1.15) + 0, 39 * 1.15, 34 * 1.15);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nothRangerOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(nulg, 323, 217, 58, 64, -(1 / 2 * 58 * 0.95) - 2.5, -(1 / 2 * 64 * 0.95) + 0, 58 * 0.95, 64 * 0.95);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nothOutfitM")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(nulg, 360, -1, 58, 64, -(1 / 2 * 58 * 1.08) - 0, -(1 / 2 * 64 * 1.08) + 0, 58 * 1.08, 64 * 1.08);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nothOutfitF")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(nulg, 358, 52, 58, 64, -(1 / 2 * 58 * 1.04) - 1, -(1 / 2 * 64 * 1.04) + 0, 58 * 1.04, 64 * 1.04);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vodmenaBoneArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(mrol, 26, 815, 45, 46, -(1 / 2 * 45 * 1) - 1.2, -(1 / 2 * 46 * 1) + 0, 45 * 1, 46 * 1);
             XXX.restore();
         }
         else if (this.outfitEquipped == "sagroLeatherArmourM")
@@ -44629,6 +44890,12 @@ function Adventurer()
                         page = 0;
                         findLiterature(Inventory[i][0].type);
                     }
+                    else if (Inventory[i][0].utility == "facepaint")
+                    {
+                        player.facepaint = Inventory[i][0].subUtility;
+                        player.facepaintKeep = new Date().getTime();
+                        player.facepaintTime = Math.max(player.facepaintTime, 60*10);
+                    }
                     else
                     {
                         if (Inventory[i][0].ability == "lighter")
@@ -46111,6 +46378,13 @@ function Adventurer()
                         XXX.fillStyle = "black";
                         XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
                         XXX.fillText("      Trinket", 157, 514);
+                    }
+                    else if (Inventory[i][0].utility == "facepaint")
+                    {
+                        XXX.font="14px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("      Facepaint", 157, 514);
                     }
                     else if (Inventory[i][0].utility == "trap")
                     {

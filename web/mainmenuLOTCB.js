@@ -987,6 +987,25 @@ function applySelectionsButton()
                 Inventory.push([new Item("vardanianHeavyCleaver", false, false), 1]);
             }
         }
+        else if (player.class == "Fighter" && player.raceName == "Noth")
+        {
+            if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner")
+            {
+                Inventory.push([new Item("smallNothAxe", false, false), 1]);
+            }
+            else if (player.title == "Tradefolk")
+            {
+                Inventory.push([new Item("smallNothAxe", false, false), 1]);
+            }
+            else if (player.title == "Highfolk")
+            {
+                Inventory.push([new Item("nothAxe", false, false), 1]);
+            }
+            else if (player.title == "Nobility")
+            {
+                Inventory.push([new Item("nothBlade", false, false), 1]);
+            }
+        }
         else if (player.class == "Fighter" && player.raceName == "Nirwaden")
         {
             if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner")
@@ -1413,6 +1432,47 @@ function applySelectionsButton()
                 {
                     Inventory.push([new Item("aldrekiiTurbanPurple", false, false), 1]);
                 }
+            }
+        }
+
+        if (player.raceName == "Noth")
+        {
+            if (player.title == "Nobility")
+            {
+                if (player.gender == "Female")
+                {
+                    Inventory.push([new Item("kundyaGown", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("nothRangerOutfit", false, false), 1]);
+                }
+            }
+            else if (player.title == "Highfolk")
+            {
+                if (player.gender == "Female")
+                {
+                    Inventory.push([new Item("nothLadyOutfit", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("saggroLeatherArmourM", false, false), 1]);
+                }
+            }
+            else if (player.title == "Tradefolk")
+            {
+                if (player.gender == "Female")
+                {
+                    Inventory.push([new Item("nothOutfitF", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("nothOutfitM", false, false), 1]);
+                }
+            }
+            else if (player.title != "Vagabond")
+            {
+                Inventory.push([new Item("nothUdnalOutfit", false, false), 1]);
             }
         }
 

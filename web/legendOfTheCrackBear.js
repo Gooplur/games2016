@@ -1843,6 +1843,18 @@ function spreaPack()
 
     sprea.onload = function()
     {
+        snugPack();
+    };
+}
+
+function snugPack()
+{
+    var snug = new Image();
+    snug.src = ("images/snug.png");
+    window.snug = snug;
+
+    snug.onload = function()
+    {
         enwiPack();
     };
 }

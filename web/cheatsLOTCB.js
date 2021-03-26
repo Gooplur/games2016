@@ -15296,6 +15296,17 @@ function cheats()
                 player.thirst = player.thirstMAX;
             }
         }
+        else if (cheatcode == "showtiles" || cheatcode == "showTiles")
+        {
+            if (showTiles != true)
+            {
+                showTiles = true;
+            }
+            else
+            {
+                showTiles = false;
+            }
+        }
         else if (cheatcode == "sleepyseed")
         {
             player.sleep -= 14;

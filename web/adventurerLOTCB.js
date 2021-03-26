@@ -39966,11 +39966,11 @@ function Adventurer()
 
             if (this.matureContentFilter == true)
             {
-                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Tiles", value: tellTile, type: "bool"}, {title: "Map", value: tellMap, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Lock Standard Leveling", value: this.levelLock, type: "bool"}, {title: "Lock Magic Leveling", value: this.magicLevelLock, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}, {title: "Show Sight: 50 Dexterity", value: canShowSight, type: "bool"}]
+                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Tiles", value: tellTile, type: "bool"}, {title: "Map", value: tellMap, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Lock Standard Leveling", value: this.levelLock, type: "bool"}, {title: "Lock Magic Leveling", value: this.magicLevelLock, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}, {title: "Show Sectors", value: showTiles, type: "bool"}, {title: "Show Sight: 50 Dexterity", value: canShowSight, type: "bool"}]
             }
             else
             {
-                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Tiles", value: tellTile, type: "bool"}, {title: "Map", value: tellMap, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Cannibalism", value: this.cannibalism, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Lock Standard Leveling", value: this.levelLock, type: "bool"}, {title: "Lock Magic Leveling", value: this.magicLevelLock, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}, {title: "Show Sight: 50 Dexterity", value: canShowSight, type: "bool"}]
+                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Tiles", value: tellTile, type: "bool"}, {title: "Map", value: tellMap, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Cannibalism", value: this.cannibalism, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Lock Standard Leveling", value: this.levelLock, type: "bool"}, {title: "Lock Magic Leveling", value: this.magicLevelLock, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}, {title: "Show Sectors", value: showTiles, type: "bool"}, {title: "Show Sight: 50 Dexterity", value: canShowSight, type: "bool"}]
             }
 
             //fill low bar with black
@@ -40234,6 +40234,19 @@ function Adventurer()
                             else
                             {
                                 this.showStatBars = false;
+                                optionList[i].value = false;
+                            }
+                        }
+                        else if (optionList[i].title == "Show Sectors")
+                        {
+                            if (optionList[i].value == false)
+                            {
+                                showTiles = true
+                                optionList[i].value = true;
+                            }
+                            else
+                            {
+                                showTiles = false;
                                 optionList[i].value = false;
                             }
                         }

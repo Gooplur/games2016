@@ -1477,6 +1477,10 @@ function envPack()
     seaCornerTL2.src = ("images/seaCornerTL2.png");
     window.seaCornerTL2 = seaCornerTL2;
 
+    var orgishTile = new Image();
+    orgishTile.src = ("images/orgishTile.png");
+    window.orgishTile = orgishTile;
+
     var redCaveWater = new Image();
     redCaveWater.src = ("images/redCaveWater.jpg");
     window.redCaveWater = redCaveWater;
@@ -3656,6 +3660,7 @@ var ketsuekiY;
 var sprig = false;
 var frogme = false;
 var minigame = {};
+var showTiles = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()

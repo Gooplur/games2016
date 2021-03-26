@@ -282,8 +282,106 @@ function worldBuilder()
             outlineBuilder(1, 3, "glade", -1027, 910);
             outlineBuilder(1, 1, "glade", -1027, 911);
 
+            outlineBuilder(5, 7, "glade", -1040, 915);
+            outlineBuilder(1, 6, "glade", -1039, 914);
+            outlineBuilder(1, 8, "glade", -1038, 913);
+            outlineBuilder(2, 4, "glade", -1036, 911);
+            outlineBuilder(2, 2, "glade", -1033, 914);
+            outlineBuilder(2, 1, "glade", -1033, 916);
+            outlineBuilder(7, 8, "glade", -1032, 917);
+            outlineBuilder(4, 2, "glade", -1024, 919);
+            outlineBuilder(4, 6, "glade", -1028, 928);
+            outlineBuilder(2, 4, "glade", -1038, 920);
+            outlineBuilder(1, 1, "glade", -1024, 918);
+            outlineBuilder(3, 4, "glade", -1028, 924);
+            outlineBuilder(1, 1, "glade", -1029, 924);
+            outlineBuilder(1, 2, "glade", -1027, 927);
+            outlineBuilder(1, 2, "glade", -1030, 926);
+            outlineBuilder(2, 3, "glade", -1040, 930);
+            outlineBuilder(2, 2, "glade", -1030, 930);
+            outlineBuilder(1, 2, "glade", -1032, 931);
+            outlineBuilder(2, 1, "glade", -1040, 928);
+            outlineBuilder(1, 3, "glade", -1037, 931);
+
+            outlineBuilder(2, 9, "glade", -1016, 930);
+            outlineBuilder(1, 1, "glade", -1017, 930);
+            outlineBuilder(3, 6, "glade", -1015, 927);
+            outlineBuilder(1, 4, "glade", -1014, 926);
+            outlineBuilder(2, 1, "glade", -1009, 927);
+            outlineBuilder(3, 3, "glade", -1010, 922);
+            outlineBuilder(5, 1, "glade", -1007, 919);
+            outlineBuilder(5, 3, "glade", -1015, 914);
+            outlineBuilder(2, 4, "glade", -1014, 912);
+            outlineBuilder(2, 2, "glade", -1010, 914);
+            outlineBuilder(1, 1, "glade", -1010, 913);
+            outlineBuilder(1, 4, "glade", -1015, 911);
+            outlineBuilder(1, 1, "glade", -1016, 914);
+            outlineBuilder(1, 1, "glade", -1013, 910);
+            outlineBuilder(2, 3, "glade", -1009, 909);
+
             outlineBuilder(5, 1, "vardanianStone", -1021, 898);
-            outlineBuilder(29, 1, "vardanianStone", -1021, 903); //orgishRoad
+            outlineBuilder(29, 1, "orgishTile", -1021, 903);
+        }
+        //mapS27W33
+        if (Y > -279312 && Y < -268536 && X < 344333 && X > 332640) //X33
+        {
+            elevation = -3;
+            region = "s27w33";
+            campout = true;
+            outlineBuilder( 34, 34, "vardanianWetlands", -1142, 898);
+
+            outlineBuilder(1, 26, "gladeGrass", -1134, 931);
+            outlineBuilder(2, 23, "gladeGrass", -1131, 929);
+            outlineBuilder(1, 22, "gladeGrass", -1130, 928);
+            outlineBuilder(1, 20, "gladeGrass", -1128, 927);
+            outlineBuilder(1, 18, "gladeGrass", -1126, 926);
+            outlineBuilder(1, 15, "gladeGrass", -1123, 925);
+            outlineBuilder(1, 9, "gladeGrass", -1117, 924);
+            outlineBuilder(6, 8, "gladeGrass", -1116, 918);
+            outlineBuilder(1, 1, "gladeGrass", -1130, 927);
+            outlineBuilder(2, 1, "gladeGrass", -1117, 917);
+            outlineBuilder(1, 6, "gladeGrass", -1114, 917);
+            outlineBuilder(1, 7, "gladeGrass", -1115, 916);
+            outlineBuilder(2, 5, "gladeGrass", -1113, 914);
+            outlineBuilder(2, 4, "gladeGrass", -1112, 912);
+            outlineBuilder(2, 5, "gladeGrass", -1113, 910);
+            outlineBuilder(1, 1, "gladeGrass", -1112, 909);
+            outlineBuilder(3, 2, "gladeGrass", -1110, 907);
+            outlineBuilder(1, 2, "glade", -1115, 931);
+            outlineBuilder(1, 2, "glade", -1116, 930);
+            outlineBuilder(1, 1, "glade", -1116, 929);
+            outlineBuilder(1, 4, "glade", -1126, 929);
+            outlineBuilder(1, 2, "glade", -1124, 928);
+            outlineBuilder(1, 1, "glade", -1124, 930);
+            outlineBuilder(6, 1, "glade", -1109, 915);
+            outlineBuilder(4, 1, "glade", -1110, 916);
+            outlineBuilder(5, 1, "glade", -1111, 917);
+            outlineBuilder(2, 1, "glade", -1112, 919);
+            outlineBuilder(2, 1, "southbog", -1113, 900);
+            outlineBuilder(2, 1, "southbog", -1114, 901);
+            outlineBuilder(3, 1, "southbog", -1142, 926);
+            outlineBuilder(3, 1, "southbog", -1141, 925);
+            outlineBuilder(1, 1, "southbog", -1140, 925);
+            outlineBuilder(1, 2, "southbog", -1119, 902);
+            outlineBuilder(1, 2, "southbog", -1120, 903);
+            outlineBuilder(1, 3, "southbog", -1122, 904);
+            outlineBuilder(1, 1, "southbog", -1122, 903);
+            outlineBuilder(1, 1, "southbog", -1121, 905);
+            outlineBuilder(2, 1, "southbog", -1119, 907);
+            outlineBuilder(2, 1, "southbog", -1118, 908);
+            outlineBuilder(4, 1, "southbog", -1137, 908);
+            outlineBuilder(2, 1, "southbog", -1138, 909);
+            outlineBuilder(1, 1, "southbog", -1136, 911);
+            outlineBuilder(1, 1, "southbog", -1134, 913);
+            outlineBuilder(1, 2, "southbog", -1135, 914);
+            outlineBuilder(1, 2, "southbog", -1136, 915);
+            outlineBuilder(2, 1, "southbog", -1136, 918);
+            outlineBuilder(2, 1, "southbog", -1135, 919);
+            outlineBuilder(7, 1, "southbogMud", -1142, 900);
+            outlineBuilder(4, 1, "southbogMud", -1141, 902);
+            outlineBuilder(1, 1, "southbogMud", -1140, 903);
+            outlineBuilder(4, 1, "southbogMud", -1142, 913);
+            outlineBuilder(2, 1, "southbogMud", -1141, 914);
         }
         //Layer -26 (tropical region): elev -3
         //mapS26
@@ -7079,6 +7177,27 @@ function worldBuilder()
             outlineBuilder( 1, 2, "snow", 166, -36);
             outlineBuilder( 1, 3, "snow", 174, -36);
         }
+        //mapN1E6
+        if (Y > 6290 && Y < 17073 && X < -53489.88731544383 && X > -65110.798814782334) //X6
+        {
+            elevation = 0;
+            region = "n1e6";
+            campout = true;
+            //outlineBuilder( 34, 34, "outline", 184, -54);
+            outlineBuilder(18, 34, "brightGrass", 184, -38);
+
+            outlineBuilder( 16, 34, "snow", 184, -54);
+            outlineBuilder(1, 8, "snow", 184, -38);
+
+            outlineBuilder(3, 9, "frost", 184, -37);
+            outlineBuilder(3, 6, "frost", 192, -38);
+            outlineBuilder(1, 1, "frost", 198, -38);
+            outlineBuilder(2, 5, "frost", 199, -38);
+            outlineBuilder(3, 4, "frost",  204, -38);
+            outlineBuilder(2, 8, "frost", 207, -39);
+            outlineBuilder(1, 3, "frost", 215, -39);
+            outlineBuilder(1, 1, "frost", 216, -40);
+        }
         //layer 2 (frosty region): elev 1
         //mapN2
         if (Y > 16445 && Y < 27296 && X < 7726 && X > -3910) //X0
@@ -7149,6 +7268,22 @@ function worldBuilder()
             outlineBuilder(1, 6, "searock", 142, -88);
             outlineBuilder(2, 4, "searock", 143, -87);
             outlineBuilder(1, 2, "searock", 144, -85);
+        }
+        //mapN2E5
+        if (Y > 16445 && Y < 27296 && X < -43292 && X > -54937) //X5
+        {
+            elevation = 1;
+            region = "n2e5";
+            campout = true;
+            outlineBuilder(34, 34, "snow", 150, -88);
+        }
+        //mapN2E6
+        if (Y > 16445 && Y < 27296 && X < -53489.88731544383 && X > -65110.798814782334) //X6
+        {
+            elevation = 1;
+            region = "n2e6";
+            campout = true;
+            outlineBuilder(34, 34, "snow", 184, -88);
         }
         //layer 3 (frosty region): elev 1
         //mapN3
@@ -7244,6 +7379,14 @@ function worldBuilder()
 
             outlineBuilder(3, 1, "sea", 142, -122);
             outlineBuilder(25, 1, "sea", 141, -122);
+        }
+        //mapN3E6
+        if (Y > 26650 && Y < 37456 && X < -53489.88731544383 && X > -65110.798814782334) //X6
+        {
+            elevation = 1;
+            region = "n3e6";
+            campout = true;
+            outlineBuilder(34, 34, "snow", 184, -122);
         }
         //layer 4 (frosty region): elev 1
         //mapN4W1
@@ -9122,6 +9265,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                         XXX.restore();
                     }
                 }
+                else if (terrain == "orgishTile")
+                {
+                    XXX.drawImage(orgishTile, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
                 else if (terrain == "hollowDirt")
                 {
                     XXX.drawImage(hollowDirt, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
@@ -9305,6 +9452,15 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                     XXX.globalAlpha = 0.6;
                     XXX.drawImage(sewageEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                     XXX.restore();
+                }
+
+                if (showTiles == true)
+                {
+                    XXX.beginPath();
+                    XXX.lineWidth = 5;
+                    XXX.strokeStyle = "black";
+                    XXX.rect((j-1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    XXX.stroke();
                 }
             }
         }

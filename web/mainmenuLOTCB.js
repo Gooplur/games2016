@@ -1456,7 +1456,7 @@ function applySelectionsButton()
                 }
                 else
                 {
-                    Inventory.push([new Item("saggroLeatherArmourM", false, false), 1]);
+                    Inventory.push([new Item("sagroLeatherArmourM", false, false), 1]);
                 }
             }
             else if (player.title == "Tradefolk")

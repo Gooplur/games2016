@@ -14125,7 +14125,14 @@ function cheats()
             {
                 xKey = false;
                 console.log('Hawk Spawn Test');
-                ArtificialIntelligenceAccess.push(new Unit(X, Y, "Hawk", alphon, "spawnbird"));
+                if (shiftKey)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(X, Y, "Hawk", alphon, "player"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(X, Y, "Hawk", alphon, "spawnbird"));
+                }
             }
 
             XXX.save();

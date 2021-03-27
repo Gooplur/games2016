@@ -13313,7 +13313,7 @@ function Adventurer()
         var self = this;
 
         //ATTACK INITIATOR [this triggers the attack when the player presses the space key]
-        if (spaceKey == true && this.getCanAttack())
+        if (spaceKey == true && this.getCanAttack() && this.weaponEquipped != "perch")
         {
             if (this.spell == "none")
             {
@@ -13573,7 +13573,7 @@ function Adventurer()
             }
         }
         //POWER ATTACK INITIATOR
-        if (eKey == true && this.getCanAttack())
+        if (eKey == true && this.getCanAttack() && this.weaponEquipped != "perch")
         {
             if (this.spell == "none")
             {
@@ -17804,6 +17804,25 @@ function Adventurer()
                 XXX.drawImage(colorization, 0, 0, 46, 22, -22, -17, 46, 22);
                 XXX.restore();
             }
+        }
+        //PERCH
+        if (this.weaponEquipped == "perch" && this.spell == "none" && this.hide != true && this.guillotine != true)
+        {
+            if (spaceKey || eKey && player.getStrength() >= 10)
+            {
+                this.weaponEquipped = "none";
+                this.stage = 0;
+            }
+
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(sprea, 528, 224, 82, 52, -1/2 * 82 * 1, -1/2 * 52 * 1, 82 * 1, 52 * 1);
+            XXX.restore();
         }
         //SWIMMING
         if (this.weaponEquipped == "swimming")
@@ -37672,7 +37691,7 @@ function Adventurer()
                     XXX.font = "bold 20px Book Antiqua";
                     XXX.fillStyle = "black";
                     XXX.textAlign = "left";
-                    XXX.fillText('"' + companionShortList[i].nickname + '"', 6 + 20 + companionShortList[i].type.length * 7, 20 + 65.8 * i);
+                    XXX.fillText('"' + companionShortList[i].nickname + '"', 6 + 20 + companionShortList[i].type.length * 9, 20 + 65.8 * i);
                 }
 
                 //health

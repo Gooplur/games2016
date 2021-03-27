@@ -68091,7 +68091,7 @@ function Item(type, x, y)
         else if (this.type == "nothianSnapjawHide")
         {
             XXX.beginPath();
-            XXX.drawImage(croco, 949, 773, 49, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.4), 49 * 1.4, 21 * 1.4);
+            XXX.drawImage(croco, 27, 239, 67, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.4), 67 * 1.4, 19 * 1.4);
         }
         else if (this.type == "rawNothianSnapjawFlesh")
         {
@@ -68106,7 +68106,7 @@ function Item(type, x, y)
         else if (this.type == "snapjawHide")
         {
             XXX.beginPath();
-            XXX.drawImage(croc, 949, 773, 49, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 49 * 1, 21 * 1);
+            XXX.drawImage(croc, 27, 239, 67, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 67 * 1, 19 * 1);
         }
         else if (this.type == "rawSnapjawFlesh")
         {
@@ -77104,7 +77104,7 @@ function Item(type, x, y)
         else if (this.type == "nothianSnapjawHide")
         {
             LXX.beginPath();
-            LXX.drawImage(croco, 949, 773, 49, 21, this.invX - (1/2 * 49 * 1.4), this.invY - (1/2 * 21 * 1.4), 49 * 1.4, 21 * 1.4);
+            LXX.drawImage(croco, 27, 239, 67, 19, this.invX - (1/2 * 67 * 1.4), this.invY - (1/2 * 19 * 1.4), 67 * 1.4, 19 * 1.4);
         }
         else if (this.type == "rawNothianSnapjawFlesh")
         {
@@ -77119,7 +77119,7 @@ function Item(type, x, y)
         else if (this.type == "snapjawHide")
         {
             LXX.beginPath();
-            LXX.drawImage(croc, 949, 773, 49, 21, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 21 * 1), 49 * 1, 21 * 1);
+            LXX.drawImage(croc, 27, 239, 67, 19, this.invX - (1/2 * 67 * 1), this.invY - (1/2 * 19 * 1), 67 * 1, 19 * 1);
         }
         else if (this.type == "rawSnapjawFlesh")
         {
@@ -86098,7 +86098,7 @@ function Item(type, x, y)
         else if (this.type == "nothianSnapjawHide")
         {
             XXX.beginPath();
-            XXX.drawImage(croco, 949, 773, 49, 21, this.invX - (1/2 * 49 * 1.4), this.invY - (1/2 * 21 * 1.4), 49 * 1.4, 21 * 1.4);
+            XXX.drawImage(croco, 27, 239, 67, 19, this.invX - (1/2 * 67 * 1.4), this.invY - (1/2 * 19 * 1.4), 67 * 1.4, 19 * 1.4);
         }
         else if (this.type == "rawNothianSnapjawFlesh")
         {
@@ -86113,7 +86113,7 @@ function Item(type, x, y)
         else if (this.type == "snapjawHide")
         {
             XXX.beginPath();
-            XXX.drawImage(croc, 949, 773, 49, 21, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 21 * 1), 49 * 1, 21 * 1);
+            XXX.drawImage(croc, 27, 239, 67, 19, this.invX - (1/2 * 67 * 1), this.invY - (1/2 * 19 * 1), 67 * 1, 19 * 1);
         }
         else if (this.type == "rawSnapjawFlesh")
         {

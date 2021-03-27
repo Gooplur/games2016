@@ -45291,8 +45291,11 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 this.runOneTime = false;
                 this.treeHealth = 11 * this.size;
+                this.perchI = "none";
+                this.perchII = "none";
+                this.perchIII = "none";
             }
-            this.zIndex = 6;
+            this.zIndex = 5;
 
             //DRAWSELF
             if (this.phase == 0)

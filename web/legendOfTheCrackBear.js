@@ -1835,6 +1835,18 @@ function noboPack()
 
     nobo.onload = function()
     {
+        nufuPack();
+    };
+}
+
+function nufuPack()
+{
+    var nufu = new Image();
+    nufu.src = ("images/nufu.png");
+    window.nufu = nufu;
+
+    nufu.onload = function()
+    {
         spreaPack();
     };
 }

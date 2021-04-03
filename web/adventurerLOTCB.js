@@ -33192,28 +33192,28 @@ function Adventurer()
                             {
                                 if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage / 5) / 35))
                                 {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    console.log("Weak Attack: You dealt " + (Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
-                                    justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.weapon.damage * 0.5 - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    console.log("Weak Attack: You dealt " + (Math.max(0, (this.weapon.damage * 0.5 - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
+                                    justDealt = Math.max(0, (this.weapon.damage * 0.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                                 }
                                 else
                                 {
-                                    ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage / 5) / 35);
-                                    justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage * 0.5) / 35);
+                                    justDealt = Math.max(0, (this.weapon.damage * 0.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                                 }
                             }
                             else if (this.powerAttack == "weakened")
                             {
                                 if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage / 4) / 35))
                                 {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    console.log("Weakened Attack: You dealt " + (Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
-                                    justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.weapon.damage * 0.75 - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    console.log("Weakened Attack: You dealt " + (Math.max(0, (this.weapon.damage * 0.75 - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
+                                    justDealt = Math.max(0, (this.weapon.damage * 0.75) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                                 }
                                 else
                                 {
-                                    ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage / 4) / 35);
-                                    justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage * 0.75) / 35);
+                                    justDealt = Math.max(0, (this.weapon.damage * 0.75) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                                 }
                             }
                             else

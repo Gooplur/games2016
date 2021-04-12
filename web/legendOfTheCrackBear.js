@@ -1871,6 +1871,18 @@ function snugPack()
 
     snug.onload = function()
     {
+        arakPack();
+    };
+}
+
+function arakPack()
+{
+    var arak = new Image();
+    arak.src = ("images/arak.png");
+    window.arak = arak;
+
+    arak.onload = function()
+    {
         enwiPack();
     };
 }

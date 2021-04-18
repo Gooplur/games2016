@@ -42905,6 +42905,59 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
+        else if (this.type == "garasuPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.solid = false;
+            this.interactionRange = 105;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(rowal, 1329, 2122, 109, 101, -(1/2 * 109), -(1/2 * 101), 109, 101);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(rowal, 1488, 2133, 54, 51, -(1/2 * 54), -(1/2 * 51), 54, 51);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 18;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "garasuFrond")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("garasuFrond", false, false), 1]);
+                }
+            }
+        }
         else if (this.type == "syanjPlant")
         {
             //TRAITS

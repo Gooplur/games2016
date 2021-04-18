@@ -20909,6 +20909,55 @@ function Item(type, x, y)
             this.buyValue = 12 - Math.floor(player.getCharisma() / 10); // at max, buy for 7.
             this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
         }
+        else if (this.type == "garasuwamuSpine")
+        {
+            //For All Items
+            this.identity = "Garasuwamu Spine";
+            this.weight = 0.4;
+            this.size = 7;
+            this.description = "The transparent flesh and spine of a worm-like, legless centipede.";
+            this.intForDes = 6;
+            this.intDescription = "This can be used as a changer in some alchemic recipes.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "garasuFrond")
+        {
+            //For All Items
+            this.identity = "Garasu Frond";
+            this.weight = 0.25;
+            this.size = 7;
+            this.description = "A pale transparent whitish green frond that looks like it is ribbed with delicate bones.";
+            this.intForDes = 7;
+            this.intDescription = "They are poisonous to eat, and also the veins of the frond are hard and sharp.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -4; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0.25; //restores will.
+
+            //ability
+            this.ability = "poisonI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
         else if (this.type == "prematureCauwLeaf")
         {
             //For All Items
@@ -67017,6 +67066,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "garasuFrond")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 1343, 2252, 65, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1), 65 * 1, 41 * 1);
+        }
+        else if (this.type == "garasuwamuSpine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 1546, 2135, 65, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1), 65 * 1, 41 * 1);
+        }
         else if (this.type == "facepaintGeishaI" || this.type == "facepaintGeishaII" || this.type == "facepaintGeishaIII")
         {
             XXX.beginPath();
@@ -76071,6 +76130,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "garasuFrond")
+        {
+            LXX.beginPath();
+            LXX.drawImage(rowal, 1343, 2252, 65, 41, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 41 * 1), 65 * 1, 41 * 1);
+        }
+        else if (this.type == "garasuwamuSpine")
+        {
+            LXX.beginPath();
+            LXX.drawImage(rowal, 1546, 2135, 65, 41, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 41 * 1), 65 * 1, 41 * 1);
+        }
         else if (this.type == "facepaintGeishaI" || this.type == "facepaintGeishaII" || this.type == "facepaintGeishaIII")
         {
             LXX.beginPath();
@@ -85064,6 +85133,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "garasuFrond")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 1343, 2252, 65, 41, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 41 * 1), 65 * 1, 41 * 1);
+        }
+        else if (this.type == "garasuwamuSpine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 1546, 2135, 65, 41, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 41 * 1), 65 * 1, 41 * 1);
         }
         else if (this.type == "facepaintGeishaI" || this.type == "facepaintGeishaII" || this.type == "facepaintGeishaIII")
         {

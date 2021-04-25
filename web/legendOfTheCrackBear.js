@@ -1847,6 +1847,18 @@ function nufuPack()
 
     nufu.onload = function()
     {
+        skelePack();
+    };
+}
+
+function skelePack()
+{
+    var skele = new Image();
+    skele.src = ("images/skele.png");
+    window.skele = skele;
+
+    skele.onload = function()
+    {
         spreaPack();
     };
 }

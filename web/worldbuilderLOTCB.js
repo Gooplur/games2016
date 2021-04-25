@@ -250,6 +250,59 @@ function worldBuilder()
             campout = true;
             outlineBuilder( 34, 34, "jungle", -20, 932);
         }
+        //mapS28W32  (tropical region): elev -3
+        if (Y > -289573.87 && Y < -278703.92 && X < 334130 && X > 322464) //X32
+        {
+            elevation = -3;
+            region = "s28w32";
+            campout = true;
+            outlineBuilder(34, 34, "gladeGrass", -1108, 932);
+
+            outlineBuilder(8, 1, "glade", -1108, 941);
+            outlineBuilder(6, 1, "glade", -1107, 941);
+            outlineBuilder(3, 1, "glade", -1106, 944);
+            outlineBuilder(2, 15, "glade", -1105, 945);
+            outlineBuilder(1, 10, "glade", -1099, 944);
+            outlineBuilder(2, 9, "glade", -1098, 942);
+            outlineBuilder(1, 4, "glade", -1093, 941);
+            outlineBuilder(3, 2, "glade", -1089, 940);
+            outlineBuilder(1, 3, "glade", -1088, 939);
+            outlineBuilder(2, 8, "glade", -1089, 937);
+            outlineBuilder(1, 3, "glade", -1085, 936);
+            outlineBuilder(1, 1, "glade", -1107, 947);
+            outlineBuilder(1, 14, "glade", -1103, 947);
+            outlineBuilder(1, 14, "glade", -1104, 948);
+            outlineBuilder(1, 12, "glade", -1102, 949);
+            outlineBuilder(1, 1, "glade", -1090, 946);
+            outlineBuilder(1, 7, "glade", -1102, 950);
+            outlineBuilder(1, 3, "glade", -1094, 950);
+            outlineBuilder(1, 8, "glade", -1103, 951);
+            outlineBuilder(2, 5, "glade", -1101, 952);
+            outlineBuilder(1, 5, "glade", -1100, 954);
+            outlineBuilder(1, 9, "glade", -1100, 955);
+            outlineBuilder(1, 12, "glade", -1101, 956);
+            outlineBuilder(1, 2, "glade", -1100, 957);
+            outlineBuilder(2, 2, "glade", -1091, 957);
+            outlineBuilder(1, 7, "glade", -1101, 932);
+            outlineBuilder(5, 7, "glade", -1103, 933);
+            outlineBuilder(1, 1, "glade", -1097, 934);
+            outlineBuilder(1, 7, "glade", -1104, 938);
+            outlineBuilder(1, 4, "glade", -1105, 939);
+            outlineBuilder(1, 3, "glade", -1106, 940);
+            outlineBuilder(1, 1, "glade", -1105, 941);
+            outlineBuilder(11, 1, "glade", -1075, 955);
+            outlineBuilder(10, 2, "glade", -1077, 956);
+            outlineBuilder(9, 2, "glade", -1079, 957);
+            outlineBuilder(8, 1, "glade", -1080, 958);
+            outlineBuilder(7, 1, "glade", -1081, 959);
+            outlineBuilder(3, 3, "glade", -1084, 963);
+            outlineBuilder(2, 1, "glade", -1085, 963);
+            outlineBuilder(1, 1, "glade", -1086, 964);
+            outlineBuilder(2, 1, "glade", -1083, 958);
+            outlineBuilder(5, 1, "glade", -1082, 956);
+            outlineBuilder(1, 2, "glade", -1081, 956);
+            outlineBuilder(1, 1, "glade", -1080, 955);
+        }
         //mapS28W33  (tropical region): elev -3
         if (Y > -289573.87 && Y < -278703.92 && X < 344333 && X > 332640) //X33
         {

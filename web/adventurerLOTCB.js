@@ -38,6 +38,7 @@ function Adventurer()
     this.vardanFaction = 0; //black (vardanian) High Count Arlod
     this.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
     this.nirwadenFaction = 0; //orange (nirinese) Queen Lelaine
+    this.borzchkyaFaction = 0; //teal (borzchkyy) King ?
     //Lesser Faction Relations
     this.theBalgurMercenariesFaction = 0; //A fearsome and powerful mercinary group in the lands of Thengaria.
     this.estolgangFaction = 0; //A deeply rooted criminal organization in Nirwaden.
@@ -139,6 +140,11 @@ function Adventurer()
     this.respiration = 25;
     this.respirationMAX = 25;
     this.breathRate = 800; //the player takes a breath every 8/10 of a second.
+
+    //starting buffs
+    this.barbarianBuff = 0;
+    this.imperialBuff = 0;
+    this.learnyBuff = 1;
 
     //Non-SkillBased Stats
     this.armour = 0; //this is the armor that is gained from worn equipment.
@@ -670,6 +676,8 @@ function Adventurer()
     this.facepaintCharm = 0;
     this.facepaintKeep = new Date().getTime();
     this.facepaintTime = 0;
+    this.meatball = false;
+    this.meatballs = false;
 
     //faction variables
     this.factionToggle = false;
@@ -1112,11 +1120,11 @@ function Adventurer()
         {
             if (this.title == "Royalty")
             {
-                this.totalSkillPoints = (4 * this.level) + 6 + this.levelBonusSkillPoints;
+                this.totalSkillPoints = (4 * this.level) + 6 + this.levelBonusSkillPoints + this.imperialBuff;
             }
             else
             {
-                this.totalSkillPoints = (4 * this.level) + 4 + this.levelBonusSkillPoints;
+                this.totalSkillPoints = (4 * this.level) + 4 + this.levelBonusSkillPoints + this.imperialBuff;
             }
 
             if (this.class == "Mage")
@@ -1226,7 +1234,7 @@ function Adventurer()
         //this sets all other skills listed.
         this.fistDamage = 0.25 + (this.getStrength() / 50); // this is the damage done by the player's fists
         this.antiVenomMAX = 0 + (0.7 * (this.getToughness() / 50)) + (0.3 * (this.getEndurance() / 50)); //this is the maximum amount of venom resistance the player can have.
-        this.carryWeightMAX = 10 + (5 * this.getStrength());
+        this.carryWeightMAX = 10 + (5 * this.getStrength()) + (10 * this.barbarianBuff);
         this.naturalArmour = this.getToughness() / 50;
         this.armourTotal = this.naturalArmour + this.armour + this.shielding;
         this.willMAX = (0.1 + this.getWillpower()) - this.bindedWill;
@@ -1297,8 +1305,15 @@ function Adventurer()
             {
                 this.baseThirstProtection = 0;
                 this.baseHeatResistance = 0;
-                this.heatTolerance = 10 + 1/5 * this.getToughness();
+                this.heatTolerance = 4 + 1/10 * this.getToughness();
                 this.baseWarmthProtection = 1;
+            }
+            else if (this.raceName == "Borzchkyy")
+            {
+                this.baseThirstProtection = 0;
+                this.baseHeatResistance = 0;
+                this.heatTolerance = 18 + 3/10 * this.getToughness();
+                this.baseWarmthProtection = 0.2;
             }
             else
             {
@@ -1400,6 +1415,7 @@ function Adventurer()
             var avatarFlag = false;
             var mudwalkerFlag = false;
             var blindfoldFlag = false;
+            var meatballFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -1510,6 +1526,10 @@ function Adventurer()
                 {
                     fearIIIFlag = true;
                 }
+                if (this.AdAbility[i] == "meatball")
+                {
+                    meatballFlag = true;
+                }
             }
 
             //EXECUTE EFFECTS
@@ -1525,6 +1545,16 @@ function Adventurer()
                         map = "world";
                     }
                 }
+            }
+
+            //meatball
+            if (meatballFlag == true)
+            {
+                this.meatballs = true;
+            }
+            else
+            {
+                this.meatballs = false;
             }
 
             //mudwalker
@@ -4340,6 +4370,19 @@ function Adventurer()
                 this.fatigueIII = false;
                 this.fatigueIV = false;
                 this.fatigueV = false;
+            }
+
+            if (this.meatball == true || this.meatballs == true)
+            {
+                for (var cunt = 0; cunt < worldItems.length; cunt++)
+                {
+                    var dist = Math.sqrt((worldItems[cunt][0].X - X)*(worldItems[cunt][0].X - X)+(worldItems[cunt][0].Y - Y)*(worldItems[cunt][0].Y - Y));
+                    if (dist <= 330 && dist > 30 && worldItems[cunt][0].dmx == this.dmx)
+                    {
+                        worldItems[cunt][0].X += Math.cos(Math.atan2(worldItems[cunt][0].Y - Y, worldItems[cunt][0].X - X)) * (((player.getConcentration() / 1.5) + 110) / Math.max(1, 15/64 * dist + 1/64 * dist * ((worldItems[cunt][0].weight / 2) * worldItems[cunt][1])));
+                        worldItems[cunt][0].Y += Math.sin(Math.atan2(worldItems[cunt][0].Y - Y, worldItems[cunt][0].X - X)) * (((player.getConcentration() / 1.5) + 110) / Math.max(1, 15/64 * dist + 1/64 * dist * ((worldItems[cunt][0].weight / 2) * worldItems[cunt][1])));
+                    }
+                }
             }
         };
 
@@ -8897,6 +8940,134 @@ function Adventurer()
                             }
                         }
                         XXX.drawImage(moonberry, 1540, 100, 25, 25, -1/2 * 25 * 1.075, -1/2 * 25 * 1.075, 25 * 1.075, 25 * 1.075);
+                        XXX.restore();
+                    }
+                    else if (this.facepaint == "kelPaint1")
+                    {
+                        if (player.gender == "Female")
+                        {
+                            this.facepaintCharm = 1;
+                        }
+                        else
+                        {
+                            this.facepaintCharm = 3;
+                        }
+
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                        XXX.rotate(this.rotation + Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.025;
+                        }
+                        if (this.facepaintTime < 10)
+                        {
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime * 0.025;
+                            }
+                            else
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime;
+                            }
+                        }
+                        XXX.drawImage(snug, 57, 136, 31, 31, -1/2 * 31 * 1 - 2.5, -1/2 * 31 * 1, 31 * 1, 31 * 1);
+                        XXX.restore();
+                    }
+                    else if (this.facepaint == "kelPaint2")
+                    {
+                        if (player.gender == "Female")
+                        {
+                            this.facepaintCharm = 1;
+                        }
+                        else
+                        {
+                            this.facepaintCharm = 2;
+                        }
+
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                        XXX.rotate(this.rotation + Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.025;
+                        }
+                        if (this.facepaintTime < 10)
+                        {
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime * 0.025;
+                            }
+                            else
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime;
+                            }
+                        }
+                        XXX.drawImage(snug, 101, 137, 31, 31, -1/2 * 31 * 1 + 3, -1/2 * 31 * 1, 31 * 1, 31 * 1);
+                        XXX.restore();
+                    }
+                    else if (this.facepaint == "kelPaint3")
+                    {
+                        if (player.gender == "Female")
+                        {
+                            this.facepaintCharm = 1;
+                        }
+                        else
+                        {
+                            this.facepaintCharm = 3;
+                        }
+
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                        XXX.rotate(this.rotation + Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.025;
+                        }
+                        if (this.facepaintTime < 10)
+                        {
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime * 0.025;
+                            }
+                            else
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime;
+                            }
+                        }
+                        XXX.drawImage(snug, 131, 138, 31, 31, -1/2 * 31 * 1 - 1, -1/2 * 31 * 1, 31 * 1, 31 * 1);
+                        XXX.restore();
+                    }
+                    else if (this.facepaint == "kelPaint4")
+                    {
+                        if (player.gender == "Female")
+                        {
+                            this.facepaintCharm = 2;
+                        }
+                        else
+                        {
+                            this.facepaintCharm = 4;
+                        }
+
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                        XXX.rotate(this.rotation + Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.025;
+                        }
+                        if (this.facepaintTime < 10)
+                        {
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime * 0.025;
+                            }
+                            else
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime;
+                            }
+                        }
+                        XXX.drawImage(snug, 169, 138, 31, 31, -1/2 * 31 * 1 - 2.35, -1/2 * 31 * 1, 31 * 1, 31 * 1);
                         XXX.restore();
                     }
                 }
@@ -14438,6 +14609,60 @@ function Adventurer()
                     if (tertiarySpells[i].ID == "shieldingV")
                     {
                         this.shieldingV = true;
+                    }
+                    if (tertiarySpells[i].ID == "lure")
+                    {
+                        if (this.meatball != true)
+                        {
+                            for (var cunt = 0; cunt < worldItems.length; cunt++)
+                            {
+                                var dist = Math.sqrt((worldItems[cunt][0].X - X)*(worldItems[cunt][0].X - X)+(worldItems[cunt][0].Y - Y)*(worldItems[cunt][0].Y - Y));
+                                if (dist <= 330 && dist > 30 && worldItems[cunt][0].dmx == this.dmx)
+                                {
+                                    worldItems[cunt][0].X += Math.cos(Math.atan2(worldItems[cunt][0].Y - Y, worldItems[cunt][0].X - X) + Math.PI) * (((player.getConcentration() / 1.5) + 90) / Math.max(1, 7/32 * dist + 1/32 * dist * ((worldItems[cunt][0].weight / 2) * worldItems[cunt][1])));
+                                    worldItems[cunt][0].Y += Math.sin(Math.atan2(worldItems[cunt][0].Y - Y, worldItems[cunt][0].X - X) + Math.PI) * (((player.getConcentration() / 1.5) + 90) / Math.max(1, 7/32 * dist + 1/32 * dist * ((worldItems[cunt][0].weight / 2) * worldItems[cunt][1])));
+                                }
+                            }
+                        }
+                    }
+                    if (tertiarySpells[i].ID == "orbit")
+                    {
+                        if (this.meatball != true)
+                        {
+                            for (var cunt = 0; cunt < worldItems.length; cunt++)
+                            {
+                                var dist = Math.sqrt((worldItems[cunt][0].X - X)*(worldItems[cunt][0].X - X)+(worldItems[cunt][0].Y - Y)*(worldItems[cunt][0].Y - Y));
+                                if (dist <= 750 && dist > 25 && worldItems[cunt][0].dmx == this.dmx)
+                                {
+                                    if (Y > 0)
+                                    {
+                                        if (this.hunger <= 1/5 * this.hungerMAX)
+                                        {
+                                            worldItems[cunt][0].X += Math.cos(Math.atan2(worldItems[cunt][0].Y - Y, worldItems[cunt][0].X - X) + 1/2 * Math.PI) * (((player.getConcentration() / 1.5) + 340) / Math.max(1, 7/32 * dist + 1/16 * dist * ((worldItems[cunt][0].weight / 2) * worldItems[cunt][1])));
+                                            worldItems[cunt][0].Y += Math.sin(Math.atan2(worldItems[cunt][0].Y - Y, worldItems[cunt][0].X - X) + 1/2 * Math.PI) * (((player.getConcentration() / 1.5) + 340) / Math.max(1, 7/32 * dist + 1/16 * dist * ((worldItems[cunt][0].weight / 2) * worldItems[cunt][1])));
+                                        }
+                                        else
+                                        {
+                                            worldItems[cunt][0].X += Math.cos(Math.atan2(worldItems[cunt][0].Y - Y, worldItems[cunt][0].X - X) - 1/2 * Math.PI) * (((player.getConcentration() / 1.5) + 290) / Math.max(1, 7/32 * dist + 1/16 * dist * ((worldItems[cunt][0].weight / 2) * worldItems[cunt][1])));
+                                            worldItems[cunt][0].Y += Math.sin(Math.atan2(worldItems[cunt][0].Y - Y, worldItems[cunt][0].X - X) - 1/2 * Math.PI) * (((player.getConcentration() / 1.5) + 290) / Math.max(1, 7/32 * dist + 1/16 * dist * ((worldItems[cunt][0].weight / 2) * worldItems[cunt][1])));
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (this.hunger <= 1/5 * this.hungerMAX)
+                                        {
+                                            worldItems[cunt][0].X += Math.cos(Math.atan2(worldItems[cunt][0].Y - Y, worldItems[cunt][0].X - X) - 1/2 * Math.PI) * (((player.getConcentration() / 1.5) + 340) / Math.max(1, 7/32 * dist + 1/16 * dist * ((worldItems[cunt][0].weight / 2) * worldItems[cunt][1])));
+                                            worldItems[cunt][0].Y += Math.sin(Math.atan2(worldItems[cunt][0].Y - Y, worldItems[cunt][0].X - X) - 1/2 * Math.PI) * (((player.getConcentration() / 1.5) + 340) / Math.max(1, 7/32 * dist + 1/16 * dist * ((worldItems[cunt][0].weight / 2) * worldItems[cunt][1])));
+                                        }
+                                        else
+                                        {
+                                            worldItems[cunt][0].X += Math.cos(Math.atan2(worldItems[cunt][0].Y - Y, worldItems[cunt][0].X - X) + 1/2 * Math.PI) * (((player.getConcentration() / 1.5) + 290) / Math.max(1, 7/32 * dist + 1/16 * dist * ((worldItems[cunt][0].weight / 2) * worldItems[cunt][1])));
+                                            worldItems[cunt][0].Y += Math.sin(Math.atan2(worldItems[cunt][0].Y - Y, worldItems[cunt][0].X - X) + 1/2 * Math.PI) * (((player.getConcentration() / 1.5) + 290) / Math.max(1, 7/32 * dist + 1/16 * dist * ((worldItems[cunt][0].weight / 2) * worldItems[cunt][1])));
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     if (tertiarySpells[i].ID == "potatoInvisibility")
                     {
@@ -35924,7 +36149,7 @@ function Adventurer()
                                 {
                                     Inventory.push([craftMenu[i], craftMenu[i].yield]);
                                 }
-                                player.intEXP += Math.max(3, (2 + craftMenu[i].intForCraft / 4));
+                                player.intEXP += Math.max((3 * this.learnyBuff), ((2 + craftMenu[i].intForCraft / 4) * this.learnyBuff));
 
                                 //give the player any created biproducts of the crafting recipe. (items that accompany the main item being crafted.)
                                 for (var bi = 0; bi < craftMenu[i].biproducts.length; bi ++)
@@ -45778,6 +46003,36 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("tent", inFrontX, inFrontY, (this.rotation), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].subUtility == "orgishTent" && this.weaponEquipped == "hammer" && campout)
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            var inFrontY = Y + Math.sin(this.rotation + 1/2 * Math.PI) * 91;
+                            var inFrontX = X + Math.cos(this.rotation + 1/2 * Math.PI) * 91;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (scenicList[j].X - 90 <= inFrontX + scenicList[j].radius && scenicList[j].X + 90 >= inFrontX - scenicList[j].radius && scenicList[j].Y - 90 <= inFrontY + scenicList[j].radius && scenicList[j].Y + 90 >= inFrontY - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("orgishTent", inFrontX, inFrontY, (this.rotation), false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {

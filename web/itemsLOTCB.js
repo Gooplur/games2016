@@ -2546,6 +2546,92 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 3;
             this.spellRange = "Near";
         }
+        else if (this.type == "orbit")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 1)
+            {
+                this.identity = "Orbit";
+                this.description = "Studying this scroll will teach you how to make items orbit around you.";
+                this.intForDes = 0;
+                this.intDescription = "You really are the center of the universe...";
+                this.buyValue = 250 - Math.floor(player.getCharisma() / 1); // at max, buy for 200.
+                this.sellValue = 100 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 200.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 250 - Math.floor(player.getCharisma() / 1); // at max, buy for 200.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = 2;
+            this.spellGroup = "Bind";
+            this.spellGenre = "Cosmic";
+            this.spellName = "Orbit";
+            this.spellID = "orbit";
+            this.spellEXP = 0;
+            this.spellCooldown = 0;
+            this.spellDescription = "A magical force that causes items to orbit around you.";
+            this.spellKnowledgeRequirement = 1;
+            this.spellRange = "Self";
+        }
+        else if (this.type == "lure")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 3)
+            {
+                this.identity = "Lure";
+                this.description = "Studying this scroll will teach you how to make items gravitate toward you.";
+                this.intForDes = 2;
+                this.intDescription = "This spell is sometimes referred to by the name Spellman's Packmule.";
+                this.buyValue = 350 - Math.floor(player.getCharisma() / 1); // at max, buy for 300.
+                this.sellValue = 200 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 300.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 350 - Math.floor(player.getCharisma() / 1); // at max, buy for 300.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = 3;
+            this.spellGroup = "Bind";
+            this.spellGenre = "Cosmic";
+            this.spellName = "Lure";
+            this.spellID = "lure";
+            this.spellEXP = 0;
+            this.spellCooldown = 0;
+            this.spellDescription = "A magical force that causes items to draw nearer to you.";
+            this.spellKnowledgeRequirement = 3;
+            this.spellRange = "Self";
+        }
         else if (this.type == "sorcerer'sRaincoat")
         {
             //For All Items
@@ -34807,6 +34893,39 @@ function Item(type, x, y)
             this.buyValue = 55 - Math.floor(player.getCharisma() / 2); // at max, buy for 30.
             this.sellValue = 25 + Math.floor(player.getCharisma() / 10); // at max, sell for 30.
         }
+        else if (this.type == "orgishTent")
+        {
+            //For All Items
+            this.identity = "Orgish Tent";
+            this.weight = 17;
+            this.size = 28;
+            this.description = "A fine mobile inhabitance of Orgish design that provides the best of comforts for travel.";
+            this.intForDes = 0;
+            if (campout)
+            {
+                this.intDescription = "If you have a hammer equipped click the tent in your inventory to place it, and double click on the placed tent to disassemble it.";
+            }
+            else
+            {
+                this.intDescription = "You are not permitted to use a tent in this location.";
+            }
+
+            //Define Utility
+            this.utility = "tool";
+            this.subUtility = "orgishTent";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 40;
+            this.ingredients = [["Cloth", 45], ["Iron", 6], ["Fiber", 15]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 377 - Math.floor(player.getCharisma() / 2); // at max, buy for 352.
+            this.sellValue = 315 + Math.floor(player.getCharisma() / 2); // at max, sell for 340.
+        }
         else if (this.type == "vardanianTent")
         {
             //For All Items
@@ -48775,6 +48894,93 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 75; // at max, buy for 75.
             this.sellValue = 75; // at max, sell for 75.
+        }
+        else if (this.type == "kelWarpaintI")
+        {
+            //For All Items
+            this.identity = "Kel Warpaint";
+            this.weight = 0.7;
+            this.size = 9;
+            this.description = "White chalky paint used as warpaint.";
+            this.intForDes = 0;
+            this.intDescription = "With this warpaint one can paint a white hand over their right eye.";
+
+
+            //Define Utility
+            this.utility = "facepaint";
+            this.subUtility = "kelPaint1";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 6; // at max, sell for 6.
+        }
+        else if (this.type == "kelWarpaintII")
+        {
+            //For All Items
+            this.identity = "Kel Warpaint";
+            this.weight = 0.7;
+            this.size = 9;
+            this.description = "White chalky paint used as warpaint.";
+            this.intForDes = 0;
+            this.intDescription = "With this warpaint one can paint two thin white stripes across their face.";
+
+
+            //Define Utility
+            this.utility = "facepaint";
+            this.subUtility = "kelPaint2";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "kelWarpaintIII")
+        {
+            //For All Items
+            this.identity = "Kel Warpaint";
+            this.weight = 0.7;
+            this.size = 9;
+            this.description = "Blue chalky paint used as warpaint.";
+            this.intForDes = 0;
+            this.intDescription = "With this warpaint one can paint a thick blue stripe across their face.";
+
+
+            //Define Utility
+            this.utility = "facepaint";
+            this.subUtility = "kelPaint3";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7; // at max, buy for 7.
+            this.sellValue = 7; // at max, sell for 7.
+        }
+        else if (this.type == "kelWarpaintIV")
+        {
+            //For All Items
+            this.identity = "Kel Warpaint";
+            this.weight = 0.7;
+            this.size = 9;
+            this.description = "Blue chalky paint used as warpaint.";
+            this.intForDes = 0;
+            this.intDescription = "With this warpaint one can paint the right side of their face blue.";
+
+            //Define Utility
+            this.utility = "facepaint";
+            this.subUtility = "kelPaint4";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 9.
+            this.sellValue = 9; // at max, sell for 9.
         }
         else if (this.type == "mudmanHand")
         {
@@ -67081,6 +67287,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(moonberry, 1584, 94, 27, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 27 * 1, 28 * 1);
         }
+        else if (this.type == "kelWarpaintI" || this.type == "kelWarpaintII")
+        {
+            XXX.beginPath();
+            XXX.drawImage(snug, 12, 138, 31, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 31 * 1, 31 * 1);
+        }
+        else if (this.type == "kelWarpaintIII" || this.type == "kelWarpaintIV")
+        {
+            XXX.beginPath();
+            XXX.drawImage(snug, 313, 135, 31, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 31 * 1, 31 * 1);
+        }
         else if (this.type == "vodmenaBoneArmour")
         {
             XXX.beginPath();
@@ -74337,6 +74553,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(poly, 1, 1, 32, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1.75), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32 * 1.75), 32 * 1.75, 32 * 1.75);
         }
+        else if (this.type == "orgishTent")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggat, 656, 940, 113, 116, X - this.X + (1/2 * CCC.width) - (1/2 * 113 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 116 * 1), 113 * 1, 116 * 1);
+        }
         else if (this.type == "neculaisEar")
         {
             XXX.beginPath();
@@ -74953,7 +75174,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1844, 64, 37, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 37), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 37, 32);
         }
-        else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "drainingI" || this.type == "fireHands" || this.type == "sorcerer'sRaincoat" || this.type == "summonWolf" || this.type == "healingPsalms" || this.type == "undyingWard" || this.type == "despell" || this.type == "scroll")
+        else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "drainingI" || this.type == "fireHands" || this.type == "sorcerer'sRaincoat" || this.type == "summonWolf" || this.type == "healingPsalms" || this.type == "undyingWard" || this.type == "despell" || this.type == "scroll" || this.type == "orbit" || this.type == "lure")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1967, 67, 33, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 33, 26);
@@ -76144,6 +76365,16 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(moonberry, 1584, 94, 27, 28, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 28 * 1), 27 * 1, 28 * 1);
+        }
+        else if (this.type == "kelWarpaintI" || this.type == "kelWarpaintII")
+        {
+            LXX.beginPath();
+            LXX.drawImage(snug, 12, 138, 31, 31, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 31 * 1), 31 * 1, 31 * 1);
+        }
+        else if (this.type == "kelWarpaintIII" || this.type == "kelWarpaintIV")
+        {
+            LXX.beginPath();
+            LXX.drawImage(snug, 313, 135, 31, 31, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 31 * 1), 31 * 1, 31 * 1);
         }
         else if (this.type == "vodmenaBoneArmour")
         {
@@ -83447,6 +83678,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(poly, 1, 1, 32, 32, this.invX - (1/2 * 32 * 1.5), this.invY - (1/2 * 32 * 1.5), 32 * 1.5, 32 * 1.5);
         }
+        else if (this.type == "orgishTent")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ggat, 656, 940, 113, 116, this.invX - (1/2 * 113 * 0.65), this.invY - (1/2 * 116 * 0.65), 113 * 0.65, 116 * 0.65);
+        }
         else if (this.type == "neculaisEar")
         {
             LXX.beginPath();
@@ -84058,7 +84294,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow" || this.type == "antherPlague" || this.type == "beholderRift" || this.type == "frogify" || this.type == "firestorm")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow" || this.type == "antherPlague" || this.type == "beholderRift" || this.type == "frogify" || this.type == "firestorm" || this.type == "orbit" || this.type == "lure")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -85148,6 +85384,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(moonberry, 1584, 94, 27, 28, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 28 * 1), 27 * 1, 28 * 1);
+        }
+        else if (this.type == "kelWarpaintI" || this.type == "kelWarpaintII")
+        {
+            XXX.beginPath();
+            XXX.drawImage(snug, 12, 138, 31, 31, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 31 * 1), 31 * 1, 31 * 1);
+        }
+        else if (this.type == "kelWarpaintIII" || this.type == "kelWarpaintIV")
+        {
+            XXX.beginPath();
+            XXX.drawImage(snug, 313, 135, 31, 31, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 31 * 1), 31 * 1, 31 * 1);
         }
         else if (this.type == "vodmenaBoneArmour")
         {
@@ -92444,6 +92690,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(poly, 1, 1, 32, 32, this.invX - (1/2 * 32 * 1.5), this.invY - (1/2 * 32 * 1.5), 32 * 1.5, 32 * 1.5);
         }
+        else if (this.type == "orgishTent")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggat, 656, 940, 113, 116, this.invX - (1/2 * 113 * 0.65), this.invY - (1/2 * 116 * 0.65), 113 * 0.65, 116 * 0.65);
+        }
         else if (this.type == "neculaisEar")
         {
             XXX.beginPath();
@@ -93055,7 +93306,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow" || this.type == "antherPlague" || this.type == "beholderRift" || this.type == "frogify" || this.type == "firestorm")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow" || this.type == "antherPlague" || this.type == "beholderRift" || this.type == "frogify" || this.type == "firestorm" || this.type == "orbit" || this.type == "lure")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

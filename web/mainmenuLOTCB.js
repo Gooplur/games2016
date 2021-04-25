@@ -1519,7 +1519,11 @@ function applySelectionsButton()
         }
         else if (player.raceName == "Freynor")
         {
-            player.baseWarmth = 200;
+            player.baseWarmth = 400;
+        }
+        else if (player.raceName == "Thengar")
+        {
+            player.baseWarmth = 75;
         }
         else if (player.raceName == "Orgell")
         {
@@ -1530,14 +1534,19 @@ function applySelectionsButton()
         {
             player.baseHunger = 60;
         }
+        else if (player.raceName == "Borzchkyy")
+        {
+            player.baseWarmth = 100;
+        }
         else if (player.raceName == "Sylkeem")
         {
             player.baseHunger = 40;
-            player.baseWarmth = 100;
+            player.baseWarmth = 200;
         }
         else if (player.raceName == "Vardan")
         {
             player.sleepMAX = 48;
+            player.baseWarmth = 65;
         }
         else if (player.raceName == "Cephrite")
         {
@@ -1573,6 +1582,32 @@ function applySelectionsButton()
             {
                 X = -90;
                 Y = 467;
+            }
+        }
+        else if (player.raceName == "Borzchkyy")
+        {
+            this.learnyBuff = 1.1;
+            X = -90;
+            Y = 467;
+            if (player.title == "Royalty")
+            {
+
+            }
+            else if (player.title == "Nobility")
+            {
+
+            }
+            else if (player.title == "Tradefolk")
+            {
+
+            }
+            else if (player.title == "Vagabond")
+            {
+
+            }
+            else
+            {
+
             }
         }
         else if (player.raceName == "Zetian")
@@ -1655,6 +1690,7 @@ function applySelectionsButton()
         }
         else if (player.raceName == "Thengar")
         {
+            player.barbarianBuff = 1;
             if (player.title == "Nobility")
             {
                 X = 135238;
@@ -1686,6 +1722,8 @@ function applySelectionsButton()
         }
         else if (player.raceName == "Nirwaden")
         {
+            player.skillPoints += 1;
+            player.imperialBuff = 1;
             X = -40495;
             Y = 1316;
 
@@ -1747,11 +1785,11 @@ function applySelectionsButton()
         }
         else if (player.raceName == "Orgell")
         {
-            player.interestRate = 0.26;
+            player.interestRate = 0.21;
         }
         else if (player.raceName == "Nirwaden")
         {
-            player.interestRate = 0.21;
+            player.interestRate = 0.26;
         }
         else if (player.raceName == "Zetian")
         {

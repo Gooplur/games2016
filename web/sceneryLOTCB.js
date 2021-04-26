@@ -37220,6 +37220,50 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.activate = false;
             }
         }
+        else if (this.type == "skellLegs")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.size = this.temporary;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+
+                this.tic = 0;
+                this.fade = 1;
+            }
+
+            this.tic += 1;
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.globalAlpha = this.fade;
+            XXX.drawImage(skele, 1884, 1545, 170, 87, -(1/2 * 170 * this.size), -(1/2 * 87 * this.size), 170 * this.size, 87 * this.size);
+            XXX.drawImage(skele, 1884, 1545, 170, 87, -(1/2 * 170 * this.size), -(1/2 * 87 * this.size), 170 * this.size, 87 * this.size);
+            XXX.restore();
+
+            if (this.tic > 910 * (TTD / 16.75))
+            {
+                this.fade -= 0.02;
+            }
+
+            if (this.fade < 0.04)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "vardanianRoad")
         {
             //TRAITS

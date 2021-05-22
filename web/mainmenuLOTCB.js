@@ -1586,9 +1586,10 @@ function applySelectionsButton()
         }
         else if (player.raceName == "Borzchkyy")
         {
-            this.learnyBuff = 1.1;
-            X = -90;
-            Y = 467;
+            player.learnyBuff = 1.1;
+            player.imperialBuff = 1;
+            X = 1000;
+            Y = 2000;
             if (player.title == "Royalty")
             {
 
@@ -3432,6 +3433,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = -5; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 5; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -10; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = 0;
 
                 player.sylkeemFaction = 25;
                 //skill bonus
@@ -3480,6 +3482,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = 15; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -10; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = 15;
 
                 player.sylkeemFaction = -100;
                 player.vardanRebelFaction = -100;
@@ -3529,6 +3532,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = 0; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -10; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = 15;
 
                 player.sylkeemFaction = -100;
                 //skill bonus
@@ -3582,6 +3586,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = 0; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 10; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -20; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = -5;
 
                 player.sylkeemFaction = 75;
                 //skill bonus
@@ -3640,6 +3645,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = -5; //black (vardanian) High Count Arlod
                 player.cephriteFaction = -200; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -200; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = -5;
                 //skill bonus
                 player.constitution = 0;
                 player.strength = 0;
@@ -3696,6 +3702,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = 0; //black (vardanian) High Count Arlod
                 player.cephriteFaction = -45; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -45; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = 0;
                 //skill bonus
                 player.constitution = 0;
                 player.strength = 0;
@@ -3745,8 +3752,9 @@ function Selector(bX, bY, type, selNumMAX)
                 player.aldrekFaction = -5; //red (aldrekii) Evaraxii Zoteff
                 player.orgellFaction = 0; //yellow (orgish) King Lysander
                 player.vardanFaction = 75; //black (vardanian) High Count Arlod
-                player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
+                player.cephriteFaction = -20; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = 25; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = 25;
 
                 //skill bonus
                 player.constitution = 0;
@@ -3804,6 +3812,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = 50; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -10; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = 15;
 
                 //skill bonus
                 player.constitution = 0;
@@ -3876,6 +3885,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = -49; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 75; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -45; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = -10;
 
                 player.vardanRebelFaction = 50;
                 //skill bonus
@@ -3924,6 +3934,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = 0; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 20; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -20; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = 0;
                 //skill bonus
                 player.constitution = 0;
                 player.strength = 0;
@@ -3985,6 +3996,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = 25; //black (vardanian) High Count Arlod
                 player.cephriteFaction = -10; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = 75; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = 10;
 
                 player.sylkeemFaction = -100;
                 player.vardanRebelFaction = -100;
@@ -4016,6 +4028,79 @@ function Selector(bX, bY, type, selNumMAX)
             }
             else if (selectNumber == 11)
             {
+                //race: Noth
+                XXX.fillStyle = "black";
+                XXX.font = "20px Impact";
+                XXX.textAlign = "center";
+                XXX.fillText("Borzchkyy", bX + 105, bY + 23);
+                //race attributes
+                //colour and race name
+                player.raceName = "Borzchkyy";
+                player.race = "teal";
+                //faction relations
+                player.kelFaction = 0; //green (kellish) Chieftain Har
+                player.thengarFaction = 15; //brown (thengan) King Wolthgar
+                player.freynorFaction = 15; //blue (freydic) King Jirdun
+                player.aldrekFaction = 0; //red (aldrekii) Evaraxii Zoteff
+                player.orgellFaction = 10; //yellow (orgish) King Lysander
+                player.vardanFaction = 20; //black (vardanian) High Count Arlod
+                player.cephriteFaction = -10; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
+                player.nirwadenFaction = 10; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = 75; //teal
+
+                //skill bonus
+                player.constitution = 1;
+                player.strength = 0;
+                player.stamina = 1;
+                player.dexterity = 0;
+                player.ranged = 0;
+                player.survivalism = 0;
+                player.intelligence = 3;
+                player.endurance = 0;
+                player.toughness = 0;
+                player.charisma = 0;
+                player.willpower = 0;
+                player.knowledge = 0;
+                player.concentration = 0;
+                player.memory = 0;
+                player.eminence = 0;
+                player.skillPoints = 4 + extraSkillPoints;
+                //low bar race description
+                if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                {
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("The Borzchyy people of Borzchkya inhabit the land north of Vardania. Their kingdom is famous for skilled craftsmanship and expertise with alchemy.", 5, (LCC.height / 2) + -8);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("", 5, (LCC.height / 2) + 4);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("", 5, (LCC.height / 2) + 16);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("", 5, (LCC.height / 2) + 28);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("", 5, (LCC.height / 2) + 40);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("", 5, (LCC.height / 2) + 52);
+                }
+            }
+            else if (selectNumber == 12)
+            {
                 //race: Outlander
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
@@ -4034,6 +4119,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = -25; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -50; //orange (nirinese) Queen Lelaine
+                player.borzchkyaFaction = -25;
                 //skill bonus
                 player.constitution = 0;
                 player.strength = 0;

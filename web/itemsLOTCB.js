@@ -3676,6 +3676,36 @@ function Item(type, x, y)
             this.buyValue = 10 - Math.floor(player.getCharisma() / 25); // at max, buy for 8.
             this.sellValue = 6 + Math.floor(player.getCharisma() / 25); // at max, sell for 8.
         }
+        else if (this.type == "yotso")
+        {
+            //For All Items
+            this.identity = "Yotso";
+            this.weight = 4;
+            this.size = 10;
+            this.description = "A thick tendril tipped outgrowth of a yotso tuber";
+            this.intForDes = 13;
+            this.intDescription = "These are poisonous to eat, but they are a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3.4; //satisfies hunger.
+            this.thirst = 0.4; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -5; //heals health.
+            this.generation = -10; //recoops lost energy.
+            this.replenish = -3; //restores will.
+
+
+            //ability
+            this.ability = "poisonII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 25); // at max, sell for 2.
+        }
         else if (this.type == "neth")
         {
             //For All Items
@@ -5553,6 +5583,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 25); // at max, buy for 13.
             this.sellValue = 8 + Math.floor(player.getCharisma() / 25); // at max, sell for 10.
+        }
+        else if (this.type == "crenHeart")
+        {
+            //For All Items
+            this.identity = "Cren Heart";
+            this.weight = 1.25;
+            this.size = 14;
+            this.description = "The once-bioluminescant curved bone structure of a cren that in the center contains its central organ which acts as a heart, a lung, and a brain.";
+            this.intForDes = 25;
+            this.intDescription = "This can be used in alchemy as a strong catalyst.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 25); // at max, buy for 11.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 10); // at max, sell for 11.
+        }
+        else if (this.type == "crenProboscis")
+        {
+            //For All Items
+            this.identity = "Cren Proboscis";
+            this.weight = 0.75;
+            this.size = 7;
+            this.description = "The eating, sensing, and foam spitting appendage of a cren.";
+            this.intForDes = 23;
+            this.intDescription = "This contains the cren's foam gland which is a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
         }
         else if (this.type == "ribbackSpinneret")
         {
@@ -20995,6 +21065,35 @@ function Item(type, x, y)
             this.buyValue = 12 - Math.floor(player.getCharisma() / 10); // at max, buy for 7.
             this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
         }
+        else if (this.type == "kadzeuArm")
+        {
+            //For All Items
+            this.identity = "Kadzeu Arm";
+            this.weight = 0.06;
+            this.size = 6;
+            this.description = "A pink plant-arm with a small mishapen yellow outgrowth at the end.";
+            this.intForDes = 3;
+            this.intDescription = "kadzeu is edible, it has a strong bitter flavour and is not very good tasting..";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.6; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.9; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "garasuwamuSpine")
         {
             //For All Items
@@ -22714,6 +22813,28 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "kadzeuFlower")
+        {
+            //For All Items
+            this.identity = "Kadzeu Flower";
+            this.weight = 0.05;
+            this.size = 4;
+            this.description = "A blue, and pink flower with a green plant-like membrain at the base.";
+            this.intForDes = 20;
+            this.intDescription = "This can be used as a catalyst in some alchemic recipes.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //Utility Focused
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor((player.getCharisma()) / 25); // at max, buy for 5.
+            this.sellValue = 2 + Math.floor((player.getCharisma()) / 15); // at max, sell for 5.
         }
         else if (this.type == "corneliusFlower")
         {
@@ -67272,6 +67393,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "crenHeart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 466, 2206, 46, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 46 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 1), 46 * 1, 44 * 1);
+        }
+        else if (this.type == "crenProboscis")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 405, 2200, 46, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 46 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 1), 46 * 1, 44 * 1);
+        }
+        else if (this.type == "yotso")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 18, 2284, 34, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 34 * 1, 35 * 1);
+        }
+        else if (this.type == "kadzeuArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 51, 2128, 54, 55, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 55 * 1), 54 * 1, 55 * 1);
+        }
+        else if (this.type == "kadzeuFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 97, 2130, 54, 55, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 55 * 1), 54 * 1, 55 * 1);
+        }
         else if (this.type == "garasuFrond")
         {
             XXX.beginPath();
@@ -76351,6 +76497,31 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "crenHeart")
+        {
+            LXX.beginPath();
+            LXX.drawImage(rowal, 466, 2206, 46, 44, this.invX - (1/2 * 46 * 1), this.invY - (1/2 * 44 * 1), 46 * 1, 44 * 1);
+        }
+        else if (this.type == "crenProboscis")
+        {
+            LXX.beginPath();
+            LXX.drawImage(rowal, 405, 2200, 46, 44, this.invX - (1/2 * 46 * 1), this.invY - (1/2 * 44 * 1), 46 * 1, 44 * 1);
+        }
+        else if (this.type == "yotso")
+        {
+            LXX.beginPath();
+            LXX.drawImage(rowal, 18, 2284, 34, 35, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 35 * 1), 34 * 1, 35 * 1);
+        }
+        else if (this.type == "kadzeuArm")
+        {
+            LXX.beginPath();
+            LXX.drawImage(rowal, 51, 2128, 54, 55, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 55 * 1), 54 * 1, 55 * 1);
+        }
+        else if (this.type == "kadzeuFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(rowal, 97, 2130, 54, 55, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 55 * 1), 54 * 1, 55 * 1);
+        }
         else if (this.type == "garasuFrond")
         {
             LXX.beginPath();
@@ -85369,6 +85540,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "crenHeart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 466, 2206, 46, 44, this.invX - (1/2 * 46 * 1), this.invY - (1/2 * 44 * 1), 46 * 1, 44 * 1);
+        }
+        else if (this.type == "crenProboscis")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 405, 2200, 46, 44, this.invX - (1/2 * 46 * 1), this.invY - (1/2 * 44 * 1), 46 * 1, 44 * 1);
+        }
+        else if (this.type == "yotso")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 18, 2284, 34, 35, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 35 * 1), 34 * 1, 35 * 1);
+        }
+        else if (this.type == "kadzeuArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 51, 2128, 54, 55, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 55 * 1), 54 * 1, 55 * 1);
+        }
+        else if (this.type == "kadzeuFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(rowal, 97, 2130, 54, 55, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 55 * 1), 54 * 1, 55 * 1);
         }
         else if (this.type == "garasuFrond")
         {

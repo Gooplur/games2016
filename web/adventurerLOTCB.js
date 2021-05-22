@@ -689,6 +689,7 @@ function Adventurer()
     this.vardanPeace = true;
     this.cephritePeace = true;
     this.nirwadenPeace = true;
+    this.borzchkyaPeace = true;
     this.theBalgurMercenariesPeace = true;
     this.estolGangPeace = true;
     this.sylkeemPeace = true;
@@ -37242,6 +37243,62 @@ function Adventurer()
                         else
                         {
                             this.nirwadenPeace = true;
+                        }
+                    }
+
+
+                    //BORZCHKYA
+                    //box
+                    if (this.borzchkyaPeace)
+                    {
+                        XXX.beginPath();
+                        if (this.borzchkyaFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 8), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.borzchkyaFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 8), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Borzchkya: " + this.borzchkyaFaction, 700, 72 + (55 * 8));
+                    //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 8) && mouseY < 80 + (55 * 8) && clicked)
+                    {
+                        clicked = false;
+                        if (this.borzchkyaPeace)
+                        {
+                            this.borzchkyaPeace = false;
+                        }
+                        else
+                        {
+                            this.borzchkyaPeace = true;
                         }
                     }
                 }

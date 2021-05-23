@@ -37360,7 +37360,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             }
 
             //DRAWSELF
-            if (this.temporary == false)
+            if (this.information == false)
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);

@@ -6371,6 +6371,71 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawVlicaFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Vlica Flesh";
+            this.weight = 0.9;
+            this.size = 10;
+            this.description = "The raw flesh of a vlica.";
+            this.intForDes = 0;
+            this.intDescription = "Eating this raw will make you sick to your stomach.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.25; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "vlicaMeat")
+        {
+            //For All Items
+            this.identity = "Vlica Meat";
+            this.weight = 0.9;
+            this.size = 10;
+            this.description = "The cooked meat of a vlica.";
+            this.intForDes = 0;
+            this.intDescription = "Vlica has a tougher meat for being from a fish, but it tastes pretty good.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7.75; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 10;
+            this.ingredients = [["Raw Vlica Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 5; // at max, sell for 5.
+        }
         else if (this.type == "rawLyagushkaFlesh")
         {
             //For All Items
@@ -67393,6 +67458,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "rawVlicaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sprea, 838, 523, 29, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.2), 29 * 1.2, 29 * 1.2);
+        }
+        else if (this.type == "vlicaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sprea, 839, 562, 29, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.2), 29 * 1.2, 29 * 1.2);
+        }
         else if (this.type == "crenHeart")
         {
             XXX.beginPath();
@@ -76497,6 +76572,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "rawVlicaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sprea, 838, 523, 29, 29, this.invX - (1/2 * 29 * 1.2), this.invY - (1/2 * 29 * 1.2), 29 * 1.2, 29 * 1.2);
+        }
+        else if (this.type == "vlicaMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(sprea, 839, 562, 29, 29, this.invX - (1/2 * 29 * 1.2), this.invY - (1/2 * 29 * 1.2), 29 * 1.2, 29 * 1.2);
+        }
         else if (this.type == "crenHeart")
         {
             LXX.beginPath();
@@ -85540,6 +85625,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "rawVlicaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sprea, 838, 523, 29, 29, this.invX - (1/2 * 29 * 1.2), this.invY - (1/2 * 29 * 1.2), 29 * 1.2, 29 * 1.2);
+        }
+        else if (this.type == "vlicaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(sprea, 839, 562, 29, 29, this.invX - (1/2 * 29 * 1.2), this.invY - (1/2 * 29 * 1.2), 29 * 1.2, 29 * 1.2);
         }
         else if (this.type == "crenHeart")
         {

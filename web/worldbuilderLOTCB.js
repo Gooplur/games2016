@@ -1424,11 +1424,11 @@ function worldBuilder()
             campout = true;
             outlineBuilder( 34, 34, "hollowGrass", -1006, 762);
 
-            outlineBuilder(1, 24, "vardanianStone", -1006, 783);
+            outlineBuilder(1, 34, "vardanianStone", -1006, 783);
 
             outlineBuilder(1, 1, "hollow", -1005, 785);
             outlineBuilder(4, 2, "hollowDirt", -1004, 785);
-
+            outlineBuilder(21, 1, "vardanianStone", -992, 762);
         }
         //mapS23w30
         if (Y > -238507 && Y < -227726 && X < 313753 && X > 302099) //X30
@@ -1483,6 +1483,10 @@ function worldBuilder()
 
             outlineBuilder(1, 34, "vardanianStone", -1074, 783);
             outlineBuilder(12, 1, "vardanianStone", -1067, 784);
+
+            outlineBuilder(1, 2, "vardanianFarmland", -1067, 779);
+            outlineBuilder(1, 1, "vardanianFarmland", -1063, 786);
+            outlineBuilder(2, 1, "vardanianFarmland", -1062, 792);
 
         }
         //mapS23w32
@@ -1760,6 +1764,38 @@ function worldBuilder()
             outlineBuilder( 4, 2, "savannahDirt", -16, 737);
             outlineBuilder( 1, 3, "savannahDirt", 8, 742);
             outlineBuilder( 1, 1, "savannahDirt", 3, 735);
+        }
+        //mapS22w29
+        if (Y > -228312 && Y < -217520 && X < 303561 && X > 291852) //X29
+        {
+            elevation = -2;
+            region = "s22w29";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianGrass", -1006, 728);
+
+            outlineBuilder(1, 21, "hollowDirt", -993, 761);
+            outlineBuilder(1, 10, "hollowDirt", -982, 760);
+            outlineBuilder(1, 4, "hollowDirt", -976, 759);
+            outlineBuilder(2, 3, "hollowDirt", -975, 757);
+            outlineBuilder(3, 2, "hollowDirt", -974, 754);
+            outlineBuilder(3, 1, "hollowDirt", -973, 751);
+            outlineBuilder(1, 3, "hollowDirt", -989, 760);
+
+            outlineBuilder(34, 1, "vardanianStone", -992, 728);
+
+            outlineBuilder(1, 1, "vardanianFarmland", -986, 747);
+            outlineBuilder(1, 2, "vardanianFarmland", -989, 748);
+            outlineBuilder(2, 1, "vardanianFarmland", -990, 738);
+            outlineBuilder(1, 1, "vardanianFarmland", -986, 739);
+            outlineBuilder(2, 1, "vardanianFarmland", -996, 740);
+        }
+        //mapS22w30
+        if (Y > -228312 && Y < -217520 && X < 313753 && X > 302099) //X30
+        {
+            elevation = -2;
+            region = "s22w30";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianGrass", -1040, 728);
         }
         //mapS22w32
         if (Y > -228312 && Y < -217520 && X < 334130 && X > 322464) //X32

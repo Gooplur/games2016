@@ -1787,6 +1787,18 @@ function toothyPack()
 
     toothy.onload = function()
     {
+        keastPack();
+    };
+}
+
+function keastPack()
+{
+    var keast = new Image();
+    keast.src = ("images/keast.png");
+    window.keast = keast;
+
+    keast.onload = function()
+    {
         gnollPack();
     };
 }
@@ -4887,7 +4899,15 @@ function theLegend()
         torsk: ["Torsk", 0],
         evee: ["Evee", 0],
         dunglas: ["Dunglas", 0],
-        hasla: ["Hasla", 0]
+        hasla: ["Hasla", 0],
+        ratking: ["Ratking", 0],
+        treviakPrince: ["TreviakPrince", 0],
+        vogdtPrince: ["VogdtPrince", 0],
+        kryskePrince: ["KryskePrince", 0],
+        vitmerPrince: ["VitmerPrince", 0],
+        horacePrince: ["HoracePrince", 0],
+        staz: ["Staz", 0],
+        oleg: ["Oleg", 0]
     };
 
 //time Tracker Variables
@@ -5241,7 +5261,15 @@ function theLegend()
         torskLDS: true,
         eveeLDS: true,
         dunglasLDS: true,
-        haslaLDS: true
+        haslaLDS: true,
+        ratkingLDS: true,
+        treviakPrinceLDS: true,
+        vogtdPrinceLDS: true,
+        kryskePrinceLDS: true,
+        vitmerPrinceLDS: true,
+        horacePrinceLDS: true,
+        stazLDS: true,
+        olegLDS: true
     };
 //QUESTS
     quests =
@@ -5285,6 +5313,7 @@ function theLegend()
         venningStoragePurchased: false,
         holuimStoragePurchased: false,
         cergadetStoragePurchased: false,
+        boroyeStoragePurchased: false,
         orjovBeseeched: false,
         killedStambjordHeir: false,
         rannukThreatened: false,

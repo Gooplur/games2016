@@ -4260,6 +4260,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             //EMBERS
             if (this.spellType == "embers")
             {
+                this.fire = true;
                 if (caster)
                 {
                     if (this.cnx >= 25)

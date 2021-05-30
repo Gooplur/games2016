@@ -49088,6 +49088,151 @@ function Item(type, x, y)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 50); // at max, buy for 8.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
         }
+        else if (this.type == "panpiPetal")
+        {
+            //For All Items
+            this.identity = "Panpi Petal";
+            this.weight = 0.01;
+            this.size = 2;
+            this.description = "The thick airy bubble petal of a panpi flower.";
+            this.intForDes = 0;
+            this.intDescription = "Aside from a mild sort of nice aroma this does not have any particular use.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "iuaFlower")
+        {
+            //For All Items
+            this.identity = "Iua Flower";
+            this.weight = 15;
+            this.size = 28;
+            this.description = "A giant pink flower with a powerful aroma.";
+            this.intForDes = 10;
+            this.intDescription = "This is used as a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 49 - Math.floor(player.getCharisma() / 15); // at max, buy for 46.
+            this.sellValue = 42 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 46.
+        }
+        else if (this.type == "turotanReeds")
+        {
+            //For All Items
+            this.identity = "Turotan Reeds";
+            this.weight = 1;
+            this.size = 9;
+            this.description = "A thick reed that is heavy and inundated with water.";
+            this.intForDes = 14;
+            this.intDescription = "This plant is usded in local Orgish medicine.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "caveAcheguStalk")
+        {
+            //For All Items
+            this.identity = "Cave Achegu Stalk";
+            this.weight = 2.6;
+            this.size = 11;
+            this.description = "A stalk of bubble-like orange flowers.";
+            this.intForDes = 10;
+            this.intDescription = "This serves as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "acheguStalk")
+        {
+            //For All Items
+            this.identity = "Achegu Stalk";
+            this.weight = 2.3;
+            this.size = 11;
+            this.description = "A stalk of bubble-like yellow flowers.";
+            this.intForDes = 9;
+            this.intDescription = "This serves as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "greenSyanj")
+        {
+            //For All Items
+            this.identity = "Green Syanj Segment";
+            this.weight = 45.5;
+            this.size = 25;
+            this.description = "A sliced segment of a carnivorous green syanj plant.";
+            this.intForDes = 20;
+            this.intDescription = "Slicing the tube portion of the plant off does not kill it, since the bulk of the plant is actually beneath the surface.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14 - Math.floor(player.getCharisma() / 50); // at max, buy for 13.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 50); // at max, sell for 13.
+        }
+        else if (this.type == "slicedGreenSyanj")
+        {
+            //For All Items
+            this.identity = "Sliced Green Syanj";
+            this.weight = 4.5;
+            this.size = 14;
+            this.description = "A segment of a carnivorous green syanj plant that has been cut into strips.";
+            this.intForDes = 15;
+            this.intDescription = "This is a useful ingredient in forming a compound that acts as a powerful antidote to poison.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 10;
+            this.intForCraft = 6;
+            this.ingredients = [["Green Syanj Segment", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 2.
+        }
         else if (this.type == "syanj")
         {
             //For All Items
@@ -67677,6 +67822,41 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "turotanReeds")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 76, 554, 57, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 57 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 1), 57 * 1, 45 * 1);
+        }
+        else if (this.type == "panpiPetal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 140, 639, 57, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 57 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 1), 57 * 1, 45 * 1);
+        }
+        else if (this.type == "greenSyanj")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 366, 313, 62, 79, X - this.X + (1/2 * CCC.width) - (1/2 * 62 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 79 * 1), 62 * 1, 79 * 1);
+        }
+        else if (this.type == "slicedGreenSyanj")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 431, 306, 62, 79, X - this.X + (1/2 * CCC.width) - (1/2 * 62 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 79 * 1), 62 * 1, 79 * 1);
+        }
+        else if (this.type == "iuaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 776, 290, 100, 102, X - this.X + (1/2 * CCC.width) - (1/2 * 100 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 102 * 1), 100 * 1, 102 * 1);
+        }
+        else if (this.type == "acheguStalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(arpoo, 87, 17, 54, 71, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 71 * 1), 54 * 1, 71 * 1);
+        }
+        else if (this.type == "caveAcheguStalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(arpoo, 170, 718, 54, 71, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 71 * 1), 54 * 1, 71 * 1);
+        }
         else if (this.type == "rawVlicaFlesh")
         {
             XXX.beginPath();
@@ -76791,6 +76971,41 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "turotanReeds")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 76, 554, 57, 45, this.invX - (1/2 * 57 * 1), this.invY - (1/2 * 45 * 1), 57 * 1, 45 * 1);
+        }
+        else if (this.type == "panpiPetal")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 140, 639, 57, 45, this.invX - (1/2 * 57 * 1), this.invY - (1/2 * 45 * 1), 57 * 1, 45 * 1);
+        }
+        else if (this.type == "greenSyanj")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 366, 313, 62, 79, this.invX - (1/2 * 62 * 1), this.invY - (1/2 * 79 * 1), 62 * 1, 79 * 1);
+        }
+        else if (this.type == "slicedGreenSyanj")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 431, 306, 62, 79, this.invX - (1/2 * 62 * 1), this.invY - (1/2 * 79 * 1), 62 * 1, 79 * 1);
+        }
+        else if (this.type == "iuaFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poon, 776, 290, 100, 102, this.invX - (1/2 * 100 * 0.7), this.invY - (1/2 * 102 * 0.7), 100 * 0.7, 102 * 0.7);
+        }
+        else if (this.type == "acheguStalk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(arpoo, 87, 17, 54, 71, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 71 * 1), 54 * 1, 71 * 1);
+        }
+        else if (this.type == "caveAcheguStalk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(arpoo, 170, 718, 54, 71, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 71 * 1), 54 * 1, 71 * 1);
+        }
         else if (this.type == "rawVlicaFlesh")
         {
             LXX.beginPath();
@@ -85844,6 +86059,41 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "turotanReeds")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 76, 554, 57, 45, this.invX - (1/2 * 57 * 1), this.invY - (1/2 * 45 * 1), 57 * 1, 45 * 1);
+        }
+        else if (this.type == "panpiPetal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 140, 639, 57, 45, this.invX - (1/2 * 57 * 1), this.invY - (1/2 * 45 * 1), 57 * 1, 45 * 1);
+        }
+        else if (this.type == "greenSyanj")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 366, 313, 62, 79, this.invX - (1/2 * 62 * 1), this.invY - (1/2 * 79 * 1), 62 * 1, 79 * 1);
+        }
+        else if (this.type == "slicedGreenSyanj")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 431, 306, 62, 79, this.invX - (1/2 * 62 * 1), this.invY - (1/2 * 79 * 1), 62 * 1, 79 * 1);
+        }
+        else if (this.type == "iuaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poon, 776, 290, 100, 102, this.invX - (1/2 * 100 * 0.7), this.invY - (1/2 * 102 * 0.7), 100 * 0.7, 102 * 0.7);
+        }
+        else if (this.type == "acheguStalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(arpoo, 87, 17, 54, 71, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 71 * 1), 54 * 1, 71 * 1);
+        }
+        else if (this.type == "caveAcheguStalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(arpoo, 170, 718, 54, 71, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 71 * 1), 54 * 1, 71 * 1);
         }
         else if (this.type == "rawVlicaFlesh")
         {

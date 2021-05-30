@@ -1859,6 +1859,18 @@ function nufuPack()
 
     nufu.onload = function()
     {
+        alchPack();
+    };
+}
+
+function alchPack()
+{
+    var alch = new Image();
+    alch.src = ("images/alch.png");
+    window.alch = alch;
+
+    alch.onload = function()
+    {
         skelePack();
     };
 }
@@ -4512,7 +4524,6 @@ function over(kind, j, l, extraX, extraY)
             }
         }
     }
-
 }
 
 //This function sets the lower canvas X and Y to un-problematic values whilst the mouse is in the main inventory.
@@ -7121,6 +7132,7 @@ function theLegend()
     handcrafted.push(new Item("slicedSquash", false));
     handcrafted.push(new Item("rawShelisherFlesh", false));
     handcrafted.push(new Item("slicedSyanj", false));
+    handcrafted.push(new Item("slicedGreenSyanj", false));
 
 
     //Activate Important Game Functions Here:

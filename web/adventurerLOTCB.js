@@ -14139,6 +14139,48 @@ function Adventurer()
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
                     }
+                    //Teeth I
+                    if (secondarySpells[i].ID == "teethI")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0 && this.health > 1.5)
+                        {
+                            this.health -= 1.5;
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+                            magicList.push(new Magic(secondarySpells[i], true));
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                        else if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 100) && this.will - secondarySpells[i].cost >= 0 && this.health > 7 && player.getKnowledge() >= 19)
+                        {
+                            this.health -= 7;
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+                            magicList.push(new Magic(secondarySpells[i], true));
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+
+                    }
+                    //Teeth II
+                    if (secondarySpells[i].ID == "teethII")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0 && this.health > 2)
+                        {
+                            this.health -= 2;
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+                            magicList.push(new Magic(secondarySpells[i], true));
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                        else if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 100) && this.will - secondarySpells[i].cost >= 0 && this.health > 9 && player.getKnowledge() >= 35)
+                        {
+                            this.health -= 9;
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+                            magicList.push(new Magic(secondarySpells[i], true));
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+
+                    }
                     //Firestorm
                     if (secondarySpells[i].ID == "firestorm")
                     {
@@ -14663,6 +14705,13 @@ function Adventurer()
                                     }
                                 }
                             }
+                        }
+                    }
+                    if (tertiarySpells[i].ID == "icewalker")
+                    {
+                        if (player.water == true)
+                        {
+                            scenicList.push(new Scenery("icePath", X, Y, Math.random() * 2 * Math.PI, 3.45));
                         }
                     }
                     if (tertiarySpells[i].ID == "potatoInvisibility")
@@ -16369,6 +16418,78 @@ function Adventurer()
                 {
                     this.doMagic = false;
                     this.will -= this.spell.cost;
+                    this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
+                    magicList.push(new Magic(player.spell, true, true));
+                }
+            }
+            else if (Math.floor(this.stage) >= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(caverna, 472, 11, 55, 57, -1/2 * 55, -1/2 * 57, 55, 57);
+                XXX.restore();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
+            }
+        }
+
+        //Splitting Flame
+        if (this.spell.ID == "splittingFlame" || this.spell.ID == "splittingFlameII")
+        {
+            this.stageEngine(4, 0.14, true);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(caverna, 370, 11, 55, 57, -1/2 * 55, -1/2 * 57, 55, 57);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                this.doMagic = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(caverna, 418, 10, 55, 57, -1/2 * 55, -1/2 * 57, 55, 57);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(caverna, 472, 11, 55, 57, -1/2 * 55, -1/2 * 57, 55, 57);
+                XXX.restore();
+
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.will -= this.spell.cost;
+                    this.warmth += 2;
                     this.magicalExperience += this.spell.EXP;
                     this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true, true));

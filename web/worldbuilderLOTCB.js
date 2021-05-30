@@ -80,7 +80,7 @@ function worldBuilder()
             elevation = -4;
             region = "s36w3";
             campout = true;
-            outlineBuilder( 34, 34, "outline", -122, 1204); //prairy
+            outlineBuilder( 34, 34, "prairy", -122, 1204);
         }
         //Layer 35 (hot tropical region): elev -4
         //mapS35W3
@@ -164,7 +164,7 @@ function worldBuilder()
             elevation = -4;
             region = "s34w3";
             campout = true;
-            outlineBuilder( 34, 34, "outline", -122, 1136); //prairy
+            outlineBuilder( 34, 34, "prairy", -122, 1136);
             outlineBuilder(1, 34, "cephrianRoad", -122, 1149);
         }
         //Layer 33 (hot tropical region): elev -4
@@ -4960,6 +4960,54 @@ function worldBuilder()
             campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 252);
             outlineBuilder( 34, 1, "stonePath", -20, 252);
+        }
+        //mapS8w24 //Zimber Village (Hamlet)
+        if (Y > -85605 && Y < -74729 && X < 252559 && X > 240873) //X-24
+        {
+            elevation = 0;
+            region = "s8w24";
+            campout = true;
+            outlineBuilder( 34, 34, "murkwoods", -836, 252);
+            outlineBuilder(5, 2, "mistywoods", -836, 252);
+            outlineBuilder(3, 2, "mistywoods", -834, 252);
+            outlineBuilder(2, 30, "mistywoods", -832, 252);
+            outlineBuilder(1, 1, "farmland", -821, 252);
+            outlineBuilder(2, 1, "farmland", -814, 252);
+
+            outlineBuilder(4, 2, "murklake", -836, 265);
+            outlineBuilder(4, 3, "murklake", -834, 264);
+            outlineBuilder(4, 2, "murklake", -831, 263);
+            outlineBuilder(5, 25, "murklake", -829, 262);
+            outlineBuilder(5, 2, "murklake", -804, 261);
+
+            outlineBuilder(1, 5, "murklake", -820, 268);
+            outlineBuilder(1, 3, "murklake", -819, 270);
+            outlineBuilder(1, 1, "murklake", -818, 271);
+            outlineBuilder(1, 4, "murklake", -817, 269);
+            outlineBuilder(2, 3, "murklake", -815, 270);
+
+            outlineBuilder(3, 2, "murklake", -825, 274);
+            outlineBuilder(3, 1, "murklake", -823, 275);
+            outlineBuilder(2, 2, "murklake", -815, 281);
+            outlineBuilder(2, 1, "murklake", -813, 272);
+
+            outlineBuilder(3, 3, "murklake", -809, 274);
+            outlineBuilder(2, 2, "murklake", -806, 275);
+            outlineBuilder(1, 1, "murklake", -804, 275);
+
+            outlineBuilder(1, 1, "murklake", -809, 277);
+            outlineBuilder(1, 3, "murklake", -809, 284);
+            outlineBuilder(1, 3, "murklake", -807, 285);
+
+            outlineBuilder(1, 1, "murklake", -812, 276);
+            outlineBuilder(1, 1, "murklake", -814, 275);
+            outlineBuilder(2, 3, "murklake", -821, 280);
+
+            outlineBuilder(1, 1, "murklake", -828, 281);
+            outlineBuilder(1, 2, "murklake", -823, 271);
+            outlineBuilder(1, 1, "murklake", -825, 268);
+
+            outlineBuilder(1, 1, "murklake", -811, 285);
         }
         //mapS8W25
         if (Y > -85605 && Y < -74729 && X < 262722 && X > 251041) //X-25

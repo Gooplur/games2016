@@ -27,6 +27,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         this.zIndex = 4;
         this.orders = instructions;
         this.ordenes = false; //use this for whatever but not in a function
+        this.secretCaster = false; //a sneaky way to change who is the caster of a spell from the outside
         //VARIABLES for some or even single spells
         this.duration = 0;
         this.speed = 0; //this allows a fixed random speed to be selected if it is wanted.
@@ -1623,7 +1624,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             }
         }
         //FIRE BREATH
-        if (this.spellType == "fireBreath")
+        if (this.spellType == "fireBreath" || this.spellType == "fireBreathPlus")
         {
             this.spin = 2*Math.random()*Math.PI;
             if (this.orders == 1)
@@ -1728,6 +1729,21 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         {
             this.orientToCaster(17, 1 / 2 * Math.PI);
             this.drawWithRotation(polypol, 1688, 212, 29, 26, 29, 26, player.rotation, -1 / 2 * 29, -1 / 2 * 26);
+        }
+        //SPLITTING FLAME I & II
+        if (this.spellType == "splittingFlame" || this.spellType == "splittingFlameII")
+        {
+            this.tactac = 0;
+            if (caster)
+            {
+                this.orientToCaster(38, 1/2 * Math.PI);
+                this.rotation = player.rotation + 1/2 * Math.PI;
+            }
+            else
+            {
+                this.orientToCaster(38, Math.PI);
+                this.rotation = Math.PI + unitSelf.rotation + Math.PI;
+            }
         }
         //ARCANE ORBS
         if (this.spellType == "arcaneOrbs")
@@ -1995,6 +2011,24 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             else
             {
                 this.orientToCaster(29, 3.2 / 5 * Math.PI);
+                this.drawWithRotation(mofu, 454, 46, 19, 32, 29, 26, player.rotation, -1 / 2 * 19, -1 / 2 * 32);
+            }
+        }
+        //TEETH I & II
+        if (this.spellType == "teethI" || this.spellType == "teethII")
+        {
+            this.tic = 0;
+            this.zIndex = 5;
+            this.size = 1;
+
+            if (caster)
+            {
+                this.X = X;
+                this.Y = Y;
+            }
+            else
+            {
+                this.orientToCaster(29, 2.5 / 5 * Math.PI);
                 this.drawWithRotation(mofu, 454, 46, 19, 32, 29, 26, player.rotation, -1 / 2 * 19, -1 / 2 * 32);
             }
         }
@@ -3763,6 +3797,235 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 }
             }
 
+            //TEETH II
+            if (this.spellType == "teethII")
+            {
+                if (caster)
+                {
+                    this.rotation += this.turn;
+                    this.tic += 3 * (TTD / 16.75);
+                    this.size += 0.0017 * (TTD / 16.75);
+                    if (this.tic < 9)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 2446, 32, 38, 63, -(1/2 * 38 * this.size), -(1/2 * 63 * this.size), 38 * this.size, 63 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 9 * this.size, ((1.5 * Math.random()) * this.size + 0.05 * this.cnx) / 8, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 18)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 2398, 30, 38, 63, -(1/2 * 38 * this.size), -(1/2 * 63 * this.size), 38 * this.size, 63 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 13 * this.size, ((3 * Math.random()) * this.size + 0.07 * this.cnx) / 8, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 27)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 2335, 33, 38, 63, -(1/2 * 38 * this.size), -(1/2 * 63 * this.size), 38 * this.size, 63 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 15 * this.size, ((4.5 * Math.random()) * this.size + 0.08 * this.cnx) / 8, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 36)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 2248, 18, 71, 87, -(1/2 * 71 * this.size), -(1/2 * 87 * this.size), 71 * this.size, 87 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 15 * this.size, ((6 * Math.random()) * this.size + 0.09 * this.cnx) / 8, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 66)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 2159, 20, 71, 87, -(1/2 * 71 * this.size), -(1/2 * 87 * this.size), 71 * this.size, 87 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 25 * this.size, ((7.5 * Math.random()) * this.size + 0.1 * this.cnx) / 8, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 96)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 2014, 12, 125, 88, -(1/2 * 125 * this.size), -(1/2 * 88 * this.size), 125 * this.size, 88 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 45 * this.size, ((8.5 * Math.random()) * this.size + 0.125 * this.cnx) / 8, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 230)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 1898, 14, 125, 88, -(1/2 * 125 * this.size), -(1/2 * 88 * this.size), 125 * this.size, 88 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 54 * this.size, ((9.5 * Math.random()) * this.size + 0.15 * this.cnx) / 8, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 790)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 1711, 7, 171, 87, -(1/2 * 171 * this.size), -(1/2 * 87 * this.size), 171 * this.size, 87 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 63 * this.size, ((11 * Math.random()) * this.size + 0.165 * this.cnx) / 8, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 870)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 1517, 10, 171, 87, -(1/2 * 171 * this.size), -(1/2 * 87 * this.size), 171 * this.size, 87 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 68 * this.size, ((9 * Math.random()) * this.size + 0.13 * this.cnx) / 8, 5,  "magic", "magic");
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 1509, 114, 171, 87, -(1/2 * 171 * this.size), -(1/2 * 87 * this.size), 171 * this.size, 87 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 74 * this.size, ((6.5 * Math.random()) * this.size + 0.11 * this.cnx) / 8, 5,  "magic", "magic");
+                    }
+
+                    var gamouseX = X - mouseX + 1/2 * CCC.width;
+                    var gamouseY = Y - mouseY + 1/2 * CCC.height;
+                    this.rotation = Math.atan2(this.Y - gamouseY, this.X - gamouseX) + 1/2 * Math.PI;
+                    this.X += Math.cos(Math.atan2(this.Y - gamouseY, this.X - gamouseX) + Math.PI) * (10 + this.size * this.size * this.size) * (TTD / 16.75);
+                    this.Y += Math.sin(Math.atan2(this.Y - gamouseY, this.X - gamouseX) + Math.PI) * (10 + this.size * this.size * this.size) * (TTD / 16.75);
+
+
+                    this.spellTimer(7 + (this.cnx / 10));
+                }
+                else
+                {
+
+                }
+            }
+
+            //TEETH I
+            if (this.spellType == "teethI")
+            {
+                if (caster)
+                {
+                    this.rotation += this.turn;
+                    this.tic += 3 * (TTD / 16.75);
+                    this.size += 0.01 * (TTD / 16.75);
+                    if (this.tic < 9 * 1.5)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 2446, 32, 38, 63, -(1/2 * 38 * this.size), -(1/2 * 63 * this.size), 38 * this.size, 63 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 9 * this.size, ((1.5 * Math.random()) * this.size + 0.05 * this.cnx) / 3, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 18 * 1.5)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 2398, 30, 38, 63, -(1/2 * 38 * this.size), -(1/2 * 63 * this.size), 38 * this.size, 63 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 13 * this.size, ((3 * Math.random()) * this.size + 0.07 * this.cnx) / 3, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 27 * 1.5)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 2335, 33, 38, 63, -(1/2 * 38 * this.size), -(1/2 * 63 * this.size), 38 * this.size, 63 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 15 * this.size, ((4.5 * Math.random()) * this.size + 0.08 * this.cnx) / 3, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 36 * 1.5)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 2248, 18, 71, 87, -(1/2 * 71 * this.size), -(1/2 * 87 * this.size), 71 * this.size, 87 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 15 * this.size, ((6 * Math.random()) * this.size + 0.09 * this.cnx) / 3, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 45 * 1.5)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 2159, 20, 71, 87, -(1/2 * 71 * this.size), -(1/2 * 87 * this.size), 71 * this.size, 87 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 25 * this.size, ((7.5 * Math.random()) * this.size + 0.1 * this.cnx) / 3, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 54 * 1.5)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 2014, 12, 125, 88, -(1/2 * 125 * this.size), -(1/2 * 88 * this.size), 125 * this.size, 88 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 45 * this.size, ((8.5 * Math.random()) * this.size + 0.125 * this.cnx) / 3, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 63 * 1.5)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 1898, 14, 125, 88, -(1/2 * 125 * this.size), -(1/2 * 88 * this.size), 125 * this.size, 88 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 54 * this.size, ((9.5 * Math.random()) * this.size + 0.15 * this.cnx) / 3, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 78 * 1.5)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 1711, 7, 171, 87, -(1/2 * 171 * this.size), -(1/2 * 87 * this.size), 171 * this.size, 87 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 63 * this.size, ((11 * Math.random()) * this.size + 0.165 * this.cnx) / 3, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 93 * 1.5)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 1517, 10, 171, 87, -(1/2 * 171 * this.size), -(1/2 * 87 * this.size), 171 * this.size, 87 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 68 * this.size, ((9 * Math.random()) * this.size + 0.13 * this.cnx) / 3, 5,  "magic", "magic");
+                    }
+                    else if (this.tic < 108 * 1.5)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 1509, 114, 171, 87, -(1/2 * 171 * this.size), -(1/2 * 87 * this.size), 171 * this.size, 87 * this.size);
+                        XXX.restore();
+                        this.contactDamage(false, 74 * this.size, ((6.5 * Math.random()) * this.size + 0.11 * this.cnx) / 3, 5,  "magic", "magic");
+                    }
+                    else
+                    {
+                        magicList.splice(magicList.indexOf(this), 1);
+                    }
+
+                    var gamouseX = X - mouseX + 1/2 * CCC.width;
+                    var gamouseY = Y - mouseY + 1/2 * CCC.height;
+                    this.rotation = Math.atan2(this.Y - gamouseY, this.X - gamouseX) + 1/2 * Math.PI;
+                    this.X += Math.cos(Math.atan2(this.Y - gamouseY, this.X - gamouseX) + Math.PI) * (8.5 + this.size * this.size * this.size) * (TTD / 16.75);
+                    this.Y += Math.sin(Math.atan2(this.Y - gamouseY, this.X - gamouseX) + Math.PI) * (8.5 + this.size * this.size * this.size) * (TTD / 16.75);
+                }
+                else
+                {
+
+                }
+            }
+
             //ENTANGLEMENT
             if (this.spellType == "entanglement")
             {
@@ -4029,6 +4292,47 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 else
                 {
                     this.spellTimer(0.45);
+                }
+            }
+
+            //SPLITTING FLAME
+            if (this.spellType == "splittingFlame" || this.spellType == "splittingFlameII")
+            {
+                this.flashAnimate(90, false, 1, [{image: polypol, imgX: 1688, imgY: 212, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * 0.4, adjY: -1 / 2 * 26 * 0.4, width: 29 * 0.4, height: 26 * 0.4}, {image: polypol, imgX: 1720, imgY: 210, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * 0.4, adjY: -1 / 2 * 26 * 0.4, width: 29 * 0.4, height: 26 * 0.4}, {image: polypol, imgX: 1754, imgY: 211, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * 0.4, adjY: -1 / 2 * 26 * 0.4, width: 29 * 0.4, height: 26 * 0.4}]);
+                lights.push({X: this.X, Y: this.Y, size: 10, extraStops: true, GRD: 0.75, Alpha: 0.25, showMe: false});
+
+                this.project(this.rotation, 120, 6, "alert")
+
+                if (this.alert == true)
+                {
+                    this.tactac += 1;
+                    if (this.tactac <= 10 && this.tactac % 5 == 0 && this.spellType == "splittingFlame" || this.tactac <= 20 && this.tactac % 5 == 0 && this.spellType == "splittingFlameII")
+                    {
+                        magicList.push(new Magic({ID: "fireBreath", CNX: this.cnx}, false, 1, this, false));
+                        magicList[magicList.length - 1].rotation += Math.PI - 1/4 * Math.PI - 1/8 * Math.PI;
+                        magicList[magicList.length - 1].X += Math.cos(magicList[magicList.length - 1].rotation + 1/2 * Math.PI) * 20;
+                        magicList[magicList.length - 1].Y += Math.sin(magicList[magicList.length - 1].rotation + 1/2 * Math.PI) * 20;
+                        magicList[magicList.length - 1].rotation += magicList[magicList.length - 1].secretCaster = true;
+                        magicList.push(new Magic({ID: "fireBreath", CNX: this.cnx}, false, 2, this, false));
+                        magicList[magicList.length - 1].rotation += Math.PI - 1/4 * Math.PI - 1/8 * Math.PI;
+                        magicList[magicList.length - 1].X += Math.cos(magicList[magicList.length - 1].rotation + 1/2 * Math.PI) * 20;
+                        magicList[magicList.length - 1].Y += Math.sin(magicList[magicList.length - 1].rotation + 1/2 * Math.PI) * 20;
+                        magicList[magicList.length - 1].rotation += magicList[magicList.length - 1].secretCaster = true;
+                        magicList.push(new Magic({ID: "fireBreath", CNX: this.cnx}, false, 3, this, false));
+                        magicList[magicList.length - 1].rotation += Math.PI - 1/4 * Math.PI - 1/8 * Math.PI;
+                        magicList[magicList.length - 1].X += Math.cos(magicList[magicList.length - 1].rotation + 1/2 * Math.PI) * 20;
+                        magicList[magicList.length - 1].Y += Math.sin(magicList[magicList.length - 1].rotation + 1/2 * Math.PI) * 20;
+                        magicList[magicList.length - 1].rotation += magicList[magicList.length - 1].secretCaster = true;
+                        magicList.push(new Magic({ID: "fireBreath", CNX: this.cnx}, false, 4, this, false));
+                        magicList[magicList.length - 1].rotation += Math.PI - 1/4 * Math.PI - 1/8 * Math.PI;
+                        magicList[magicList.length - 1].X += Math.cos(magicList[magicList.length - 1].rotation + 1/2 * Math.PI) * 20;
+                        magicList[magicList.length - 1].Y += Math.sin(magicList[magicList.length - 1].rotation + 1/2 * Math.PI) * 20;
+                        magicList[magicList.length - 1].rotation += magicList[magicList.length - 1].secretCaster = true;
+                    }
+                    else if (this.tactac > 10 && this.spellType == "splittingFlame" || this.tactac > 20 && this.spellType == "splittingFlameII")
+                    {
+                        magicList.splice(magicList.indexOf(this), 1);
+                    }
                 }
             }
 
@@ -4746,8 +5050,14 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 }
             }
 
-            if (this.spellType == "fireBreath")
+            if (this.spellType == "fireBreath" || this.spellType == "fireBreathPlus")
             {
+                if (this.secretCaster == true)
+                {
+                    this.castedByPlayer = true;
+                    caster = true;
+                }
+
                 if (this.alert != true)
                 {
                     this.fire = true;
@@ -4817,7 +5127,30 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                     {
                         lights.push({X: this.X, Y: this.Y, size: 28, extraStops: true, GRD: 0, Alpha: 0.9, showMe: false});
                     }
-                    this.contactDamage(true, 21, ((8 + 0.1 * this.cnx) / 9), 3, "fire");
+
+                    if (this.spellType == "fireBreathPlus")
+                    {
+                        if (this.secretCaster != true)
+                        {
+                            this.contactDamage(true, 21, (((8 + 0.1 * this.cnx) / 9) / 8), 30, "fire");
+                        }
+                        else
+                        {
+                            this.contactDamage(false, 21, (((7.25 + 0.175 * this.cnx) / 9) / 8), 30, "fire");
+                        }
+                    }
+                    else
+                    {
+                        if (this.secretCaster != true)
+                        {
+                            this.contactDamage(true, 21, (((8 + 0.1 * this.cnx) / 9) / 9.5), 30, "fire");
+                        }
+                        else
+                        {
+                            this.contactDamage(false, 21, (((8 + 0.1 * this.cnx) / 9) / 9.5), 30, "fire");
+                        }
+                    }
+
                     this.project(this.rotation, 175, 2.3, "alert");
                 }
                 else

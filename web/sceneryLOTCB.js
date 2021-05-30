@@ -37220,6 +37220,80 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.activate = false;
             }
         }
+        else if (this.type == "icePath")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+
+                this.tic = 0;
+                this.size = this.temporary;
+                this.presence = false;
+                this.fade = 0.6;
+            }
+
+            if (this.presence != true)
+            {
+                this.tic += 1;
+            }
+
+            if (this.tic > 1400)
+            {
+                this.fade -= 0.01;
+
+                if (this.fade < 0.04)
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+            }
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.globalAlpha = this.fade;
+            XXX.drawImage(zapa, 302, 10, 30, 28, -(1/2 * 30 * this.size * 1.4), -(1/2 * 28 * this.size), 30 * this.size * 1.4, 28 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 9 * this.size;
+
+            this.presence = false;
+            if (this.dst(X, Y) <= this.radius && this.fade > 0.35)
+            {
+                player.water = false;
+                player.land = true;
+                this.presence = true;
+            }
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && this.fade > 0.35)
+                {
+                    ArtificialIntelligenceAccess[j].water = false;
+                    ArtificialIntelligenceAccess[j].land = true;
+                    this.presence = true;
+                }
+            }
+
+            //fire melts the ice
+            for (var jju = 0; jju < magicList.length; jju++)
+            {
+                if (magicList[jju].fire == true && ((this.X - magicList[jju].X)*(this.X - magicList[jju].X)+(this.Y - magicList[jju].Y)*(this.Y - magicList[jju].Y)) <= (this.radius)*(this.radius))
+                {
+                    this.tic += 88;
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "crenFoam")
         {
             //TRAITS
@@ -37248,8 +37322,8 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             this.stopme = true;
                         }
                     }
-                    this.X += Math.cos(this.dir) * (150 / (10 + this.tic * 3));
-                    this.Y += Math.sin(this.dir) * (150 / (10 + this.tic * 3));
+                    this.X += Math.cos(this.dir) * (150 / (10 + this.tic * 3)) * (TTD/16.75);
+                    this.Y += Math.sin(this.dir) * (150 / (10 + this.tic * 3)) * (TTD/16.75);
                 }
                 this.size += 0.0045 * (TTD/16.75);
                 if (this.tic < 25)

@@ -10774,7 +10774,7 @@ function cheats()
             if (xKey)
             {
                 var alphon = Math.random();
-                if (alphon > 0.6)
+                if (alphon > 0.7)
                 {
                     alphon = true;
                 }
@@ -10783,17 +10783,17 @@ function cheats()
                     alphon = false;
                 }
 
-                // xKey = false;
-                // console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Laumei", ' + alphon + ', "preBuilt"));');
-                // worldItems.push([new Item("unitMarker", X, Y), 1]);
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Spiria", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
             }
 
             if (rKey)
             {
-                // XXX.save();
-                // XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
-                // XXX.drawImage(orco, 68, 36, 88, 67, -1/2 * 88 * 1, -1/2 * 67 * 1, 88 * 1, 67 * 1);
-                // XXX.restore();
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(lesp, 133, 22, 72, 71, -1/2 * 72 * 1.4, -1/2 * 71 * 1.4, 72 * 1.4, 71 * 1.4);
+                XXX.restore();
             }
         }
         else if (buildToggle == 293)

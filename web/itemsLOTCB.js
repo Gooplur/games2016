@@ -28415,6 +28415,43 @@ function Item(type, x, y)
             this.buyValue = 925 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 725.
             this.sellValue = 495 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 695.
         }
+        else if (this.type == "muschaMilk")
+        {
+            //For All Items
+            this.identity = "Muscha Milk";
+            this.weight = 1.5;
+            this.size = 5;
+            this.description = "A light coloured sap that is sweet, thin, and has a prickliness that burns your throat as you swallow it.";
+            this.intForDes = 41;
+            this.intDescription = "This is an antidote to spiria venom that can also counter weak poisons.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5.5; //satisfies hunger.
+            this.thirst = 5.5; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = -2.5; //heals health.
+            this.generation = 0.5; //recoops lost energy.
+            this.replenish = 0.25; //restores will.
+            this.cooling = 1; //cools player.
+
+            //ability
+            this.ability = "muschaMilk";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 16;
+            this.ingredients = [["Vial of Water", 1], ["Muscha Growths", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 17 - Math.floor(player.getCharisma() / 50); // at max, buy for 16.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 10); // at max, sell for 16.
+        }
         else if (this.type == "mandrakeJuice")
         {
             //For All Items
@@ -45384,6 +45421,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "nyomoakuFur")
+        {
+            //For All Items
+            this.identity = "Nyomoaku Fur";
+            this.weight = 0.15;
+            this.size = 8;
+            this.description = "The black spotted white fur from a nyomoaku spider.";
+            this.intForDes = 6;
+            this.intDescription = "This type of fur is used to make lordly clothing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 25 - Math.floor(player.getCharisma() / 10); // at max, buy for 20.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 10); // at max, sell for 20.
+        }
         else if (this.type == "torperFuzz")
         {
             //For All Items
@@ -48848,6 +48905,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "spiriaSpinneret")
+        {
+            //For All Items
+            this.identity = "Spiria Spinneret";
+            this.weight = 2;
+            this.size = 9;
+            this.description = "The web spinning organ of a spiria spider.";
+            this.intForDes = 12;
+            this.intDescription = "This can be used in alchemy as a changer.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
         else if (this.type == "eemegFeeler")
         {
             //For All Items
@@ -49192,7 +49269,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Green Syanj Segment";
-            this.weight = 45.5;
+            this.weight = 46;
             this.size = 25;
             this.description = "A sliced segment of a carnivorous green syanj plant.";
             this.intForDes = 20;
@@ -67822,6 +67899,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "nyomoakuFur")
+        {
+            XXX.beginPath();
+            XXX.drawImage(arak, 89, 541, 32, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 32 * 1, 27 * 1);
+        }
+        else if (this.type == "spiriaSpinneret")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lesp, 416, 136, 26, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 26 * 1, 21 * 1);
+        }
         else if (this.type == "turotanReeds")
         {
             XXX.beginPath();
@@ -72893,7 +72980,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(tomb, 530, 538, 43, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 43 * 1, 36 * 1);
         }
-        else if (this.type == "ameloyPerfume" || this.type == "muonPerfume" || this.type == "poegroonOil" || this.type == "tarsiExtract")
+        else if (this.type == "ameloyPerfume" || this.type == "muonPerfume" || this.type == "poegroonOil" || this.type == "tarsiExtract" || this.type == "muschaMilk")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1735, 201, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 10 * 1, 15 * 1);
@@ -76970,6 +77057,16 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "nyomoakuFur")
+        {
+            LXX.beginPath();
+            LXX.drawImage(arak, 89, 541, 32, 27, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 27 * 1), 32 * 1, 27 * 1);
+        }
+        else if (this.type == "spiriaSpinneret")
+        {
+            LXX.beginPath();
+            LXX.drawImage(lesp, 416, 136, 26, 21, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 21 * 1), 26 * 1, 21 * 1);
         }
         else if (this.type == "turotanReeds")
         {
@@ -82002,7 +82099,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(tomb, 530, 538, 43, 36, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 36 * 1), 43 * 1, 36 * 1);
         }
-        else if (this.type == "ameloyPerfume" || this.type == "muonPerfume" || this.type == "poegroonOil" || this.type == "tarsiExtract")
+        else if (this.type == "ameloyPerfume" || this.type == "muonPerfume" || this.type == "poegroonOil" || this.type == "tarsiExtract" || this.type == "muschaMilk")
         {
             LXX.beginPath();
             LXX.drawImage(oldverse, 1735, 201, 10, 15, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 15 * 1), 10 * 1, 15 * 1);
@@ -86059,6 +86156,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "nyomoakuFur")
+        {
+            XXX.beginPath();
+            XXX.drawImage(arak, 89, 541, 32, 27, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 27 * 1), 32 * 1, 27 * 1);
+        }
+        else if (this.type == "spiriaSpinneret")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lesp, 416, 136, 26, 21, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 21 * 1), 26 * 1, 21 * 1);
         }
         else if (this.type == "turotanReeds")
         {
@@ -91086,7 +91193,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(tomb, 530, 538, 43, 36, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 36 * 1), 43 * 1, 36 * 1);
         }
-        else if (this.type == "ameloyPerfume" || this.type == "muonPerfume" || this.type == "poegroonOil" || this.type == "tarsiExtract")
+        else if (this.type == "ameloyPerfume" || this.type == "muonPerfume" || this.type == "poegroonOil" || this.type == "tarsiExtract" || this.type == "muschaMilk")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1735, 201, 10, 15, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 15 * 1), 10 * 1, 15 * 1);

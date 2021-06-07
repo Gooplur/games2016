@@ -329,6 +329,7 @@ function Adventurer()
     this.poisonV = false;
     this.poisonVI = false;
     this.poisoned = false;
+    this.spiriaVenom = false;
     this.gojiiPoisoned = false;
     this.swollenI = false;
     this.swollenII = false;
@@ -4088,7 +4089,7 @@ function Adventurer()
             //Web Effect
             if (this.webbedNum > 0)
             {
-                if (new Date().getTime() < this.webbedTime + 1000)
+                if (new Date().getTime() - this.webbedTime > 1000)
                 {
                     this.webbedTime = new Date().getTime();
                     this.webbedNum -= 1;
@@ -4098,6 +4099,7 @@ function Adventurer()
             else
             {
                 this.webbed = false;
+                this.webbedNum = 0;
             }
 
             //Strong Web Effect
@@ -5173,7 +5175,7 @@ function Adventurer()
             }
 
             //This enables the poisoned mini notice if any type of any category of poison is in effect.
-            if (this.poisonI == true || this.poisonII == true || this.poisonIII == true || this.poisonIV == true || this.poisonV == true || this.poisonVI == true)
+            if (this.poisonI == true || this.poisonII == true || this.spiriaVenom == true || this.poisonIII == true || this.poisonIV == true || this.poisonV == true || this.poisonVI == true)
             {
                 this.poisoned = true;
             }
@@ -5211,8 +5213,13 @@ function Adventurer()
                 //Take away health
                 this.health -= Math.max(0, (4 - (this.antiVenom * 2)));
             }
-            if (this.poisonII == true && new Date().getTime() - this.timeSinceLastPoisoned > 6000)
+            if (this.poisonII == true && new Date().getTime() - this.timeSinceLastPoisoned > 6000 || this.spiriaVenom == true && new Date().getTime() - this.timeSinceLastPoisoned > 6000)
             {
+                if (this.spiriaVenom == true)
+                {
+                    this.stunnedI = true;
+                    this.stunnedTime = 6;
+                }
                 //reset the timer for the poison.
                 this.timeSinceLastPoisoned = new Date().getTime();
                 //Take away health
@@ -21625,6 +21632,7 @@ function Adventurer()
                                         this.warmth = this.warmthMAX;
                                         this.poisonI = false;
                                         this.poisonII = false;
+                                        this.spiriaVenom = false;
                                         this.poisonIII = false;
                                         this.poisonIV = false;
                                         this.poisonV = false;
@@ -43651,6 +43659,12 @@ function Adventurer()
                             {
                                 this.poisonI = false;
                             }
+                            else if (Inventory[i][0].ability == "muschaMilk") //Cures poison
+                            {
+                                this.poisonI = false;
+                                this.spiriaVenom = false;
+                                this.throatTicks = false;
+                            }
                             else if (Inventory[i][0].ability == "antidoteII") //Cures poison
                             {
                                 this.poisonI = false;
@@ -43661,6 +43675,7 @@ function Adventurer()
                                 this.poisonI = false;
                                 this.poisonII = false;
                                 this.poisonIII = false;
+                                this.spiriaVenom = false;
                             }
                             else if (Inventory[i][0].ability == "antidoteIV") //Cures poison
                             {
@@ -43668,6 +43683,7 @@ function Adventurer()
                                 this.poisonII = false;
                                 this.poisonIII = false;
                                 this.poisonIV = false;
+                                this.spiriaVenom = false;
                             }
                             else if (Inventory[i][0].ability == "antidoteV") //Cures poison
                             {
@@ -43676,6 +43692,7 @@ function Adventurer()
                                 this.poisonIII = false;
                                 this.poisonIV = false;
                                 this.poisonV = false;
+                                this.spiriaVenom = false;
                             }
                             else if (Inventory[i][0].ability == "swellReductionI")
                             {
@@ -44617,6 +44634,7 @@ function Adventurer()
                                 //breaks down venom compounds
                                 this.poisonI = false;
                                 this.poisonII = false;
+                                this.spiriaVenom = false;
                                 this.swollenV = false;
                                 this.swollenIV = false;
                                 this.swollenIII = false;
@@ -44641,6 +44659,7 @@ function Adventurer()
                                     this.poisonV = false;
                                     this.poisonI = true;
                                 }
+                                this.spiriaVenom = false;
                                 this.decay -= 1;
                                 this.fungalFever = false;
                                 this.cyrinthilimTime = 0;
@@ -44723,6 +44742,7 @@ function Adventurer()
                                 this.poisonIV = false;
                                 this.poisonV = false;
                                 this.poisonVI = false;
+                                this.spiriaVenom = false;
                                 this.etnaVenTime = 0;
                                 this.fungalFever = false;
                                 this.cyrinthilimTime = 0;
@@ -47649,6 +47669,7 @@ function Adventurer()
                 this.poisonIII = false;
                 this.poisonIV = false;
                 this.poisonV = false;
+                this.spiriaVenom = false;
                 this.gutWorms = false;
                 this.throatTicks = false;
                 this.freezing = false;
@@ -47720,6 +47741,7 @@ function Adventurer()
             this.poisonIII = false;
             this.poisonIV = false;
             this.poisonV = false;
+            this.spiriaVenom = false;
             this.gutWorms = false;
             this.throatTicks = false;
             this.freezing = false;

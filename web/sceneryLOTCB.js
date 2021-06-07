@@ -924,6 +924,252 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
+        else if (this.type == "spiriaWeb")
+        {
+            //TRAITS
+            this.solid = false;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.stickiness = false;
+                this.tic = 0;
+                this.phase = 1
+                this.size = this.temporary;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(lesp, 315, 142, 47, 32, -(1/2 * 47 * 1/4 * this.size), -(1/2 * 32 * 1/4 * this.size), 47 * 1/4 * this.size, 32 * 1/4 * this.size);
+                XXX.restore();
+            }
+            else if (this.phase == 1)
+            {
+                this.tic += 1 * (TTD / 16.75);
+                if (this.tic < 4)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(lesp, 315, 142, 47, 32, -(1/2 * 47 * 1/4 * this.size), -(1/2 * 32 * 1/4 * this.size), 47 * 1/4 * this.size, 32 * 1/4 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic < 8)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(lesp, 315, 142, 47, 32, -(1/2 * 47 * 1/2 * this.size), -(1/2 * 32 * 1/2 * this.size), 47 * 1/2 * this.size, 32 * 1/2 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic < 12)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(lesp, 315, 142, 47, 32, -(1/2 * 47 * 1 * this.size), -(1/2 * 32 * 1 * this.size), 47 * 1 * this.size, 32 * 1 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.stickiness = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(lesp, 193, 141, 107, 32, -(1/2 * 107 * 1 * this.size), -(1/2 * 32 * 1 * this.size), 107 * 1 * this.size, 32 * 1 * this.size);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 28 * this.size;
+
+            //stick player and units in the web then store the data for spiders to access.
+            this.webbed = [];
+            if (this.stickiness == true)
+            {
+                if ((X - this.X)*(X - this.X)+(Y - this.Y)*(Y - this.Y) <= this.radius*this.radius)
+                {
+                    player.webbedNum = 3;
+                    player.webbedTime = new Date().getTime();
+                    if (quenHere == false)
+                    {
+                        this.webbed.push(player);
+                    }
+                }
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    var unitDist = (ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y);
+                    if (unitDist <= this.radius*this.radius)
+                    {
+                        ArtificialIntelligenceAccess[i].webbedNum = 3;
+                        ArtificialIntelligenceAccess[i].webbedTime = new Date().getTime();
+                        this.webbed.push(ArtificialIntelligenceAccess[i]);
+                    }
+                }
+            }
+        }
+        else if (this.type == "nyomoakuWeb")
+        {
+            //TRAITS
+            this.solid = false;
+
+            //DRAWSELF
+
+            if (this.phase == 0)
+            {
+                this.phase = 1;
+                this.tic = 0;
+                this.size = this.temporary + (Math.random() / 2);
+                this.webSort = 1 + Math.floor(Math.random() * 8);
+                this.fade = 1;
+                this.randBonBooon = this.information + (Math.random() * 6.2);
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(arak, 655, 881, 163, 145, -(1/2 * 163 * this.size), -(1/2 * 145 * this.size), 163 * this.size, 145 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                if (this.tic < 100)
+                {
+                    this.X += Math.cos(this.rotation) * (2.45 + this.randBonBooon) * (110 / ((this.tic * 10) + 100)) * (TTD / 16.75);
+                    this.Y += Math.sin(this.rotation) * (2.45 + this.randBonBooon) * (110 / ((this.tic * 10) + 100)) * (TTD / 16.75);
+                }
+                this.tic += 1 * (TTD / 16.75);
+                if (this.tic < 7)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(arak, 655, 881, 163, 145, -(1/2 * 163 * this.size / 4), -(1/2 * 145 * this.size / 4), 163 * this.size / 4, 145 * this.size / 4);
+                    XXX.restore();
+                }
+                else if (this.tic < 14)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(arak, 657, 996, 163, 145, -(1/2 * 163 * this.size / 2), -(1/2 * 145 * this.size / 2), 163 * this.size / 2, 145 * this.size / 2);
+                    XXX.restore();
+                }
+                else if (this.tic < 21)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(arak, 657, 996, 163, 145, -(1/2 * 163 * this.size), -(1/2 * 145 * this.size), 163 * this.size, 145 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    if (this.webSort == 1)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.globalAlpha = this.fade;
+                        XXX.drawImage(arak, 57, 883, 163, 145, -(1/2 * 163 * this.size), -(1/2 * 145 * this.size), 163 * this.size, 145 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.webSort == 2)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.globalAlpha = this.fade;
+                        XXX.drawImage(arak, 206, 878, 163, 145, -(1/2 * 163 * this.size), -(1/2 * 145 * this.size), 163 * this.size, 145 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.webSort == 3)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.globalAlpha = this.fade;
+                        XXX.drawImage(arak, 339, 875, 154, 138, -(1/2 * 154 * this.size), -(1/2 * 138 * this.size), 154 * this.size, 138 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.webSort == 4)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.globalAlpha = this.fade;
+                        XXX.drawImage(arak, 493, 876, 154, 138, -(1/2 * 154 * this.size), -(1/2 * 138 * this.size), 154 * this.size, 138 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.webSort == 5)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.globalAlpha = this.fade;
+                        XXX.drawImage(arak, 54, 1020, 154, 138, -(1/2 * 154 * this.size), -(1/2 * 138 * this.size), 154 * this.size, 138 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.webSort == 6)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.globalAlpha = this.fade;
+                        XXX.drawImage(arak, 204, 1006, 154, 138, -(1/2 * 154 * this.size), -(1/2 * 138 * this.size), 154 * this.size, 138 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.webSort == 7)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.globalAlpha = this.fade;
+                        XXX.drawImage(arak, 352, 1009, 154, 138, -(1/2 * 154 * this.size), -(1/2 * 138 * this.size), 154 * this.size, 138 * this.size);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.globalAlpha = this.fade;
+                        XXX.drawImage(arak, 518, 1006, 154, 138, -(1/2 * 154 * this.size), -(1/2 * 138 * this.size), 154 * this.size, 138 * this.size);
+                        XXX.restore();
+                    }
+
+                    if (this.tic > 1577)
+                    {
+                        this.fade -= 0.02;
+                        if (this.fade < 0.04)
+                        {
+                            scenicList.splice(scenicList.indexOf(this), 1);
+                        }
+                    }
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 49 * this.size;
+
+            if (this.tic >= 21)
+            {
+                //stick player and units in the web
+                if ((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y) <= this.radius*this.radius)
+                {
+                    player.webbedNum = 3;
+                    player.webbedTime = new Date().getTime();
+                }
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    var unitDist = (ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y);
+                    if (unitDist <= this.radius*this.radius)
+                    {
+                        ArtificialIntelligenceAccess[i].webbedNum = 3;
+                        ArtificialIntelligenceAccess[i].webbedTime = new Date().getTime();
+                    }
+                }
+            }
+        }
         else if (this.type == "matnaWeb")
         {
             //TRAITS

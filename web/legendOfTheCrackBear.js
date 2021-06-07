@@ -2003,6 +2003,30 @@ function calderaPack()
 
     caldera.onload = function()
     {
+        shagPack();
+    };
+}
+
+function shagPack()
+{
+    var shag = new Image();
+    shag.src = ("images/shag.png");
+    window.shag = shag;
+
+    shag.onload = function()
+    {
+        bhagPack();
+    };
+}
+
+function bhagPack()
+{
+    var bhag = new Image();
+    bhag.src = ("images/bhag.png");
+    window.bhag = bhag;
+
+    bhag.onload = function()
+    {
         olgPack();
     };
 }
@@ -6913,6 +6937,7 @@ function theLegend()
     alchemy.push(new Item("orgishFireworkNorth", false));
     alchemy.push(new Item("orgishFireworkCherry", false));
     alchemy.push(new Item("orgishFireworkCascadia", false));
+    alchemy.push(new Item("muschaMilk", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

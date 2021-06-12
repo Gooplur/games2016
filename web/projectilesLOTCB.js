@@ -54,6 +54,8 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     this.stickDifRot = 0;
     this.stickDifX = 0;
     this.stickDifY = 0;
+    //Random Start Variables
+    this.randomStart = Math.random();
     //do once
     this.unaVez = true;
 
@@ -435,6 +437,18 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                                             }
                                         }
                                     }
+                                    else if (this.ability == "cowardVenom")
+                                    {
+                                        if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                        {
+                                            ArtificialIntelligenceAccess[i].acidIII = true;
+                                            ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                                            if (this.notShotByPlayer)
+                                            {
+                                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                            }
+                                        }
+                                    }
                                     else if (this.ability == "burning")
                                     {
                                         if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
@@ -630,6 +644,14 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                                     if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                                     {
                                         player.poisonIII = true;
+                                    }
+                                }
+                                else if (this.ability == "cowardVenom")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                                    {
+                                        player.acidIII = true;
+                                        player.acidTime = new Date().getTime() + 5000;
                                     }
                                 }
                                 else if (this.ability == "longBurning")
@@ -1945,6 +1967,85 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.rotate(this.spin);
                 XXX.drawImage(roost, 18, 260, 20, 14, -1/2 * (20 * 1), -1/2 * (14 * 1), 20 * 1, 14 * 1);
                 XXX.restore();
+            }
+        }
+        else if (type == "cowardsTeeth") //thrown
+        {
+            this.ability = "cowardVenom";
+            this.radius = 6;
+            this.thrown = true;
+            if (this.randomStart >= 0.5)
+            {
+                this.thrownID = "cowardsTeeth1";
+            }
+            else
+            {
+                this.thrownID = "cowardsTeeth2";
+            }
+            this.thrownRotation = this.rotation + (1 / 2 * Math.PI);
+            this.spin += 0.04 * damage;
+
+            if (list == playerProjectiles && this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.damage = damage;
+                this.magicalDamage = magicDamage;
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                if (this.randomStart >= 0.5)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.spin);
+                    XXX.drawImage(nufu, 907, 455, 33, 24, -1/2 * (33 * 1), -1/2 * (24 * 1), 33 * 1, 24 * 1);
+                    XXX.drawImage(nufu, 907, 455, 33, 24, -1/2 * (33 * 1), -1/2 * (24 * 1), 33 * 1, 24 * 1);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.spin);
+                    XXX.drawImage(nufu, 907, 480, 33, 24, -1/2 * (33 * 1), -1/2 * (24 * 1), 33 * 1, 24 * 1);
+                    XXX.drawImage(nufu, 907, 480, 33, 24, -1/2 * (33 * 1), -1/2 * (24 * 1), 33 * 1, 24 * 1);
+                    XXX.restore();
+                }
+            }
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.damage = damage;
+                this.magicalDamage = magicDamage;
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                if (this.randomStart >= 0.5)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.spin);
+                    XXX.drawImage(nufu, 907, 455, 33, 24, -1/2 * (33 * 1), -1/2 * (24 * 1), 33 * 1, 24 * 1);
+                    XXX.drawImage(nufu, 907, 455, 33, 24, -1/2 * (33 * 1), -1/2 * (24 * 1), 33 * 1, 24 * 1);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.spin);
+                    XXX.drawImage(nufu, 907, 480, 33, 24, -1/2 * (33 * 1), -1/2 * (24 * 1), 33 * 1, 24 * 1);
+                    XXX.drawImage(nufu, 907, 480, 33, 24, -1/2 * (33 * 1), -1/2 * (24 * 1), 33 * 1, 24 * 1);
+                    XXX.restore();
+                }
             }
         }
         else if (type == "throwingKnife") //thrown

@@ -3745,6 +3745,7 @@ var sprig = false;
 var frogme = false;
 var minigame = {};
 var showTiles = false;
+var cowTeethTic = -1;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -5962,6 +5963,7 @@ function theLegend()
     allWeapons.push(new Item("redJungleFowlEgg"));//130
     allWeapons.push(new Item("thenganWarCleaver"));//131
     allWeapons.push(new Item("thenganFangCleaver"));//132
+    allWeapons.push(new Item("sling"));//133
 
 
 
@@ -7158,6 +7160,9 @@ function theLegend()
     handcrafted.push(new Item("rawShelisherFlesh", false));
     handcrafted.push(new Item("slicedSyanj", false));
     handcrafted.push(new Item("slicedGreenSyanj", false));
+    handcrafted.push(new Item("sling", false));
+    handcrafted.push(new Item("cowardsTeethBundle", false));
+    handcrafted.push(new Item("cowardsTeeth", false));
 
 
     //Activate Important Game Functions Here:

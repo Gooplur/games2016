@@ -35845,6 +35845,114 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 scenicList.splice(scenicList.indexOf(this), 1);
             }
         }
+        else if (this.type == "cowardsTeeth1" || this.type == "cowardsTeeth2")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 75;
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 1;
+            }
+            this.zIndex = 2;
+
+            if (this.phase == 0)
+            {
+                this.phase = 1;
+
+                this.tac = 0;
+            }
+            this.tac += 1 * (TTD / 16.75);
+
+            //DRAWSELF
+            if (this.type == "cowardsTeeth1")
+            {
+                if (this.tac < 5)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(nufu, 952, 450, 33, 24, -(1/2 * 33 * this.size), -(1/2 * 24 * this.size), 33 * this.size, 24 * this.size);
+                    XXX.drawImage(nufu, 952, 450, 33, 24, -(1/2 * 33 * this.size), -(1/2 * 24 * this.size), 33 * this.size, 24 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    if (this.tac > 15)
+                    {
+                        this.size = 1.25;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 981, 450, 33, 24, -(1/2 * 33 * this.size), -(1/2 * 24 * this.size), 33 * this.size, 24 * this.size);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 981, 450, 33, 24, -(1/2 * 33 * this.size), -(1/2 * 24 * this.size), 33 * this.size, 24 * this.size);
+                        XXX.drawImage(nufu, 981, 450, 33, 24, -(1/2 * 33 * this.size), -(1/2 * 24 * this.size), 33 * this.size, 24 * this.size);
+                        XXX.restore();
+                    }
+                    if (this.tac > 355)
+                    {
+                        scenicList.splice(scenicList.indexOf(this), 1);
+                    }
+                }
+            }
+            else
+            {
+                if (this.tac < 5)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(nufu, 952, 484, 33, 24, -(1/2 * 33 * this.size), -(1/2 * 24 * this.size), 33 * this.size, 24 * this.size);
+                    XXX.drawImage(nufu, 952, 484, 33, 24, -(1/2 * 33 * this.size), -(1/2 * 24 * this.size), 33 * this.size, 24 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    if (this.tac > 15)
+                    {
+                        this.size = 1.25;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 981, 485, 33, 24, -(1/2 * 33 * this.size), -(1/2 * 24 * this.size), 33 * this.size, 24 * this.size);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nufu, 981, 485, 33, 24, -(1/2 * 33 * this.size), -(1/2 * 24 * this.size), 33 * this.size, 24 * this.size);
+                        XXX.drawImage(nufu, 981, 485, 33, 24, -(1/2 * 33 * this.size), -(1/2 * 24 * this.size), 33 * this.size, 24 * this.size);
+                        XXX.restore();
+                    }
+                    if (this.tac > 355)
+                    {
+                        scenicList.splice(scenicList.indexOf(this), 1);
+                    }
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 7;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "fegilMound")
         {
             //TRAITS

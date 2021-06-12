@@ -24362,6 +24362,215 @@ function Adventurer()
                 }
             }
         }
+        //SLING
+        if (this.weaponEquipped == "sling")
+        {
+            var thrownWepUsing = -1;
+            for (var i = 0; i < Inventory.length; i++)
+            {
+                if (Inventory[i][0].subUtility == "cowardsTeeth" && Inventory[i][0].equipped == true && Inventory[i][1] >= 6)
+                {
+                    thrownWepUsing = i;
+                    break;
+                }
+            }
+
+            if (thrownWepUsing == -1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(nufu, 1067, 432, 91, 132, -1/2 * 91, -1/2 * 132, 91, 132);
+                XXX.restore();
+                this.attackManual = false;
+                this.attacking = false;
+                this.strike = false;
+                spaceKey = false;
+                this.stage = 0;
+                cowTeethTic = -1;
+            }
+            else
+            {
+                if (cowTeethTic >= 45)
+                {
+                    this.stageEngine(11, 0.25, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+                }
+                else
+                {
+                    this.stage = 0;
+                }
+
+                //ATTACK ANIMATION
+                if (Math.floor(this.stage) <= 0)
+                {
+                    if (cowTeethTic < 45)
+                    {
+                        cowTeethTic += 1 * (TTD / 16.75);
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(nufu, 1161, 426, 91, 132, -1/2 * 91, -1/2 * 132, 91, 132);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(nufu, 1154, 210, 91, 132, -1/2 * 91, -1/2 * 132, 91, 132);
+                        XXX.restore();
+                    }
+
+                    this.attackManual = false;
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(nufu, 1063, 216, 91, 132, -1/2 * 91, -1/2 * 132, 91, 132);
+                    XXX.restore();
+
+                    this.attackManual = false;
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(nufu, 1154, 210, 91, 132, -1/2 * 91, -1/2 * 132, 91, 132);
+                    XXX.restore();
+
+                    this.attackManual = false;
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(nufu, 1235, 209, 91, 132, -1/2 * 91, -1/2 * 132, 91, 132);
+                    XXX.restore();
+                    this.attackManual = false;
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(nufu, 1323, 201, 91, 132, -1/2 * 91, -1/2 * 132, 91, 132);
+                    XXX.restore();
+                    this.attackManual = false;
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(nufu, 1064, 339, 91, 132, -1/2 * 91, -1/2 * 132, 91, 132);
+                    XXX.restore();
+
+                    if (this.attackManual == false)
+                    {
+                        this.attackManual = true;
+
+                        //throw on this frame
+                        for (var cowteethy = 0; cowteethy < 6; cowteethy++)
+                        {
+                            playerProjectiles.push(new Projectile("cowardsTeeth", X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI + ((1/2 * Math.PI) - Math.PI * Math.random()) / (2 + (player.getRanged() / 4)), this.weapon.speed + (1.5 - 3 * Math.random()), this.weapon.range + (25 - 50 * Math.random()), this.weapon.negateArmour, playerProjectiles, ((2) + ((2.5/50) * player.getStrength())), this.weapon.magicalDamage, "cowardVenom", false, "Player", this.ethereal));
+                        }
+                    }
+                }
+                else if (Math.floor(this.stage) <= 7)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(nufu, 1064, 339, 91, 132, -1/2 * 91, -1/2 * 132, 91, 132);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 8)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(nufu, 1236, 331, 91, 132, -1/2 * 91, -1/2 * 132, 91, 132);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 9)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(nufu, 1324, 323, 91, 132, -1/2 * 91, -1/2 * 132, 91, 132);
+                    XXX.restore();
+                    if (Math.floor(this.stage) >= 10)
+                    {
+                        cowTeethTic = -1;
+                        this.attacking = false;
+                        //deletes the weapon that was thrown from the inv
+                        if (this.attackManual == true)
+                        {
+                            if (Inventory[thrownWepUsing][1] > 1)
+                            {
+                                this.attackCooldown = new Date().getTime();
+                                Inventory[thrownWepUsing][1] -= 6;
+                                this.stage = 0;
+                            }
+                            else
+                            {
+                                this.attackCooldown = new Date().getTime();
+                                Inventory.splice(thrownWepUsing, 1);
+                                this.stage = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         //VARDANIAN POLEHAMMER
         if (this.weaponEquipped == "vardanianPolehammer")
         {
@@ -32623,6 +32832,14 @@ function Adventurer()
             //This adjusts the starting position of the egg.
             this.projectileX = 9;
             this.projectileY = 9;
+        }
+        else if (this.weaponEquipped == "sling")
+        {
+            this.weapon = allWeapons[133];
+
+            //This adjusts the starting position of the egg.
+            this.projectileX = -10;
+            this.projectileY = -10;
         }
 
         //Access Stats for each weapon first. //1/2 is directly forward facing.
@@ -47869,7 +48086,7 @@ function Adventurer()
                 }
 
                 //this is rare, but some weapons draw below the body layer.
-                if (this.outfitZ == "mid" || this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow" || this.weaponEquipped == "throwingStar" || this.weaponEquipped == "pitchfork" || this.weaponEquipped == "cultistScythe" || this.weaponEquipped == "sceptreOfRadiance" || this.weaponEquipped == "longBone" || this.weaponEquipped == "theWendigosCleaver" || this.weaponEquipped == "beulingerrPike" || this.weaponEquipped == "sackmansSword" || this.weaponEquipped == "throwingKnife" || this.weaponEquipped == "poisonCoatedThrowingKnife" || this.weaponEquipped == "cephrianPikeAndShield" || this.weaponEquipped == "cephrianBlade" || this.weaponEquipped == "cephrianDagger" || this.weaponEquipped == "cephrianRapier" || this.weaponEquipped == "nothWarBow" || this.weaponEquipped == "smallNothAxe" || this.weaponEquipped == "nothAxe" || this.weaponEquipped == "nothBlade" || this.weaponEquipped == "thenganWarCleaver" || this.weaponEquipped == "thenganFangCleaver") //add more cases for more overhead weapons.
+                if (this.outfitZ == "mid" || this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow" || this.weaponEquipped == "throwingStar" || this.weaponEquipped == "pitchfork" || this.weaponEquipped == "cultistScythe" || this.weaponEquipped == "sceptreOfRadiance" || this.weaponEquipped == "longBone" || this.weaponEquipped == "theWendigosCleaver" || this.weaponEquipped == "beulingerrPike" || this.weaponEquipped == "sackmansSword" || this.weaponEquipped == "throwingKnife" || this.weaponEquipped == "poisonCoatedThrowingKnife" || this.weaponEquipped == "cephrianPikeAndShield" || this.weaponEquipped == "cephrianBlade" || this.weaponEquipped == "cephrianDagger" || this.weaponEquipped == "cephrianRapier" || this.weaponEquipped == "nothWarBow" || this.weaponEquipped == "smallNothAxe" || this.weaponEquipped == "nothAxe" || this.weaponEquipped == "nothBlade" || this.weaponEquipped == "thenganWarCleaver" || this.weaponEquipped == "thenganFangCleaver" || this.weaponEquipped == "sling") //add more cases for more overhead weapons.
                 {
                     if (this.weaponEquipped != "cephrianPikeAndShield" || !altKey && !sKey || this.outfitEquipped != "none")
                     {
@@ -49003,7 +49220,7 @@ function Adventurer()
                 }
 
                 //most weapons draw beneath the armour layer.
-                if (this.outfitZ != "mid" && this.wepLayer == "standard" || this.outfitZ != "mid" && this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow" && this.weaponEquipped != "throwingStar" && this.weaponEquipped != "pitchfork" && this.weaponEquipped != "cultistScythe" && this.weaponEquipped != "sceptreOfRadiance" && this.weaponEquipped != "longBone" && this.weaponEquipped != "theWendigosCleaver" && this.weaponEquipped != "beulingerrPike" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "throwingKnife" && this.weaponEquipped != "poisonCoatedThrowingKnife" && this.weaponEquipped != "cephrianPikeAndShield" && this.weaponEquipped != "cephrianBlade" && this.weaponEquipped != "cephrianDagger" && this.weaponEquipped != "cephrianRapier" && this.weaponEquipped != "nothWarBow" && this.weaponEquipped != "smallNothAxe" && this.weaponEquipped != "nothAxe" && this.weaponEquipped != "nothBlade" && this.weaponEquipped != "thenganWarCleaver" && this.weaponEquipped != "thenganFangCleaver") //add more cases for more overhead weapons.
+                if (this.outfitZ != "mid" && this.wepLayer == "standard" || this.outfitZ != "mid" && this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow" && this.weaponEquipped != "throwingStar" && this.weaponEquipped != "pitchfork" && this.weaponEquipped != "cultistScythe" && this.weaponEquipped != "sceptreOfRadiance" && this.weaponEquipped != "longBone" && this.weaponEquipped != "theWendigosCleaver" && this.weaponEquipped != "beulingerrPike" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "throwingKnife" && this.weaponEquipped != "poisonCoatedThrowingKnife" && this.weaponEquipped != "cephrianPikeAndShield" && this.weaponEquipped != "cephrianBlade" && this.weaponEquipped != "cephrianDagger" && this.weaponEquipped != "cephrianRapier" && this.weaponEquipped != "nothWarBow" && this.weaponEquipped != "smallNothAxe" && this.weaponEquipped != "nothAxe" && this.weaponEquipped != "nothBlade" && this.weaponEquipped != "thenganWarCleaver" && this.weaponEquipped != "thenganFangCleaver" && this.weaponEquipped != "sling") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }

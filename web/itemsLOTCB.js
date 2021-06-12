@@ -49966,6 +49966,76 @@ function Item(type, x, y)
             this.buyValue = 44 - Math.floor(player.getCharisma() / 8); // at max, buy for 38.
             this.sellValue = 23 + Math.floor(player.getCharisma() / 3); // at max, sell for 38.
         }
+        else if (this.type == "cowardsTeeth")
+        {
+            //For All Items
+            this.identity = "Cowards Teeth";
+            this.weight = 0.3;
+            this.size = 7;
+            this.description = "A small venom-infused oil filled sack made of a flexible white material. It has sharp pointed teeth sticking through it all around which form a ball of toothy spikes.";
+            this.intForDes = 1;
+            this.intDescription = "These can be packed into bundles.";
+
+            //Define Utility
+            this.utility = "ammunition";
+            //Sub Utility
+            this.subUtility = "cowardsTeeth";
+            this.subUtilityName = "Cowards Teeth";
+
+            //Utility Focused
+            this.damage = 2 * (2.5 + player.getStrength() / 50);
+            this.magicalDamage = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 24;
+            this.intForCraft = 24;
+            this.ingredients = [["Jar of Water", 2], ["Bog Wasp Stinger", 4], ["Jar of Oil", 1], ["Coward Teeth", 24], ["Gremling Ear", 6]];
+            this.biproducts = [[new Item("glassJar", false), 3]]; //these are the accompanying items that come along with the main item being crafted.
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "cowardsTeethBundle")
+        {
+            //For All Items
+            this.identity = "Cowards Teeth Bundle";
+            this.weight = 1.8;
+            this.size = 7;
+            this.description = "A bundle of white rubbery toothed sacks full of venom infused oil.";
+            this.intForDes = 9;
+            this.intDescription = "The creatures that the teeth are from are thought to be cursed, unworthy people that were banished for their cowardice.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["cowardsTeeth", 6]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Cowards Teeth", 6]];
+            this.biproducts = []; //these are the accompanying items that come along with the main item being crafted.
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 9.
+            this.sellValue = 9; // at max, sell for 9.
+        }
         else if (this.type == "nothWarBow")
         {
             //For All Items
@@ -65301,6 +65371,38 @@ function Item(type, x, y)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "sling")
+        {
+            //For All Items
+            this.identity = "Sling";
+            this.weight = 0.8;
+            this.size = 6;
+            this.description = "A rubbery white sling that is used to hurl spikey venom filled sacs called cowards teeth.";
+            this.intForDes = 1;
+            this.intDescription = "The material the sling is made from, Gremling fur, permanently becomes elastic and rubbery when it gets wet.";
+
+            //Define Utility
+            this.utility = "weapon";
+            this.subUtility = "thrown";
+            this.ability = "cowardVenom";
+
+            //Utility Focused
+            this.energyCost = 0.75;
+            this.range = 150 + (325 * player.getStrength() / 50);
+            this.speed = 5.5 + (5 * player.getStrength() / 50);
+            this.rate = (175 - Math.max(Math.min(55, 55 * player.getDexterity() / 50), 0));
+            this.damage = 0;
+            this.negateArmour = 0.5 + ((0.5/50) * player.getStrength());
+            this.magicalDamage = 0;
+
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Gremling Ear", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 10; // at max, sell for 10.
+        }
         else if (this.type == "vardanianPolehammer")
         {
             //For All Items
@@ -67898,6 +68000,23 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "sling")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nufu, 919, 226, 42, 48, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 48 * 1), 42 * 1, 48 * 1);
+        }
+        else if (this.type == "cowardsTeethBundle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nufu, 915, 271, 42, 48, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 48 * 1), 42 * 1, 48 * 1);
+            XXX.drawImage(nufu, 915, 271, 42, 48, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 48 * 1), 42 * 1, 48 * 1);
+        }
+        else if (this.type == "cowardsTeeth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nufu, 911, 481, 26, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1), 26 * 1, 22 * 1);
+            XXX.drawImage(nufu, 911, 481, 26, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1), 26 * 1, 22 * 1);
         }
         else if (this.type == "nyomoakuFur")
         {
@@ -77058,6 +77177,23 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
         }
+        else if (this.type == "sling")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nufu, 919, 226, 42, 48, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 48 * 1), 42 * 1, 48 * 1);
+        }
+        else if (this.type == "cowardsTeethBundle")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nufu, 915, 271, 42, 48, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 48 * 1), 42 * 1, 48 * 1);
+            LXX.drawImage(nufu, 915, 271, 42, 48, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 48 * 1), 42 * 1, 48 * 1);
+        }
+        else if (this.type == "cowardsTeeth")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nufu, 911, 481, 26, 22, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 22 * 1), 26 * 1, 22 * 1);
+            LXX.drawImage(nufu, 911, 481, 26, 22, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 22 * 1), 26 * 1, 22 * 1);
+        }
         else if (this.type == "nyomoakuFur")
         {
             LXX.beginPath();
@@ -86156,6 +86292,23 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(julio, 3, 7, 24, 57, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 57 * 1), 24 * 1, 57 * 1);
+        }
+        else if (this.type == "sling")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nufu, 919, 226, 42, 48, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 48 * 1), 42 * 1, 48 * 1);
+        }
+        else if (this.type == "cowardsTeethBundle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nufu, 915, 271, 42, 48, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 48 * 1), 42 * 1, 48 * 1);
+            XXX.drawImage(nufu, 915, 271, 42, 48, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 48 * 1), 42 * 1, 48 * 1);
+        }
+        else if (this.type == "cowardsTeeth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nufu, 911, 481, 26, 22, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 22 * 1), 26 * 1, 22 * 1);
+            XXX.drawImage(nufu, 911, 481, 26, 22, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 22 * 1), 26 * 1, 22 * 1);
         }
         else if (this.type == "nyomoakuFur")
         {

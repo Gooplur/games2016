@@ -718,6 +718,7 @@ function Adventurer()
     this.readyForToFire = 0; //this is used by blowguns, it can be used by any ranged weapon I choose to use a variable starting at zero for.
     this.hide = false;
     this.guillotine = false;
+    this.turnless = false;
     this.intEXP = 0;
     this.intLV = 0;
     //fishing variables
@@ -4418,7 +4419,7 @@ function Adventurer()
             {
                 this.dexBoost = 55;
             }
-            if (this.speedII == true && new Date().getTime() - this.dexTime < 25000)
+            else if (this.speedII == true && new Date().getTime() - this.dexTime < 25000)
             {
                 this.dexBoost = 45;
             }
@@ -34192,7 +34193,7 @@ function Adventurer()
     //This makes the character always face the mouse pointer.
     this.pointAtMouse = function()
     {
-        if (!this.jumpingBack && this.fishing != true && !this.petrified && this.fear != true && this.paralysis != true)
+        if (!this.jumpingBack && this.fishing != true && !this.petrified && this.fear != true && this.paralysis != true && this.turnless != true)
         {
             if (this.form != "vampire" || this.vampDead == false)
             {

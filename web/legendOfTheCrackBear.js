@@ -1859,6 +1859,18 @@ function nufuPack()
 
     nufu.onload = function()
     {
+        xoloPack();
+    };
+}
+
+function xoloPack()
+{
+    var xolo = new Image();
+    xolo.src = ("images/xolo.png");
+    window.xolo = xolo;
+
+    xolo.onload = function()
+    {
         alchPack();
     };
 }
@@ -4677,11 +4689,11 @@ function theLegend()
     secondarySpells = [];
     tertiarySpells = [];
 //Well List
-    wellConversionList = [["pintGlass", "waterPintGlass"], ["barrel", "barrelOfWater"], ["ashwoodBarrel", "ashwoodBarrelOfWater"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"], ["naapridDrinkinghorn", "naapridDrinkinghornFull"], ["vardanianBowl", "vardanianBowlOfWater"], ["vardanianPot", "vardanianPotOfWater"], ["glassJar", "jarOfWater"], ["grailOfEternity", "theGrailOfEternity"]];
+    wellConversionList = [["pintGlass", "waterPintGlass"], ["barrel", "barrelOfWater"], ["ashwoodBarrel", "ashwoodBarrelOfWater"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"], ["naapridDrinkinghorn", "naapridDrinkinghornFull"], ["vardanianBowl", "vardanianBowlOfWater"], ["vardanianPot", "vardanianPotOfWater"], ["glassJar", "jarOfWater"], ["grailOfEternity", "theGrailOfEternity"], ["nothMudPot", "nothMudPotOfWater"]];
 //Milking/Juicing/Sapping Lists
-    naapridConversionList = [["bucket", "bucketOfNaapridMilk"], ["kellishClayPot", "kellishClayPotOfNaapridMilk"], ["naapridDrinkinghorn", "naapridMilkhornFull"], ["vardanianBowl", "vardanianBowlOfNaapridMilk"], ["vardanianPot", "vardanianPotOfNaapridMilk"], ["grailOfEternity", "theGrailOfEternity"]];
-    waantiConversionList = [["bucket", "bucketOfWaantiMilk"], ["kellishClayPot", "kellishClayPotOfWaantiMilk"], ["vardanianBowl", "vardanianBowlOfWaantiMilk"], ["vardanianPot", "vardanianPotOfWaantiMilk"], ["grailOfEternity", "theGrailOfEternity"]];
-    bovineConversionList = [["bucket", "bucketOfBovineMilk"], ["kellishClayPot", "kellishClayPotOfBovineMilk"], ["vardanianBowl", "vardanianBowlOfBovineMilk"], ["vardanianPot", "vardanianPotOfBovineMilk"], ["grailOfEternity", "theGrailOfEternity"]];
+    naapridConversionList = [["bucket", "bucketOfNaapridMilk"], ["kellishClayPot", "kellishClayPotOfNaapridMilk"], ["naapridDrinkinghorn", "naapridMilkhornFull"], ["vardanianBowl", "vardanianBowlOfNaapridMilk"], ["vardanianPot", "vardanianPotOfNaapridMilk"], ["grailOfEternity", "theGrailOfEternity"], ["nothMudPot", "nothMudPotOfNaapridMilk"]];
+    waantiConversionList = [["bucket", "bucketOfWaantiMilk"], ["kellishClayPot", "kellishClayPotOfWaantiMilk"], ["vardanianBowl", "vardanianBowlOfWaantiMilk"], ["vardanianPot", "vardanianPotOfWaantiMilk"], ["grailOfEternity", "theGrailOfEternity"], ["nothMudPot", "nothMudPotOfWaantiMilk"]];
+    bovineConversionList = [["bucket", "bucketOfBovineMilk"], ["kellishClayPot", "kellishClayPotOfBovineMilk"], ["vardanianBowl", "vardanianBowlOfBovineMilk"], ["vardanianPot", "vardanianPotOfBovineMilk"], ["grailOfEternity", "theGrailOfEternity"], ["nothMudPot", "nothMudPotOfBovineMilk"]];
     mandrakeConversionList = [["bucketOfBovineMilk", "bucketOfMandrake"], ["kellishClayPotOfBovineMilk", "kellishClayPotOfMandrake"], ["vardanianBowlOfBovineMilk", "vardanianBowlOfMandrake"], ["vardanianPotOfBovineMilk", "vardanianPotOfMandrake"]];
 //conversations and dialogue
     conversationID = ["none", 0]; //[Person conversing with, stage in conversation]
@@ -4950,7 +4962,10 @@ function theLegend()
         SerahZimberlin: ["SerahZimberlin", 0],
         SarrahZimberlin: ["SarrahZimberlin", 0],
         faraji: ["Faraji", 0],
-        amare: ["Amare", 0]
+        amare: ["Amare", 0],
+        sishamaie: ["Sishamaie", 0],
+        batzorig: ["Batzorig", 0],
+        baosai: ["Baosai", 0]
     };
 
 //time Tracker Variables
@@ -5319,7 +5334,10 @@ function theLegend()
         SerahZimberlinLDS: true,
         SarrahZimberlinLDS: true,
         farajiLDS: true,
-        amareLDS: true
+        amareLDS: true,
+        sishamaieLDS: true,
+        batzorigLDS: true,
+        baosaiLDS: true
     };
 //QUESTS
     quests =
@@ -5414,6 +5432,7 @@ function theLegend()
         sagesCachePortal: false,
         mrbLights: 1,
         guillotine: false,
+        nothTocar: false,
 
         //POLITICS
             //Atalin
@@ -6675,6 +6694,11 @@ function theLegend()
     foods.push(new Item("sasoriMeat", false));
     foods.push(new Item("taoMeat", false));
     foods.push(new Item("vlicaMeat", false));
+    foods.push(new Item("cookedZugot", false));
+    foods.push(new Item("cookedCeletsig", false));
+    foods.push(new Item("nethNoodles", false));
+    foods.push(new Item("nothDumpling7", false));
+    foods.push(new Item("nothFishDumpling7", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -7163,6 +7187,9 @@ function theLegend()
     handcrafted.push(new Item("sling", false));
     handcrafted.push(new Item("cowardsTeethBundle", false));
     handcrafted.push(new Item("cowardsTeeth", false));
+    handcrafted.push(new Item("nothMudPotOfSoakingNeth", false));
+    handcrafted.push(new Item("nethDough", false));
+    handcrafted.push(new Item("rawNethNoodles", false));
 
 
     //Activate Important Game Functions Here:

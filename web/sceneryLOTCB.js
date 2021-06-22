@@ -8029,7 +8029,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                                 //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
                                 if (Inventory[i][0].type == wellConversionList[j][0])
                                 {
-                                    if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket")
+                                    if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket" || Inventory[i][0].type == "nothMudPot")
                                     {
                                         this.phase = 1;
                                     }
@@ -8086,7 +8086,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             for (var j = 0; j < wellConversionList.length; j++)
                             {
                                 //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
-                                if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater")
+                                if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "nothMudPotOfWater")
                                 {
                                     this.phase = 0;
                                     for (var k = 0; k < Inventory.length; k++)
@@ -8798,7 +8798,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                                 //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
                                 if (Inventory[i][0].type == wellConversionList[j][0])
                                 {
-                                    if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket")
+                                    if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket" || Inventory[i][0].type == "nothMudPot")
                                     {
                                         this.phase = 1;
                                     }
@@ -8855,7 +8855,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             for (var j = 0; j < wellConversionList.length; j++)
                             {
                                 //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
-                                if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater")
+                                if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "nothMudPotOfWater")
                                 {
                                     this.phase = 0;
                                     for (var k = 0; k < Inventory.length; k++)
@@ -10044,7 +10044,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                                 //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
                                 if (Inventory[i][0].type == wellConversionList[j][0])
                                 {
-                                    if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket")
+                                    if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket" || Inventory[i][0].type == "nothMudPot")
                                     {
                                         this.phase = 1;
                                     }
@@ -10101,7 +10101,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             for (var j = 0; j < wellConversionList.length; j++)
                             {
                                 //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
-                                if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater")
+                                if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "nothMudPotOfWater")
                                 {
                                     this.phase = 0;
                                     for (var k = 0; k < Inventory.length; k++)
@@ -10306,6 +10306,180 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(caldera, 120, 160, 28, 34, -(1/2 * 28 * this.information), -(1/2 * 34 * this.information), 28 * this.information, 34 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 157)//Leikshor carpet large round
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(orco, 660, 613, 141, 62, -(1/2 * 141 * this.information), -(1/2 * 62 * this.information), 141 * this.information, 62 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 158)//Leikshor carpet small round
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(orco, 718, 677, 70, 32, -(1/2 * 70 * this.information), -(1/2 * 32 * this.information), 70 * this.information, 32 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 159)//Troll pelt rug
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(leik, 481, 35, 68, 76, -(1/2 * 68 * this.information), -(1/2 * 76 * this.information), 68 * this.information, 76 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 160)//Troll Head on Wall
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(leik, 1054, 253, 109, 86, -(1/2 * 109 * this.information), -(1/2 * 86 * this.information), 109 * this.information, 86 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 161)//Troll Head on Wall
+            {
+                if (this.phase == 0)
+                {
+                    this.phase = 1;
+                    this.tic = 0;
+                }
+                this.tic += 1 * (TTD / 16.75);
+                //DRAWSELF
+                if (this.tic < 9)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(shor, 280, 216, 102, 57, -(1/2 * 102 * this.information), -(1/2 * 57 * this.information), 102 * this.information, 57 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 18)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(shor, 13, 547, 102, 57, -(1/2 * 102 * this.information), -(1/2 * 57 * this.information), 102 * this.information, 57 * this.information);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(shor, 17, 510, 103, 49, -(1/2 * 103 * this.information), -(1/2 * 49 * this.information), 103 * this.information, 49 * this.information);
+                    XXX.restore();
+
+                    if (this.tic > 27)
+                    {
+                        this.tic = 0;
+                    }
+                }
+            }
+            else if (this.temporary == 162)//dead fae 1
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shor, 7, 199, 103, 90, -(1/2 * 103 * this.information), -(1/2 * 90 * this.information), 103 * this.information, 90 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 163)//dead fae 2
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shor, 603, 316, 103, 90, -(1/2 * 103 * this.information), -(1/2 * 90 * this.information), 103 * this.information, 90 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 164)//dead fae 3
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shor, 527, 276, 103, 43, -(1/2 * 103 * this.information), -(1/2 * 43 * this.information), 103 * this.information, 43 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 165)//severed fae wing
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shor, 161, 300, 41, 66, -(1/2 * 41 * this.information), -(1/2 * 66 * this.information), 41 * this.information, 66 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 166)//severed fae hand
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shor, 209, 292, 19, 24, -(1/2 * 19 * this.information), -(1/2 * 24 * this.information), 19 * this.information, 24 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 167)//thengan pot (empty)
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shor, 391, 264, 30, 26, -(1/2 * 30 * this.information), -(1/2 * 26 * this.information), 30 * this.information, 26 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 168)//thengan pot (fae-blood)
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shor, 389, 289, 30, 26, -(1/2 * 30 * this.information), -(1/2 * 26 * this.information), 30 * this.information, 26 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 169)//dead captive fae
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shor, 280, 216, 102, 57, -(1/2 * 102 * this.information), -(1/2 * 57 * this.information), 102 * this.information, 57 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 170)//thengan boquet 1
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shor, 283, 172, 42, 42, -(1/2 * 42 * this.information), -(1/2 * 42 * this.information), 42 * this.information, 42 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 171)//thengan boquet 2
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shor, 35, -5, 41, 39, -(1/2 * 41 * this.information), -(1/2 * 39 * this.information), 41 * this.information, 39 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 172)//thengan lily
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(shor, 139, 69, 41, 39, -(1/2 * 41 * this.information), -(1/2 * 39 * this.information), 41 * this.information, 39 * this.information);
                 XXX.restore();
             }
 
@@ -21448,7 +21622,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (this.activate == true)
                 {
                     this.activate = false;
-                    if (this.temporary == true)
+                    if (this.extra == true)
                     {
                         sleep();
                     }
@@ -21468,7 +21642,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (this.activate == true)
                 {
                     this.activate = false;
-                    if (this.temporary == true)
+                    if (this.extra == true)
                     {
                         sleep();
                     }
@@ -21488,7 +21662,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (this.activate == true)
                 {
                     this.activate = false;
-                    if (this.temporary == true)
+                    if (this.extra == true)
                     {
                         sleep();
                     }
@@ -21787,7 +21961,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                                 //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
                                 if (Inventory[i][0].type == wellConversionList[j][0])
                                 {
-                                    if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket")
+                                    if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket" || Inventory[i][0].type == "nothMudPot")
                                     {
                                         this.phase = 1;
                                     }
@@ -21844,7 +22018,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             for (var j = 0; j < wellConversionList.length; j++)
                             {
                                 //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
-                                if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater")
+                                if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "nothMudPotOfWater")
                                 {
                                     this.phase = 0;
                                     for (var k = 0; k < Inventory.length; k++)
@@ -22024,6 +22198,460 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     this.tic = 0;
                 }
             }
+            else if (this.temporary == 83) //noth pot
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 642, 5, 43, 37, -(1/2 * 43 * this.size), -(1/2 * 37 * this.size), 43 * this.size, 37 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 84) //large noth pot
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 23, 406, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 85) //dye pot - yellow
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 8, 308, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 86) //dye pot - pink
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 107, 302, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 87) //dye pot - red
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 210, 296, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 88) //dye pot - blue
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 334, 299, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 89) //dye pot - green
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 449, 296, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 90) //dye pot - white
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 577, 292, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 91) //dye pot - black
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 708, 288, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 92) //dye pot - purple
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 814, 289, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 93) //dye pot - orange
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 815, 386, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 94) //dye pot - brown
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 713, 393, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 95) //dye pot - teal
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 288, 411, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 96) //dye pot - dye assortment
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 154, 409, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 97) //oil pot
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 602, 401, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 98) //fresh harvest - oil pot
+            {
+                this.solid = true;
+                this.radius = 29 * this.size;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(sprea, 400, 407, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 99) //boiling harvest - oil pot
+            {
+                this.solid = true;
+                this.radius = 30 * this.size;
+
+                if (this.phase == 0)
+                {
+                    this.phase = 1;
+                    this.tic = 0;
+                }
+
+                this.tic += 1 * (TTD / 16.75);
+                if (this.tic < 6)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(sprea, 501, 400, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic < 12)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(sprea, 504, 486, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic < 18)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(sprea, 508, 571, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(sprea, 605, 483, 77, 79, -(1/2 * 77 * this.size), -(1/2 * 79 * this.size), 77 * this.size, 79 * this.size);
+                    XXX.restore();
+
+                    if (this.tic > 24)
+                    {
+                        this.tic = 0;
+                    }
+                }
+            }
+            else if (this.temporary == 100) //noth harp
+            {
+                this.solid = true;
+                this.radius = 28 * this.size;
+                this.interactionRange = 55;
+
+                if (this.phase == 0)
+                {
+                    this.phase = 1;
+
+                    this.playBeingUsed = false;
+                    this.tac = 0;
+                }
+
+                if (quests.nothTocar == true)
+                {
+                    var harpPlayer = -1;
+                    for (var kundita = 0; kundita < ArtificialIntelligenceAccess.length; kundita++)
+                    {
+                        if (ArtificialIntelligenceAccess[kundita].ID == "Sishamaie Kundyala" || ArtificialIntelligenceAccess[kundita].ID == "Noth Harpist")
+                        {
+                            harpPlayer = kundita
+                        }
+                    }
+
+                    if (harpPlayer == -1)
+                    {
+                        if (this.playBeingUsed == false)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(nobo, 286, -4, 116, 102, -(1/2 * 116 * this.size), -(1/2 * 102 * this.size), 116 * this.size, 102 * this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            X = this.X + Math.cos(this.rotation - 1/2 * Math.PI) * 34 * this.size;
+                            Y = this.Y + Math.sin(this.rotation - 1/2 * Math.PI) * 34 * this.size;
+
+                            player.rotation = this.rotation;
+                            player.turnless = true;
+
+                            for (var j = 0; j < Inventory.length; j++)
+                            {
+                                if (Inventory[j][0].utility == "weapon")
+                                {
+                                    Inventory[j][0].equipped = false;
+                                }
+                            }
+                            player.movingType = 0;
+                            player.weaponEquipped = "nothHarp";
+                            player.weaponIsRanged = false;
+                            player.isWeaponEquipped = false;
+                            player.weaponID = false;
+                            nothTheme.play();
+
+                            this.tac += 1 * (TTD / 16.75);
+                            if (this.tac < 12)
+                            {
+                                XXX.save();
+                                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                                XXX.rotate(this.rotation);
+                                XXX.drawImage(nobo, 859, 14, 116, 102, -(1/2 * 116 * this.size), -(1/2 * 102 * this.size), 116 * this.size, 102 * this.size);
+                                XXX.restore();
+                            }
+                            else if (this.tac < 24)
+                            {
+                                XXX.save();
+                                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                                XXX.rotate(this.rotation);
+                                XXX.drawImage(nobo, 854, 242, 116, 102, -(1/2 * 116 * this.size), -(1/2 * 102 * this.size), 116 * this.size, 102 * this.size);
+                                XXX.restore();
+                            }
+                            else
+                            {
+                                XXX.save();
+                                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                                XXX.rotate(this.rotation);
+                                XXX.drawImage(nobo, 852, 464, 116, 102, -(1/2 * 116 * this.size), -(1/2 * 102 * this.size), 116 * this.size, 102 * this.size);
+                                XXX.restore();
+
+                                if (this.tac > 36)
+                                {
+                                    this.tac = 0;
+                                }
+                            }
+                        }
+
+                        if (this.activate == true && player.charisma >= 29 || this.activate == true && player.raceName == "Noth" && player.gender == "Female" && player.title == "Nobility" || this.activate == true && player.raceName == "Noth" && player.gender == "Female" && player.title == "Royalty")
+                        {
+                            this.activate = false;
+
+                            if (this.playBeingUsed == false)
+                            {
+                                this.playBeingUsed = true;
+                            }
+                            else
+                            {
+                                this.playBeingUsed = false;
+                                player.weaponEquipped = "none";
+                                nothTheme.pause();
+                                nothTheme.currentTime = 0;
+                                player.turnless = false;
+                            }
+                        }
+                    }
+                    else //ai playing the harp
+                    {
+                        ArtificialIntelligenceAccess[harpPlayer].X = this.X + Math.cos(this.rotation - 1/2 * Math.PI) * 34 * this.size;
+                        ArtificialIntelligenceAccess[harpPlayer].Y = this.Y + Math.sin(this.rotation - 1/2 * Math.PI) * 34 * this.size;
+
+                        ArtificialIntelligenceAccess[harpPlayer].newRotation = this.rotation - 1/2 * Math.PI;
+
+                        ArtificialIntelligenceAccess[harpPlayer].ultra.weapon[0] = "nothHarp";
+
+                        this.tac += 1 * (TTD / 16.75);
+                        if (this.tac < 12)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(nobo, 859, 14, 116, 102, -(1/2 * 116 * this.size), -(1/2 * 102 * this.size), 116 * this.size, 102 * this.size);
+                            XXX.restore();
+                        }
+                        else if (this.tac < 24)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(nobo, 854, 242, 116, 102, -(1/2 * 116 * this.size), -(1/2 * 102 * this.size), 116 * this.size, 102 * this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(nobo, 852, 464, 116, 102, -(1/2 * 116 * this.size), -(1/2 * 102 * this.size), 116 * this.size, 102 * this.size);
+                            XXX.restore();
+
+                            if (this.tac > 36)
+                            {
+                                this.tac = 0;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.playBeingUsed == false)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nobo, 286, -4, 116, 102, -(1/2 * 116 * this.size), -(1/2 * 102 * this.size), 116 * this.size, 102 * this.size);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        X = this.X + Math.cos(this.rotation - 1/2 * Math.PI) * 34 * this.size;
+                        Y = this.Y + Math.sin(this.rotation - 1/2 * Math.PI) * 34 * this.size;
+
+                        player.rotation = this.rotation;
+                        player.turnless = true;
+
+                        for (var j = 0; j < Inventory.length; j++)
+                        {
+                            if (Inventory[j][0].utility == "weapon")
+                            {
+                                Inventory[j][0].equipped = false;
+                            }
+                        }
+                        player.movingType = 0;
+                        player.weaponEquipped = "nothHarp";
+                        player.weaponIsRanged = false;
+                        player.isWeaponEquipped = false;
+                        player.weaponID = false;
+                        nothTheme.play();
+
+                        this.tac += 1 * (TTD / 16.75);
+                        if (this.tac < 12)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(nobo, 859, 14, 116, 102, -(1/2 * 116 * this.size), -(1/2 * 102 * this.size), 116 * this.size, 102 * this.size);
+                            XXX.restore();
+                        }
+                        else if (this.tac < 24)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(nobo, 854, 242, 116, 102, -(1/2 * 116 * this.size), -(1/2 * 102 * this.size), 116 * this.size, 102 * this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(nobo, 852, 464, 116, 102, -(1/2 * 116 * this.size), -(1/2 * 102 * this.size), 116 * this.size, 102 * this.size);
+                            XXX.restore();
+
+                            if (this.tac > 36)
+                            {
+                                this.tac = 0;
+                            }
+                        }
+                    }
+
+                    if (this.activate == true && player.charisma >= 29 || this.activate == true && this.raceName == "Noth" && player.gender == "Female" && player.title == "Nobility" || this.activate == true && this.raceName == "Noth" && player.gender == "Female" && player.title == "Royalty")
+                    {
+                        this.activate = false;
+
+                        if (this.playBeingUsed == false)
+                        {
+                            this.playBeingUsed = true;
+                        }
+                        else
+                        {
+                            this.playBeingUsed = false;
+                            player.weaponEquipped = "none";
+                            nothTheme.pause();
+                            nothTheme.currentTime = 0;
+                            player.turnless = false;
+                        }
+                    }
+                }
+            }
             else //dirt house underlayer
             {
                 this.zIndex = 1;
@@ -22122,7 +22750,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     }
                     else
                     {
-                        XXX.drawImage(hnot, 1082, 6, 271, 279, -(1/2 * 271 * this.temporary), -(1/2 * 279 * this.temporary) + roofNudge, 271 * this.temporary, 279 * this.temporary);
+                        XXX.drawImage(hnot, 1082, 6, 271, 279, -(1/2 * 271 * this.temporary) + 14 * this.temporary, -(1/2 * 279 * this.temporary) + roofNudge, 271 * this.temporary, 279 * this.temporary);
                     }
                     XXX.restore();
                 }
@@ -22199,7 +22827,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     }
                     else
                     {
-                        XXX.drawImage(hnot, 1082, 6, 271, 279, -(1/2 * 271 * this.temporary), -(1/2 * 279 * this.temporary) + roofNudge, 271 * this.temporary, 279 * this.temporary);
+                        XXX.drawImage(hnot, 1082, 6, 271, 279, -(1/2 * 271 * this.temporary) + 14 * this.temporary, -(1/2 * 279 * this.temporary) + roofNudge, 271 * this.temporary, 279 * this.temporary);
                     }
                     XXX.restore();
                 }
@@ -28110,7 +28738,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
                             if (Inventory[i][0].type == wellConversionList[j][0])
                             {
-                                if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket")
+                                if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket" || Inventory[i][0].type == "nothMudPot")
                                 {
                                     this.phase = 1;
                                 }
@@ -28167,7 +28795,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         for (var j = 0; j < wellConversionList.length; j++)
                         {
                             //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
-                            if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater")
+                            if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "nothMudPotOfWater")
                             {
                                 this.phase = 0;
                                 for (var k = 0; k < Inventory.length; k++)
@@ -28260,7 +28888,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
                             if (Inventory[i][0].type == wellConversionList[j][0])
                             {
-                                if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket")
+                                if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket" || Inventory[i][0].type == "nothMudPot")
                                 {
                                     this.phase = 1;
                                 }
@@ -28317,7 +28945,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         for (var j = 0; j < wellConversionList.length; j++)
                         {
                             //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
-                            if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater")
+                            if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "nothMudPotOfWater")
                             {
                                 this.phase = 0;
                                 for (var k = 0; k < Inventory.length; k++)
@@ -44975,6 +45603,201 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
+        else if (this.type == "chotPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nufu, 756, 438, 35, 38, -(1/2 * 35), -(1/2 * 38), 35, 38);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nufu, 799, 438, 35, 38, -(1/2 * 35), -(1/2 * 38), 35, 38);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 12;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "chotLeaves")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("chotLeaves", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "celetsigPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nufu, 128, 97, 87, 88, -(1/2 * 87), -(1/2 * 88), 87, 88);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nufu, 196, 192, 87, 88, -(1/2 * 87), -(1/2 * 88), 87, 88);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "fullCeletsig")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("fullCeletsig", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "zugotPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(2);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nufu, 16, 278, 122, 106, -(1/2 * 122), -(1/2 * 106), 122, 106);
+                XXX.drawImage(nufu, 16, 278, 122, 106, -(1/2 * 122), -(1/2 * 106), 122, 106);
+                XXX.restore();
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nufu, 194, 283, 122, 106, -(1/2 * 122), -(1/2 * 106), 122, 106);
+                XXX.drawImage(nufu, 194, 283, 122, 106, -(1/2 * 122), -(1/2 * 106), 122, 106);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nufu, 13, 391, 122, 106, -(1/2 * 122), -(1/2 * 106), 122, 106);
+                XXX.drawImage(nufu, 13, 391, 122, 106, -(1/2 * 122), -(1/2 * 106), 122, 106);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 12;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0 || this.activate == true && this.phase == 1)
+            {
+                this.activate = false;
+
+                if (this.phase == 0)
+                {
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "zugot")
+                        {
+                            Inventory[i][1] += 1 + (Math.random() * 7);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("zugot", false, false), 1 + (Math.random() * 7)]);
+                    }
+                }
+                else if (this.phase == 1)
+                {
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "zugotLeaves")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("zugotLeaves", false, false), 1]);
+                    }
+                }
+            }
+        }
         else if (this.type == "turotanPlant")
         {
             //TRAITS
@@ -46037,6 +46860,16 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (this.activate == true && this.phase == 0)
             {
                 this.activate = false;
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-20);
+                    }
+                }
+
                 this.phase = "picked";
                 var hits = 0;
                 for (var i = 0; i < Inventory.length; i ++)
@@ -47649,6 +48482,16 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (this.activate == true && this.phase == 0)
             {
                 this.activate = false;
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-55);
+                    }
+                }
+
                 this.phase = "picked";
                 var hits = 0;
                 for (var i = 0; i < Inventory.length; i ++)

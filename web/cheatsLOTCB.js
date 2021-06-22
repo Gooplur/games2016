@@ -2646,13 +2646,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 155)
+                if (buildClase > 172)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 155;
+                    buildClase = 172;
                 }
             }
 
@@ -9976,13 +9976,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 82)
+                if (buildClase > 100)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 82;
+                    buildClase = 100;
                 }
             }
 
@@ -15715,6 +15715,27 @@ function cheats()
                 var chtItem = prompt("And so it was that you reached enlightenment here on the street corner of Teshir City... Suddenly it all became clear... the physical the spiritual... one and the same!!! Imagine and you shall create:");
                 var chtAmnt = JSON.parse(prompt("What quantity of " + chtItem + " do you imagine will appear into this worldy mesh of confused energy?"));
                 worldItems.push([new Item(chtItem, X, Y), chtAmnt]);
+            }
+        }
+        else if (cheatcode == "genderpicker")
+        {
+
+            if (player.race != "#336600")
+            {
+               var myNewGender = prompt("Welcome to gender picker advanced, the new step in gender evolution! Pronoun-change bandaids begone... now you have the true cure to your gender expression dilemma! Please, there is no need to conform to a gender binary; feel free to type anything in the box below to be your new gender.");
+
+               if (myNewGender.toLowerCase() == "m" || myNewGender.toLowerCase() == "male" || myNewGender.toLowerCase() == "boy" || myNewGender.toLowerCase() == "man" || myNewGender.toLowerCase() == "bro")
+               {
+                   player.gender = "Male";
+               }
+               else if (myNewGender.toLowerCase() == "f" || myNewGender.toLowerCase() == "female" || myNewGender.toLowerCase() == "girl" || myNewGender.toLowerCase() == "woman" || myNewGender.toLowerCase() == "fem")
+               {
+                   player.gender = "Female";
+               }
+               else
+               {
+                   player.gender = myNewGender;
+               }
             }
         }
         else if (cheatcode == "GOP")

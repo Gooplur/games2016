@@ -11873,6 +11873,10 @@ function interaction(me)
                             {
                                 msgReset();
 
+                                minigame = new Minigame("Xol", Math.floor(self.ultra.wager * (1 + (player.charisma / 50))), "easy");
+                                gameState = "minigame";
+                                requestAnimationFrame(minigameLoop, CCC);
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;

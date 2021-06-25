@@ -4965,7 +4965,8 @@ function theLegend()
         amare: ["Amare", 0],
         sishamaie: ["Sishamaie", 0],
         batzorig: ["Batzorig", 0],
-        baosai: ["Baosai", 0]
+        baosai: ["Baosai", 0],
+        olisha: ["Olisha", 0]
     };
 
 //time Tracker Variables
@@ -5337,7 +5338,8 @@ function theLegend()
         amareLDS: true,
         sishamaieLDS: true,
         batzorigLDS: true,
-        baosaiLDS: true
+        baosaiLDS: true,
+        olishaLDS: true
     };
 //QUESTS
     quests =
@@ -5392,6 +5394,9 @@ function theLegend()
         sewerBrokenA: false,
         sewerBrokenB: false,
         sairchHousePaid: false,
+        xolGamesWon: 0,
+        xolGamesLost: 0,
+        xolRating: 0,
 
         //PLAYER PROPERTY
         teshirHomeOwned: false,
@@ -5433,6 +5438,7 @@ function theLegend()
         mrbLights: 1,
         guillotine: false,
         nothTocar: false,
+        olishaGhouls: Math.round(4 + Math.random() * 14),
 
         //POLITICS
             //Atalin

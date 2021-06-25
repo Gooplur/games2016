@@ -11873,7 +11873,7 @@ function interaction(me)
                             {
                                 msgReset();
 
-                                minigame = new Minigame("Xol", Math.floor(self.ultra.wager * (1 + (player.charisma / 50))), "easy");
+                                minigame = new Minigame("Xol", Math.floor(self.ultra.wager * (1 + (player.charisma / 50))), "basic");
                                 gameState = "minigame";
                                 requestAnimationFrame(minigameLoop, CCC);
 

@@ -6480,8 +6480,6 @@ function xolPlayerXolTurn()
     {
         if (minigame.playerSel == -1 && clicked && minigame.tileSel != [-1, -1] || minigame.playerMoveSel != [-1, -1] && clicked && minigame.playerSel == -1)
         {
-            clicked = false;
-
             if (minigame.playerMoveSel[0] == -1 && minigame.playerMoveSel[1] == -1)
             {
                 for (var i = 0; i < 25; i++)
@@ -6951,12 +6949,1501 @@ function xolPlayerXolTurn()
         }
     }
 
-    if (spaceKey == true) //test //when player ends turn
-    {
-        spaceKey = false;
+    var myXolPointTotal = 0;
+    var xolPointTotal = 0;
 
-        minigame.turn = 0;
-        kundPromotion();
+    for (var i = 0; i < 25; i++)
+    {
+        if (minigame.xolBoard[i].team == 1 && minigame.xolBoard[i].piece != "none")
+        {
+            myXolPointTotal += minigame.xolBoard[i].pieceValue;
+        }
+        if (minigame.xolBoard[i].team == 0 && minigame.xolBoard[i].piece != "none")
+        {
+            xolPointTotal += minigame.xolBoard[i].pieceValue;
+        }
+    }
+
+    //toggle highlights
+    if (mouseX > 1005 && mouseX < 1005 + 390 && mouseY > 5 && mouseY < 5 + 55)
+    {
+        if (clicked)
+        {
+            if (minigame.showXolLands == true)
+            {
+                minigame.showXolLands = false;
+            }
+            else
+            {
+                minigame.showXolLands = true;
+            }
+        }
+        XXX.save();
+        XXX.globalAlpha = 0.4;
+        XXX.beginPath();
+        XXX.fillStyle = "#4D3B1A";
+        XXX.rect(1005, 5, 390, 55);
+        XXX.fill();
+        XXX.restore();
+    }
+    else
+    {
+        XXX.save();
+        XXX.globalAlpha = 0.4;
+        XXX.beginPath();
+        XXX.fillStyle = "#5C4720";
+        XXX.rect(1005, 5, 390, 55);
+        XXX.fill();
+        XXX.restore();
+    }
+
+    XXX.save();
+    XXX.globalAlpha = 0.5;
+    XXX.beginPath();
+    XXX.fillStyle = "lightBlue";
+    XXX.font = "Bold 12px Book Antiqua";
+    XXX.textAlign = "center";
+    XXX.fillText("Toggle Highlighting", 1005 + 1/2 * 390, 5 + 34);
+    XXX.fill();
+    XXX.restore();
+
+    //land value score box
+    XXX.save();
+    XXX.globalAlpha = 0.4;
+    XXX.beginPath();
+    XXX.fillStyle = "green";
+    XXX.rect(40, 5, 8 * minigame.myLandValue, 25);
+    XXX.fill();
+    XXX.restore();
+
+    XXX.save();
+    XXX.globalAlpha = 0.6;
+    XXX.beginPath();
+    XXX.fillStyle = "lightBlue";
+    XXX.rect(40, 5 + 20, 16.71 * myXolPointTotal, 5);
+    XXX.fill();
+    XXX.restore();
+
+    XXX.drawImage(xolo, 380, 347, 85, 85, (-1/2 * 85 * 0.25 + 40), (-1/2 * 85 * 0.25 + 5 + 20), 85 * 0.25, 85 * 0.25);
+
+    XXX.beginPath();
+    XXX.fillStyle = "lightBlue";
+    XXX.font = "Bold 10px Book Antiqua";
+    XXX.textAlign = "center";
+    XXX.fillText(Math.round(myXolPointTotal), 40, 5 + 20 + 3);
+    XXX.fill();
+
+    //land score
+    XXX.save();
+    XXX.globalAlpha = 0.4;
+    XXX.beginPath();
+    XXX.fillStyle = "red";
+    XXX.rect(40, 40, 8 * minigame.landValue, 25);
+    XXX.fill();
+    XXX.restore();
+
+    XXX.save();
+    XXX.globalAlpha = 0.6;
+    XXX.beginPath();
+    XXX.fillStyle = "lightBlue";
+    XXX.rect(40, 40 + 20, 16.71 * xolPointTotal, 5);
+    XXX.fill();
+    XXX.restore();
+
+    XXX.drawImage(xolo, 380, 347, 85, 85, (-1/2 * 85 * 0.25 + 40), (-1/2 * 85 * 0.25 + 40 + 20), 85 * 0.25, 85 * 0.25);
+
+    XXX.beginPath();
+    XXX.fillStyle = "lightBlue";
+    XXX.font = "Bold 10px Book Antiqua";
+    XXX.textAlign = "center";
+    XXX.fillText(Math.round(xolPointTotal), 40, 40 + 20 + 3);
+    XXX.fill();
+
+    XXX.beginPath();
+    XXX.fillStyle = "lightBlue";
+    XXX.font = "Bold 20px Book Antiqua";
+    XXX.textAlign = "center";
+    XXX.fillText(minigame.myLandValue, 20, 24);
+    XXX.fill();
+
+    XXX.beginPath();
+    XXX.fillStyle = "lightBlue";
+    XXX.font = "Bold 20px Book Antiqua";
+    XXX.textAlign = "center";
+    XXX.fillText(minigame.landValue, 20, 24 + 35);
+    XXX.fill();
+
+    var endTernHov = false;
+
+    var myWonGame = true;
+    for (var i = 0; i < 25; i++)
+    {
+        if (minigame.xolBoard[i].team == 0 && minigame.xolBoard[i].piece != "none")
+        {
+            myWonGame = false;
+        }
+    }
+
+    if (minigame.foeMaterial.length > 0)
+    {
+        myWonGame = false;
+    }
+
+    var terrBlokked = true;
+    for (var i = 0; i < 25; i++)
+    {
+        if (minigame.xolBoard[i].team == 0)
+        {
+            terrBlokked = false;
+        }
+    }
+
+    if (terrBlokked == true)
+    {
+        myWonGame = true;
+    }
+
+    if (lMouseX > 1325 && lMouseX < 1325 + 70 && lMouseY > 5 && lMouseY < 5 + 70 && minigame.playerSpawn == false || lMouseX > 1325 && lMouseX < 1325 + 70 && lMouseY > 5 && lMouseY < 5 + 70 && minigame.madeMove == true || lMouseX > 1325 && lMouseX < 1325 + 70 && lMouseY > 5 && lMouseY < 5 + 70 && shiftKey == true)
+    {
+        endTernHov = true;
+        if (clicked == true)
+        {
+            if (myWonGame == true)
+            {
+                quests.xolGamesWon += 1;
+                if (minigame.ai == "easy")
+                {
+                    quests.xolRating += 10 / (1 + Math.max(0, quests.xolRating));
+                }
+                else if (minigame.ai == "basic")
+                {
+                    quests.xolRating += 20 / (1 + Math.max(0, quests.xolRating));
+                }
+                else
+                {
+                    quests.xolRating += 35 / (1 + Math.max(0, quests.xolRating));
+                }
+
+                give("coins", (minigame.wager));
+                lowBar = "information";
+                gameState = "active";
+                requestAnimationFrame(gameloopOfDestiny, CCC);
+            }
+            else
+            {
+                if (shiftKey == true)
+                {
+                    quests.xolGamesLost += 1;
+                    if (quests.xolRating <= 0)
+                    {
+                        if (minigame.ai == "easy")
+                        {
+                            quests.xolRating -= 35 / (50 + Math.max(0, Math.abs(quests.xolRating)));
+                        }
+                        else if (minigame.ai == "basic")
+                        {
+                            quests.xolRating -= 20 / (100 + Math.max(0, Math.abs(quests.xolRating)));
+                        }
+                        else
+                        {
+                            quests.xolRating -= 10 / (200 + Math.max(0, Math.abs(quests.xolRating)));
+                        }
+                    }
+                    else
+                    {
+                        if (minigame.ai == "easy")
+                        {
+                            quests.xolRating -= 35 * quests.xolRating / 50;
+                        }
+                        else if (minigame.ai == "basic")
+                        {
+                            quests.xolRating -= 20 * quests.xolRating / 100;
+                        }
+                        else
+                        {
+                            quests.xolRating -= 10 * quests.xolRating / 200;
+                        }
+                    }
+
+                    take("coins", (minigame.wager));
+                    lowBar = "information";
+                    gameState = "active";
+                    requestAnimationFrame(gameloopOfDestiny, CCC);
+                }
+                else
+                {
+                    if (minigame.playerSpawn == false || minigame.madeMove == true)
+                    {
+                        minigame.turn = 0;
+                        kundPromotion();
+                    }
+                }
+            }
+        }
+        if (myWonGame == true)
+        {
+            //win Game button
+            LXX.save();
+            LXX.globalAlpha = 0.75;
+            LXX.beginPath();
+            LXX.fillStyle = "lightGreen";
+            LXX.rect(1325, 5, 70, 70);
+            LXX.fill();
+            LXX.restore();
+        }
+        else
+        {
+            if (shiftKey == true)
+            {
+                //end turn button
+                LXX.save();
+                LXX.globalAlpha = 0.75;
+                LXX.beginPath();
+                LXX.fillStyle = "red";
+                LXX.rect(1325, 5, 70, 70);
+                LXX.fill();
+                LXX.restore();
+            }
+            else
+            {
+                //end turn button
+                LXX.save();
+                LXX.globalAlpha = 0.75;
+                LXX.beginPath();
+                LXX.fillStyle = "#4D3B1A";
+                LXX.rect(1325, 5, 70, 70);
+                LXX.fill();
+                LXX.restore();
+            }
+        }
+    }
+    else
+    {
+        if (myWonGame == true)
+        {
+            //win Game button
+            LXX.save();
+            LXX.globalAlpha = 0.75;
+            LXX.beginPath();
+            LXX.fillStyle = "green";
+            LXX.rect(1325, 5, 70, 70);
+            LXX.fill();
+            LXX.restore();
+        }
+        else
+        {
+            //end turn button
+            LXX.save();
+            LXX.globalAlpha = 0.75;
+            LXX.beginPath();
+            LXX.fillStyle = "#5C4720";
+            LXX.rect(1325, 5, 70, 70);
+            LXX.fill();
+            LXX.restore();
+        }
+    }
+
+    LXX.save();
+    if (endTernHov == true)
+    {
+        LXX.globalAlpha = 1;
+    }
+    else
+    {
+        LXX.globalAlpha = 0.5;
+    }
+    if (myWonGame == true)
+    {
+        //win Game button
+        LXX.beginPath();
+        LXX.fillStyle = "black";
+        LXX.font = "Bold 16px Book Antiqua";
+        LXX.textAlign = "center";
+        LXX.fillText("Claim", 1325 + 35, 44 - 8);
+        LXX.fillText("Victory", 1325 + 35, 44 + 8);
+        LXX.fill();
+    }
+    else
+    {
+        if (shiftKey == true && endTernHov == true)
+        {
+            LXX.beginPath();
+            LXX.fillStyle = "black";
+            LXX.font = "Bold 16px Book Antiqua";
+            LXX.textAlign = "center";
+            LXX.fillText("Admit", 1325 + 35, 44 - 8);
+            LXX.fillText("Defeat", 1325 + 35, 44 + 8);
+            LXX.fill();
+        }
+        else
+        {
+            LXX.beginPath();
+            LXX.fillStyle = "black";
+            LXX.font = "Bold 16px Book Antiqua";
+            LXX.textAlign = "center";
+            LXX.fillText("End Turn", 1325 + 35, 44);
+            LXX.fill();
+
+            LXX.beginPath();
+            LXX.fillStyle = "lightBlue";
+            LXX.font = "Bold 15px Book Antiqua";
+            LXX.textAlign = "center";
+            LXX.fillText("End Turn", 1325 + 35, 44);
+            LXX.fill();
+        }
+    }
+    LXX.restore();
+
+    clicked = false;
+}
+
+function playerHighValueXolPlayMove()
+{
+    minigame.aiLandValue = 0;
+    for (var lloo = 0; lloo < 25; lloo++)
+    {
+        if (minigame.xolxol[lloo].team == 0)
+        {
+            minigame.aiLandValue += minigame.xolxol[lloo].landValue;
+        }
+    }
+    minigame.playerLandValue = 0;
+    for (var lloo = 0; lloo < 25; lloo++)
+    {
+        if (minigame.xolxol[lloo].team == 1)
+        {
+            minigame.playerLandValue += minigame.xolxol[lloo].landValue;
+        }
+    }
+
+    //generate a list of all possible moves that can be made by foe
+    minigame.foePlayMoves = [];
+    for (var i = 0; i < 25; i++)
+    {
+        if (minigame.xolxol[i].team == 1 && minigame.xolxol[i].piece != "none")
+        {
+            if (minigame.xolxol[i].piece == "Warrior")
+            {
+                if (minigame.playerLandValue >= 15)
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+            else if (minigame.xolxol[i].piece == "Barrager")
+            {
+                if (minigame.playerLandValue >= 15)
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+            else if (minigame.xolxol[i].piece == "Trickster")
+            {
+                if (minigame.playerLandValue >= 15)
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 2, minigame.xolxol[i].Y - 2, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 2, nY: minigame.xolxol[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 2, minigame.xolxol[i].Y - 2, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 2, nY: minigame.xolxol[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 2, minigame.xolxol[i].Y + 2, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 2, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 2, minigame.xolxol[i].Y + 2, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 2, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 2, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 2, minigame.xolxol[i].Y - 2, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 2, nY: minigame.xolxol[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 2, minigame.xolxol[i].Y - 2, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 2, nY: minigame.xolxol[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 2, minigame.xolxol[i].Y + 2, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 2, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 2, minigame.xolxol[i].Y + 2, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 2, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 2, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+            else if (minigame.xolxol[i].piece == "Kundun")
+            {
+                if (minigame.playerLandValue >= 15)
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+            else if (minigame.xolxol[i].piece == "Kund")
+            {
+                if (minigame.playerLandValue >= 15)
+                {
+                    var canPushThru = false;
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 1, "move");
+                    if (canMove >= 0)
+                    {
+                        canPushThru = true;
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y + 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 2, 1, "atk");
+                    if (canMove >= 0 && canPushThru == true)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y + 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y + 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y + 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 1, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foePlayMoves.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+        }
+    }
+}
+
+function aihighValueXolPlayMove()
+{
+    minigame.aiLandValue = 0;
+    for (var lloo = 0; lloo < 25; lloo++)
+    {
+        if (minigame.xolxol[lloo].team == 0)
+        {
+            minigame.aiLandValue += minigame.xolxol[lloo].landValue;
+        }
+    }
+    minigame.playerLandValue = 0;
+    for (var lloo = 0; lloo < 25; lloo++)
+    {
+        if (minigame.xolxol[lloo].team == 1)
+        {
+            minigame.playerLandValue += minigame.xolxol[lloo].landValue;
+        }
+    }
+
+    //generate a list of all possible moves that can be made by foe
+    minigame.foeMovesPlay = [];
+    for (var i = 0; i < 25; i++)
+    {
+        if (minigame.xolxol[i].team == 0 && minigame.xolxol[i].piece != "none")
+        {
+            if (minigame.xolxol[i].piece == "Warrior")
+            {
+                if (minigame.aiLandValue >= 15)
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+            else if (minigame.xolxol[i].piece == "Barrager")
+            {
+                if (minigame.aiLandValue >= 15)
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+            else if (minigame.xolxol[i].piece == "Trickster")
+            {
+                if (minigame.aiLandValue >= 15)
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 2, minigame.xolxol[i].Y + 2, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 2, nY: minigame.xolxol[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 2, minigame.xolxol[i].Y + 2, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 2, nY: minigame.xolxol[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 2, minigame.xolxol[i].Y - 2, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 2, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 2, minigame.xolxol[i].Y - 2, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 2, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 2, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 2, minigame.xolxol[i].Y + 2, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 2, nY: minigame.xolxol[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 2, minigame.xolxol[i].Y + 2, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 2, nY: minigame.xolxol[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 2, minigame.xolxol[i].Y - 2, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 2, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 2, minigame.xolxol[i].Y - 2, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 2, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 2, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+            else if (minigame.xolxol[i].piece == "Kundun")
+            {
+                if (minigame.aiLandValue >= 15)
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+            else if (minigame.xolxol[i].piece == "Kund")
+            {
+                if (minigame.aiLandValue >= 15)
+                {
+                    var canPushThru = false;
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        canPushThru = true;
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 2, 0, "atk");
+                    if (canMove >= 0 && canPushThru == true)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X + 1, minigame.xolxol[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X + 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X - 1, minigame.xolxol[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X - 1, nY: minigame.xolxol[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckPlayMove(minigame.xolxol[i].X, minigame.xolxol[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMovesPlay.push({piece: minigame.xolxol[i].piece, cX: minigame.xolxol[i].X, cY: minigame.xolxol[i].Y, nX: minigame.xolxol[i].X, nY: minigame.xolxol[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+        }
+    }
+}
+
+function highValueXolMove()
+{
+    //generate a list of all possible moves that can be made by foe
+    minigame.foeMoves = [];
+    for (var i = 0; i < 25; i++)
+    {
+        if (minigame.xolBoard[i].team == 0 && minigame.xolBoard[i].piece != "none")
+        {
+            if (minigame.xolBoard[i].piece == "Warrior")
+            {
+                if (minigame.landValue >= 15)
+                {
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+            else if (minigame.xolBoard[i].piece == "Barrager")
+            {
+                if (minigame.landValue >= 15)
+                {
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+            else if (minigame.xolBoard[i].piece == "Trickster")
+            {
+                if (minigame.landValue >= 15)
+                {
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 2, minigame.xolBoard[i].Y + 2, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 2, nY: minigame.xolBoard[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 2, minigame.xolBoard[i].Y + 2, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 2, nY: minigame.xolBoard[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 2, minigame.xolBoard[i].Y - 2, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 2, nY: minigame.xolBoard[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 2, minigame.xolBoard[i].Y - 2, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 2, nY: minigame.xolBoard[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 2, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 2, minigame.xolBoard[i].Y + 2, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 2, nY: minigame.xolBoard[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 2, minigame.xolBoard[i].Y + 2, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 2, nY: minigame.xolBoard[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 2, minigame.xolBoard[i].Y - 2, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 2, nY: minigame.xolBoard[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 2, minigame.xolBoard[i].Y - 2, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 2, nY: minigame.xolBoard[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 2, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 2, value: canMove, initValue: canMove});
+                    }
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+            else if (minigame.xolBoard[i].piece == "Kundun")
+            {
+                if (minigame.landValue >= 15)
+                {
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+            else if (minigame.xolBoard[i].piece == "Kund")
+            {
+                if (minigame.landValue >= 15)
+                {
+                    var canPushThru = false;
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "move");
+                    if (canMove >= 0)
+                    {
+                        canPushThru = true;
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 2, 0, "atk");
+                    if (canMove >= 0 && canPushThru == true)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 2, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+                else
+                {
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove, initValue: canMove});
+                    }
+
+                    var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "atk");
+                    if (canMove >= 0)
+                    {
+                        minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove, initValue: canMove});
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -6976,374 +8463,7 @@ function xolAiMoving()
     if (minigame.ai == "easy")
     {
         //MOVE STAGE
-        //generate a list of all possible moves that can be made by foe
-        minigame.foeMoves = [];
-        for (var i = 0; i < 25; i++)
-        {
-            if (minigame.xolBoard[i].team == 0 && minigame.xolBoard[i].piece != "none")
-            {
-                if (minigame.xolBoard[i].piece == "Warrior")
-                {
-                    if (minigame.landValue >= 15)
-                    {
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-                    }
-                    else
-                    {
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-                    }
-                }
-                else if (minigame.xolBoard[i].piece == "Barrager")
-                {
-                    if (minigame.landValue >= 15)
-                    {
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-                    }
-                    else
-                    {
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-                    }
-                }
-                else if (minigame.xolBoard[i].piece == "Trickster")
-                {
-                    if (minigame.landValue >= 15)
-                    {
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 2, minigame.xolBoard[i].Y + 2, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 2, nY: minigame.xolBoard[i].Y + 2, value: canMove});
-                        }
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 2, minigame.xolBoard[i].Y + 2, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 2, nY: minigame.xolBoard[i].Y + 2, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 2, minigame.xolBoard[i].Y - 2, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 2, nY: minigame.xolBoard[i].Y - 2, value: canMove});
-                        }
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 2, minigame.xolBoard[i].Y - 2, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 2, nY: minigame.xolBoard[i].Y - 2, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 2, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 2, value: canMove});
-                        }
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y, value: canMove});
-                        }
-                    }
-                    else
-                    {
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 2, minigame.xolBoard[i].Y + 2, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 2, nY: minigame.xolBoard[i].Y + 2, value: canMove});
-                        }
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 2, minigame.xolBoard[i].Y + 2, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 2, nY: minigame.xolBoard[i].Y + 2, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 2, minigame.xolBoard[i].Y - 2, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 2, nY: minigame.xolBoard[i].Y - 2, value: canMove});
-                        }
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 2, minigame.xolBoard[i].Y - 2, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 2, nY: minigame.xolBoard[i].Y - 2, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 2, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 2, value: canMove});
-                        }
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y, value: canMove});
-                        }
-                    }
-                }
-                else if (minigame.xolBoard[i].piece == "Kundun")
-                {
-                    if (minigame.landValue >= 15)
-                    {
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-                    }
-                    else
-                    {
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-                    }
-                }
-                else if (minigame.xolBoard[i].piece == "Kund")
-                {
-                    if (minigame.landValue >= 15)
-                    {
-                        var canPushThru = false;
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "move");
-                        if (canMove >= 0)
-                        {
-                            canPushThru = true;
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 2, 0, "atk");
-                        if (canMove >= 0 && canPushThru == true)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 2, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y - 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y - 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-                    }
-                    else
-                    {
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y - 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y - 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X + 1, minigame.xolBoard[i].Y, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X + 1, nY: minigame.xolBoard[i].Y, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X - 1, minigame.xolBoard[i].Y, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X - 1, nY: minigame.xolBoard[i].Y, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y - 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y - 1, value: canMove});
-                        }
-
-                        var canMove = xolCheckMove(minigame.xolBoard[i].X, minigame.xolBoard[i].Y + 1, 0, "atk");
-                        if (canMove >= 0)
-                        {
-                            minigame.foeMoves.push({piece: minigame.xolBoard[i].piece, cX: minigame.xolBoard[i].X, cY: minigame.xolBoard[i].Y, nX: minigame.xolBoard[i].X, nY: minigame.xolBoard[i].Y + 1, value: canMove});
-                        }
-                    }
-                }
-            }
-        }
+        highValueXolMove();
 
         var bestValue = -1;
         var bestValueMove = -1;
@@ -7360,6 +8480,187 @@ function xolAiMoving()
             var theMove = minigame.foeMoves[bestValueMove];
 
             xolMakeMove(theMove.cX, theMove.cY, theMove.nX, theMove.nY, theMove.piece, 0);
+        }
+    }
+    else if (minigame.ai == "basic")
+    {
+        //MOVE STAGE
+        highValueXolMove();
+
+        for (var eeki = 0; eeki < minigame.foeMoves.length; eeki++)
+        {
+            //alter values to reflect danger levels
+            minigame.xolxol = [];
+            for (var iji = 0; iji < 25; iji++)
+            {
+                minigame.xolxol.push(JSON.parse(JSON.stringify(minigame.xolBoard[iji])));
+            }
+
+            //UNFREEZE STAGE (for player)
+            for (var i = 0; i < 25; i++)
+            {
+                if (minigame.xolxol[i].team == 1 && minigame.xolxol[i].piece != "none")
+                {
+                    if (minigame.xolxol[i].piece == "freshWarrior")
+                    {
+                        minigame.xolxol[i].piece = "Warrior";
+                    }
+                    else if (minigame.xolxol[i].piece == "freshBarrager")
+                    {
+                        minigame.xolxol[i].piece = "Barrager";
+                    }
+                    else if (minigame.xolxol[i].piece == "freshTrickster")
+                    {
+                        minigame.xolxol[i].piece = "Trickster";
+                    }
+                    else if (minigame.xolxol[i].piece == "freshKundun")
+                    {
+                        minigame.xolxol[i].piece = "Kundun";
+                    }
+                    else if (minigame.xolxol[i].piece == "freshKund")
+                    {
+                        minigame.xolxol[i].piece = "Kund";
+                    }
+                }
+            }
+
+            playerHighValueXolPlayMove();
+            for (var i = 0; i < minigame.foeMoves.length; i++)
+            {
+                for (var jj = 0; jj < minigame.foePlayMoves.length; jj++)
+                {
+                    if (minigame.foeMoves[i].cX == minigame.foePlayMoves[jj].nX && minigame.foeMoves[i].cY == minigame.foePlayMoves[jj].nY) //if current position is targeted by the player
+                    {
+                        minigame.foeMoves[i].value += minigame.foePlayMoves[jj].value;
+                    }
+                }
+            }
+
+            var theMove = minigame.foeMoves[eeki];
+            xolMakePlayMove(theMove.cX, theMove.cY, theMove.nX, theMove.nY, theMove.piece, 0);
+
+            playerHighValueXolPlayMove();
+            for (var ik = 0; ik < minigame.foeMoves.length; ik++)
+            {
+                for (var jj = 0; jj < minigame.foePlayMoves.length; jj++)
+                {
+                    if (minigame.foeMoves[ik].nX == minigame.foePlayMoves[jj].nX && minigame.foeMoves[ik].nY == minigame.foePlayMoves[jj].nY)
+                    {
+                        var mahPeaceSco = 0;
+                        if (minigame.foeMoves[ik].piece == "Warrior")
+                        {
+                            mahPeaceSco = 1;
+                        }
+                        else if (minigame.foeMoves[ik].piece == "Barrager")
+                        {
+                            mahPeaceSco = 2;
+                        }
+                        else if (minigame.foeMoves[ik].piece == "Trickster")
+                        {
+                            mahPeaceSco = 3;
+                        }
+                        else if (minigame.foeMoves[ik].piece == "Kundun")
+                        {
+                            mahPeaceSco = 2.5;
+                        }
+                        else if (minigame.foeMoves[ik].piece == "Kund")
+                        {
+                            mahPeaceSco = 5;
+                        }
+
+                        if (minigame.foeMoves[ik].initValue >= mahPeaceSco)
+                        {
+                            minigame.foeMoves[ik].value += minigame.foePlayMoves[jj].value * 1000000;
+                        }
+                        else
+                        {
+                            minigame.foeMoves[ik].value -= minigame.foePlayMoves[jj].value;
+                        }
+                    }
+                }
+            }
+        }
+
+        var bestValue = -1000;
+        var bestValueMove = -1;
+        for (var i = 0; i < minigame.foeMoves.length; i++)
+        {
+            if (minigame.foeMoves[i].value > bestValue || minigame.foeMoves[i].value == bestValue && Math.random() > 0.65)
+            {
+                bestValue = minigame.foeMoves[i].value;
+                bestValueMove = i;
+            }
+        }
+        if (bestValueMove != -1)
+        {
+            var theMove = minigame.foeMoves[bestValueMove];
+
+            xolMakeMove(theMove.cX, theMove.cY, theMove.nX, theMove.nY, theMove.piece, 0);
+        }
+    }
+    else if (minigame.ai == "normal")
+    {
+        //MOVE STAGE
+        highValueXolMove();
+
+        // minigame.xolxol = [];
+        // for (var iji = 0; iji < 25; iji++)
+        // {
+        //     minigame.xolxol.push(JSON.parse(JSON.stringify(minigame.xolBoard[iji])));
+        // }
+        // playerHighValueXolPlayMove();
+        // for (var i = 0; i < minigame.foeMoves.length; i++)
+        // {
+        //     for (var jj = 0; jj < minigame.foePlayMoves.length; jj++)
+        //     {
+        //         if (minigame.foeMoves[i].cX == minigame.foePlayMoves[jj].nX && minigame.foeMoves[i].cY == minigame.foePlayMoves[jj].nY) //if current position is targeted by the player
+        //         {
+        //             minigame.foeMoves[i].value += minigame.foePlayMoves[jj].value;
+        //
+        //             if (minigame.foeMoves[i].nX == minigame.foePlayMoves[jj].cX && minigame.foeMoves[i].nY == minigame.foePlayMoves[jj].cY) //locate attacking piece
+        //             {
+        //                 var hoots = false;
+        //                 for (var jjj = 0; jjj < minigame.foePlayMoves.length; jjj++)
+        //                 {
+        //                     if (minigame.foePlayMoves[jjj].nX == minigame.foeMoves[i].nX && minigame.foePlayMoves[jjj].nY == minigame.foeMoves[i].nY) //if that piece is defended
+        //                     {
+        //                         hoots = true;
+        //                         minigame.foeMoves[i].value -= minigame.foePlayMoves[jj].value;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+
+        for (var ftro = 0; ftro < minigame.foeMoves[i].length; ftro++)
+        {
+            //set up a planning board
+            minigame.xolxol = [];
+            for (var iji = 0; iji < 25; iji++)
+            {
+                minigame.xolxol.push(JSON.parse(JSON.stringify(minigame.xolBoard[iji])));
+            }
+
+            //make thoretical move based on best take available
+            var bestValue = -1;
+            var bestValueMove = -1;
+            for (var i = 0; i < minigame.foeMoves.length; i++)
+            {
+                if (minigame.foeMoves[i].value > bestValue || minigame.foeMoves[i].value == bestValue && Math.random() > 0.65)
+                {
+                    bestValue = minigame.foeMoves[i].value;
+                    bestValueMove = i;
+                }
+            }
+            if (bestValueMove != -1)
+            {
+                var theMove = minigame.foeMoves[bestValueMove];
+
+                xolMakePlayMove(theMove.cX, theMove.cY, theMove.nX, theMove.nY, theMove.piece, 0);
+            }
+            //forcast player's best take
+            playerHighValueXolPlayMove();
         }
     }
 
@@ -7417,6 +8718,27 @@ function xolAiSpawning()
                     else
                     {
                         minigame.xolBoard[k].piece = spawnee;
+                    }
+
+                    if (spawnee == "Warrior")
+                    {
+                        minigame.xolBoard[k].pieceValue = 1;
+                    }
+                    else if (spawnee == "Barrager")
+                    {
+                        minigame.xolBoard[k].pieceValue = 2;
+                    }
+                    else if (spawnee == "Trickster")
+                    {
+                        minigame.xolBoard[k].pieceValue = 3;
+                    }
+                    else if (spawnee == "Kundun")
+                    {
+                        minigame.xolBoard[k].pieceValue = 2.5;
+                    }
+                    else if (spawnee == "Kund")
+                    {
+                        minigame.xolBoard[k].pieceValue = 5;
                     }
 
                     minigame.foeMaterial.splice(spawnRandom, 1);
@@ -7585,6 +8907,85 @@ function showXol()
     }
 }
 
+function xolMakePlayMove(cX, cY, nX, nY, piece, team)
+{
+    var hits = 0;
+    var successed = false;
+    for (var miiim = 0; miiim < 25; miiim++)
+    {
+        if (minigame.xolxol[miiim].X == nX && minigame.xolxol[miiim].Y == nY)
+        {
+            if (minigame.xolxol[miiim].piece == "none" && minigame.xolxol[miiim].team == team || minigame.xolxol[miiim].team != team)
+            {
+                minigame.xolxol[miiim].team = team;
+                minigame.xolxol[miiim].piece = piece;
+                if (piece == "Warrior")
+                {
+                    minigame.xolxol[miiim].pieceValue = 1;
+                }
+                else if (piece == "Barrager")
+                {
+                    minigame.xolxol[miiim].pieceValue = 2;
+                }
+                else if (piece == "Trickster")
+                {
+                    minigame.xolxol[miiim].pieceValue = 3;
+                }
+                else if (piece == "Kundun")
+                {
+                    minigame.xolxol[miiim].pieceValue = 2.5;
+                }
+                else if (piece == "Kund")
+                {
+                    minigame.xolxol[miiim].pieceValue = 5;
+                }
+                successed = true;
+            }
+        }
+    }
+
+    if (successed == true)
+    {
+        for (var miiim = 0; miiim < 25; miiim++)
+        {
+            if (minigame.xolxol[miiim].X == cX && minigame.xolxol[miiim].Y == cY)
+            {
+                minigame.xolxol[miiim].piece = "none";
+                minigame.xolxol[miiim].pieceValue = 0;
+                break;
+            }
+        }
+    }
+
+    return successed;
+}
+
+function xolCheckPlayMove(x, y, team, type)
+{
+    if (x > 5 || x < 1 || y > 5 || y < 1)
+    {
+        return -1;
+    }
+    else
+    {
+        var hits = 0;
+        for (var miiim = 0; miiim < 25; miiim++)
+        {
+            if (minigame.xolxol[miiim].X == x && minigame.xolxol[miiim].Y == y)
+            {
+                if (minigame.xolxol[miiim].piece == "none" && minigame.xolxol[miiim].team == team || minigame.xolxol[miiim].piece == "none" || minigame.xolxol[miiim].team != team && type == "atk")
+                {
+                    return minigame.xolxol[miiim].pieceValue;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+    }
+}
+
 function xolMakeMove(cX, cY, nX, nY, piece, team)
 {
     var hits = 0;
@@ -7607,7 +9008,7 @@ function xolMakeMove(cX, cY, nX, nY, piece, team)
                 }
                 else if (piece == "Trickster")
                 {
-                    minigame.xolBoard[miiim].pieceValue = 1.5;
+                    minigame.xolBoard[miiim].pieceValue = 3;
                 }
                 else if (piece == "Kundun")
                 {
@@ -7615,7 +9016,7 @@ function xolMakeMove(cX, cY, nX, nY, piece, team)
                 }
                 else if (piece == "Kund")
                 {
-                    minigame.xolBoard[miiim].pieceValue = 3;
+                    minigame.xolBoard[miiim].pieceValue = 5;
                 }
                 successed = true;
             }
@@ -7679,6 +9080,13 @@ function xol()
 
         if (mouseX > 1137 && mouseX < 1263 && mouseY > 50 && mouseY < 250)
         {
+            XXX.drawImage(xolo, 380, 138, 85, 85, (-1/2 * 85 * 1 + 1200), (-1/2 * 85 * 1 + 190), 85 * 1, 85 * 1);
+
+            XXX.save();
+            XXX.globalAlpha = 0.4;
+            XXX.drawImage(xolo, 380, 347, 85, 85, (-1/2 * 85 * 1 + 1200), (-1/2 * 85 * 1 + 190), 85 * 1, 85 * 1);
+            XXX.restore();
+
             XXX.beginPath();
             XXX.fillStyle = "black";
             XXX.font = "Bold 22px Book Antiqua";
@@ -7687,7 +9095,7 @@ function xol()
             XXX.fill();
 
             XXX.beginPath();
-            XXX.fillStyle = "red";
+            XXX.fillStyle = "lightBlue";
             XXX.font = "Bold 21px Book Antiqua";
             XXX.textAlign = "center";
             XXX.fillText("Play Xol", 1200, 255);
@@ -7702,6 +9110,8 @@ function xol()
         }
         else
         {
+            XXX.drawImage(xolo, 380, 138, 85, 85, (-1/2 * 85 * 1) + 1200, (-1/2 * 85 * 1) + 190, 85 * 1, 85 * 1);
+
             XXX.beginPath();
             XXX.fillStyle = "black";
             XXX.font = "Bold 21px Book Antiqua";
@@ -7710,7 +9120,7 @@ function xol()
             XXX.fill();
 
             XXX.beginPath();
-            XXX.fillStyle = "red";
+            XXX.fillStyle = "lightBlue";
             XXX.font = "Bold 20px Book Antiqua";
             XXX.textAlign = "center";
             XXX.fillText("Play Xol", 1200, 255);
@@ -7731,7 +9141,7 @@ function xol()
                 LXX.fill();
 
                 LXX.beginPath();
-                LXX.fillStyle = "red";
+                LXX.fillStyle = "lightBlue";
                 LXX.font = "Bold 21px Book Antiqua";
                 LXX.textAlign = "center";
                 LXX.fillText("Wager x 5", 700, 49);
@@ -7764,7 +9174,7 @@ function xol()
                         LXX.fill();
 
                         LXX.beginPath();
-                        LXX.fillStyle = "red";
+                        LXX.fillStyle = "lightBlue";
                         LXX.font = "Bold 21px Book Antiqua";
                         LXX.textAlign = "center";
                         LXX.fillText("Wager x 1", 700, 49);
@@ -7788,7 +9198,7 @@ function xol()
                         LXX.fill();
 
                         LXX.beginPath();
-                        LXX.fillStyle = "red";
+                        LXX.fillStyle = "lightBlue";
                         LXX.font = "Bold 21px Book Antiqua";
                         LXX.textAlign = "center";
                         LXX.fillText("Not Enough Coins", 700, 49);
@@ -7805,7 +9215,7 @@ function xol()
                     LXX.fill();
 
                     LXX.beginPath();
-                    LXX.fillStyle = "red";
+                    LXX.fillStyle = "lightBlue";
                     LXX.font = "Bold 21px Book Antiqua";
                     LXX.textAlign = "center";
                     LXX.fillText("Wager Cap Reached", 700, 49);
@@ -7825,7 +9235,7 @@ function xol()
             LXX.fill();
 
             LXX.beginPath();
-            LXX.fillStyle = "red";
+            LXX.fillStyle = "lightBlue";
             LXX.font = "Bold 20px Book Antiqua";
             LXX.textAlign = "center";
             LXX.fillText("Wager", 700, 49);
@@ -7850,39 +9260,82 @@ function xol()
                     {
                         if (minigame.xolBoard[k].X == 1+i && minigame.xolBoard[k].Y == 1+j)
                         {
-                            if (minigame.xolBoard[k].team == 1)
-                            {
-                                XXX.fillStyle = "green";
-                            }
-                            else if (minigame.xolBoard[k].team == 0)
-                            {
-                                XXX.fillStyle = "red";
-                            }
-                            else
+                            if (minigame.showXolLands == true)
                             {
                                 XXX.fillStyle = "gold";
-                            }
 
-                            if (minigame.playerMoveSel[0] == minigame.tileSel[0] && minigame.playerMoveSel[1] == minigame.tileSel[1])
-                            {
-                                XXX.fillStyle = "lightGreen";
+                                if (minigame.playerMoveSel[0] == minigame.tileSel[0] && minigame.playerMoveSel[1] == minigame.tileSel[1])
+                                {
+                                    XXX.fillStyle = "lightGreen";
+                                }
                             }
                         }
                     }
                     XXX.lineWidth = 4;
                     XXX.rect(450 + (i * 110), 0 + (j * 110), 110, 110);
-                    XXX.fill();
+                    if (minigame.showXolLands == true)
+                    {
+                        XXX.fill();
+                    }
                     XXX.stroke();
                     XXX.restore();
                 }
                 else
                 {
                     XXX.save();
-                    XXX.globalAlpha = 0.4;
+                    XXX.globalAlpha = 0.15;
                     XXX.beginPath();
                     XXX.strokeStyle = "black";
                     XXX.lineWidth = 4;
                     XXX.rect(450 + (i * 110), 0 + (j * 110), 110, 110);
+                    XXX.stroke();
+                    XXX.restore();
+
+                    var noStrook = false;
+                    XXX.save();
+                    XXX.globalAlpha = 0.25;
+                    XXX.beginPath();
+                    XXX.strokeStyle = "black";
+                    for (var k = 0; k < 25; k++)
+                    {
+                        if (minigame.xolBoard[k].X == 1+i && minigame.xolBoard[k].Y == 1+j)
+                        {
+                            if (minigame.showXolLands == true)
+                            {
+                                if (minigame.xolBoard[k].team == 1)
+                                {
+                                    XXX.fillStyle = "green";
+                                }
+                                else if (minigame.xolBoard[k].team == 0)
+                                {
+                                    XXX.fillStyle = "red";
+                                }
+                                else
+                                {
+                                    noStrook = true;
+                                }
+                            }
+                            else
+                            {
+                                noStrook = true;
+                            }
+
+                            if (minigame.showXolLands == true)
+                            {
+                                if (minigame.playerMoveSel[0] == 1+i && minigame.playerMoveSel[1] == 1+j)
+                                {
+                                    XXX.fillStyle = "lightGreen";
+                                    noStrook = false;
+                                }
+                            }
+                        }
+                    }
+                    XXX.lineWidth = 4;
+                    XXX.rect(450 + (i * 110), 0 + (j * 110), 110, 110);
+                    if (noStrook == false)
+                    {
+                        XXX.fill();
+                    }
                     XXX.stroke();
                     XXX.restore();
                 }
@@ -7899,8 +9352,6 @@ function xol()
                         {
                             if (clicked == true)
                             {
-                                clicked = false;
-
                                 if (minigame.myMaterial[minigame.playerSel] == "Kundun")
                                 {
                                     minigame.xolBoard[i].piece = minigame.myMaterial[minigame.playerSel];
@@ -7920,7 +9371,7 @@ function xol()
                                 }
                                 else if (minigame.myMaterial[minigame.playerSel] == "Trickster")
                                 {
-                                    minigame.xolBoard[i].pieceValue = 1.5;
+                                    minigame.xolBoard[i].pieceValue = 3;
                                 }
                                 else if (minigame.myMaterial[minigame.playerSel] == "Kundun")
                                 {
@@ -7928,7 +9379,7 @@ function xol()
                                 }
                                 else if (minigame.myMaterial[minigame.playerSel] == "Kund")
                                 {
-                                    minigame.xolBoard[i].pieceValue = 3;
+                                    minigame.xolBoard[i].pieceValue = 5;
                                 }
 
                                 minigame.playerSpawn = 0;
@@ -7959,7 +9410,6 @@ function xol()
                 {
                     if (clicked == true)
                     {
-                        clicked = false;
                         if (minigame.playerSel == i)
                         {
                             minigame.playerSel = -1;
@@ -7991,7 +9441,6 @@ function xol()
                 {
                     if (clicked == true)
                     {
-                        clicked = false;
                         if (minigame.playerSel == i)
                         {
                             minigame.playerSel = -1;
@@ -8023,7 +9472,6 @@ function xol()
                 {
                     if (clicked == true)
                     {
-                        clicked = false;
                         if (minigame.playerSel == i)
                         {
                             minigame.playerSel = -1;
@@ -8055,7 +9503,6 @@ function xol()
                 {
                     if (clicked == true)
                     {
-                        clicked = false;
                         if (minigame.playerSel == i)
                         {
                             minigame.playerSel = -1;
@@ -8087,7 +9534,6 @@ function xol()
                 {
                     if (clicked == true)
                     {
-                        clicked = false;
                         if (minigame.playerSel == i)
                         {
                             minigame.playerSel = -1;
@@ -8142,7 +9588,7 @@ function xol()
             }
 
             //AI VARIATION STARTS HERE
-            if (minigame.ai == "easy")
+            if (minigame.ai == "easy" || minigame.ai == "basic")
             {
                 //SPAWN STAGE
                 xolAiSpawning();
@@ -8177,6 +9623,10 @@ function minigameLoop()
         }
         else if (minigame.type == "Xol")
         {
+            minigame.showXolLands = false;
+            minigame.playerLandValue = 5;
+            minigame.aiLandValue = 5;
+
             minigame.madeMove = false;
             minigame.playerMoveSelPiece = "none";
             minigame.playerMoveSel = [-1, -1];
@@ -8189,6 +9639,7 @@ function minigameLoop()
                                  {X: 1, Y: 3, piece: "none", pieceValue: 0, team: -1, landValue: 1}, {X: 2, Y: 3, piece: "none", pieceValue: 0, team: -1, landValue: 2}, {X: 3, Y: 3, piece: "none", pieceValue: 0, team: -1, landValue: 15}, {X: 4, Y: 3, piece: "none", pieceValue: 0, team: -1, landValue: 2}, {X: 5, Y: 3, piece: "none", pieceValue: 0, team: -1, landValue: 1},
                                  {X: 1, Y: 4, piece: "none", pieceValue: 0, team: -1, landValue: 1}, {X: 2, Y: 4, piece: "none", pieceValue: 0, team: -1, landValue: 2}, {X: 3, Y: 4, piece: "none", pieceValue: 0, team: -1, landValue: 2}, {X: 4, Y: 4, piece: "none", pieceValue: 0, team: -1, landValue: 2}, {X: 5, Y: 4, piece: "none", pieceValue: 0, team: -1, landValue: 1},
                                  {X: 1, Y: 5, piece: "none", pieceValue: 0, team: 1, landValue: 1}, {X: 2, Y: 5, piece: "none", pieceValue: 0, team: 1, landValue: 1}, {X: 3, Y: 5, piece: "none", pieceValue: 0, team: 1, landValue: 1}, {X: 4, Y: 5, piece: "none", pieceValue: 0, team: 1, landValue: 1}, {X: 5, Y: 5, piece: "none", pieceValue: 0, team: 1, landValue: 1}]
+            minigame.xolxol = [];
             if (player.title == "Nobility" || player.title == "Royalty")
             {
                 minigame.turn = 1;
@@ -8205,7 +9656,10 @@ function minigameLoop()
             minigame.foeMaterial = ["Kund", "Barrager", "Barrager", "Warrior", "Warrior", "Warrior", "Warrior", "Warrior", "Trickster", "Trickster", "Kundun"];
             minigame.myMaterial = ["Kund", "Barrager", "Barrager", "Warrior", "Warrior", "Warrior", "Warrior", "Warrior", "Trickster", "Trickster", "Kundun"];
 
-            minigame.foeMoves = [];
+            minigame.xolDangerLevel = [];
+            minigame.foeMoves = []; //normal move selection
+            minigame.foeMovesPlay = []; //ai theoretical moves
+            minigame.foePlayMoves = []; //player theoretical moves
         }
         else if (minigame.type == "Chess")
         {

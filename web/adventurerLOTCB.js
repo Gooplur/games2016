@@ -46294,6 +46294,46 @@ function Adventurer()
                                 break;
                             }
                         }
+                        else if (Inventory[i][0].subUtility == "burgonCampFire")
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //19 is the radius of campFire Scenery Object.
+                                if (scenicList[j].X - 24 <= X + scenicList[j].radius && scenicList[j].X + 24 >= X - scenicList[j].radius && scenicList[j].Y - 24 <= Y + scenicList[j].radius && scenicList[j].Y + 24 >= Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+                            for (var j = 0; j < Inventory.length; j++)
+                            {
+                                if (Inventory[j][0].identity != "Fire-Starter")
+                                {
+                                    hits += 1;
+                                }
+                            }
+
+                            if (hits == Inventory.length)
+                            {
+                                canPlace = false;
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("burgonCampFire", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
                         else if (Inventory[i][0].subUtility == "yeolCampFire")
                         {
                             var canPlace = true;

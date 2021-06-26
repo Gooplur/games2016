@@ -9268,7 +9268,7 @@ function worldBuilder()
         region = "testMap";
         campout = true;
         //starting chamber
-        outlineBuilder(68,68, "murkwoods", -34, -34); //gladeGrass //royalwoods //murkwoods
+        outlineBuilder(68,68, "blueWoods", -34, -34); //gladeGrass //royalwoods //murkwoods //blueWoods
         outlineBuilder(1,4, "murklake", 1, 1); //glade //royalwater //murklake
         outlineBuilder(2, 1, "murklake", 4, -1);
     }

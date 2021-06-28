@@ -21462,6 +21462,14 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(sluth, 145, 772, 46, 46, -(1/2 * 46 * this.size), -(1/2 * 46 * this.size), 46 * this.size, 46 * this.size);
                 XXX.restore();
             }
+            else if (this.temporary == 14) //minotaur mounted head
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(minno, 141, 1200, 127, 100, -(1/2 * 127 * this.size), -(1/2 * 100 * this.size), 127 * this.size, 100 * this.size);
+                XXX.restore();
+            }
             else //bug home log chunk rotten
             {
                 this.interactionRange = 90;

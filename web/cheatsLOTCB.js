@@ -15143,13 +15143,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 13)
+                if (buildClase > 14)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 13;
+                    buildClase = 14;
                 }
             }
 

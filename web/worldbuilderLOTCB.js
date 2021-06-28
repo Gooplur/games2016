@@ -3244,6 +3244,39 @@ function worldBuilder()
             outlineBuilder(18, 1, "mire", -1122, 592);
             outlineBuilder(19, 1, "mire", -1121, 592);
         }
+        //mapS18W32
+        if (Y > -187519 && Y < -176743 && X < 334130 && X > 322464) //X32
+        {
+            elevation = -1;
+            region = "s18w32";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianWoods", -1108, 592);
+            outlineBuilder(1, 1, "vardanianWetlands", -1108, 594);
+            outlineBuilder(2, 1, "vardanianWetlands", -1108, 600);
+            outlineBuilder(1, 1, "vardanianWetlands", -1108, 605);
+            outlineBuilder(2, 1, "shallowMire", -1108, 607);
+            outlineBuilder(1, 5, "shallowMire", -1108, 592);
+            outlineBuilder(1, 3, "shallowMire", -1108, 593);
+            outlineBuilder(1, 3, "shallowMire", -1105, 594);
+            outlineBuilder(1, 2, "shallowMire", -1103, 595);
+            outlineBuilder(3, 2, "shallowMire", -1108, 595);
+            outlineBuilder(1, 1, "shallowMire", -1108, 606);
+            outlineBuilder(2, 1, "shallowMire", -1107, 607);
+            outlineBuilder(3, 1, "shallowMire", -1106, 596);
+            outlineBuilder(2, 1, "shallowMire", -1107, 601);
+            outlineBuilder(3, 1, "shallowMire", -1108, 602);
+            outlineBuilder(1, 2, "shallowMire", -1105, 598);
+            outlineBuilder(2, 1, "shallowMire", -1104, 599);
+            outlineBuilder(1, 2, "shallowMire", -1103, 600);
+            outlineBuilder(1, 3, "shallowMire", -1104, 600);
+            outlineBuilder(1, 3, "shallowMire", -1103, 601);
+            outlineBuilder(1, 3, "shallowMire", -1102, 602);
+            outlineBuilder(2, 1, "shallowMire", -1102, 603);
+            outlineBuilder(1, 1, "shallowMire", -1101, 603);
+            outlineBuilder(1, 1, "mire", -1108, 599); //mire
+            outlineBuilder(3, 1, "mire", -1108, 609);
+            outlineBuilder(1, 2, "mire", -1107, 594);
+        }
         //mapS18
         if (Y > -187519 && Y < -176743 && X < 7687 && X > - 3901) //X0
         {

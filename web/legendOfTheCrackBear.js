@@ -1679,6 +1679,18 @@ function nalPack()
 
     nal.onload = function()
     {
+        pangoPack();
+    };
+}
+
+function pangoPack()
+{
+    var pango = new Image();
+    pango.src = ("images/pango.png");
+    window.pango = pango;
+
+    pango.onload = function()
+    {
         chesPack();
     };
 }
@@ -6700,6 +6712,7 @@ function theLegend()
     foods.push(new Item("sasoriMeat", false));
     foods.push(new Item("taoMeat", false));
     foods.push(new Item("vlicaMeat", false));
+    foods.push(new Item("minotaurMeat", false));
     foods.push(new Item("cookedZugot", false));
     foods.push(new Item("cookedCeletsig", false));
     foods.push(new Item("nethNoodles", false));

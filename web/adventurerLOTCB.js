@@ -9079,6 +9079,38 @@ function Adventurer()
                         XXX.drawImage(snug, 169, 138, 31, 31, -1/2 * 31 * 1 - 2.35, -1/2 * 31 * 1, 31 * 1, 31 * 1);
                         XXX.restore();
                     }
+                    else if (this.facepaint == "paleface")
+                    {
+                        if (player.gender == "Female")
+                        {
+                            this.facepaintCharm = -10;
+                        }
+                        else
+                        {
+                            this.facepaintCharm = -10;
+                        }
+
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                        XXX.rotate(this.rotation + Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.025;
+                        }
+                        if (this.facepaintTime < 10)
+                        {
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime * 0.025;
+                            }
+                            else
+                            {
+                                XXX.globalAlpha = 0.1*this.facepaintTime;
+                            }
+                        }
+                        XXX.drawImage(pango, 110, 759, 25, 25, -1/2 * 25 * 1, -1/2 * 25 * 1, 25 * 1, 25 * 1);
+                        XXX.restore();
+                    }
                 }
                 else
                 {

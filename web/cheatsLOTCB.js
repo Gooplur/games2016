@@ -9976,13 +9976,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 100)
+                if (buildClase > 104)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 100;
+                    buildClase = 104;
                 }
             }
 
@@ -17074,6 +17074,12 @@ function cheats()
                 player.autosaveFrequency = 200;
                 alert("Input too small, save rate set to default. (minimum input: 180 seconds)")
             }
+        }
+        else if (cheatcode.toLowerCase() == "paleface")
+        {
+            player.facepaint = "paleface";
+            player.facepaintKeep = new Date().getTime();
+            player.facepaintTime = Math.max(player.facepaintTime, 999999999999999999);
         }
         else if (cheatcode.toLowerCase() == "tellarmour")
         {

@@ -348,6 +348,11 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             }
                         }
                     }
+                    else if (effect == "minoStun" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        player.stunnedIII = true;
+                        player.stunnedTime = 5;
+                    }
                     else if (effect == "smashbackI" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
                     {
                         var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
@@ -355,6 +360,14 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         Y -= Math.sin(twrdsUnit) * 50;
                         player.stunnedIII = true;
                         player.stunnedTime = Math.max(player.stunnedTime, 3);
+                    }
+                    else if (effect == "smashbackII" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                        X -= Math.cos(twrdsUnit) * 125;
+                        Y -= Math.sin(twrdsUnit) * 125;
+                        player.stunnedIII = true;
+                        player.stunnedTime = 4;
                     }
                     else if (effect == "paraliticSmash" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
                     {
@@ -13116,6 +13129,21 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             ArtificialIntelligenceAccess[j].stunTimer = Math.max(3, ArtificialIntelligenceAccess[j].stunTimer);
                             ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
                         }
+                        else if (this.effect == "smashbackII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
+                        {
+                            var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
+                            ArtificialIntelligenceAccess[j].X -= Math.cos(twrdsUnit) * 125;
+                            ArtificialIntelligenceAccess[j].Y -= Math.sin(twrdsUnit) * 125;
+                            ArtificialIntelligenceAccess[j].stunIII = true;
+                            ArtificialIntelligenceAccess[j].stunTimer = Math.max(4, ArtificialIntelligenceAccess[j].stunTimer);
+                            ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+                        }
+                        else if (this.effect == "minoStun" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
+                        {
+                            ArtificialIntelligenceAccess[j].stunIII = true;
+                            ArtificialIntelligenceAccess[j].stunTimer = Math.max(5, ArtificialIntelligenceAccess[j].stunTimer);
+                            ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+                        }
                         else if (this.effect == "paraliticSmash" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))) > 0)
                         {
                             ArtificialIntelligenceAccess[j].stunXV = true;
@@ -23127,6 +23155,38 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         }
                     }
                 }
+            }
+            else if (this.temporary == 101) //xol pre-setup
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(xolo, 697, 37, 64, 104, -(1/2 * 64 * this.size), -(1/2 * 104 * this.size), 64 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 102) //plain xol board
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(xolo, 609, 40, 64, 104, -(1/2 * 64 * this.size), -(1/2 * 104 * this.size), 64 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 103) //xol grey pieces line
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(xolo, 605, 18, 68, 18, -(1/2 * 68 * this.size), -(1/2 * 18 * this.size), 68 * this.size, 18 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 104) //xol blue pieces line
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(xolo, 697, 18, 68, 18, -(1/2 * 68 * this.size), -(1/2 * 18 * this.size), 68 * this.size, 18 * this.size);
+                XXX.restore();
             }
             else //dirt house underlayer
             {

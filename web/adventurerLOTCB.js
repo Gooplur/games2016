@@ -679,6 +679,7 @@ function Adventurer()
     this.facepaintTime = 0;
     this.meatball = false;
     this.meatballs = false;
+    this.burs = false;
 
     //faction variables
     this.factionToggle = false;
@@ -932,6 +933,29 @@ function Adventurer()
             }
         };
         this.onPixiVenom();
+
+        this.onBur = function()
+        {
+            if (this.burs == true)
+            {
+                this.energilTime = Math.max(2, this.energilTime);
+                this.fatigueI = true;
+
+                if (dClick && player.weaponEquipped == "none" && this.spell == "none" && this.petrified == false)
+                {
+                    if (this.mouseDistance(X, Y) < 10)
+                    {
+                        this.burs = false;
+                    }
+                }
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.globalAlpha = 1;
+                XXX.drawImage(quil, 785, 649, 31, 31, - 1/2 * (31 * 1.2) / 10 * this.mySize, - 1/2 * (31 * 1.2) / 10 * this.mySize, (31 * 1.2) / 10 * this.mySize, (31 * 1.2) / 10 * this.mySize);
+                XXX.restore();
+            }
+        };
+        this.onBur();
 
         //web
         this.onWeb = function()

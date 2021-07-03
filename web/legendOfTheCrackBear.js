@@ -8,13 +8,12 @@
 //top priority
 
 //Image sheet ideas
-//todo orgish image sheet part II: Orgish fish + fishing spot, Orgish food, Orgish buildings
+//todo orgish image sheet part II: Orgish fish + fishing spot, Orgish food, Orgish Home Decor, Orgish Furniture, Orgish Crafting Stations
 //todo far north fish
 //todo furry snow beast
 //todo frost wyrm (with frost breath) (ridable)
 //todo ship
 //todo kraken
-//todo fire breathing hearth mimic
 
 //flash protection
 
@@ -24,7 +23,7 @@
 //todo add Cranheim (city)
 //todo fill in The Schwarza Woods
 //todo Make a cure for internal warts that relies upon fermented vodkapa spleen and some other ingredients
-//todo add Leikshor (town) + add leikshor swamp/forest biome
+//todo add Leikshor (town)
 
 //Kerib Update
 //todo add the karib tribe's village (zarbu themed tribe)
@@ -59,7 +58,6 @@
 //todo add the 'air staff' from Theng img sheet
 //todo add weaken spell
 //todo add arrow mods such as toxic/poison, electric, armour piercing...
-//todo add waterwalking spell
 //todo add anti petrification spell
 
 //Venning Patch
@@ -1690,6 +1688,18 @@ function pangoPack()
     window.pango = pango;
 
     pango.onload = function()
+    {
+        plookPack();
+    };
+}
+
+function plookPack()
+{
+    var plook = new Image();
+    plook.src = ("images/plook.png");
+    window.plook = plook;
+
+    plook.onload = function()
     {
         chesPack();
     };
@@ -6713,6 +6723,7 @@ function theLegend()
     foods.push(new Item("taoMeat", false));
     foods.push(new Item("vlicaMeat", false));
     foods.push(new Item("minotaurMeat", false));
+    foods.push(new Item("duskStriderMeat", false));
     foods.push(new Item("cookedZugot", false));
     foods.push(new Item("cookedCeletsig", false));
     foods.push(new Item("nethNoodles", false));
@@ -6983,6 +6994,7 @@ function theLegend()
     alchemy.push(new Item("orgishFireworkCherry", false));
     alchemy.push(new Item("orgishFireworkCascadia", false));
     alchemy.push(new Item("muschaMilk", false));
+    alchemy.push(new Item("scruchivaniyePaste", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -7024,6 +7036,7 @@ function theLegend()
     forge.push(new Item("cephrianTincturePot", false));
     forge.push(new Item("tinctureCup", false));
     forge.push(new Item("jarOfFaeBlood", false));
+    forge.push(new Item("umbra", false));
 
 //Handcrafted (things the player can do without a work station of some kind)
     handcrafted = [];
@@ -7209,6 +7222,7 @@ function theLegend()
     handcrafted.push(new Item("nothMudPotOfSoakingNeth", false));
     handcrafted.push(new Item("nethDough", false));
     handcrafted.push(new Item("rawNethNoodles", false));
+    handcrafted.push(new Item("bareScruchivaniyeVine", false));
 
 
     //Activate Important Game Functions Here:

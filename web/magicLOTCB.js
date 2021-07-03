@@ -1686,6 +1686,15 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 this.orientToCaster(27 * 2.2, Math.PI);
             }
         }
+        //Klyukva Fruit
+        if (this.spellType == "klyukvaFruit")
+        {
+            this.costumeRotation = 2 * Math.PI * Math.random();
+            this.speed = ((6 * unitSelf.alphaSize) + (Math.random() * unitSelf.alphaSize));
+            this.rotation = unitSelf.rotation;
+
+            this.orientToCaster(37 * unitSelf.alphaSize, Math.PI);
+        }
         //Borea Web Spit
         if (this.spellType == "webSpit")
         {
@@ -5456,6 +5465,18 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                     this.project(this.rotation + Math.PI, 3200, this.speed, "alert");
                 }
 
+            }
+
+            if (this.spellType == "klyukvaFruit")
+            {
+                this.size = unitSelf.alphaSize;
+                this.damageThenGoAway(7*this.size, "physicalDamage", 3*this.size, 0.75*this.size, true, false);
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.costumeRotation);
+                XXX.drawImage(brist, 1039, 283, 23, 23, - (1/2 * 23 * this.size), - (1/2 * 23 * this.size), 23 * this.size, 23 * this.size);
+                XXX.restore();
+                this.project(this.unitRotation, unitSelf.baseSight, this.speed, true);
             }
 
             if (this.spellType == "webSpit")

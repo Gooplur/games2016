@@ -6518,6 +6518,14 @@ function worldBuilder()
 
             outlineBuilder(1, 2, "farmland", -851, 167);
         }
+        //mapS5W33
+        if (Y > -54904 && Y < -44148 && X < 344333 && X > 332640) //X-33
+        {
+            elevation = 0;
+            region = "s5w33";
+            campout = true;
+            outlineBuilder(34, 34, "desert", -1142, 150); //vardanianWetland
+        }
         //Layer -4 (cold region): elev 0
         //mapS4E1
         if (Y > -44704 && Y < -33915 && X < - 2490 && X > -14114) //X1
@@ -6763,6 +6771,14 @@ function worldBuilder()
             outlineBuilder( 1, 11, "brickRoad", -677, 143);
             outlineBuilder( 6, 1, "brickRoad", -677, 144);
         }
+        //mapS4W33
+        if (Y > -44704 && Y < -33877 && X < 344333 && X > 332640) //X-33
+        {
+            elevation = 0;
+            region = "s4w33";
+            campout = true;
+            outlineBuilder(34, 34, "outline", -1142, 116); //blueWoods
+        }
         //Layer -3 (cold region): elev 0
         //mapS3W14 //CRANHEIM
         if (Y > -34556 && Y < -23654 && X < 150510 && X > 138886) //X-14 //todo add map
@@ -6975,6 +6991,15 @@ function worldBuilder()
             outlineBuilder( 34, 34, "brightGrass", 184, 82);
 
         }
+        //mapS3W33
+        if (Y > -34556 && Y < -23654 && X < 344333 && X > 332640) //X-33
+        {
+            elevation = 0;
+            region = "s3w33";
+            campout = true;
+            outlineBuilder(34, 34, "blueWoods", -1142, 82);
+        }
+
         //Layer -2 (cold region): elev 0
         //mapS2E6
         if (Y > -24704 && Y < -13476 && X < -53489.88731544383 && X > -65110.798814782334) //X6

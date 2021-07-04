@@ -242,6 +242,14 @@ function worldBuilder()
             campout = true;
             outlineBuilder( 34, 34, "jungle", -20, 966);
         }
+        //mapS29W30
+        if (Y > -299717.93 && Y < -288910.49 && X < 313753 && X > 302099) //X30
+        {
+            elevation = -3;
+            region = "s29w30";
+            campout = true;
+            outlineBuilder(34, 34, "desert", -1040, 966);
+        }
         //mapS28  (tropical region): elev -3
         if (Y > -289573.87 && Y < -278703.92 && X < 7687 && X > - 3901) //X0
         {
@@ -250,7 +258,15 @@ function worldBuilder()
             campout = true;
             outlineBuilder( 34, 34, "jungle", -20, 932);
         }
-        //mapS28W32  (tropical region): elev -3
+        //mapS28W30
+        if (Y > -289573.87 && Y < -278703.92 && X < 313753 && X > 302099) //X30
+        {
+            elevation = -3;
+            region = "s28w30";
+            campout = true;
+            outlineBuilder( 34, 34, "outline", -1040, 932);
+        }
+        //mapS28W32
         if (Y > -289573.87 && Y < -278703.92 && X < 334130 && X > 322464) //X32
         {
             elevation = -3;
@@ -9000,8 +9016,8 @@ function worldBuilder()
         outlineBuilder(1, 2, "shallowRedWater", 1, 9);
         outlineBuilder(2, 1, "shallowRedWater", 2, 11);
 
-        outlineBuilder(1, 1, "outline", 0, 0); //delete this bottom section
-        outlineBuilder(1, 1, "outline", 6, 9);
+        outlineBuilder(1, 1, "redMoss", 0, 0); //delete this bottom section
+        outlineBuilder(1, 1, "redMoss", 6, 9);
         outlineBuilder(1, 1, "outline", 4, 34);
         outlineBuilder(1, 1, "desert", -9, 19);//We need to go deeper!
     }

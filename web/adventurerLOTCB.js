@@ -49629,10 +49629,11 @@ function Adventurer()
                 this.attack();
             }
 
-            if (zindex == 5)
+            if (zindex == 3) //was 5
             {
                 this.overAnims();
             }
+
             //Quick fixes are my lazy way of solving challenging or bothersom problems!
             if (zindex == 6)
             {

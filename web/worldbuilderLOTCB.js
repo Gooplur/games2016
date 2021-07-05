@@ -6793,7 +6793,9 @@ function worldBuilder()
             elevation = 0;
             region = "s4w33";
             campout = true;
-            outlineBuilder(34, 34, "outline", -1142, 116); //blueWoods
+            outlineBuilder(34, 34, "blueWoods", -1142, 116);
+            outlineBuilder(3, 1, "vardanianGrass", -1142, 147);
+            outlineBuilder(1, 1, "vardanianGrass", -1141, 149);
         }
         //Layer -3 (cold region): elev 0
         //mapS3W14 //CRANHEIM
@@ -7123,7 +7125,7 @@ function worldBuilder()
 
         }
         //mapS2W14 //CRANHEIM DRAINAGE SWAMP
-        if (Y > -24704 && Y < -13476 && X < 150510 && X > 138886) //X-14 //todo add map
+        if (Y > -24704 && Y < -13476 && X < 150510 && X > 138886) //X-14
         {
             elevation = 0;
             region = "s2w14";
@@ -7185,6 +7187,14 @@ function worldBuilder()
             outlineBuilder(1, 2, "sewage", -495, 74);
             outlineBuilder(2, 3, "sewage", -490, 65);
             outlineBuilder(1, 2, "sewage", -482, 64);
+        }
+        //mapS2W33
+        if (Y > -24704 && Y < -13476 && X < 344333 && X > 332640) //X-33
+        {
+            elevation = 0;
+            region = "s2w33";
+            campout = true;
+            outlineBuilder(34, 34, "blueWoods", -1142, 48);
         }
         //Layer -1 (cold region): elev 0
         //mapS1E1

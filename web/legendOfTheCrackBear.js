@@ -3780,6 +3780,12 @@ var frogme = false;
 var minigame = {};
 var showTiles = false;
 var cowTeethTic = -1;
+var tiller = false;
+var tillerList = [];
+var tillerNS = "none";
+var tillerWE = "none";
+var tillerType = "outline";
+var tillerBrush = 30;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -6729,6 +6735,9 @@ function theLegend()
     foods.push(new Item("nethNoodles", false));
     foods.push(new Item("nothDumpling7", false));
     foods.push(new Item("nothFishDumpling7", false));
+    foods.push(new Item("dregMeat", false));
+    foods.push(new Item("bristleBoarMeat", false));
+    foods.push(new Item("roastedBristleBoar", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];

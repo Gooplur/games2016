@@ -218,6 +218,12 @@ function gameloopOfDestiny(time)
     //taxes
     taxes();
 
+    //tiler
+    if (tiller == true)
+    {
+        tiler();
+    }
+
     //POP-UPs
     //level up pop-up
     if (popType == "levelup")

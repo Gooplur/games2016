@@ -2008,3 +2008,356 @@ function reiniciar()
 
     change = "reiniciar";
 }
+
+function tiler()
+{
+    var tillerNum = -1;
+    var tillerFill = "outline";
+    //grid
+    for (var tillerG = 0; tillerG < 34; tillerG++)
+    {
+        for (var tillerH = 0; tillerH < 34; tillerH++)
+        {
+            tillerNum = tillerG + (34 * tillerH);
+
+            if (tillerList[tillerNum].tile == "outline")
+            {
+                tillerFill = "white";
+            }
+            else if (tillerList[tillerNum].tile == "sea" || tillerList[tillerNum].tile == "glade" || tillerList[tillerNum].tile == "mire" || tillerList[tillerNum].tile == "swamp" || tillerList[tillerNum].tile == "murklake" || tillerList[tillerNum].tile == "redWater" || tillerList[tillerNum].tile == "royalwater" || tillerList[tillerNum].tile == "sewage" || tillerList[tillerNum].tile == "hollow" || tillerList[tillerNum].tile == "southbog")
+            {
+                tillerFill = "blue";
+            }
+            else if (tillerList[tillerNum].tile == "shallow" || tillerList[tillerNum].tile == "shallowMire" || tillerList[tillerNum].tile == "shallowGlade" || tillerList[tillerNum].tile == "shallowRedWater" || tillerList[tillerNum].tile == "shallowMurklake" || tillerList[tillerNum].tile == "shallowSewage" || tillerList[tillerNum].tile == "shallowSwamp" || tillerList[tillerNum].tile == "shallowSouthbog")
+            {
+                tillerFill = "lightBlue";
+            }
+            else if (tillerList[tillerNum].tile == "southbogMud")
+            {
+                tillerFill = "brown";
+            }
+            else if (tillerList[tillerNum].tile == "crag" || tillerList[tillerNum].tile == "rock")
+            {
+                tillerFill = "darkGrey";
+            }
+            else
+            {
+                tillerFill = "green";
+            }
+
+            tillerList[tillerNum].W = tillerG;
+            tillerList[tillerNum].H = tillerH;
+
+            if (mouseX > 10 + 15 * tillerG && mouseX < 10 + 15 * tillerG + 15 + tillerBrush && mouseY > 10 + 15 * tillerH && mouseY < 10 + 15 * tillerH + 15 + tillerBrush)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = tillerFill;
+                XXX.strokeStyle = "gold";
+                XXX.rect(10 + 15 * tillerG, 10 + 15 * tillerH, 15, 15);
+                XXX.fill();
+                XXX.stroke();
+
+                if (clicked)
+                {
+                    tillerList[tillerNum].tile = tillerType;
+                }
+            }
+            else
+            {
+                XXX.beginPath();
+                XXX.fillStyle = tillerFill;
+                XXX.strokeStyle = "black";
+                XXX.rect(10 + 15 * tillerG, 10 + 15 * tillerH, 15, 15);
+                XXX.fill();
+                XXX.stroke();
+            }
+        }
+    }
+
+    //map select buttons
+    //N/S
+    if (mouseX > 10 && mouseX < 10 + 65 && mouseY > (12.5 + 34*15) && mouseY < (12.5 + 34*15) + 25)
+    {
+        XXX.beginPath();
+        XXX.fillStyle = "white";
+        XXX.strokeStyle = "gold";
+        XXX.rect(10, (12.5 + 34*15), 65, 25);
+        XXX.fill();
+        XXX.stroke();
+
+        if (clickReleased)
+        {
+            clickReleased = false;
+            tillerNS = prompt("North is positive, South is negative, 0 is central. Enter the N/S value for the map you wish to make:");
+        }
+    }
+    else
+    {
+        XXX.beginPath();
+        XXX.fillStyle = "white";
+        XXX.strokeStyle = "black";
+        XXX.rect(10, (12.5 + 34*15), 65, 25);
+        XXX.fill();
+        XXX.stroke();
+    }
+    if (tillerNS != "none" && tillerNS != null)
+    {
+        if (tillerNS > 0)
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "black";
+            XXX.fillText("N " + Math.abs(tillerNS), 10 + 5, (12.5 + 34*15) + 20);
+            XXX.fill();
+        }
+        else if (tillerNS < 0)
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "black";
+            XXX.fillText("S " + Math.abs(tillerNS), 10 + 5, (12.5 + 34*15) + 20);
+            XXX.fill();
+        }
+        else
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "black";
+            XXX.fillText(Math.abs(tillerNS), 10 + 5, (12.5 + 34*15) + 20);
+            XXX.fill();
+        }
+    }
+
+    //W/E
+    if (mouseX > 77.5 && mouseX < 77.5 + 65 && mouseY > (12.5 + 34*15) && mouseY < (12.5 + 34*15) + 25)
+    {
+        XXX.beginPath();
+        XXX.fillStyle = "white";
+        XXX.strokeStyle = "gold";
+        XXX.rect(77.5, (12.5 + 34*15), 65, 25);
+        XXX.fill();
+        XXX.stroke();
+
+        if (clickReleased)
+        {
+            clickReleased = false;
+            tillerWE = prompt("East is positive, West is negative, 0 is central. Enter the W/E value for the map you wish to make:");
+        }
+    }
+    else
+    {
+        XXX.beginPath();
+        XXX.fillStyle = "white";
+        XXX.strokeStyle = "black";
+        XXX.rect(77.5, (12.5 + 34*15), 65, 25);
+        XXX.fill();
+        XXX.stroke();
+    }
+    if (tillerWE != "none" && tillerWE != null)
+    {
+        if (tillerWE > 0)
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "black";
+            XXX.fillText("E " + Math.abs(tillerWE), 77.5 + 5, (12.5 + 34*15) + 20);
+            XXX.fill();
+        }
+        else if (tillerWE < 0)
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "black";
+            XXX.fillText("W " + Math.abs(tillerWE), 77.5 + 5, (12.5 + 34*15) + 20);
+            XXX.fill();
+        }
+        else
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "black";
+            XXX.fillText(Math.abs(tillerWE), 77.5 + 5, (12.5 + 34*15) + 20);
+            XXX.fill();
+        }
+    }
+
+    //clear all button
+    if (mouseX > 10 + (12.5 + 34*15) && mouseX < 10 + (12.5 + 34*15) + 25 && mouseY > 10 && mouseY < 10 + 25)
+    {
+        XXX.beginPath();
+        XXX.fillStyle = "white";
+        XXX.strokeStyle = "gold";
+        XXX.rect(10 + (12.5 + 34*15), 10, 25, 25);
+        XXX.fill();
+        XXX.stroke();
+
+        if (clickReleased)
+        {
+            for (var oookapookTiller = 0; oookapookTiller < tillerList.length; oookapookTiller++)
+            {
+                tillerList[oookapookTiller].tile = "outline";
+            }
+        }
+    }
+    else
+    {
+        XXX.beginPath();
+        XXX.fillStyle = "white";
+        XXX.strokeStyle = "black";
+        XXX.rect(10 + (12.5 + 34*15), 10, 25, 25);
+        XXX.fill();
+        XXX.stroke();
+    }
+
+    //fill outlined button
+    if (mouseX > 40 + (12.5 + 34*15) && mouseX < 40 + (12.5 + 34*15) + 25 && mouseY > 10 && mouseY < 10 + 25)
+    {
+        XXX.beginPath();
+        XXX.fillStyle = "black";
+        XXX.strokeStyle = "gold";
+        XXX.rect(40 + (12.5 + 34*15), 10, 25, 25);
+        XXX.fill();
+        XXX.stroke();
+
+        if (clickReleased)
+        {
+            for (var oookapookTiller = 0; oookapookTiller < tillerList.length; oookapookTiller++)
+            {
+                if (tillerList[oookapookTiller].tile == "outline")
+                {
+                    tillerList[oookapookTiller].tile = tillerType;
+                }
+            }
+        }
+    }
+    else
+    {
+        XXX.beginPath();
+        XXX.fillStyle = "black";
+        XXX.strokeStyle = "white";
+        XXX.rect(40 + (12.5 + 34*15), 10, 25, 25);
+        XXX.fill();
+        XXX.stroke();
+    }
+
+    //fill outlined button
+    if (mouseX > 70 + (12.5 + 34*15) && mouseX < 40 + (12.5 + 34*15) + 200 && mouseY > 10 && mouseY < 10 + 25)
+    {
+        XXX.beginPath();
+        XXX.fillStyle = "white";
+        XXX.strokeStyle = "gold";
+        XXX.rect(70 + (12.5 + 34*15), 10, 200, 25);
+        XXX.fill();
+        XXX.stroke();
+
+        if (clickReleased)
+        {
+            clickReleased = false;
+            tillerType = prompt("Enter the exact tile type you intend to place:");
+        }
+    }
+    else
+    {
+        XXX.beginPath();
+        XXX.fillStyle = "white";
+        XXX.strokeStyle = "black";
+        XXX.rect(70 + (12.5 + 34*15), 10, 200, 25);
+        XXX.fill();
+        XXX.stroke();
+    }
+    XXX.beginPath();
+    XXX.fillStyle = "black";
+    XXX.font = "16px Book Antiqua";
+    XXX.fillText(tillerType, 77.5 + (12.5 + 34*15) + 5, 10 + 20);
+    XXX.fill();
+
+    //brush size button
+    if (mouseX > 275 + (12.5 + 34*15) && mouseX < 275 + (12.5 + 34*15) + 30 && mouseY > 10 && mouseY < 10 + 25)
+    {
+        XXX.beginPath();
+        XXX.fillStyle = "white";
+        XXX.strokeStyle = "gold";
+        XXX.rect(275 + (12.5 + 34*15), 10, 30, 25);
+        XXX.fill();
+        XXX.stroke();
+
+        if (clickReleased)
+        {
+            var tillerBrushSz = prompt("Enter the brush size that you would like to use:");
+
+            tillerBrush = Number(tillerBrushSz) * 15;
+        }
+    }
+    else
+    {
+        XXX.beginPath();
+        XXX.fillStyle = "white";
+        XXX.strokeStyle = "black";
+        XXX.rect(275 + (12.5 + 34*15), 10, 30, 25);
+        XXX.fill();
+        XXX.stroke();
+    }
+    XXX.beginPath();
+    XXX.fillStyle = "black";
+    XXX.font = "16px Book Antiqua";
+    XXX.fillText((tillerBrush / 15), 282.5 + (12.5 + 34*15) + 5, 10 + 20);
+    XXX.fill();
+
+    //uploading map to code text
+
+    if (deleteKey)
+    {
+        deleteKey = false;
+        tillerWE = Number(tillerWE);
+        tillerNS = Number(tillerNS);
+
+        var tilesTiller = [];
+        var curTiller = "none";
+        for (var tillerConvert = 0; tillerConvert < tillerList.length; tillerConvert++)
+        {
+            tilesTiller.push(tillerList[tillerConvert].tile);
+            curTiller = tillerList[tillerConvert].tile;
+        }
+
+        var tillerGo = true;
+        for (var tillerConvert = 0; tillerConvert < tilesTiller.length; tillerConvert++)
+        {
+            if (tilesTiller[tillerConvert] != curTiller)
+            {
+                tillerGo = false;
+            }
+        }
+
+        if (tillerGo == true)
+        {
+            console.log(`outlineBuilder(34, 34, "` + tillerList[0].tile + `", ` + (-20 + (34*Number(tillerWE))) + `, ` + (-20 + (-34*Number(tillerNS))) +`);`);
+        }
+        else //scan horizontally to document the tiles in code text
+        {
+            for (var tillerConvert2 = 0; tillerConvert2 < 34; tillerConvert2++)
+            {
+                var tilesTiller = [];
+                for (var tillerConvert = 0; tillerConvert < 34; tillerConvert++)
+                {
+                    tillerNum = tillerConvert + (34 * tillerConvert2);
+                    if (tilesTiller.length == 0 && tillerConvert >= 33 || tilesTiller.length != 0 && tilesTiller[tilesTiller.length - 1][1] == tillerList[tillerNum].tile && tillerConvert >= 33)
+                    {
+                        tilesTiller.push([{W: tillerList[tillerNum].W, H: tillerList[tillerNum].H}, tillerList[tillerNum].tile]);
+                        console.log(`outlineBuilder(1, `+ tilesTiller.length + `, "` + tilesTiller[0][1] + `", ` + (-20 + tilesTiller[0][0].W + (34*tillerWE)) + `, ` + (-20 + tilesTiller[0][0].H + (-34*tillerNS)) +`);`);
+                    }
+                    else if (tilesTiller.length == 0 || tilesTiller[tilesTiller.length - 1][1] == tillerList[tillerNum].tile)
+                    {
+                        tilesTiller.push([{W: tillerList[tillerNum].W, H: tillerList[tillerNum].H}, tillerList[tillerNum].tile]);
+                    }
+                    else if (tillerConvert >= 33)
+                    {
+                        console.log(`outlineBuilder(1, `+ tilesTiller.length + `, "` + tilesTiller[0][1] + `", ` + (-20 + tilesTiller[0][0].W + (34*tillerWE)) + `, ` + (-20 + tilesTiller[0][0].H + (-34*tillerNS)) +`);`);
+                        tilesTiller = [];
+                        tilesTiller.push([{W: tillerList[tillerNum].W, H: tillerList[tillerNum].H}, tillerList[tillerNum].tile]);
+                        console.log(`outlineBuilder(1, `+ tilesTiller.length + `, "` + tilesTiller[0][1] + `", ` + (-20 + tilesTiller[0][0].W + (34*tillerWE)) + `, ` + (-20 + tilesTiller[0][0].H + (-34*tillerNS)) +`);`);
+                    }
+                    else
+                    {
+                        console.log(`outlineBuilder(1, `+ tilesTiller.length + `, "` + tilesTiller[0][1] + `", ` + (-20 + tilesTiller[0][0].W + (34*tillerWE)) + `, ` + (-20 + tilesTiller[0][0].H + (-34*tillerNS)) +`);`);
+                        tilesTiller = [];
+                        tilesTiller.push([{W: tillerList[tillerNum].W, H: tillerList[tillerNum].H}, tillerList[tillerNum].tile]);
+                    }
+                }
+            }
+        }
+    }
+}
